@@ -3,7 +3,7 @@ speakeasyVersion: latest
 sources:
     aurora-chatbot-api-schema:
         inputs:
-            - location: ../chatbot-api-schema/schema-unresolved.yaml
+            - location: api-spec/schema-unresolved.yaml
         registry:
             location: registry.speakeasyapi.dev/aurora-interactive/aurora-interactive/aurora-chatbot-api-schema
 targets:
