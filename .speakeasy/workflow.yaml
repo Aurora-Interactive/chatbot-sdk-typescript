@@ -1,0 +1,12 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    aurora-chatbot-api-schema:
+        inputs:
+            - location: ../chatbot-api-schema/schema-unresolved.yaml
+        registry:
+            location: registry.speakeasyapi.dev/aurora-interactive/aurora-interactive/aurora-chatbot-api-schema
+targets:
+    aurora-chatbot-sdk:
+        target: typescript
+        source: aurora-chatbot-api-schema

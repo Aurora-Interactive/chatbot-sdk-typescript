@@ -1,0 +1,44 @@
+configVersion: 2.0.0
+generation:
+  devContainers:
+    enabled: true
+    schemaPath: chatbot-api-schema/schema-unresolved.yaml
+  sdkClassName: AuroraChatbotSdk
+  maintainOpenAPIOrder: true
+  usageSnippets:
+    optionalPropertyRendering: withExample
+  useClassNamesForArrayFields: true
+  fixes:
+    nameResolutionDec2023: true
+    parameterOrderingFeb2024: true
+    requestResponseComponentNamesFeb2024: true
+  auth:
+    oAuth2ClientCredentialsEnabled: false
+typescript:
+  version: 3.1.0
+  additionalDependencies:
+    dependencies: {}
+    devDependencies: {}
+    peerDependencies: {}
+  additionalPackageJSON: {}
+  author: Speakeasy
+  clientServerStatusCodesAsErrors: true
+  enumFormat: union
+  flattenGlobalSecurity: true
+  imports:
+    option: openapi
+    paths:
+      callbacks: models/callbacks
+      errors: models/errors
+      operations: models/operations
+      shared: models/components
+      webhooks: models/webhooks
+  inputModelSuffix: input
+  maxMethodParams: 8
+  methodArguments: infer-optional-args
+  moduleFormat: esm
+  outputModelSuffix: output
+  packageName: '@aurora-interactive/chatbot-api-sdk'
+  responseFormat: flat
+  templateVersion: v2
+  useIndexModules: true

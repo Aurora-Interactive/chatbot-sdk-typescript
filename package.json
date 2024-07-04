@@ -1,0 +1,77 @@
+{
+  "name": "@aurora-interactive/chatbot-api-sdk",
+  "version": "3.1.0",
+  "author": "Speakeasy",
+  "type": "module",
+  "main": "./esm/index.js",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./esm/index.d.ts",
+      "default": "./esm/index.js"
+    },
+    "./package.json": "./package.json",
+    "./types": {
+      "source": "./src/types/index.ts",
+      "types": "./esm/types/index.d.ts",
+      "default": "./esm/types/index.js"
+    },
+    "./models/components": {
+      "source": "./src/models/components/index.ts",
+      "types": "./esm/models/components/index.d.ts",
+      "default": "./esm/models/components/index.js"
+    },
+    "./models/errors": {
+      "source": "./src/models/errors/index.ts",
+      "types": "./esm/models/errors/index.d.ts",
+      "default": "./esm/models/errors/index.js"
+    },
+    "./models/operations": {
+      "source": "./src/models/operations/index.ts",
+      "types": "./esm/models/operations/index.d.ts",
+      "default": "./esm/models/operations/index.js"
+    },
+    "./models/webhooks": {
+      "source": "./src/models/webhooks/index.ts",
+      "types": "./esm/models/webhooks/index.d.ts",
+      "default": "./esm/models/webhooks/index.js"
+    },
+    "./models/callbacks": {
+      "source": "./src/models/callbacks/index.ts",
+      "types": "./esm/models/callbacks/index.d.ts",
+      "default": "./esm/models/callbacks/index.js"
+    },
+    "./*.js": {
+      "source": "./src/*.ts",
+      "types": "./esm/*.d.ts",
+      "default": "./esm/*.js"
+    },
+    "./*": {
+      "source": "./src/*.ts",
+      "types": "./esm/*.d.ts",
+      "default": "./esm/*.js"
+    }
+  },
+  "sideEffects": false,
+  "scripts": {
+    "lint": "eslint --max-warnings=0 src",
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "peerDependencies": {
+    "zod": ">= 3"
+  },
+  "devDependencies": {
+    "@types/jsonpath": "^0.2.4",
+    "@typescript-eslint/eslint-plugin": "^7.7.1",
+    "@typescript-eslint/parser": "^7.7.1",
+    "eslint": "^8.57.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1",
+    "typescript": "^5.4.5",
+    "zod": "^3.23.4"
+  },
+  "dependencies": {
+    
+  }
+}
