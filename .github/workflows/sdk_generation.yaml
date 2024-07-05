@@ -17,6 +17,16 @@ permissions:
   schedule:
     - cron: 0 0 * * *
 jobs:
+  checkout-and-clone-submodules:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.SCHEMA_ACCESS_TOKEN }}
+        submodules: recursive
+
   generate:
     uses: speakeasy-api/sdk-generation-action/.github/workflows/workflow-executor.yaml@v15
     with:
