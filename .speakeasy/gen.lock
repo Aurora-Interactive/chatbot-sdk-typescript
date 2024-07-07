@@ -1,17 +1,17 @@
 lockVersion: 2.0.0
 id: d0c6ef81-afa9-4266-a8f1-2430fa28984d
 management:
-  docChecksum: d5f9a0195c11a19fa6cad9b5f3f221de
-  docVersion: 3.0.0
-  speakeasyVersion: 1.326.2
-  generationVersion: 2.359.1
-  releaseVersion: 3.1.0
-  configChecksum: c7b9afd8dbe24fc41ea909c36afad635
+  docChecksum: 3deb2353bb489b3ba7d454c1f6dd1c30
+  docVersion: 3.0.2
+  speakeasyVersion: 1.326.3
+  generationVersion: 2.359.6
+  releaseVersion: 3.2.0
+  configChecksum: 4143fb7ea803f358b1cbf60e46e5559e
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.5
-    core: 3.11.0
+    core: 3.11.3
     devContainers: 2.90.0
     errorUnions: 0.1.0
     flattening: 2.81.1
@@ -25,6 +25,7 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.1.0
+    serverEvents: 0.1.4
     unions: 2.85.5
 generatedFiles:
   - src/sdk/characters.ts
@@ -40,6 +41,7 @@ generatedFiles:
   - src/lib/base64.ts
   - src/lib/config.ts
   - src/lib/encodings.ts
+  - src/lib/event-streams.ts
   - src/lib/http.ts
   - src/lib/is-plain-object.ts
   - src/lib/primitives.ts
@@ -83,6 +85,7 @@ generatedFiles:
   - src/models/components/characterid.ts
   - src/models/components/timestampedmessage.ts
   - src/models/components/message.ts
+  - src/models/components/chatcompletionfragment.ts
   - src/models/errors/index.ts
   - src/models/operations/index.ts
   - src/models/components/index.ts
@@ -116,7 +119,6 @@ generatedFiles:
   - docs/models/operations/getmessagecontextsuccessfulrequest.md
   - docs/models/operations/sendmessageglobals.md
   - docs/models/operations/sendmessagechatidresponse.md
-  - docs/models/operations/sendmessageresponse.md
   - docs/models/operations/deletemessageglobals.md
   - docs/models/operations/deletemessagerequest.md
   - docs/models/operations/initializechatglobals.md
@@ -157,6 +159,8 @@ generatedFiles:
   - docs/models/components/timestampedmessage.md
   - docs/models/components/messagerole.md
   - docs/models/components/message.md
+  - docs/models/components/data.md
+  - docs/models/components/chatcompletionfragment.md
   - docs/sdks/aurorachatbotsdk/README.md
   - docs/lib/utils/retryconfig.md
   - docs/sdks/characters/README.md

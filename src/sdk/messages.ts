@@ -3,12 +3,13 @@
  */
 
 import { SDKHooks } from "../hooks/hooks.js";
-import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config.js";
+import { SDKOptions, serverURLFromOptions } from "../lib/config.js";
 import {
     encodeFormQuery as encodeFormQuery$,
     encodeJSON as encodeJSON$,
     encodeSimple as encodeSimple$,
 } from "../lib/encodings.js";
+import { EventStream } from "../lib/event-streams.js";
 import { HTTPClient } from "../lib/http.js";
 import * as retries$ from "../lib/retries.js";
 import * as schemas$ from "../lib/schemas.js";
@@ -16,6 +17,7 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as errors from "../models/errors/index.js";
 import * as operations from "../models/operations/index.js";
+import * as z from "zod";
 
 export class Messages extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -63,10 +65,6 @@ export class Messages extends ClientSDK {
             timestamp: timestamp,
             chatId: chatId,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -83,16 +81,17 @@ export class Messages extends ClientSDK {
 
         const query$ = "";
 
-        headers$.set(
-            "x-access-token",
-            encodeSimple$("x-access-token", this.options$.accessToken, {
+        const headers$ = new Headers({
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "x-access-token": encodeSimple$("x-access-token", this.options$.accessToken, {
                 explode: false,
                 charEncoding: "none",
-            })
-        );
+            }),
+        });
+
         const context = { operationID: "saveMessage", oAuth2Scopes: [], securitySource: null };
 
-        const doOptions = { context, errorCodes: ["400", "401", "402", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             { method: "POST", path: path$, headers: headers$, query: query$, body: body$ },
@@ -114,7 +113,10 @@ export class Messages extends ClientSDK {
         const response = await retries$.retry(
             () => {
                 const cloned = request$.clone();
-                return this.do$(cloned, doOptions);
+                return this.do$(cloned, {
+                    context,
+                    errorCodes: ["400", "401", "402", "4XX", "5XX"],
+                });
             },
             { config: retryConfig, statusCodes: ["5XX"] }
         );
@@ -147,9 +149,6 @@ export class Messages extends ClientSDK {
         const input$: operations.GetMessageHistoryRequest = {
             chatId: chatId,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -164,20 +163,20 @@ export class Messages extends ClientSDK {
             chatId: payload$.chatId,
         });
 
-        headers$.set(
-            "x-access-token",
-            encodeSimple$("x-access-token", this.options$.accessToken, {
+        const headers$ = new Headers({
+            Accept: "application/json",
+            "x-access-token": encodeSimple$("x-access-token", this.options$.accessToken, {
                 explode: false,
                 charEncoding: "none",
-            })
-        );
+            }),
+        });
+
         const context = {
             operationID: "getMessageHistory",
             oAuth2Scopes: [],
             securitySource: null,
         };
 
-        const doOptions = { context, errorCodes: ["400", "401", "402", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             { method: "GET", path: path$, headers: headers$, query: query$, body: body$ },
@@ -199,7 +198,10 @@ export class Messages extends ClientSDK {
         const response = await retries$.retry(
             () => {
                 const cloned = request$.clone();
-                return this.do$(cloned, doOptions);
+                return this.do$(cloned, {
+                    context,
+                    errorCodes: ["400", "401", "402", "4XX", "5XX"],
+                });
             },
             { config: retryConfig, statusCodes: ["5XX"] }
         );
@@ -232,9 +234,6 @@ export class Messages extends ClientSDK {
         const input$: operations.GetMessageContextRequest = {
             chatId: chatId,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -249,20 +248,20 @@ export class Messages extends ClientSDK {
             chatId: payload$.chatId,
         });
 
-        headers$.set(
-            "x-access-token",
-            encodeSimple$("x-access-token", this.options$.accessToken, {
+        const headers$ = new Headers({
+            Accept: "application/json",
+            "x-access-token": encodeSimple$("x-access-token", this.options$.accessToken, {
                 explode: false,
                 charEncoding: "none",
-            })
-        );
+            }),
+        });
+
         const context = {
             operationID: "getMessageContext",
             oAuth2Scopes: [],
             securitySource: null,
         };
 
-        const doOptions = { context, errorCodes: ["400", "401", "402", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             { method: "GET", path: path$, headers: headers$, query: query$, body: body$ },
@@ -284,7 +283,10 @@ export class Messages extends ClientSDK {
         const response = await retries$.retry(
             () => {
                 const cloned = request$.clone();
-                return this.do$(cloned, doOptions);
+                return this.do$(cloned, {
+                    context,
+                    errorCodes: ["400", "401", "402", "4XX", "5XX"],
+                });
             },
             { config: retryConfig, statusCodes: ["5XX"] }
         );
@@ -315,16 +317,12 @@ export class Messages extends ClientSDK {
         message: string,
         messageContext?: Array<components.Message> | undefined,
         options?: RequestOptions & { retries?: retries$.RetryConfig }
-    ): Promise<operations.SendMessageResponse> {
+    ): Promise<EventStream<components.ChatCompletionFragment>> {
         const input$: operations.SendMessageChatIDResponse | undefined = {
             chatId: chatId,
             message: message,
             messageContext: messageContext,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "text/event-stream");
 
         const payload$ = schemas$.parse(
             input$,
@@ -339,16 +337,17 @@ export class Messages extends ClientSDK {
 
         const query$ = "";
 
-        headers$.set(
-            "x-access-token",
-            encodeSimple$("x-access-token", this.options$.accessToken, {
+        const headers$ = new Headers({
+            "Content-Type": "application/json",
+            Accept: "text/event-stream",
+            "x-access-token": encodeSimple$("x-access-token", this.options$.accessToken, {
                 explode: false,
                 charEncoding: "none",
-            })
-        );
+            }),
+        });
+
         const context = { operationID: "sendMessage", oAuth2Scopes: [], securitySource: null };
 
-        const doOptions = { context, errorCodes: ["400", "401", "402", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             { method: "POST", path: path$, headers: headers$, query: query$, body: body$ },
@@ -370,7 +369,10 @@ export class Messages extends ClientSDK {
         const response = await retries$.retry(
             () => {
                 const cloned = request$.clone();
-                return this.do$(cloned, doOptions);
+                return this.do$(cloned, {
+                    context,
+                    errorCodes: ["400", "401", "402", "4XX", "5XX"],
+                });
             },
             { config: retryConfig, statusCodes: ["5XX"] }
         );
@@ -379,12 +381,19 @@ export class Messages extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.SendMessageResponse>()
-            .text(200, operations.SendMessageResponse$, {
-                ctype: "text/event-stream",
-                hdrs: true,
-                key: "Result",
-            })
+        const [result$] = await this.matcher<EventStream<components.ChatCompletionFragment>>()
+            .sse(
+                200,
+                z.instanceof(ReadableStream<Uint8Array>).transform((stream) => {
+                    return new EventStream({
+                        stream,
+                        decoder(rawEvent) {
+                            const schema = components.ChatCompletionFragment$.inboundSchema;
+                            return schema.parse(rawEvent);
+                        },
+                    });
+                })
+            )
             .json(400, errors.SendMessageResponseBody$, { err: true })
             .json(401, errors.SendMessageMessagesResponseBody$, { err: true })
             .json(402, errors.AccountInBadStandingError$, { err: true })
@@ -407,9 +416,6 @@ export class Messages extends ClientSDK {
         const input$: operations.DeleteMessageRequest = {
             messageId: messageId,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -424,16 +430,16 @@ export class Messages extends ClientSDK {
             messageId: payload$.messageId,
         });
 
-        headers$.set(
-            "x-access-token",
-            encodeSimple$("x-access-token", this.options$.accessToken, {
+        const headers$ = new Headers({
+            Accept: "application/json",
+            "x-access-token": encodeSimple$("x-access-token", this.options$.accessToken, {
                 explode: false,
                 charEncoding: "none",
-            })
-        );
+            }),
+        });
+
         const context = { operationID: "deleteMessage", oAuth2Scopes: [], securitySource: null };
 
-        const doOptions = { context, errorCodes: ["400", "401", "402", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             { method: "DELETE", path: path$, headers: headers$, query: query$, body: body$ },
@@ -455,7 +461,10 @@ export class Messages extends ClientSDK {
         const response = await retries$.retry(
             () => {
                 const cloned = request$.clone();
-                return this.do$(cloned, doOptions);
+                return this.do$(cloned, {
+                    context,
+                    errorCodes: ["400", "401", "402", "4XX", "5XX"],
+                });
             },
             { config: retryConfig, statusCodes: ["5XX"] }
         );

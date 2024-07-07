@@ -3,7 +3,7 @@
  */
 
 import { SDKHooks } from "../hooks/hooks.js";
-import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config.js";
+import { SDKOptions, serverURLFromOptions } from "../lib/config.js";
 import {
     encodeFormQuery as encodeFormQuery$,
     encodeJSON as encodeJSON$,
@@ -55,24 +55,21 @@ export class Chats extends ClientSDK {
     ): Promise<operations.GetChatsForUserSuccessfulRequest> {
         const input$: operations.GetChatsForUserRequest = {};
         void input$; // request input is unused
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const path$ = this.templateURLComponent("/api/v3/allChatsForUser")();
 
         const query$ = "";
 
-        headers$.set(
-            "x-access-token",
-            encodeSimple$("x-access-token", this.options$.accessToken, {
+        const headers$ = new Headers({
+            Accept: "application/json",
+            "x-access-token": encodeSimple$("x-access-token", this.options$.accessToken, {
                 explode: false,
                 charEncoding: "none",
-            })
-        );
+            }),
+        });
+
         const context = { operationID: "getChatsForUser", oAuth2Scopes: [], securitySource: null };
 
-        const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             { method: "GET", path: path$, headers: headers$, query: query$ },
@@ -94,7 +91,7 @@ export class Chats extends ClientSDK {
         const response = await retries$.retry(
             () => {
                 const cloned = request$.clone();
-                return this.do$(cloned, doOptions);
+                return this.do$(cloned, { context, errorCodes: ["400", "401", "4XX", "5XX"] });
             },
             { config: retryConfig, statusCodes: ["5XX"] }
         );
@@ -126,10 +123,6 @@ export class Chats extends ClientSDK {
         const input$: components.CharacterId | undefined = {
             characterId: characterId,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -143,16 +136,17 @@ export class Chats extends ClientSDK {
 
         const query$ = "";
 
-        headers$.set(
-            "x-access-token",
-            encodeSimple$("x-access-token", this.options$.accessToken, {
+        const headers$ = new Headers({
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "x-access-token": encodeSimple$("x-access-token", this.options$.accessToken, {
                 explode: false,
                 charEncoding: "none",
-            })
-        );
+            }),
+        });
+
         const context = { operationID: "initializeChat", oAuth2Scopes: [], securitySource: null };
 
-        const doOptions = { context, errorCodes: ["400", "401", "402", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             { method: "POST", path: path$, headers: headers$, query: query$, body: body$ },
@@ -174,7 +168,10 @@ export class Chats extends ClientSDK {
         const response = await retries$.retry(
             () => {
                 const cloned = request$.clone();
-                return this.do$(cloned, doOptions);
+                return this.do$(cloned, {
+                    context,
+                    errorCodes: ["400", "401", "402", "4XX", "5XX"],
+                });
             },
             { config: retryConfig, statusCodes: ["5XX"] }
         );
@@ -207,9 +204,6 @@ export class Chats extends ClientSDK {
         const input$: operations.DeleteChatRequest = {
             chatId: chatId,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -224,16 +218,16 @@ export class Chats extends ClientSDK {
             chatId: payload$.chatId,
         });
 
-        headers$.set(
-            "x-access-token",
-            encodeSimple$("x-access-token", this.options$.accessToken, {
+        const headers$ = new Headers({
+            Accept: "application/json",
+            "x-access-token": encodeSimple$("x-access-token", this.options$.accessToken, {
                 explode: false,
                 charEncoding: "none",
-            })
-        );
+            }),
+        });
+
         const context = { operationID: "deleteChat", oAuth2Scopes: [], securitySource: null };
 
-        const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             { method: "DELETE", path: path$, headers: headers$, query: query$, body: body$ },
@@ -255,7 +249,7 @@ export class Chats extends ClientSDK {
         const response = await retries$.retry(
             () => {
                 const cloned = request$.clone();
-                return this.do$(cloned, doOptions);
+                return this.do$(cloned, { context, errorCodes: ["400", "401", "4XX", "5XX"] });
             },
             { config: retryConfig, statusCodes: ["5XX"] }
         );

@@ -1,6 +1,6 @@
 {
   "name": "@aurora-interactive/chatbot-api-sdk",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "author": "Speakeasy",
   "type": "module",
   "main": "./esm/index.js",
@@ -16,30 +16,20 @@
       "types": "./esm/types/index.d.ts",
       "default": "./esm/types/index.js"
     },
-    "./models/components": {
-      "source": "./src/models/components/index.ts",
-      "types": "./esm/models/components/index.d.ts",
-      "default": "./esm/models/components/index.js"
-    },
     "./models/errors": {
       "source": "./src/models/errors/index.ts",
       "types": "./esm/models/errors/index.d.ts",
       "default": "./esm/models/errors/index.js"
     },
+    "./models/components": {
+      "source": "./src/models/components/index.ts",
+      "types": "./esm/models/components/index.d.ts",
+      "default": "./esm/models/components/index.js"
+    },
     "./models/operations": {
       "source": "./src/models/operations/index.ts",
       "types": "./esm/models/operations/index.d.ts",
       "default": "./esm/models/operations/index.js"
-    },
-    "./models/webhooks": {
-      "source": "./src/models/webhooks/index.ts",
-      "types": "./esm/models/webhooks/index.d.ts",
-      "default": "./esm/models/webhooks/index.js"
-    },
-    "./models/callbacks": {
-      "source": "./src/models/callbacks/index.ts",
-      "types": "./esm/models/callbacks/index.d.ts",
-      "default": "./esm/models/callbacks/index.js"
     },
     "./*.js": {
       "source": "./src/*.ts",

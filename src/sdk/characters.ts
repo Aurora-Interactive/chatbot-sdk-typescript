@@ -3,7 +3,7 @@
  */
 
 import { SDKHooks } from "../hooks/hooks.js";
-import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config.js";
+import { SDKOptions, serverURLFromOptions } from "../lib/config.js";
 import {
     encodeFormQuery as encodeFormQuery$,
     encodeJSON as encodeJSON$,
@@ -54,24 +54,21 @@ export class Characters extends ClientSDK {
     ): Promise<operations.GetCharactersSuccessfulRequest> {
         const input$: operations.GetCharactersRequest = {};
         void input$; // request input is unused
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const path$ = this.templateURLComponent("/api/v3/allCharacters")();
 
         const query$ = "";
 
-        headers$.set(
-            "x-access-token",
-            encodeSimple$("x-access-token", this.options$.accessToken, {
+        const headers$ = new Headers({
+            Accept: "application/json",
+            "x-access-token": encodeSimple$("x-access-token", this.options$.accessToken, {
                 explode: false,
                 charEncoding: "none",
-            })
-        );
+            }),
+        });
+
         const context = { operationID: "getCharacters", oAuth2Scopes: [], securitySource: null };
 
-        const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             { method: "GET", path: path$, headers: headers$, query: query$ },
@@ -93,7 +90,7 @@ export class Characters extends ClientSDK {
         const response = await retries$.retry(
             () => {
                 const cloned = request$.clone();
-                return this.do$(cloned, doOptions);
+                return this.do$(cloned, { context, errorCodes: ["400", "401", "4XX", "5XX"] });
             },
             { config: retryConfig, statusCodes: ["5XX"] }
         );
@@ -125,9 +122,6 @@ export class Characters extends ClientSDK {
         const input$: operations.GetCharacterImageDataRequest = {
             characterId: characterId,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -142,20 +136,20 @@ export class Characters extends ClientSDK {
             characterId: payload$.characterId,
         });
 
-        headers$.set(
-            "x-access-token",
-            encodeSimple$("x-access-token", this.options$.accessToken, {
+        const headers$ = new Headers({
+            Accept: "application/json",
+            "x-access-token": encodeSimple$("x-access-token", this.options$.accessToken, {
                 explode: false,
                 charEncoding: "none",
-            })
-        );
+            }),
+        });
+
         const context = {
             operationID: "getCharacterImageData",
             oAuth2Scopes: [],
             securitySource: null,
         };
 
-        const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             { method: "GET", path: path$, headers: headers$, query: query$, body: body$ },
@@ -177,7 +171,7 @@ export class Characters extends ClientSDK {
         const response = await retries$.retry(
             () => {
                 const cloned = request$.clone();
-                return this.do$(cloned, doOptions);
+                return this.do$(cloned, { context, errorCodes: ["400", "401", "4XX", "5XX"] });
             },
             { config: retryConfig, statusCodes: ["5XX"] }
         );
@@ -209,9 +203,6 @@ export class Characters extends ClientSDK {
         const input$: operations.GetCharacterAiInitializationDataRequest = {
             characterId: characterId,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -227,20 +218,20 @@ export class Characters extends ClientSDK {
             characterId: payload$.characterId,
         });
 
-        headers$.set(
-            "x-access-token",
-            encodeSimple$("x-access-token", this.options$.accessToken, {
+        const headers$ = new Headers({
+            Accept: "application/json",
+            "x-access-token": encodeSimple$("x-access-token", this.options$.accessToken, {
                 explode: false,
                 charEncoding: "none",
-            })
-        );
+            }),
+        });
+
         const context = {
             operationID: "getCharacterAiInitializationData",
             oAuth2Scopes: [],
             securitySource: null,
         };
 
-        const doOptions = { context, errorCodes: ["400", "401", "402", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             { method: "GET", path: path$, headers: headers$, query: query$, body: body$ },
@@ -262,7 +253,10 @@ export class Characters extends ClientSDK {
         const response = await retries$.retry(
             () => {
                 const cloned = request$.clone();
-                return this.do$(cloned, doOptions);
+                return this.do$(cloned, {
+                    context,
+                    errorCodes: ["400", "401", "402", "4XX", "5XX"],
+                });
             },
             { config: retryConfig, statusCodes: ["5XX"] }
         );
@@ -306,10 +300,6 @@ export class Characters extends ClientSDK {
             iconImage: iconImage,
             bannerImage: bannerImage,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -326,16 +316,17 @@ export class Characters extends ClientSDK {
 
         const query$ = "";
 
-        headers$.set(
-            "x-access-token",
-            encodeSimple$("x-access-token", this.options$.accessToken, {
+        const headers$ = new Headers({
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "x-access-token": encodeSimple$("x-access-token", this.options$.accessToken, {
                 explode: false,
                 charEncoding: "none",
-            })
-        );
+            }),
+        });
+
         const context = { operationID: "createCharacter", oAuth2Scopes: [], securitySource: null };
 
-        const doOptions = { context, errorCodes: ["400", "401", "402", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             { method: "POST", path: path$, headers: headers$, query: query$, body: body$ },
@@ -357,7 +348,10 @@ export class Characters extends ClientSDK {
         const response = await retries$.retry(
             () => {
                 const cloned = request$.clone();
-                return this.do$(cloned, doOptions);
+                return this.do$(cloned, {
+                    context,
+                    errorCodes: ["400", "401", "402", "4XX", "5XX"],
+                });
             },
             { config: retryConfig, statusCodes: ["5XX"] }
         );

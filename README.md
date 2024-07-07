@@ -324,6 +324,45 @@ const sdk = new AuroraChatbotSDK({ httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
 
+<!-- Start Server-sent event streaming [eventstream] -->
+## Server-sent event streaming
+
+[Server-sent events][mdn-sse] are used to stream content from certain
+operations. These operations will expose the stream as an async iterable that
+can be consumed using a [`for await...of`][mdn-for-await-of] loop. The loop will
+terminate when the server no longer has any events to send and closes the
+underlying connection.
+
+```typescript
+import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
+
+const auroraChatbotSDK = new AuroraChatbotSDK();
+
+async function run() {
+    const result = await auroraChatbotSDK.messages.send(516969, "<value>", [
+        {
+            role: "assistant",
+            content: "Hello there! How may I be of assistance?",
+        },
+    ]);
+
+    if (res.chatCompletionFragment == null) {
+        throw new Error("failed to create stream: received null value");
+    }
+
+    for await (const event of res.chatCompletionFragment) {
+        // Handle the event
+    }
+}
+
+run();
+
+```
+
+[mdn-sse]: https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events
+[mdn-for-await-of]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of
+<!-- End Server-sent event streaming [eventstream] -->
+
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
 # Development

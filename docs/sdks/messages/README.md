@@ -160,8 +160,13 @@ async function run() {
     },
   ]);
 
-  // Handle the result
-  console.log(result)
+  if (res.chatCompletionFragment == null) {
+    throw new Error("failed to create stream: received null value");
+  }
+  
+  for await (const event of res.chatCompletionFragment) {
+    // Handle the event
+  }
 }
 
 run();
@@ -181,7 +186,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.SendMessageResponse](../../models/operations/sendmessageresponse.md)\>**
+**Promise\<[EventStream<components.ChatCompletionFragment>](../../models/.md)\>**
 ### Errors
 
 | Error Object                           | Status Code                            | Content Type                           |
