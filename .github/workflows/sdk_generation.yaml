@@ -14,8 +14,10 @@ permissions:
       set_version:
         description: optionally set a specific SDK version
         type: string
-  schedule:
-    - cron: 0 0 * * *
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
 jobs:
   checkout-and-clone-submodules:
     runs-on: ubuntu-latest
