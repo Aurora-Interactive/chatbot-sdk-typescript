@@ -1,46 +1,27 @@
 # @aurora-interactive/chatbot-api-sdk
 
 <div align="left">
-    <a href="https://speakeasyapi.dev/"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
+    <a href="https://speakeasyapi.dev/"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=bc02fa" /></a>
     <a href="https://opensource.org/licenses/MIT">
-        <img src="https://img.shields.io/badge/License-MIT-blue.svg" style="width: 100px; height: 28px;" />
+        <img src="https://img.shields.io/badge/License-MIT-bc02fa.svg" style="height: 28px;" />
     </a>
 </div>
 
-
-## 🏗 **Welcome to your new SDK!** 🏗
-
-It has been generated successfully based on your OpenAPI spec. However, it is not yet ready for production use. Here are some next steps:
-- [ ] 🛠 Make your SDK feel handcrafted by [customizing it](https://www.speakeasyapi.dev/docs/customize-sdks)
-- [ ] ♻️ Refine your SDK quickly by iterating locally with the [Speakeasy CLI](https://github.com/speakeasy-api/speakeasy)
-- [ ] 🎁 Publish your SDK to package managers by [configuring automatic publishing](https://www.speakeasyapi.dev/docs/advanced-setup/publish-sdks)
-- [ ] ✨ When ready to productionize, delete this section from the README
+### [API Schema Reference](https://bump.sh/aurora-interactive-services/doc/ai-chatbot-api)
 
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
-### NPM
+### NPM/PNMP/Bun/Yarn
 
 ```bash
-npm add <UNSET>
-```
-
-### PNPM
-
-```bash
-pnpm add <UNSET>
-```
-
-### Bun
-
-```bash
-bun add <UNSET>
+[npm/pnpm/bun] add @aurora-interactive/chatbot-api-sdk
 ```
 
 ### Yarn
 
 ```bash
-yarn add <UNSET> zod
+yarn add @aurora-interactive/chatbot-api-sdk zod
 
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.
@@ -65,7 +46,12 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ```typescript
 import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
 
-const auroraChatbotSDK = new AuroraChatbotSDK();
+//! You will need to have a valid access token to use this SDK
+// you can use the login or signup endpoints from the API schema reference
+// shown above to get this value
+const auroraChatbotSDK = new AuroraChatbotSDK({
+    accessToken: "abc123"
+});
 
 async function run() {
     const result = await auroraChatbotSDK.characters.list();
@@ -103,68 +89,6 @@ run();
 * [send](docs/sdks/messages/README.md#send) - Send message
 * [delete](docs/sdks/messages/README.md#delete) - Delete message
 <!-- End Available Resources and Operations [operations] -->
-
-<!-- Start Retries [retries] -->
-## Retries
-
-Some of the endpoints in this SDK support retries.  If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API.  However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
-
-To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
-```typescript
-import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
-
-const auroraChatbotSDK = new AuroraChatbotSDK();
-
-async function run() {
-    const result = await auroraChatbotSDK.characters.list({
-        retries: {
-            strategy: "backoff",
-            backoff: {
-                initialInterval: 1,
-                maxInterval: 50,
-                exponent: 1.1,
-                maxElapsedTime: 100,
-            },
-            retryConnectionErrors: false,
-        },
-    });
-
-    // Handle the result
-    console.log(result);
-}
-
-run();
-
-```
-
-If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
-```typescript
-import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
-
-const auroraChatbotSDK = new AuroraChatbotSDK({
-    retryConfig: {
-        strategy: "backoff",
-        backoff: {
-            initialInterval: 1,
-            maxInterval: 50,
-            exponent: 1.1,
-            maxElapsedTime: 100,
-        },
-        retryConnectionErrors: false,
-    },
-});
-
-async function run() {
-    const result = await auroraChatbotSDK.characters.list();
-
-    // Handle the result
-    console.log(result);
-}
-
-run();
-
-```
-<!-- End Retries [retries] -->
 
 <!-- Start Error Handling [errors] -->
 ## Error Handling
@@ -231,7 +155,7 @@ You can override the default server globally by passing a server index to the `s
 
 | # | Server | Variables |
 | - | ------ | --------- |
-| 0 | `https://api.chatbot.aurora-interactive.online` | None |
+| 0 | `https://api.chatbot.aurora-interactive.online:8443` | None |
 
 ```typescript
 import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
@@ -260,7 +184,7 @@ The default server can also be overridden globally by passing a URL to the `serv
 import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
 
 const auroraChatbotSDK = new AuroraChatbotSDK({
-    serverURL: "https://api.chatbot.aurora-interactive.online",
+    serverURL: "https://api.chatbot.aurora-interactive.online:8443",
 });
 
 async function run() {
@@ -363,15 +287,71 @@ run();
 [mdn-for-await-of]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of
 <!-- End Server-sent event streaming [eventstream] -->
 
+<!-- Start Retries [retries] -->
+## Retries
+
+Some of the endpoints in this SDK support retries.  If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API.  However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+
+To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
+```typescript
+import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
+
+const auroraChatbotSDK = new AuroraChatbotSDK();
+
+async function run() {
+    const result = await auroraChatbotSDK.characters.list({
+        retries: {
+            strategy: "backoff",
+            backoff: {
+                initialInterval: 1,
+                maxInterval: 50,
+                exponent: 1.1,
+                maxElapsedTime: 100,
+            },
+            retryConnectionErrors: false,
+        },
+    });
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+
+If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
+```typescript
+import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
+
+const auroraChatbotSDK = new AuroraChatbotSDK({
+    retryConfig: {
+        strategy: "backoff",
+        backoff: {
+            initialInterval: 1,
+            maxInterval: 50,
+            exponent: 1.1,
+            maxElapsedTime: 100,
+        },
+        retryConnectionErrors: false,
+    },
+});
+
+async function run() {
+    const result = await auroraChatbotSDK.characters.list();
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+<!-- End Retries [retries] -->
+
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
 # Development
-
-## Maturity
-
-This SDK is in beta, and there may be breaking changes between versions without a major version update. Therefore, we recommend pinning usage
-to a specific package version. This way, you can install the same version each time without breaking changes unless you are intentionally
-looking for the latest version.
 
 ## Contributions
 

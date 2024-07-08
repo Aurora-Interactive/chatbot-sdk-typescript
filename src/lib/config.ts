@@ -13,7 +13,7 @@ export const ServerList = [
     /**
      * Main API Server
      */
-    "https://api.chatbot.aurora-interactive.online",
+    "https://api.chatbot.aurora-interactive.online:8443",
 ] as const;
 
 export type SDKOptions = {
@@ -57,7 +57,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
     language: "typescript",
     openapiDocVersion: "3.0.2",
-    sdkVersion: "3.2.0",
+    sdkVersion: "3.0.0",
     genVersion: "2.359.6",
-    userAgent: "speakeasy-sdk/typescript 3.2.0 2.359.6 3.0.2 @aurora-interactive/chatbot-api-sdk",
+    userAgent: "speakeasy-sdk/typescript 3.0.0 2.359.6 3.0.2 @aurora-interactive/chatbot-api-sdk",
 } as const;
