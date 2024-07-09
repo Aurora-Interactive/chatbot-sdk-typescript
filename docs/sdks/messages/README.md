@@ -160,11 +160,7 @@ async function run() {
     },
   ]);
 
-  if (res.chatCompletionFragment == null) {
-    throw new Error("failed to create stream: received null value");
-  }
-  
-  for await (const event of res.chatCompletionFragment) {
+  for await (const event of result) {
     // Handle the event
   }
 }

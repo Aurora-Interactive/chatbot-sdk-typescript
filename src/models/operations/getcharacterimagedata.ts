@@ -28,64 +28,115 @@ export type GetCharacterImageDataSuccessfulRequest = {
 };
 
 /** @internal */
+export const GetCharacterImageDataGlobals$inboundSchema: z.ZodType<
+    GetCharacterImageDataGlobals,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    accessToken: z.string().optional(),
+});
+
+/** @internal */
+export type GetCharacterImageDataGlobals$Outbound = {
+    accessToken?: string | undefined;
+};
+
+/** @internal */
+export const GetCharacterImageDataGlobals$outboundSchema: z.ZodType<
+    GetCharacterImageDataGlobals$Outbound,
+    z.ZodTypeDef,
+    GetCharacterImageDataGlobals
+> = z.object({
+    accessToken: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace GetCharacterImageDataGlobals$ {
-    export const inboundSchema: z.ZodType<GetCharacterImageDataGlobals, z.ZodTypeDef, unknown> =
-        z.object({
-            accessToken: z.string().optional(),
-        });
-
-    export type Outbound = {
-        accessToken?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetCharacterImageDataGlobals> =
-        z.object({
-            accessToken: z.string().optional(),
-        });
+    /** @deprecated use `GetCharacterImageDataGlobals$inboundSchema` instead. */
+    export const inboundSchema = GetCharacterImageDataGlobals$inboundSchema;
+    /** @deprecated use `GetCharacterImageDataGlobals$outboundSchema` instead. */
+    export const outboundSchema = GetCharacterImageDataGlobals$outboundSchema;
+    /** @deprecated use `GetCharacterImageDataGlobals$Outbound` instead. */
+    export type Outbound = GetCharacterImageDataGlobals$Outbound;
 }
 
 /** @internal */
+export const GetCharacterImageDataRequest$inboundSchema: z.ZodType<
+    GetCharacterImageDataRequest,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    characterId: z.number().int(),
+});
+
+/** @internal */
+export type GetCharacterImageDataRequest$Outbound = {
+    characterId: number;
+};
+
+/** @internal */
+export const GetCharacterImageDataRequest$outboundSchema: z.ZodType<
+    GetCharacterImageDataRequest$Outbound,
+    z.ZodTypeDef,
+    GetCharacterImageDataRequest
+> = z.object({
+    characterId: z.number().int(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace GetCharacterImageDataRequest$ {
-    export const inboundSchema: z.ZodType<GetCharacterImageDataRequest, z.ZodTypeDef, unknown> =
-        z.object({
-            characterId: z.number().int(),
-        });
-
-    export type Outbound = {
-        characterId: number;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetCharacterImageDataRequest> =
-        z.object({
-            characterId: z.number().int(),
-        });
+    /** @deprecated use `GetCharacterImageDataRequest$inboundSchema` instead. */
+    export const inboundSchema = GetCharacterImageDataRequest$inboundSchema;
+    /** @deprecated use `GetCharacterImageDataRequest$outboundSchema` instead. */
+    export const outboundSchema = GetCharacterImageDataRequest$outboundSchema;
+    /** @deprecated use `GetCharacterImageDataRequest$Outbound` instead. */
+    export type Outbound = GetCharacterImageDataRequest$Outbound;
 }
 
 /** @internal */
+export const GetCharacterImageDataSuccessfulRequest$inboundSchema: z.ZodType<
+    GetCharacterImageDataSuccessfulRequest,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    iconImage: z.string(),
+    bannerImage: z.string(),
+    success: z.boolean().default(true),
+});
+
+/** @internal */
+export type GetCharacterImageDataSuccessfulRequest$Outbound = {
+    iconImage: string;
+    bannerImage: string;
+    success: boolean;
+};
+
+/** @internal */
+export const GetCharacterImageDataSuccessfulRequest$outboundSchema: z.ZodType<
+    GetCharacterImageDataSuccessfulRequest$Outbound,
+    z.ZodTypeDef,
+    GetCharacterImageDataSuccessfulRequest
+> = z.object({
+    iconImage: z.string(),
+    bannerImage: z.string(),
+    success: z.boolean().default(true),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace GetCharacterImageDataSuccessfulRequest$ {
-    export const inboundSchema: z.ZodType<
-        GetCharacterImageDataSuccessfulRequest,
-        z.ZodTypeDef,
-        unknown
-    > = z.object({
-        iconImage: z.string(),
-        bannerImage: z.string(),
-        success: z.boolean().default(true),
-    });
-
-    export type Outbound = {
-        iconImage: string;
-        bannerImage: string;
-        success: boolean;
-    };
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        GetCharacterImageDataSuccessfulRequest
-    > = z.object({
-        iconImage: z.string(),
-        bannerImage: z.string(),
-        success: z.boolean().default(true),
-    });
+    /** @deprecated use `GetCharacterImageDataSuccessfulRequest$inboundSchema` instead. */
+    export const inboundSchema = GetCharacterImageDataSuccessfulRequest$inboundSchema;
+    /** @deprecated use `GetCharacterImageDataSuccessfulRequest$outboundSchema` instead. */
+    export const outboundSchema = GetCharacterImageDataSuccessfulRequest$outboundSchema;
+    /** @deprecated use `GetCharacterImageDataSuccessfulRequest$Outbound` instead. */
+    export type Outbound = GetCharacterImageDataSuccessfulRequest$Outbound;
 }

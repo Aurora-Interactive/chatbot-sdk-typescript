@@ -24,54 +24,99 @@ export type SaveMessageTimestampedMessageResponse = {
 };
 
 /** @internal */
+export const SaveMessageGlobals$inboundSchema: z.ZodType<
+    SaveMessageGlobals,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    accessToken: z.string().optional(),
+});
+
+/** @internal */
+export type SaveMessageGlobals$Outbound = {
+    accessToken?: string | undefined;
+};
+
+/** @internal */
+export const SaveMessageGlobals$outboundSchema: z.ZodType<
+    SaveMessageGlobals$Outbound,
+    z.ZodTypeDef,
+    SaveMessageGlobals
+> = z.object({
+    accessToken: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace SaveMessageGlobals$ {
-    export const inboundSchema: z.ZodType<SaveMessageGlobals, z.ZodTypeDef, unknown> = z.object({
-        accessToken: z.string().optional(),
-    });
-
-    export type Outbound = {
-        accessToken?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, SaveMessageGlobals> = z.object({
-        accessToken: z.string().optional(),
-    });
+    /** @deprecated use `SaveMessageGlobals$inboundSchema` instead. */
+    export const inboundSchema = SaveMessageGlobals$inboundSchema;
+    /** @deprecated use `SaveMessageGlobals$outboundSchema` instead. */
+    export const outboundSchema = SaveMessageGlobals$outboundSchema;
+    /** @deprecated use `SaveMessageGlobals$Outbound` instead. */
+    export type Outbound = SaveMessageGlobals$Outbound;
 }
 
 /** @internal */
+export const Role$inboundSchema: z.ZodNativeEnum<typeof Role> = z.nativeEnum(Role);
+
+/** @internal */
+export const Role$outboundSchema: z.ZodNativeEnum<typeof Role> = Role$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace Role$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof Role> = z.nativeEnum(Role);
-    export const outboundSchema: z.ZodNativeEnum<typeof Role> = inboundSchema;
+    /** @deprecated use `Role$inboundSchema` instead. */
+    export const inboundSchema = Role$inboundSchema;
+    /** @deprecated use `Role$outboundSchema` instead. */
+    export const outboundSchema = Role$outboundSchema;
 }
 
 /** @internal */
+export const SaveMessageTimestampedMessageResponse$inboundSchema: z.ZodType<
+    SaveMessageTimestampedMessageResponse,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    role: Role$inboundSchema,
+    content: z.string(),
+    timestamp: z.number().int(),
+    chatId: z.number().int(),
+});
+
+/** @internal */
+export type SaveMessageTimestampedMessageResponse$Outbound = {
+    role: string;
+    content: string;
+    timestamp: number;
+    chatId: number;
+};
+
+/** @internal */
+export const SaveMessageTimestampedMessageResponse$outboundSchema: z.ZodType<
+    SaveMessageTimestampedMessageResponse$Outbound,
+    z.ZodTypeDef,
+    SaveMessageTimestampedMessageResponse
+> = z.object({
+    role: Role$outboundSchema,
+    content: z.string(),
+    timestamp: z.number().int(),
+    chatId: z.number().int(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace SaveMessageTimestampedMessageResponse$ {
-    export const inboundSchema: z.ZodType<
-        SaveMessageTimestampedMessageResponse,
-        z.ZodTypeDef,
-        unknown
-    > = z.object({
-        role: Role$.inboundSchema,
-        content: z.string(),
-        timestamp: z.number().int(),
-        chatId: z.number().int(),
-    });
-
-    export type Outbound = {
-        role: string;
-        content: string;
-        timestamp: number;
-        chatId: number;
-    };
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        SaveMessageTimestampedMessageResponse
-    > = z.object({
-        role: Role$.outboundSchema,
-        content: z.string(),
-        timestamp: z.number().int(),
-        chatId: z.number().int(),
-    });
+    /** @deprecated use `SaveMessageTimestampedMessageResponse$inboundSchema` instead. */
+    export const inboundSchema = SaveMessageTimestampedMessageResponse$inboundSchema;
+    /** @deprecated use `SaveMessageTimestampedMessageResponse$outboundSchema` instead. */
+    export const outboundSchema = SaveMessageTimestampedMessageResponse$outboundSchema;
+    /** @deprecated use `SaveMessageTimestampedMessageResponse$Outbound` instead. */
+    export type Outbound = SaveMessageTimestampedMessageResponse$Outbound;
 }

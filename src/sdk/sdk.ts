@@ -9,6 +9,7 @@ import { ClientSDK } from "../lib/sdks.js";
 import { Characters } from "./characters.js";
 import { Chats } from "./chats.js";
 import { Messages } from "./messages.js";
+import { Users } from "./users.js";
 
 export class AuroraChatbotSDK extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -35,6 +36,11 @@ export class AuroraChatbotSDK extends ClientSDK {
 
         this.options$ = { ...options, hooks };
         void this.options$;
+    }
+
+    private _users?: Users;
+    get users(): Users {
+        return (this._users ??= new Users(this.options$));
     }
 
     private _characters?: Characters;

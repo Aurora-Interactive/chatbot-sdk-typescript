@@ -69,9 +69,9 @@ export class Messages extends ClientSDK {
         const payload$ = schemas$.parse(
             input$,
             (value$) =>
-                operations.SaveMessageTimestampedMessageResponse$.outboundSchema
-                    .optional()
-                    .parse(value$),
+                operations.SaveMessageTimestampedMessageResponse$outboundSchema.optional().parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ =
@@ -126,10 +126,10 @@ export class Messages extends ClientSDK {
         };
 
         const [result$] = await this.matcher<components.SuccessfulRequest>()
-            .json(200, components.SuccessfulRequest$)
-            .json(400, errors.BadRequestError$, { err: true })
-            .json(401, errors.AuthenticationFailedError$, { err: true })
-            .json(402, errors.AccountInBadStandingError$, { err: true })
+            .json(200, components.SuccessfulRequest$inboundSchema)
+            .json(400, errors.BadRequestError$inboundSchema, { err: true })
+            .json(401, errors.AuthenticationFailedError$inboundSchema, { err: true })
+            .json(402, errors.AccountInBadStandingError$inboundSchema, { err: true })
             .fail(["4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 
@@ -152,7 +152,7 @@ export class Messages extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetMessageHistoryRequest$.outboundSchema.parse(value$),
+            (value$) => operations.GetMessageHistoryRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -211,10 +211,10 @@ export class Messages extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.GetMessageHistorySuccessfulRequest>()
-            .json(200, operations.GetMessageHistorySuccessfulRequest$)
-            .json(400, errors.GetMessageHistoryResponseBody$, { err: true })
-            .json(401, errors.GetMessageHistoryMessagesResponseBody$, { err: true })
-            .json(402, errors.AccountInBadStandingError$, { err: true })
+            .json(200, operations.GetMessageHistorySuccessfulRequest$inboundSchema)
+            .json(400, errors.GetMessageHistoryResponseBody$inboundSchema, { err: true })
+            .json(401, errors.GetMessageHistoryMessagesResponseBody$inboundSchema, { err: true })
+            .json(402, errors.AccountInBadStandingError$inboundSchema, { err: true })
             .fail(["4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 
@@ -237,7 +237,7 @@ export class Messages extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetMessageContextRequest$.outboundSchema.parse(value$),
+            (value$) => operations.GetMessageContextRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -296,10 +296,10 @@ export class Messages extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.GetMessageContextSuccessfulRequest>()
-            .json(200, operations.GetMessageContextSuccessfulRequest$)
-            .json(400, errors.GetMessageContextResponseBody$, { err: true })
-            .json(401, errors.GetMessageContextMessagesResponseBody$, { err: true })
-            .json(402, errors.AccountInBadStandingError$, { err: true })
+            .json(200, operations.GetMessageContextSuccessfulRequest$inboundSchema)
+            .json(400, errors.GetMessageContextResponseBody$inboundSchema, { err: true })
+            .json(401, errors.GetMessageContextMessagesResponseBody$inboundSchema, { err: true })
+            .json(402, errors.AccountInBadStandingError$inboundSchema, { err: true })
             .fail(["4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 
@@ -327,7 +327,7 @@ export class Messages extends ClientSDK {
         const payload$ = schemas$.parse(
             input$,
             (value$) =>
-                operations.SendMessageChatIDResponse$.outboundSchema.optional().parse(value$),
+                operations.SendMessageChatIDResponse$outboundSchema.optional().parse(value$),
             "Input validation failed"
         );
         const body$ =
@@ -388,15 +388,15 @@ export class Messages extends ClientSDK {
                     return new EventStream({
                         stream,
                         decoder(rawEvent) {
-                            const schema = components.ChatCompletionFragment$.inboundSchema;
+                            const schema = components.ChatCompletionFragment$inboundSchema;
                             return schema.parse(rawEvent);
                         },
                     });
                 })
             )
-            .json(400, errors.SendMessageResponseBody$, { err: true })
-            .json(401, errors.SendMessageMessagesResponseBody$, { err: true })
-            .json(402, errors.AccountInBadStandingError$, { err: true })
+            .json(400, errors.SendMessageResponseBody$inboundSchema, { err: true })
+            .json(401, errors.SendMessageMessagesResponseBody$inboundSchema, { err: true })
+            .json(402, errors.AccountInBadStandingError$inboundSchema, { err: true })
             .fail(["4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 
@@ -419,7 +419,7 @@ export class Messages extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.DeleteMessageRequest$.outboundSchema.parse(value$),
+            (value$) => operations.DeleteMessageRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -474,10 +474,10 @@ export class Messages extends ClientSDK {
         };
 
         const [result$] = await this.matcher<components.SuccessfulRequest>()
-            .json(200, components.SuccessfulRequest$)
-            .json(400, errors.DeleteMessageResponseBody$, { err: true })
-            .json(401, errors.DeleteMessageMessagesResponseBody$, { err: true })
-            .json(402, errors.AccountInBadStandingError$, { err: true })
+            .json(200, components.SuccessfulRequest$inboundSchema)
+            .json(400, errors.DeleteMessageResponseBody$inboundSchema, { err: true })
+            .json(401, errors.DeleteMessageMessagesResponseBody$inboundSchema, { err: true })
+            .json(402, errors.AccountInBadStandingError$inboundSchema, { err: true })
             .fail(["4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 

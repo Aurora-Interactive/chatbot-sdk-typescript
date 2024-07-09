@@ -5,10 +5,22 @@
 import { ClosedEnum } from "../../types/enums.js";
 import {
     AuthenticationFailedError,
-    AuthenticationFailedError$,
+    AuthenticationFailedError$inboundSchema,
+    AuthenticationFailedError$Outbound,
+    AuthenticationFailedError$outboundSchema,
 } from "./authenticationfailederror.js";
-import { BadRequestError, BadRequestError$ } from "./badrequesterror.js";
-import { UnauthorizedIdError, UnauthorizedIdError$ } from "./unauthorizediderror.js";
+import {
+    BadRequestError,
+    BadRequestError$inboundSchema,
+    BadRequestError$Outbound,
+    BadRequestError$outboundSchema,
+} from "./badrequesterror.js";
+import {
+    UnauthorizedIdError,
+    UnauthorizedIdError$inboundSchema,
+    UnauthorizedIdError$Outbound,
+    UnauthorizedIdError$outboundSchema,
+} from "./unauthorizediderror.js";
 import * as z from "zod";
 
 /**
@@ -34,16 +46,15 @@ export class InvalidMessageIdError extends Error {
     data$: InvalidMessageIdErrorData;
 
     constructor(err: InvalidMessageIdErrorData) {
-        super("");
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
         this.data$ = err;
 
         this.success = err.success;
         this.error = err.error;
-
-        this.message =
-            "message" in err && typeof err.message === "string"
-                ? err.message
-                : "API error occurred";
 
         this.name = "InvalidMessageIdError";
     }
@@ -55,68 +66,134 @@ export class InvalidMessageIdError extends Error {
 export type DeleteMessageResponseBody = BadRequestError | InvalidMessageIdError;
 
 /** @internal */
+export const DeleteMessageMessagesResponseBody$inboundSchema: z.ZodType<
+    DeleteMessageMessagesResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z.union([AuthenticationFailedError$inboundSchema, UnauthorizedIdError$inboundSchema]);
+
+/** @internal */
+export type DeleteMessageMessagesResponseBody$Outbound =
+    | AuthenticationFailedError$Outbound
+    | UnauthorizedIdError$Outbound;
+
+/** @internal */
+export const DeleteMessageMessagesResponseBody$outboundSchema: z.ZodType<
+    DeleteMessageMessagesResponseBody$Outbound,
+    z.ZodTypeDef,
+    DeleteMessageMessagesResponseBody
+> = z.union([AuthenticationFailedError$outboundSchema, UnauthorizedIdError$outboundSchema]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace DeleteMessageMessagesResponseBody$ {
-    export const inboundSchema: z.ZodType<
-        DeleteMessageMessagesResponseBody,
-        z.ZodTypeDef,
-        unknown
-    > = z.union([AuthenticationFailedError$.inboundSchema, UnauthorizedIdError$.inboundSchema]);
-
-    export type Outbound = AuthenticationFailedError$.Outbound | UnauthorizedIdError$.Outbound;
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        DeleteMessageMessagesResponseBody
-    > = z.union([AuthenticationFailedError$.outboundSchema, UnauthorizedIdError$.outboundSchema]);
+    /** @deprecated use `DeleteMessageMessagesResponseBody$inboundSchema` instead. */
+    export const inboundSchema = DeleteMessageMessagesResponseBody$inboundSchema;
+    /** @deprecated use `DeleteMessageMessagesResponseBody$outboundSchema` instead. */
+    export const outboundSchema = DeleteMessageMessagesResponseBody$outboundSchema;
+    /** @deprecated use `DeleteMessageMessagesResponseBody$Outbound` instead. */
+    export type Outbound = DeleteMessageMessagesResponseBody$Outbound;
 }
 
 /** @internal */
+export const DeleteMessageResponseBodyError$inboundSchema: z.ZodNativeEnum<
+    typeof DeleteMessageResponseBodyError
+> = z.nativeEnum(DeleteMessageResponseBodyError);
+
+/** @internal */
+export const DeleteMessageResponseBodyError$outboundSchema: z.ZodNativeEnum<
+    typeof DeleteMessageResponseBodyError
+> = DeleteMessageResponseBodyError$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace DeleteMessageResponseBodyError$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof DeleteMessageResponseBodyError> =
-        z.nativeEnum(DeleteMessageResponseBodyError);
-    export const outboundSchema: z.ZodNativeEnum<typeof DeleteMessageResponseBodyError> =
-        inboundSchema;
+    /** @deprecated use `DeleteMessageResponseBodyError$inboundSchema` instead. */
+    export const inboundSchema = DeleteMessageResponseBodyError$inboundSchema;
+    /** @deprecated use `DeleteMessageResponseBodyError$outboundSchema` instead. */
+    export const outboundSchema = DeleteMessageResponseBodyError$outboundSchema;
 }
 
 /** @internal */
-export namespace InvalidMessageIdError$ {
-    export const inboundSchema: z.ZodType<InvalidMessageIdError, z.ZodTypeDef, unknown> = z
-        .object({
+export const InvalidMessageIdError$inboundSchema: z.ZodType<
+    InvalidMessageIdError,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        success: z.boolean().default(false),
+        error: DeleteMessageResponseBodyError$inboundSchema,
+    })
+    .transform((v) => {
+        return new InvalidMessageIdError(v);
+    });
+
+/** @internal */
+export type InvalidMessageIdError$Outbound = {
+    success: boolean;
+    error: string;
+};
+
+/** @internal */
+export const InvalidMessageIdError$outboundSchema: z.ZodType<
+    InvalidMessageIdError$Outbound,
+    z.ZodTypeDef,
+    InvalidMessageIdError
+> = z
+    .instanceof(InvalidMessageIdError)
+    .transform((v) => v.data$)
+    .pipe(
+        z.object({
             success: z.boolean().default(false),
-            error: DeleteMessageResponseBodyError$.inboundSchema,
+            error: DeleteMessageResponseBodyError$outboundSchema,
         })
-        .transform((v) => {
-            return new InvalidMessageIdError(v);
-        });
+    );
 
-    export type Outbound = {
-        success: boolean;
-        error: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, InvalidMessageIdError> = z
-        .instanceof(InvalidMessageIdError)
-        .transform((v) => v.data$)
-        .pipe(
-            z.object({
-                success: z.boolean().default(false),
-                error: DeleteMessageResponseBodyError$.outboundSchema,
-            })
-        );
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace InvalidMessageIdError$ {
+    /** @deprecated use `InvalidMessageIdError$inboundSchema` instead. */
+    export const inboundSchema = InvalidMessageIdError$inboundSchema;
+    /** @deprecated use `InvalidMessageIdError$outboundSchema` instead. */
+    export const outboundSchema = InvalidMessageIdError$outboundSchema;
+    /** @deprecated use `InvalidMessageIdError$Outbound` instead. */
+    export type Outbound = InvalidMessageIdError$Outbound;
 }
 
 /** @internal */
-export namespace DeleteMessageResponseBody$ {
-    export const inboundSchema: z.ZodType<DeleteMessageResponseBody, z.ZodTypeDef, unknown> =
-        z.union([
-            BadRequestError$.inboundSchema,
-            z.lazy(() => InvalidMessageIdError$.inboundSchema),
-        ]);
+export const DeleteMessageResponseBody$inboundSchema: z.ZodType<
+    DeleteMessageResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z.union([BadRequestError$inboundSchema, z.lazy(() => InvalidMessageIdError$inboundSchema)]);
 
-    export type Outbound = BadRequestError$.Outbound | InvalidMessageIdError$.Outbound;
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DeleteMessageResponseBody> =
-        z.union([
-            BadRequestError$.outboundSchema,
-            z.lazy(() => InvalidMessageIdError$.outboundSchema),
-        ]);
+/** @internal */
+export type DeleteMessageResponseBody$Outbound =
+    | BadRequestError$Outbound
+    | InvalidMessageIdError$Outbound;
+
+/** @internal */
+export const DeleteMessageResponseBody$outboundSchema: z.ZodType<
+    DeleteMessageResponseBody$Outbound,
+    z.ZodTypeDef,
+    DeleteMessageResponseBody
+> = z.union([BadRequestError$outboundSchema, z.lazy(() => InvalidMessageIdError$outboundSchema)]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace DeleteMessageResponseBody$ {
+    /** @deprecated use `DeleteMessageResponseBody$inboundSchema` instead. */
+    export const inboundSchema = DeleteMessageResponseBody$inboundSchema;
+    /** @deprecated use `DeleteMessageResponseBody$outboundSchema` instead. */
+    export const outboundSchema = DeleteMessageResponseBody$outboundSchema;
+    /** @deprecated use `DeleteMessageResponseBody$Outbound` instead. */
+    export type Outbound = DeleteMessageResponseBody$Outbound;
 }

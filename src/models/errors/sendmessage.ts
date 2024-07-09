@@ -5,10 +5,22 @@
 import { ClosedEnum } from "../../types/enums.js";
 import {
     AuthenticationFailedError,
-    AuthenticationFailedError$,
+    AuthenticationFailedError$inboundSchema,
+    AuthenticationFailedError$Outbound,
+    AuthenticationFailedError$outboundSchema,
 } from "./authenticationfailederror.js";
-import { BadRequestError, BadRequestError$ } from "./badrequesterror.js";
-import { UnauthorizedIdError, UnauthorizedIdError$ } from "./unauthorizediderror.js";
+import {
+    BadRequestError,
+    BadRequestError$inboundSchema,
+    BadRequestError$Outbound,
+    BadRequestError$outboundSchema,
+} from "./badrequesterror.js";
+import {
+    UnauthorizedIdError,
+    UnauthorizedIdError$inboundSchema,
+    UnauthorizedIdError$Outbound,
+    UnauthorizedIdError$outboundSchema,
+} from "./unauthorizediderror.js";
 import * as z from "zod";
 
 /**
@@ -34,16 +46,15 @@ export class SendMessageResponseBodyInvalidChatIdError extends Error {
     data$: SendMessageResponseBodyInvalidChatIdErrorData;
 
     constructor(err: SendMessageResponseBodyInvalidChatIdErrorData) {
-        super("");
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
         this.data$ = err;
 
         this.success = err.success;
         this.error = err.error;
-
-        this.message =
-            "message" in err && typeof err.message === "string"
-                ? err.message
-                : "API error occurred";
 
         this.name = "SendMessageResponseBodyInvalidChatIdError";
     }
@@ -55,77 +66,140 @@ export class SendMessageResponseBodyInvalidChatIdError extends Error {
 export type SendMessageResponseBody = BadRequestError | SendMessageResponseBodyInvalidChatIdError;
 
 /** @internal */
+export const SendMessageMessagesResponseBody$inboundSchema: z.ZodType<
+    SendMessageMessagesResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z.union([AuthenticationFailedError$inboundSchema, UnauthorizedIdError$inboundSchema]);
+
+/** @internal */
+export type SendMessageMessagesResponseBody$Outbound =
+    | AuthenticationFailedError$Outbound
+    | UnauthorizedIdError$Outbound;
+
+/** @internal */
+export const SendMessageMessagesResponseBody$outboundSchema: z.ZodType<
+    SendMessageMessagesResponseBody$Outbound,
+    z.ZodTypeDef,
+    SendMessageMessagesResponseBody
+> = z.union([AuthenticationFailedError$outboundSchema, UnauthorizedIdError$outboundSchema]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace SendMessageMessagesResponseBody$ {
-    export const inboundSchema: z.ZodType<SendMessageMessagesResponseBody, z.ZodTypeDef, unknown> =
-        z.union([AuthenticationFailedError$.inboundSchema, UnauthorizedIdError$.inboundSchema]);
-
-    export type Outbound = AuthenticationFailedError$.Outbound | UnauthorizedIdError$.Outbound;
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        SendMessageMessagesResponseBody
-    > = z.union([AuthenticationFailedError$.outboundSchema, UnauthorizedIdError$.outboundSchema]);
+    /** @deprecated use `SendMessageMessagesResponseBody$inboundSchema` instead. */
+    export const inboundSchema = SendMessageMessagesResponseBody$inboundSchema;
+    /** @deprecated use `SendMessageMessagesResponseBody$outboundSchema` instead. */
+    export const outboundSchema = SendMessageMessagesResponseBody$outboundSchema;
+    /** @deprecated use `SendMessageMessagesResponseBody$Outbound` instead. */
+    export type Outbound = SendMessageMessagesResponseBody$Outbound;
 }
 
 /** @internal */
+export const SendMessageResponseBodyError$inboundSchema: z.ZodNativeEnum<
+    typeof SendMessageResponseBodyError
+> = z.nativeEnum(SendMessageResponseBodyError);
+
+/** @internal */
+export const SendMessageResponseBodyError$outboundSchema: z.ZodNativeEnum<
+    typeof SendMessageResponseBodyError
+> = SendMessageResponseBodyError$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace SendMessageResponseBodyError$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof SendMessageResponseBodyError> = z.nativeEnum(
-        SendMessageResponseBodyError
-    );
-    export const outboundSchema: z.ZodNativeEnum<typeof SendMessageResponseBodyError> =
-        inboundSchema;
+    /** @deprecated use `SendMessageResponseBodyError$inboundSchema` instead. */
+    export const inboundSchema = SendMessageResponseBodyError$inboundSchema;
+    /** @deprecated use `SendMessageResponseBodyError$outboundSchema` instead. */
+    export const outboundSchema = SendMessageResponseBodyError$outboundSchema;
 }
 
 /** @internal */
-export namespace SendMessageResponseBodyInvalidChatIdError$ {
-    export const inboundSchema: z.ZodType<
-        SendMessageResponseBodyInvalidChatIdError,
-        z.ZodTypeDef,
-        unknown
-    > = z
-        .object({
+export const SendMessageResponseBodyInvalidChatIdError$inboundSchema: z.ZodType<
+    SendMessageResponseBodyInvalidChatIdError,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        success: z.boolean().default(false),
+        error: SendMessageResponseBodyError$inboundSchema,
+    })
+    .transform((v) => {
+        return new SendMessageResponseBodyInvalidChatIdError(v);
+    });
+
+/** @internal */
+export type SendMessageResponseBodyInvalidChatIdError$Outbound = {
+    success: boolean;
+    error: string;
+};
+
+/** @internal */
+export const SendMessageResponseBodyInvalidChatIdError$outboundSchema: z.ZodType<
+    SendMessageResponseBodyInvalidChatIdError$Outbound,
+    z.ZodTypeDef,
+    SendMessageResponseBodyInvalidChatIdError
+> = z
+    .instanceof(SendMessageResponseBodyInvalidChatIdError)
+    .transform((v) => v.data$)
+    .pipe(
+        z.object({
             success: z.boolean().default(false),
-            error: SendMessageResponseBodyError$.inboundSchema,
+            error: SendMessageResponseBodyError$outboundSchema,
         })
-        .transform((v) => {
-            return new SendMessageResponseBodyInvalidChatIdError(v);
-        });
+    );
 
-    export type Outbound = {
-        success: boolean;
-        error: string;
-    };
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        SendMessageResponseBodyInvalidChatIdError
-    > = z
-        .instanceof(SendMessageResponseBodyInvalidChatIdError)
-        .transform((v) => v.data$)
-        .pipe(
-            z.object({
-                success: z.boolean().default(false),
-                error: SendMessageResponseBodyError$.outboundSchema,
-            })
-        );
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SendMessageResponseBodyInvalidChatIdError$ {
+    /** @deprecated use `SendMessageResponseBodyInvalidChatIdError$inboundSchema` instead. */
+    export const inboundSchema = SendMessageResponseBodyInvalidChatIdError$inboundSchema;
+    /** @deprecated use `SendMessageResponseBodyInvalidChatIdError$outboundSchema` instead. */
+    export const outboundSchema = SendMessageResponseBodyInvalidChatIdError$outboundSchema;
+    /** @deprecated use `SendMessageResponseBodyInvalidChatIdError$Outbound` instead. */
+    export type Outbound = SendMessageResponseBodyInvalidChatIdError$Outbound;
 }
 
 /** @internal */
-export namespace SendMessageResponseBody$ {
-    export const inboundSchema: z.ZodType<SendMessageResponseBody, z.ZodTypeDef, unknown> = z.union(
-        [
-            BadRequestError$.inboundSchema,
-            z.lazy(() => SendMessageResponseBodyInvalidChatIdError$.inboundSchema),
-        ]
-    );
+export const SendMessageResponseBody$inboundSchema: z.ZodType<
+    SendMessageResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z.union([
+    BadRequestError$inboundSchema,
+    z.lazy(() => SendMessageResponseBodyInvalidChatIdError$inboundSchema),
+]);
 
-    export type Outbound =
-        | BadRequestError$.Outbound
-        | SendMessageResponseBodyInvalidChatIdError$.Outbound;
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, SendMessageResponseBody> =
-        z.union([
-            BadRequestError$.outboundSchema,
-            z.lazy(() => SendMessageResponseBodyInvalidChatIdError$.outboundSchema),
-        ]);
+/** @internal */
+export type SendMessageResponseBody$Outbound =
+    | BadRequestError$Outbound
+    | SendMessageResponseBodyInvalidChatIdError$Outbound;
+
+/** @internal */
+export const SendMessageResponseBody$outboundSchema: z.ZodType<
+    SendMessageResponseBody$Outbound,
+    z.ZodTypeDef,
+    SendMessageResponseBody
+> = z.union([
+    BadRequestError$outboundSchema,
+    z.lazy(() => SendMessageResponseBodyInvalidChatIdError$outboundSchema),
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SendMessageResponseBody$ {
+    /** @deprecated use `SendMessageResponseBody$inboundSchema` instead. */
+    export const inboundSchema = SendMessageResponseBody$inboundSchema;
+    /** @deprecated use `SendMessageResponseBody$outboundSchema` instead. */
+    export const outboundSchema = SendMessageResponseBody$outboundSchema;
+    /** @deprecated use `SendMessageResponseBody$Outbound` instead. */
+    export type Outbound = SendMessageResponseBody$Outbound;
 }

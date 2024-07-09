@@ -12,5 +12,7 @@ export * from "./getchatsforuser.js";
 export * from "./getmessagecontext.js";
 export * from "./getmessagehistory.js";
 export * from "./initializechat.js";
+export * from "./login.js";
 export * from "./savemessage.js";
 export * from "./sendmessage.js";
+export * from "./signup.js";

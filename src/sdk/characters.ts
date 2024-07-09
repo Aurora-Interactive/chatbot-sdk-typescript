@@ -100,9 +100,9 @@ export class Characters extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.GetCharactersSuccessfulRequest>()
-            .json(200, operations.GetCharactersSuccessfulRequest$)
-            .json(400, errors.BadRequestError$, { err: true })
-            .json(401, errors.AuthenticationFailedError$, { err: true })
+            .json(200, operations.GetCharactersSuccessfulRequest$inboundSchema)
+            .json(400, errors.BadRequestError$inboundSchema, { err: true })
+            .json(401, errors.AuthenticationFailedError$inboundSchema, { err: true })
             .fail(["4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 
@@ -125,7 +125,7 @@ export class Characters extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetCharacterImageDataRequest$.outboundSchema.parse(value$),
+            (value$) => operations.GetCharacterImageDataRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -181,9 +181,9 @@ export class Characters extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.GetCharacterImageDataSuccessfulRequest>()
-            .json(200, operations.GetCharacterImageDataSuccessfulRequest$)
-            .json(400, errors.BadRequestError$, { err: true })
-            .json(401, errors.AuthenticationFailedError$, { err: true })
+            .json(200, operations.GetCharacterImageDataSuccessfulRequest$inboundSchema)
+            .json(400, errors.BadRequestError$inboundSchema, { err: true })
+            .json(401, errors.AuthenticationFailedError$inboundSchema, { err: true })
             .fail(["4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 
@@ -207,7 +207,7 @@ export class Characters extends ClientSDK {
         const payload$ = schemas$.parse(
             input$,
             (value$) =>
-                operations.GetCharacterAiInitializationDataRequest$.outboundSchema.parse(value$),
+                operations.GetCharacterAiInitializationDataRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -267,10 +267,13 @@ export class Characters extends ClientSDK {
 
         const [result$] =
             await this.matcher<operations.GetCharacterAiInitializationDataSuccessfulRequest>()
-                .json(200, operations.GetCharacterAiInitializationDataSuccessfulRequest$)
-                .json(400, errors.BadRequestError$, { err: true })
-                .json(401, errors.AuthenticationFailedError$, { err: true })
-                .json(402, errors.AccountInBadStandingError$, { err: true })
+                .json(
+                    200,
+                    operations.GetCharacterAiInitializationDataSuccessfulRequest$inboundSchema
+                )
+                .json(400, errors.BadRequestError$inboundSchema, { err: true })
+                .json(401, errors.AuthenticationFailedError$inboundSchema, { err: true })
+                .json(402, errors.AccountInBadStandingError$inboundSchema, { err: true })
                 .fail(["4XX", "5XX"])
                 .match(response, { extraFields: responseFields$ });
 
@@ -304,9 +307,9 @@ export class Characters extends ClientSDK {
         const payload$ = schemas$.parse(
             input$,
             (value$) =>
-                operations.CreateCharacterCharacterImageDataResponse$.outboundSchema
-                    .optional()
-                    .parse(value$),
+                operations.CreateCharacterCharacterImageDataResponse$outboundSchema.optional().parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ =
@@ -361,10 +364,10 @@ export class Characters extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.CreateCharacterCharacterIdResponse>()
-            .json(200, operations.CreateCharacterCharacterIdResponse$)
-            .json(400, errors.CreateCharacterResponseBody$, { err: true })
-            .json(401, errors.AuthenticationFailedError$, { err: true })
-            .json(402, errors.AccountInBadStandingError$, { err: true })
+            .json(200, operations.CreateCharacterCharacterIdResponse$inboundSchema)
+            .json(400, errors.CreateCharacterResponseBody$inboundSchema, { err: true })
+            .json(401, errors.AuthenticationFailedError$inboundSchema, { err: true })
+            .json(402, errors.AccountInBadStandingError$inboundSchema, { err: true })
             .fail(["4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 

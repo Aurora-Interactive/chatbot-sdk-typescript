@@ -26,77 +26,151 @@ export type GetCharactersSuccessfulRequest = {
 };
 
 /** @internal */
+export const GetCharactersGlobals$inboundSchema: z.ZodType<
+    GetCharactersGlobals,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    accessToken: z.string().optional(),
+});
+
+/** @internal */
+export type GetCharactersGlobals$Outbound = {
+    accessToken?: string | undefined;
+};
+
+/** @internal */
+export const GetCharactersGlobals$outboundSchema: z.ZodType<
+    GetCharactersGlobals$Outbound,
+    z.ZodTypeDef,
+    GetCharactersGlobals
+> = z.object({
+    accessToken: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace GetCharactersGlobals$ {
-    export const inboundSchema: z.ZodType<GetCharactersGlobals, z.ZodTypeDef, unknown> = z.object({
-        accessToken: z.string().optional(),
-    });
-
-    export type Outbound = {
-        accessToken?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetCharactersGlobals> = z.object(
-        {
-            accessToken: z.string().optional(),
-        }
-    );
+    /** @deprecated use `GetCharactersGlobals$inboundSchema` instead. */
+    export const inboundSchema = GetCharactersGlobals$inboundSchema;
+    /** @deprecated use `GetCharactersGlobals$outboundSchema` instead. */
+    export const outboundSchema = GetCharactersGlobals$outboundSchema;
+    /** @deprecated use `GetCharactersGlobals$Outbound` instead. */
+    export type Outbound = GetCharactersGlobals$Outbound;
 }
 
 /** @internal */
+export const GetCharactersRequest$inboundSchema: z.ZodType<
+    GetCharactersRequest,
+    z.ZodTypeDef,
+    unknown
+> = z.object({});
+
+/** @internal */
+export type GetCharactersRequest$Outbound = {};
+
+/** @internal */
+export const GetCharactersRequest$outboundSchema: z.ZodType<
+    GetCharactersRequest$Outbound,
+    z.ZodTypeDef,
+    GetCharactersRequest
+> = z.object({});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace GetCharactersRequest$ {
-    export const inboundSchema: z.ZodType<GetCharactersRequest, z.ZodTypeDef, unknown> = z.object(
-        {}
-    );
-
-    export type Outbound = {};
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetCharactersRequest> = z.object(
-        {}
-    );
+    /** @deprecated use `GetCharactersRequest$inboundSchema` instead. */
+    export const inboundSchema = GetCharactersRequest$inboundSchema;
+    /** @deprecated use `GetCharactersRequest$outboundSchema` instead. */
+    export const outboundSchema = GetCharactersRequest$outboundSchema;
+    /** @deprecated use `GetCharactersRequest$Outbound` instead. */
+    export type Outbound = GetCharactersRequest$Outbound;
 }
 
 /** @internal */
+export const CharacterOverviewResponse$inboundSchema: z.ZodType<
+    CharacterOverviewResponse,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    name: z.string(),
+    description: z.string(),
+    isOfficial: z.boolean(),
+    id: z.number().int(),
+});
+
+/** @internal */
+export type CharacterOverviewResponse$Outbound = {
+    name: string;
+    description: string;
+    isOfficial: boolean;
+    id: number;
+};
+
+/** @internal */
+export const CharacterOverviewResponse$outboundSchema: z.ZodType<
+    CharacterOverviewResponse$Outbound,
+    z.ZodTypeDef,
+    CharacterOverviewResponse
+> = z.object({
+    name: z.string(),
+    description: z.string(),
+    isOfficial: z.boolean(),
+    id: z.number().int(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace CharacterOverviewResponse$ {
-    export const inboundSchema: z.ZodType<CharacterOverviewResponse, z.ZodTypeDef, unknown> =
-        z.object({
-            name: z.string(),
-            description: z.string(),
-            isOfficial: z.boolean(),
-            id: z.number().int(),
-        });
-
-    export type Outbound = {
-        name: string;
-        description: string;
-        isOfficial: boolean;
-        id: number;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CharacterOverviewResponse> =
-        z.object({
-            name: z.string(),
-            description: z.string(),
-            isOfficial: z.boolean(),
-            id: z.number().int(),
-        });
+    /** @deprecated use `CharacterOverviewResponse$inboundSchema` instead. */
+    export const inboundSchema = CharacterOverviewResponse$inboundSchema;
+    /** @deprecated use `CharacterOverviewResponse$outboundSchema` instead. */
+    export const outboundSchema = CharacterOverviewResponse$outboundSchema;
+    /** @deprecated use `CharacterOverviewResponse$Outbound` instead. */
+    export type Outbound = CharacterOverviewResponse$Outbound;
 }
 
 /** @internal */
+export const GetCharactersSuccessfulRequest$inboundSchema: z.ZodType<
+    GetCharactersSuccessfulRequest,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    success: z.boolean().default(true),
+    characters: z.array(z.lazy(() => CharacterOverviewResponse$inboundSchema)),
+});
+
+/** @internal */
+export type GetCharactersSuccessfulRequest$Outbound = {
+    success: boolean;
+    characters: Array<CharacterOverviewResponse$Outbound>;
+};
+
+/** @internal */
+export const GetCharactersSuccessfulRequest$outboundSchema: z.ZodType<
+    GetCharactersSuccessfulRequest$Outbound,
+    z.ZodTypeDef,
+    GetCharactersSuccessfulRequest
+> = z.object({
+    success: z.boolean().default(true),
+    characters: z.array(z.lazy(() => CharacterOverviewResponse$outboundSchema)),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace GetCharactersSuccessfulRequest$ {
-    export const inboundSchema: z.ZodType<GetCharactersSuccessfulRequest, z.ZodTypeDef, unknown> =
-        z.object({
-            success: z.boolean().default(true),
-            characters: z.array(z.lazy(() => CharacterOverviewResponse$.inboundSchema)),
-        });
-
-    export type Outbound = {
-        success: boolean;
-        characters: Array<CharacterOverviewResponse$.Outbound>;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetCharactersSuccessfulRequest> =
-        z.object({
-            success: z.boolean().default(true),
-            characters: z.array(z.lazy(() => CharacterOverviewResponse$.outboundSchema)),
-        });
+    /** @deprecated use `GetCharactersSuccessfulRequest$inboundSchema` instead. */
+    export const inboundSchema = GetCharactersSuccessfulRequest$inboundSchema;
+    /** @deprecated use `GetCharactersSuccessfulRequest$outboundSchema` instead. */
+    export const outboundSchema = GetCharactersSuccessfulRequest$outboundSchema;
+    /** @deprecated use `GetCharactersSuccessfulRequest$Outbound` instead. */
+    export type Outbound = GetCharactersSuccessfulRequest$Outbound;
 }

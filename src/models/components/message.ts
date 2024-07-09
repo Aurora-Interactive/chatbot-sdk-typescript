@@ -18,25 +18,51 @@ export type Message = {
 };
 
 /** @internal */
+export const MessageRole$inboundSchema: z.ZodNativeEnum<typeof MessageRole> =
+    z.nativeEnum(MessageRole);
+
+/** @internal */
+export const MessageRole$outboundSchema: z.ZodNativeEnum<typeof MessageRole> =
+    MessageRole$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace MessageRole$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof MessageRole> = z.nativeEnum(MessageRole);
-    export const outboundSchema: z.ZodNativeEnum<typeof MessageRole> = inboundSchema;
+    /** @deprecated use `MessageRole$inboundSchema` instead. */
+    export const inboundSchema = MessageRole$inboundSchema;
+    /** @deprecated use `MessageRole$outboundSchema` instead. */
+    export const outboundSchema = MessageRole$outboundSchema;
 }
 
 /** @internal */
+export const Message$inboundSchema: z.ZodType<Message, z.ZodTypeDef, unknown> = z.object({
+    role: MessageRole$inboundSchema,
+    content: z.string(),
+});
+
+/** @internal */
+export type Message$Outbound = {
+    role: string;
+    content: string;
+};
+
+/** @internal */
+export const Message$outboundSchema: z.ZodType<Message$Outbound, z.ZodTypeDef, Message> = z.object({
+    role: MessageRole$outboundSchema,
+    content: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace Message$ {
-    export const inboundSchema: z.ZodType<Message, z.ZodTypeDef, unknown> = z.object({
-        role: MessageRole$.inboundSchema,
-        content: z.string(),
-    });
-
-    export type Outbound = {
-        role: string;
-        content: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Message> = z.object({
-        role: MessageRole$.outboundSchema,
-        content: z.string(),
-    });
+    /** @deprecated use `Message$inboundSchema` instead. */
+    export const inboundSchema = Message$inboundSchema;
+    /** @deprecated use `Message$outboundSchema` instead. */
+    export const outboundSchema = Message$outboundSchema;
+    /** @deprecated use `Message$Outbound` instead. */
+    export type Outbound = Message$Outbound;
 }

@@ -9,17 +9,37 @@ export type InitializeChatGlobals = {
 };
 
 /** @internal */
+export const InitializeChatGlobals$inboundSchema: z.ZodType<
+    InitializeChatGlobals,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    accessToken: z.string().optional(),
+});
+
+/** @internal */
+export type InitializeChatGlobals$Outbound = {
+    accessToken?: string | undefined;
+};
+
+/** @internal */
+export const InitializeChatGlobals$outboundSchema: z.ZodType<
+    InitializeChatGlobals$Outbound,
+    z.ZodTypeDef,
+    InitializeChatGlobals
+> = z.object({
+    accessToken: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace InitializeChatGlobals$ {
-    export const inboundSchema: z.ZodType<InitializeChatGlobals, z.ZodTypeDef, unknown> = z.object({
-        accessToken: z.string().optional(),
-    });
-
-    export type Outbound = {
-        accessToken?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, InitializeChatGlobals> =
-        z.object({
-            accessToken: z.string().optional(),
-        });
+    /** @deprecated use `InitializeChatGlobals$inboundSchema` instead. */
+    export const inboundSchema = InitializeChatGlobals$inboundSchema;
+    /** @deprecated use `InitializeChatGlobals$outboundSchema` instead. */
+    export const outboundSchema = InitializeChatGlobals$outboundSchema;
+    /** @deprecated use `InitializeChatGlobals$Outbound` instead. */
+    export type Outbound = InitializeChatGlobals$Outbound;
 }

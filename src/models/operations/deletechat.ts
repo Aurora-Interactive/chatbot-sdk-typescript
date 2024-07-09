@@ -13,31 +13,67 @@ export type DeleteChatRequest = {
 };
 
 /** @internal */
+export const DeleteChatGlobals$inboundSchema: z.ZodType<DeleteChatGlobals, z.ZodTypeDef, unknown> =
+    z.object({
+        accessToken: z.string().optional(),
+    });
+
+/** @internal */
+export type DeleteChatGlobals$Outbound = {
+    accessToken?: string | undefined;
+};
+
+/** @internal */
+export const DeleteChatGlobals$outboundSchema: z.ZodType<
+    DeleteChatGlobals$Outbound,
+    z.ZodTypeDef,
+    DeleteChatGlobals
+> = z.object({
+    accessToken: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace DeleteChatGlobals$ {
-    export const inboundSchema: z.ZodType<DeleteChatGlobals, z.ZodTypeDef, unknown> = z.object({
-        accessToken: z.string().optional(),
-    });
-
-    export type Outbound = {
-        accessToken?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DeleteChatGlobals> = z.object({
-        accessToken: z.string().optional(),
-    });
+    /** @deprecated use `DeleteChatGlobals$inboundSchema` instead. */
+    export const inboundSchema = DeleteChatGlobals$inboundSchema;
+    /** @deprecated use `DeleteChatGlobals$outboundSchema` instead. */
+    export const outboundSchema = DeleteChatGlobals$outboundSchema;
+    /** @deprecated use `DeleteChatGlobals$Outbound` instead. */
+    export type Outbound = DeleteChatGlobals$Outbound;
 }
 
 /** @internal */
+export const DeleteChatRequest$inboundSchema: z.ZodType<DeleteChatRequest, z.ZodTypeDef, unknown> =
+    z.object({
+        chatId: z.number().int(),
+    });
+
+/** @internal */
+export type DeleteChatRequest$Outbound = {
+    chatId: number;
+};
+
+/** @internal */
+export const DeleteChatRequest$outboundSchema: z.ZodType<
+    DeleteChatRequest$Outbound,
+    z.ZodTypeDef,
+    DeleteChatRequest
+> = z.object({
+    chatId: z.number().int(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace DeleteChatRequest$ {
-    export const inboundSchema: z.ZodType<DeleteChatRequest, z.ZodTypeDef, unknown> = z.object({
-        chatId: z.number().int(),
-    });
-
-    export type Outbound = {
-        chatId: number;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DeleteChatRequest> = z.object({
-        chatId: z.number().int(),
-    });
+    /** @deprecated use `DeleteChatRequest$inboundSchema` instead. */
+    export const inboundSchema = DeleteChatRequest$inboundSchema;
+    /** @deprecated use `DeleteChatRequest$outboundSchema` instead. */
+    export const outboundSchema = DeleteChatRequest$outboundSchema;
+    /** @deprecated use `DeleteChatRequest$Outbound` instead. */
+    export type Outbound = DeleteChatRequest$Outbound;
 }

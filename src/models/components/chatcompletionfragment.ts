@@ -13,47 +13,75 @@ export type ChatCompletionFragment = {
 };
 
 /** @internal */
+export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z.object({
+    content: z.string(),
+});
+
+/** @internal */
+export type Data$Outbound = {
+    content: string;
+};
+
+/** @internal */
+export const Data$outboundSchema: z.ZodType<Data$Outbound, z.ZodTypeDef, Data> = z.object({
+    content: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace Data$ {
-    export const inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z.object({
-        content: z.string(),
-    });
-
-    export type Outbound = {
-        content: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Data> = z.object({
-        content: z.string(),
-    });
+    /** @deprecated use `Data$inboundSchema` instead. */
+    export const inboundSchema = Data$inboundSchema;
+    /** @deprecated use `Data$outboundSchema` instead. */
+    export const outboundSchema = Data$outboundSchema;
+    /** @deprecated use `Data$Outbound` instead. */
+    export type Outbound = Data$Outbound;
 }
 
 /** @internal */
+export const ChatCompletionFragment$inboundSchema: z.ZodType<
+    ChatCompletionFragment,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    data: z
+        .string()
+        .transform((v, ctx) => {
+            try {
+                return JSON.parse(v);
+            } catch (err) {
+                ctx.addIssue({ code: z.ZodIssueCode.custom, message: `malformed json: ${err}` });
+                return z.NEVER;
+            }
+        })
+        .pipe(z.lazy(() => Data$inboundSchema)),
+});
+
+/** @internal */
+export type ChatCompletionFragment$Outbound = {
+    data: Data$Outbound;
+};
+
+/** @internal */
+export const ChatCompletionFragment$outboundSchema: z.ZodType<
+    ChatCompletionFragment$Outbound,
+    z.ZodTypeDef,
+    ChatCompletionFragment
+> = z.object({
+    data: z.lazy(() => Data$outboundSchema),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace ChatCompletionFragment$ {
-    export const inboundSchema: z.ZodType<ChatCompletionFragment, z.ZodTypeDef, unknown> = z.object(
-        {
-            data: z
-                .string()
-                .transform((v, ctx) => {
-                    try {
-                        return JSON.parse(v);
-                    } catch (err) {
-                        ctx.addIssue({
-                            code: z.ZodIssueCode.custom,
-                            message: `malformed json: ${err}`,
-                        });
-                        return z.NEVER;
-                    }
-                })
-                .pipe(z.lazy(() => Data$.inboundSchema)),
-        }
-    );
-
-    export type Outbound = {
-        data: Data$.Outbound;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ChatCompletionFragment> =
-        z.object({
-            data: z.lazy(() => Data$.outboundSchema),
-        });
+    /** @deprecated use `ChatCompletionFragment$inboundSchema` instead. */
+    export const inboundSchema = ChatCompletionFragment$inboundSchema;
+    /** @deprecated use `ChatCompletionFragment$outboundSchema` instead. */
+    export const outboundSchema = ChatCompletionFragment$outboundSchema;
+    /** @deprecated use `ChatCompletionFragment$Outbound` instead. */
+    export type Outbound = ChatCompletionFragment$Outbound;
 }

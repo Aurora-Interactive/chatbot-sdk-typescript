@@ -3,7 +3,12 @@
  */
 
 import { ClosedEnum } from "../../types/enums.js";
-import { BadRequestError, BadRequestError$ } from "./badrequesterror.js";
+import {
+    BadRequestError,
+    BadRequestError$inboundSchema,
+    BadRequestError$Outbound,
+    BadRequestError$outboundSchema,
+} from "./badrequesterror.js";
 import * as z from "zod";
 
 export const CreateCharacterResponseBodyError = {
@@ -24,16 +29,15 @@ export class DuplicateCharacterErrorResponse extends Error {
     data$: DuplicateCharacterErrorResponseData;
 
     constructor(err: DuplicateCharacterErrorResponseData) {
-        super("");
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
         this.data$ = err;
 
         this.success = err.success;
         this.error = err.error;
-
-        this.message =
-            "message" in err && typeof err.message === "string"
-                ? err.message
-                : "API error occurred";
 
         this.name = "DuplicateCharacterErrorResponse";
     }
@@ -45,57 +49,108 @@ export class DuplicateCharacterErrorResponse extends Error {
 export type CreateCharacterResponseBody = BadRequestError | DuplicateCharacterErrorResponse;
 
 /** @internal */
+export const CreateCharacterResponseBodyError$inboundSchema: z.ZodNativeEnum<
+    typeof CreateCharacterResponseBodyError
+> = z.nativeEnum(CreateCharacterResponseBodyError);
+
+/** @internal */
+export const CreateCharacterResponseBodyError$outboundSchema: z.ZodNativeEnum<
+    typeof CreateCharacterResponseBodyError
+> = CreateCharacterResponseBodyError$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace CreateCharacterResponseBodyError$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof CreateCharacterResponseBodyError> =
-        z.nativeEnum(CreateCharacterResponseBodyError);
-    export const outboundSchema: z.ZodNativeEnum<typeof CreateCharacterResponseBodyError> =
-        inboundSchema;
+    /** @deprecated use `CreateCharacterResponseBodyError$inboundSchema` instead. */
+    export const inboundSchema = CreateCharacterResponseBodyError$inboundSchema;
+    /** @deprecated use `CreateCharacterResponseBodyError$outboundSchema` instead. */
+    export const outboundSchema = CreateCharacterResponseBodyError$outboundSchema;
 }
 
 /** @internal */
+export const DuplicateCharacterErrorResponse$inboundSchema: z.ZodType<
+    DuplicateCharacterErrorResponse,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        success: z.boolean().default(true),
+        error: CreateCharacterResponseBodyError$inboundSchema,
+    })
+    .transform((v) => {
+        return new DuplicateCharacterErrorResponse(v);
+    });
+
+/** @internal */
+export type DuplicateCharacterErrorResponse$Outbound = {
+    success: boolean;
+    error: string;
+};
+
+/** @internal */
+export const DuplicateCharacterErrorResponse$outboundSchema: z.ZodType<
+    DuplicateCharacterErrorResponse$Outbound,
+    z.ZodTypeDef,
+    DuplicateCharacterErrorResponse
+> = z
+    .instanceof(DuplicateCharacterErrorResponse)
+    .transform((v) => v.data$)
+    .pipe(
+        z.object({
+            success: z.boolean().default(true),
+            error: CreateCharacterResponseBodyError$outboundSchema,
+        })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace DuplicateCharacterErrorResponse$ {
-    export const inboundSchema: z.ZodType<DuplicateCharacterErrorResponse, z.ZodTypeDef, unknown> =
-        z
-            .object({
-                success: z.boolean().default(true),
-                error: CreateCharacterResponseBodyError$.inboundSchema,
-            })
-            .transform((v) => {
-                return new DuplicateCharacterErrorResponse(v);
-            });
-
-    export type Outbound = {
-        success: boolean;
-        error: string;
-    };
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        DuplicateCharacterErrorResponse
-    > = z
-        .instanceof(DuplicateCharacterErrorResponse)
-        .transform((v) => v.data$)
-        .pipe(
-            z.object({
-                success: z.boolean().default(true),
-                error: CreateCharacterResponseBodyError$.outboundSchema,
-            })
-        );
+    /** @deprecated use `DuplicateCharacterErrorResponse$inboundSchema` instead. */
+    export const inboundSchema = DuplicateCharacterErrorResponse$inboundSchema;
+    /** @deprecated use `DuplicateCharacterErrorResponse$outboundSchema` instead. */
+    export const outboundSchema = DuplicateCharacterErrorResponse$outboundSchema;
+    /** @deprecated use `DuplicateCharacterErrorResponse$Outbound` instead. */
+    export type Outbound = DuplicateCharacterErrorResponse$Outbound;
 }
 
 /** @internal */
-export namespace CreateCharacterResponseBody$ {
-    export const inboundSchema: z.ZodType<CreateCharacterResponseBody, z.ZodTypeDef, unknown> =
-        z.union([
-            BadRequestError$.inboundSchema,
-            z.lazy(() => DuplicateCharacterErrorResponse$.inboundSchema),
-        ]);
+export const CreateCharacterResponseBody$inboundSchema: z.ZodType<
+    CreateCharacterResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z.union([
+    BadRequestError$inboundSchema,
+    z.lazy(() => DuplicateCharacterErrorResponse$inboundSchema),
+]);
 
-    export type Outbound = BadRequestError$.Outbound | DuplicateCharacterErrorResponse$.Outbound;
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateCharacterResponseBody> =
-        z.union([
-            BadRequestError$.outboundSchema,
-            z.lazy(() => DuplicateCharacterErrorResponse$.outboundSchema),
-        ]);
+/** @internal */
+export type CreateCharacterResponseBody$Outbound =
+    | BadRequestError$Outbound
+    | DuplicateCharacterErrorResponse$Outbound;
+
+/** @internal */
+export const CreateCharacterResponseBody$outboundSchema: z.ZodType<
+    CreateCharacterResponseBody$Outbound,
+    z.ZodTypeDef,
+    CreateCharacterResponseBody
+> = z.union([
+    BadRequestError$outboundSchema,
+    z.lazy(() => DuplicateCharacterErrorResponse$outboundSchema),
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreateCharacterResponseBody$ {
+    /** @deprecated use `CreateCharacterResponseBody$inboundSchema` instead. */
+    export const inboundSchema = CreateCharacterResponseBody$inboundSchema;
+    /** @deprecated use `CreateCharacterResponseBody$outboundSchema` instead. */
+    export const outboundSchema = CreateCharacterResponseBody$outboundSchema;
+    /** @deprecated use `CreateCharacterResponseBody$Outbound` instead. */
+    export type Outbound = CreateCharacterResponseBody$Outbound;
 }

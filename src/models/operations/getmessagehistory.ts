@@ -22,61 +22,112 @@ export type GetMessageHistorySuccessfulRequest = {
 };
 
 /** @internal */
+export const GetMessageHistoryGlobals$inboundSchema: z.ZodType<
+    GetMessageHistoryGlobals,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    accessToken: z.string().optional(),
+});
+
+/** @internal */
+export type GetMessageHistoryGlobals$Outbound = {
+    accessToken?: string | undefined;
+};
+
+/** @internal */
+export const GetMessageHistoryGlobals$outboundSchema: z.ZodType<
+    GetMessageHistoryGlobals$Outbound,
+    z.ZodTypeDef,
+    GetMessageHistoryGlobals
+> = z.object({
+    accessToken: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace GetMessageHistoryGlobals$ {
-    export const inboundSchema: z.ZodType<GetMessageHistoryGlobals, z.ZodTypeDef, unknown> =
-        z.object({
-            accessToken: z.string().optional(),
-        });
-
-    export type Outbound = {
-        accessToken?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetMessageHistoryGlobals> =
-        z.object({
-            accessToken: z.string().optional(),
-        });
+    /** @deprecated use `GetMessageHistoryGlobals$inboundSchema` instead. */
+    export const inboundSchema = GetMessageHistoryGlobals$inboundSchema;
+    /** @deprecated use `GetMessageHistoryGlobals$outboundSchema` instead. */
+    export const outboundSchema = GetMessageHistoryGlobals$outboundSchema;
+    /** @deprecated use `GetMessageHistoryGlobals$Outbound` instead. */
+    export type Outbound = GetMessageHistoryGlobals$Outbound;
 }
 
 /** @internal */
+export const GetMessageHistoryRequest$inboundSchema: z.ZodType<
+    GetMessageHistoryRequest,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    chatId: z.number().int(),
+});
+
+/** @internal */
+export type GetMessageHistoryRequest$Outbound = {
+    chatId: number;
+};
+
+/** @internal */
+export const GetMessageHistoryRequest$outboundSchema: z.ZodType<
+    GetMessageHistoryRequest$Outbound,
+    z.ZodTypeDef,
+    GetMessageHistoryRequest
+> = z.object({
+    chatId: z.number().int(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace GetMessageHistoryRequest$ {
-    export const inboundSchema: z.ZodType<GetMessageHistoryRequest, z.ZodTypeDef, unknown> =
-        z.object({
-            chatId: z.number().int(),
-        });
-
-    export type Outbound = {
-        chatId: number;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetMessageHistoryRequest> =
-        z.object({
-            chatId: z.number().int(),
-        });
+    /** @deprecated use `GetMessageHistoryRequest$inboundSchema` instead. */
+    export const inboundSchema = GetMessageHistoryRequest$inboundSchema;
+    /** @deprecated use `GetMessageHistoryRequest$outboundSchema` instead. */
+    export const outboundSchema = GetMessageHistoryRequest$outboundSchema;
+    /** @deprecated use `GetMessageHistoryRequest$Outbound` instead. */
+    export type Outbound = GetMessageHistoryRequest$Outbound;
 }
 
 /** @internal */
+export const GetMessageHistorySuccessfulRequest$inboundSchema: z.ZodType<
+    GetMessageHistorySuccessfulRequest,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    success: z.boolean().default(true),
+    chatHistory: z.array(components.TimestampedMessage$inboundSchema),
+});
+
+/** @internal */
+export type GetMessageHistorySuccessfulRequest$Outbound = {
+    success: boolean;
+    chatHistory: Array<components.TimestampedMessage$Outbound>;
+};
+
+/** @internal */
+export const GetMessageHistorySuccessfulRequest$outboundSchema: z.ZodType<
+    GetMessageHistorySuccessfulRequest$Outbound,
+    z.ZodTypeDef,
+    GetMessageHistorySuccessfulRequest
+> = z.object({
+    success: z.boolean().default(true),
+    chatHistory: z.array(components.TimestampedMessage$outboundSchema),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace GetMessageHistorySuccessfulRequest$ {
-    export const inboundSchema: z.ZodType<
-        GetMessageHistorySuccessfulRequest,
-        z.ZodTypeDef,
-        unknown
-    > = z.object({
-        success: z.boolean().default(true),
-        chatHistory: z.array(components.TimestampedMessage$.inboundSchema),
-    });
-
-    export type Outbound = {
-        success: boolean;
-        chatHistory: Array<components.TimestampedMessage$.Outbound>;
-    };
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        GetMessageHistorySuccessfulRequest
-    > = z.object({
-        success: z.boolean().default(true),
-        chatHistory: z.array(components.TimestampedMessage$.outboundSchema),
-    });
+    /** @deprecated use `GetMessageHistorySuccessfulRequest$inboundSchema` instead. */
+    export const inboundSchema = GetMessageHistorySuccessfulRequest$inboundSchema;
+    /** @deprecated use `GetMessageHistorySuccessfulRequest$outboundSchema` instead. */
+    export const outboundSchema = GetMessageHistorySuccessfulRequest$outboundSchema;
+    /** @deprecated use `GetMessageHistorySuccessfulRequest$Outbound` instead. */
+    export type Outbound = GetMessageHistorySuccessfulRequest$Outbound;
 }

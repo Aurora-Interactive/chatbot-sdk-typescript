@@ -30,50 +30,77 @@ export class BadRequestError extends Error {
     data$: BadRequestErrorData;
 
     constructor(err: BadRequestErrorData) {
-        super("");
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
         this.data$ = err;
 
         this.success = err.success;
         this.error = err.error;
-
-        this.message =
-            "message" in err && typeof err.message === "string"
-                ? err.message
-                : "API error occurred";
 
         this.name = "BadRequestError";
     }
 }
 
 /** @internal */
+export const ErrorT$inboundSchema: z.ZodNativeEnum<typeof ErrorT> = z.nativeEnum(ErrorT);
+
+/** @internal */
+export const ErrorT$outboundSchema: z.ZodNativeEnum<typeof ErrorT> = ErrorT$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace ErrorT$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof ErrorT> = z.nativeEnum(ErrorT);
-    export const outboundSchema: z.ZodNativeEnum<typeof ErrorT> = inboundSchema;
+    /** @deprecated use `ErrorT$inboundSchema` instead. */
+    export const inboundSchema = ErrorT$inboundSchema;
+    /** @deprecated use `ErrorT$outboundSchema` instead. */
+    export const outboundSchema = ErrorT$outboundSchema;
 }
 
 /** @internal */
-export namespace BadRequestError$ {
-    export const inboundSchema: z.ZodType<BadRequestError, z.ZodTypeDef, unknown> = z
-        .object({
+export const BadRequestError$inboundSchema: z.ZodType<BadRequestError, z.ZodTypeDef, unknown> = z
+    .object({
+        success: z.boolean().default(false),
+        error: ErrorT$inboundSchema,
+    })
+    .transform((v) => {
+        return new BadRequestError(v);
+    });
+
+/** @internal */
+export type BadRequestError$Outbound = {
+    success: boolean;
+    error: string;
+};
+
+/** @internal */
+export const BadRequestError$outboundSchema: z.ZodType<
+    BadRequestError$Outbound,
+    z.ZodTypeDef,
+    BadRequestError
+> = z
+    .instanceof(BadRequestError)
+    .transform((v) => v.data$)
+    .pipe(
+        z.object({
             success: z.boolean().default(false),
-            error: ErrorT$.inboundSchema,
+            error: ErrorT$outboundSchema,
         })
-        .transform((v) => {
-            return new BadRequestError(v);
-        });
+    );
 
-    export type Outbound = {
-        success: boolean;
-        error: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, BadRequestError> = z
-        .instanceof(BadRequestError)
-        .transform((v) => v.data$)
-        .pipe(
-            z.object({
-                success: z.boolean().default(false),
-                error: ErrorT$.outboundSchema,
-            })
-        );
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace BadRequestError$ {
+    /** @deprecated use `BadRequestError$inboundSchema` instead. */
+    export const inboundSchema = BadRequestError$inboundSchema;
+    /** @deprecated use `BadRequestError$outboundSchema` instead. */
+    export const outboundSchema = BadRequestError$outboundSchema;
+    /** @deprecated use `BadRequestError$Outbound` instead. */
+    export type Outbound = BadRequestError$Outbound;
 }

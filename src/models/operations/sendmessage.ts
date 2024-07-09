@@ -19,39 +19,79 @@ export type SendMessageChatIDResponse = {
 };
 
 /** @internal */
+export const SendMessageGlobals$inboundSchema: z.ZodType<
+    SendMessageGlobals,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    accessToken: z.string().optional(),
+});
+
+/** @internal */
+export type SendMessageGlobals$Outbound = {
+    accessToken?: string | undefined;
+};
+
+/** @internal */
+export const SendMessageGlobals$outboundSchema: z.ZodType<
+    SendMessageGlobals$Outbound,
+    z.ZodTypeDef,
+    SendMessageGlobals
+> = z.object({
+    accessToken: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace SendMessageGlobals$ {
-    export const inboundSchema: z.ZodType<SendMessageGlobals, z.ZodTypeDef, unknown> = z.object({
-        accessToken: z.string().optional(),
-    });
-
-    export type Outbound = {
-        accessToken?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, SendMessageGlobals> = z.object({
-        accessToken: z.string().optional(),
-    });
+    /** @deprecated use `SendMessageGlobals$inboundSchema` instead. */
+    export const inboundSchema = SendMessageGlobals$inboundSchema;
+    /** @deprecated use `SendMessageGlobals$outboundSchema` instead. */
+    export const outboundSchema = SendMessageGlobals$outboundSchema;
+    /** @deprecated use `SendMessageGlobals$Outbound` instead. */
+    export type Outbound = SendMessageGlobals$Outbound;
 }
 
 /** @internal */
+export const SendMessageChatIDResponse$inboundSchema: z.ZodType<
+    SendMessageChatIDResponse,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    chatId: z.number().int(),
+    message: z.string(),
+    messageContext: z.array(components.Message$inboundSchema).optional(),
+});
+
+/** @internal */
+export type SendMessageChatIDResponse$Outbound = {
+    chatId: number;
+    message: string;
+    messageContext?: Array<components.Message$Outbound> | undefined;
+};
+
+/** @internal */
+export const SendMessageChatIDResponse$outboundSchema: z.ZodType<
+    SendMessageChatIDResponse$Outbound,
+    z.ZodTypeDef,
+    SendMessageChatIDResponse
+> = z.object({
+    chatId: z.number().int(),
+    message: z.string(),
+    messageContext: z.array(components.Message$outboundSchema).optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace SendMessageChatIDResponse$ {
-    export const inboundSchema: z.ZodType<SendMessageChatIDResponse, z.ZodTypeDef, unknown> =
-        z.object({
-            chatId: z.number().int(),
-            message: z.string(),
-            messageContext: z.array(components.Message$.inboundSchema).optional(),
-        });
-
-    export type Outbound = {
-        chatId: number;
-        message: string;
-        messageContext?: Array<components.Message$.Outbound> | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, SendMessageChatIDResponse> =
-        z.object({
-            chatId: z.number().int(),
-            message: z.string(),
-            messageContext: z.array(components.Message$.outboundSchema).optional(),
-        });
+    /** @deprecated use `SendMessageChatIDResponse$inboundSchema` instead. */
+    export const inboundSchema = SendMessageChatIDResponse$inboundSchema;
+    /** @deprecated use `SendMessageChatIDResponse$outboundSchema` instead. */
+    export const outboundSchema = SendMessageChatIDResponse$outboundSchema;
+    /** @deprecated use `SendMessageChatIDResponse$Outbound` instead. */
+    export type Outbound = SendMessageChatIDResponse$Outbound;
 }

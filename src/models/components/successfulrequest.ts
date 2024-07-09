@@ -9,16 +9,34 @@ export type SuccessfulRequest = {
 };
 
 /** @internal */
+export const SuccessfulRequest$inboundSchema: z.ZodType<SuccessfulRequest, z.ZodTypeDef, unknown> =
+    z.object({
+        success: z.boolean().default(true),
+    });
+
+/** @internal */
+export type SuccessfulRequest$Outbound = {
+    success: boolean;
+};
+
+/** @internal */
+export const SuccessfulRequest$outboundSchema: z.ZodType<
+    SuccessfulRequest$Outbound,
+    z.ZodTypeDef,
+    SuccessfulRequest
+> = z.object({
+    success: z.boolean().default(true),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace SuccessfulRequest$ {
-    export const inboundSchema: z.ZodType<SuccessfulRequest, z.ZodTypeDef, unknown> = z.object({
-        success: z.boolean().default(true),
-    });
-
-    export type Outbound = {
-        success: boolean;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, SuccessfulRequest> = z.object({
-        success: z.boolean().default(true),
-    });
+    /** @deprecated use `SuccessfulRequest$inboundSchema` instead. */
+    export const inboundSchema = SuccessfulRequest$inboundSchema;
+    /** @deprecated use `SuccessfulRequest$outboundSchema` instead. */
+    export const outboundSchema = SuccessfulRequest$outboundSchema;
+    /** @deprecated use `SuccessfulRequest$Outbound` instead. */
+    export type Outbound = SuccessfulRequest$Outbound;
 }

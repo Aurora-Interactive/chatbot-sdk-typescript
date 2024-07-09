@@ -13,4 +13,5 @@ export * from "./getmessagehistory.js";
 export * from "./sdkerror.js";
 export * from "./sdkvalidationerror.js";
 export * from "./sendmessage.js";
+export * from "./signup.js";
 export * from "./unauthorizediderror.js";

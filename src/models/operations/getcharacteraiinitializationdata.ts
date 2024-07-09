@@ -22,76 +22,115 @@ export type GetCharacterAiInitializationDataSuccessfulRequest = {
 };
 
 /** @internal */
+export const GetCharacterAiInitializationDataGlobals$inboundSchema: z.ZodType<
+    GetCharacterAiInitializationDataGlobals,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    accessToken: z.string().optional(),
+});
+
+/** @internal */
+export type GetCharacterAiInitializationDataGlobals$Outbound = {
+    accessToken?: string | undefined;
+};
+
+/** @internal */
+export const GetCharacterAiInitializationDataGlobals$outboundSchema: z.ZodType<
+    GetCharacterAiInitializationDataGlobals$Outbound,
+    z.ZodTypeDef,
+    GetCharacterAiInitializationDataGlobals
+> = z.object({
+    accessToken: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace GetCharacterAiInitializationDataGlobals$ {
-    export const inboundSchema: z.ZodType<
-        GetCharacterAiInitializationDataGlobals,
-        z.ZodTypeDef,
-        unknown
-    > = z.object({
-        accessToken: z.string().optional(),
-    });
-
-    export type Outbound = {
-        accessToken?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        GetCharacterAiInitializationDataGlobals
-    > = z.object({
-        accessToken: z.string().optional(),
-    });
+    /** @deprecated use `GetCharacterAiInitializationDataGlobals$inboundSchema` instead. */
+    export const inboundSchema = GetCharacterAiInitializationDataGlobals$inboundSchema;
+    /** @deprecated use `GetCharacterAiInitializationDataGlobals$outboundSchema` instead. */
+    export const outboundSchema = GetCharacterAiInitializationDataGlobals$outboundSchema;
+    /** @deprecated use `GetCharacterAiInitializationDataGlobals$Outbound` instead. */
+    export type Outbound = GetCharacterAiInitializationDataGlobals$Outbound;
 }
 
 /** @internal */
+export const GetCharacterAiInitializationDataRequest$inboundSchema: z.ZodType<
+    GetCharacterAiInitializationDataRequest,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    characterId: z.number().int(),
+});
+
+/** @internal */
+export type GetCharacterAiInitializationDataRequest$Outbound = {
+    characterId: number;
+};
+
+/** @internal */
+export const GetCharacterAiInitializationDataRequest$outboundSchema: z.ZodType<
+    GetCharacterAiInitializationDataRequest$Outbound,
+    z.ZodTypeDef,
+    GetCharacterAiInitializationDataRequest
+> = z.object({
+    characterId: z.number().int(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace GetCharacterAiInitializationDataRequest$ {
-    export const inboundSchema: z.ZodType<
-        GetCharacterAiInitializationDataRequest,
-        z.ZodTypeDef,
-        unknown
-    > = z.object({
-        characterId: z.number().int(),
-    });
-
-    export type Outbound = {
-        characterId: number;
-    };
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        GetCharacterAiInitializationDataRequest
-    > = z.object({
-        characterId: z.number().int(),
-    });
+    /** @deprecated use `GetCharacterAiInitializationDataRequest$inboundSchema` instead. */
+    export const inboundSchema = GetCharacterAiInitializationDataRequest$inboundSchema;
+    /** @deprecated use `GetCharacterAiInitializationDataRequest$outboundSchema` instead. */
+    export const outboundSchema = GetCharacterAiInitializationDataRequest$outboundSchema;
+    /** @deprecated use `GetCharacterAiInitializationDataRequest$Outbound` instead. */
+    export type Outbound = GetCharacterAiInitializationDataRequest$Outbound;
 }
 
 /** @internal */
+export const GetCharacterAiInitializationDataSuccessfulRequest$inboundSchema: z.ZodType<
+    GetCharacterAiInitializationDataSuccessfulRequest,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    aiPrompt: z.string(),
+    initialResponse: z.string(),
+    success: z.boolean().default(true),
+});
+
+/** @internal */
+export type GetCharacterAiInitializationDataSuccessfulRequest$Outbound = {
+    aiPrompt: string;
+    initialResponse: string;
+    success: boolean;
+};
+
+/** @internal */
+export const GetCharacterAiInitializationDataSuccessfulRequest$outboundSchema: z.ZodType<
+    GetCharacterAiInitializationDataSuccessfulRequest$Outbound,
+    z.ZodTypeDef,
+    GetCharacterAiInitializationDataSuccessfulRequest
+> = z.object({
+    aiPrompt: z.string(),
+    initialResponse: z.string(),
+    success: z.boolean().default(true),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace GetCharacterAiInitializationDataSuccessfulRequest$ {
-    export const inboundSchema: z.ZodType<
-        GetCharacterAiInitializationDataSuccessfulRequest,
-        z.ZodTypeDef,
-        unknown
-    > = z.object({
-        aiPrompt: z.string(),
-        initialResponse: z.string(),
-        success: z.boolean().default(true),
-    });
-
-    export type Outbound = {
-        aiPrompt: string;
-        initialResponse: string;
-        success: boolean;
-    };
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        GetCharacterAiInitializationDataSuccessfulRequest
-    > = z.object({
-        aiPrompt: z.string(),
-        initialResponse: z.string(),
-        success: z.boolean().default(true),
-    });
+    /** @deprecated use `GetCharacterAiInitializationDataSuccessfulRequest$inboundSchema` instead. */
+    export const inboundSchema = GetCharacterAiInitializationDataSuccessfulRequest$inboundSchema;
+    /** @deprecated use `GetCharacterAiInitializationDataSuccessfulRequest$outboundSchema` instead. */
+    export const outboundSchema = GetCharacterAiInitializationDataSuccessfulRequest$outboundSchema;
+    /** @deprecated use `GetCharacterAiInitializationDataSuccessfulRequest$Outbound` instead. */
+    export type Outbound = GetCharacterAiInitializationDataSuccessfulRequest$Outbound;
 }

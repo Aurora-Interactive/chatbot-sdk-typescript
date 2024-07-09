@@ -29,52 +29,85 @@ export class AuthenticationFailedError extends Error {
     data$: AuthenticationFailedErrorData;
 
     constructor(err: AuthenticationFailedErrorData) {
-        super("");
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
         this.data$ = err;
 
         this.success = err.success;
         this.error = err.error;
-
-        this.message =
-            "message" in err && typeof err.message === "string"
-                ? err.message
-                : "API error occurred";
 
         this.name = "AuthenticationFailedError";
     }
 }
 
 /** @internal */
+export const AuthenticationFailedErrorError$inboundSchema: z.ZodNativeEnum<
+    typeof AuthenticationFailedErrorError
+> = z.nativeEnum(AuthenticationFailedErrorError);
+
+/** @internal */
+export const AuthenticationFailedErrorError$outboundSchema: z.ZodNativeEnum<
+    typeof AuthenticationFailedErrorError
+> = AuthenticationFailedErrorError$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AuthenticationFailedErrorError$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof AuthenticationFailedErrorError> =
-        z.nativeEnum(AuthenticationFailedErrorError);
-    export const outboundSchema: z.ZodNativeEnum<typeof AuthenticationFailedErrorError> =
-        inboundSchema;
+    /** @deprecated use `AuthenticationFailedErrorError$inboundSchema` instead. */
+    export const inboundSchema = AuthenticationFailedErrorError$inboundSchema;
+    /** @deprecated use `AuthenticationFailedErrorError$outboundSchema` instead. */
+    export const outboundSchema = AuthenticationFailedErrorError$outboundSchema;
 }
 
 /** @internal */
-export namespace AuthenticationFailedError$ {
-    export const inboundSchema: z.ZodType<AuthenticationFailedError, z.ZodTypeDef, unknown> = z
-        .object({
+export const AuthenticationFailedError$inboundSchema: z.ZodType<
+    AuthenticationFailedError,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        success: z.boolean().default(false),
+        error: AuthenticationFailedErrorError$inboundSchema,
+    })
+    .transform((v) => {
+        return new AuthenticationFailedError(v);
+    });
+
+/** @internal */
+export type AuthenticationFailedError$Outbound = {
+    success: boolean;
+    error: string;
+};
+
+/** @internal */
+export const AuthenticationFailedError$outboundSchema: z.ZodType<
+    AuthenticationFailedError$Outbound,
+    z.ZodTypeDef,
+    AuthenticationFailedError
+> = z
+    .instanceof(AuthenticationFailedError)
+    .transform((v) => v.data$)
+    .pipe(
+        z.object({
             success: z.boolean().default(false),
-            error: AuthenticationFailedErrorError$.inboundSchema,
+            error: AuthenticationFailedErrorError$outboundSchema,
         })
-        .transform((v) => {
-            return new AuthenticationFailedError(v);
-        });
+    );
 
-    export type Outbound = {
-        success: boolean;
-        error: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AuthenticationFailedError> = z
-        .instanceof(AuthenticationFailedError)
-        .transform((v) => v.data$)
-        .pipe(
-            z.object({
-                success: z.boolean().default(false),
-                error: AuthenticationFailedErrorError$.outboundSchema,
-            })
-        );
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace AuthenticationFailedError$ {
+    /** @deprecated use `AuthenticationFailedError$inboundSchema` instead. */
+    export const inboundSchema = AuthenticationFailedError$inboundSchema;
+    /** @deprecated use `AuthenticationFailedError$outboundSchema` instead. */
+    export const outboundSchema = AuthenticationFailedError$outboundSchema;
+    /** @deprecated use `AuthenticationFailedError$Outbound` instead. */
+    export type Outbound = AuthenticationFailedError$Outbound;
 }

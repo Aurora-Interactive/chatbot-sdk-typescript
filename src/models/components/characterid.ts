@@ -9,16 +9,33 @@ export type CharacterId = {
 };
 
 /** @internal */
+export const CharacterId$inboundSchema: z.ZodType<CharacterId, z.ZodTypeDef, unknown> = z.object({
+    characterId: z.number().int(),
+});
+
+/** @internal */
+export type CharacterId$Outbound = {
+    characterId: number;
+};
+
+/** @internal */
+export const CharacterId$outboundSchema: z.ZodType<
+    CharacterId$Outbound,
+    z.ZodTypeDef,
+    CharacterId
+> = z.object({
+    characterId: z.number().int(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace CharacterId$ {
-    export const inboundSchema: z.ZodType<CharacterId, z.ZodTypeDef, unknown> = z.object({
-        characterId: z.number().int(),
-    });
-
-    export type Outbound = {
-        characterId: number;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CharacterId> = z.object({
-        characterId: z.number().int(),
-    });
+    /** @deprecated use `CharacterId$inboundSchema` instead. */
+    export const inboundSchema = CharacterId$inboundSchema;
+    /** @deprecated use `CharacterId$outboundSchema` instead. */
+    export const outboundSchema = CharacterId$outboundSchema;
+    /** @deprecated use `CharacterId$Outbound` instead. */
+    export type Outbound = CharacterId$Outbound;
 }

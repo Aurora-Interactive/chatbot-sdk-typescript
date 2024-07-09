@@ -5,10 +5,22 @@
 import { ClosedEnum } from "../../types/enums.js";
 import {
     AuthenticationFailedError,
-    AuthenticationFailedError$,
+    AuthenticationFailedError$inboundSchema,
+    AuthenticationFailedError$Outbound,
+    AuthenticationFailedError$outboundSchema,
 } from "./authenticationfailederror.js";
-import { BadRequestError, BadRequestError$ } from "./badrequesterror.js";
-import { UnauthorizedIdError, UnauthorizedIdError$ } from "./unauthorizediderror.js";
+import {
+    BadRequestError,
+    BadRequestError$inboundSchema,
+    BadRequestError$Outbound,
+    BadRequestError$outboundSchema,
+} from "./badrequesterror.js";
+import {
+    UnauthorizedIdError,
+    UnauthorizedIdError$inboundSchema,
+    UnauthorizedIdError$Outbound,
+    UnauthorizedIdError$outboundSchema,
+} from "./unauthorizediderror.js";
 import * as z from "zod";
 
 /**
@@ -34,16 +46,15 @@ export class InvalidChatIdError extends Error {
     data$: InvalidChatIdErrorData;
 
     constructor(err: InvalidChatIdErrorData) {
-        super("");
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
         this.data$ = err;
 
         this.success = err.success;
         this.error = err.error;
-
-        this.message =
-            "message" in err && typeof err.message === "string"
-                ? err.message
-                : "API error occurred";
 
         this.name = "InvalidChatIdError";
     }
@@ -55,64 +66,132 @@ export class InvalidChatIdError extends Error {
 export type GetMessageHistoryResponseBody = BadRequestError | InvalidChatIdError;
 
 /** @internal */
+export const GetMessageHistoryMessagesResponseBody$inboundSchema: z.ZodType<
+    GetMessageHistoryMessagesResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z.union([AuthenticationFailedError$inboundSchema, UnauthorizedIdError$inboundSchema]);
+
+/** @internal */
+export type GetMessageHistoryMessagesResponseBody$Outbound =
+    | AuthenticationFailedError$Outbound
+    | UnauthorizedIdError$Outbound;
+
+/** @internal */
+export const GetMessageHistoryMessagesResponseBody$outboundSchema: z.ZodType<
+    GetMessageHistoryMessagesResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetMessageHistoryMessagesResponseBody
+> = z.union([AuthenticationFailedError$outboundSchema, UnauthorizedIdError$outboundSchema]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace GetMessageHistoryMessagesResponseBody$ {
-    export const inboundSchema: z.ZodType<
-        GetMessageHistoryMessagesResponseBody,
-        z.ZodTypeDef,
-        unknown
-    > = z.union([AuthenticationFailedError$.inboundSchema, UnauthorizedIdError$.inboundSchema]);
-
-    export type Outbound = AuthenticationFailedError$.Outbound | UnauthorizedIdError$.Outbound;
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        GetMessageHistoryMessagesResponseBody
-    > = z.union([AuthenticationFailedError$.outboundSchema, UnauthorizedIdError$.outboundSchema]);
+    /** @deprecated use `GetMessageHistoryMessagesResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetMessageHistoryMessagesResponseBody$inboundSchema;
+    /** @deprecated use `GetMessageHistoryMessagesResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetMessageHistoryMessagesResponseBody$outboundSchema;
+    /** @deprecated use `GetMessageHistoryMessagesResponseBody$Outbound` instead. */
+    export type Outbound = GetMessageHistoryMessagesResponseBody$Outbound;
 }
 
 /** @internal */
+export const ResponseBodyError$inboundSchema: z.ZodNativeEnum<typeof ResponseBodyError> =
+    z.nativeEnum(ResponseBodyError);
+
+/** @internal */
+export const ResponseBodyError$outboundSchema: z.ZodNativeEnum<typeof ResponseBodyError> =
+    ResponseBodyError$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace ResponseBodyError$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof ResponseBodyError> =
-        z.nativeEnum(ResponseBodyError);
-    export const outboundSchema: z.ZodNativeEnum<typeof ResponseBodyError> = inboundSchema;
+    /** @deprecated use `ResponseBodyError$inboundSchema` instead. */
+    export const inboundSchema = ResponseBodyError$inboundSchema;
+    /** @deprecated use `ResponseBodyError$outboundSchema` instead. */
+    export const outboundSchema = ResponseBodyError$outboundSchema;
 }
 
 /** @internal */
-export namespace InvalidChatIdError$ {
-    export const inboundSchema: z.ZodType<InvalidChatIdError, z.ZodTypeDef, unknown> = z
-        .object({
+export const InvalidChatIdError$inboundSchema: z.ZodType<
+    InvalidChatIdError,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        success: z.boolean().default(false),
+        error: ResponseBodyError$inboundSchema,
+    })
+    .transform((v) => {
+        return new InvalidChatIdError(v);
+    });
+
+/** @internal */
+export type InvalidChatIdError$Outbound = {
+    success: boolean;
+    error: string;
+};
+
+/** @internal */
+export const InvalidChatIdError$outboundSchema: z.ZodType<
+    InvalidChatIdError$Outbound,
+    z.ZodTypeDef,
+    InvalidChatIdError
+> = z
+    .instanceof(InvalidChatIdError)
+    .transform((v) => v.data$)
+    .pipe(
+        z.object({
             success: z.boolean().default(false),
-            error: ResponseBodyError$.inboundSchema,
+            error: ResponseBodyError$outboundSchema,
         })
-        .transform((v) => {
-            return new InvalidChatIdError(v);
-        });
+    );
 
-    export type Outbound = {
-        success: boolean;
-        error: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, InvalidChatIdError> = z
-        .instanceof(InvalidChatIdError)
-        .transform((v) => v.data$)
-        .pipe(
-            z.object({
-                success: z.boolean().default(false),
-                error: ResponseBodyError$.outboundSchema,
-            })
-        );
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace InvalidChatIdError$ {
+    /** @deprecated use `InvalidChatIdError$inboundSchema` instead. */
+    export const inboundSchema = InvalidChatIdError$inboundSchema;
+    /** @deprecated use `InvalidChatIdError$outboundSchema` instead. */
+    export const outboundSchema = InvalidChatIdError$outboundSchema;
+    /** @deprecated use `InvalidChatIdError$Outbound` instead. */
+    export type Outbound = InvalidChatIdError$Outbound;
 }
 
 /** @internal */
-export namespace GetMessageHistoryResponseBody$ {
-    export const inboundSchema: z.ZodType<GetMessageHistoryResponseBody, z.ZodTypeDef, unknown> =
-        z.union([BadRequestError$.inboundSchema, z.lazy(() => InvalidChatIdError$.inboundSchema)]);
+export const GetMessageHistoryResponseBody$inboundSchema: z.ZodType<
+    GetMessageHistoryResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z.union([BadRequestError$inboundSchema, z.lazy(() => InvalidChatIdError$inboundSchema)]);
 
-    export type Outbound = BadRequestError$.Outbound | InvalidChatIdError$.Outbound;
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetMessageHistoryResponseBody> =
-        z.union([
-            BadRequestError$.outboundSchema,
-            z.lazy(() => InvalidChatIdError$.outboundSchema),
-        ]);
+/** @internal */
+export type GetMessageHistoryResponseBody$Outbound =
+    | BadRequestError$Outbound
+    | InvalidChatIdError$Outbound;
+
+/** @internal */
+export const GetMessageHistoryResponseBody$outboundSchema: z.ZodType<
+    GetMessageHistoryResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetMessageHistoryResponseBody
+> = z.union([BadRequestError$outboundSchema, z.lazy(() => InvalidChatIdError$outboundSchema)]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetMessageHistoryResponseBody$ {
+    /** @deprecated use `GetMessageHistoryResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetMessageHistoryResponseBody$inboundSchema;
+    /** @deprecated use `GetMessageHistoryResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetMessageHistoryResponseBody$outboundSchema;
+    /** @deprecated use `GetMessageHistoryResponseBody$Outbound` instead. */
+    export type Outbound = GetMessageHistoryResponseBody$Outbound;
 }

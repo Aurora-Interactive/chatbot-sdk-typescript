@@ -101,9 +101,9 @@ export class Chats extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.GetChatsForUserSuccessfulRequest>()
-            .json(200, operations.GetChatsForUserSuccessfulRequest$)
-            .json(400, errors.BadRequestError$, { err: true })
-            .json(401, errors.AuthenticationFailedError$, { err: true })
+            .json(200, operations.GetChatsForUserSuccessfulRequest$inboundSchema)
+            .json(400, errors.BadRequestError$inboundSchema, { err: true })
+            .json(401, errors.AuthenticationFailedError$inboundSchema, { err: true })
             .fail(["4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 
@@ -126,7 +126,7 @@ export class Chats extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => components.CharacterId$.outboundSchema.optional().parse(value$),
+            (value$) => components.CharacterId$outboundSchema.optional().parse(value$),
             "Input validation failed"
         );
         const body$ =
@@ -181,10 +181,10 @@ export class Chats extends ClientSDK {
         };
 
         const [result$] = await this.matcher<components.SuccessfulRequest>()
-            .json(200, components.SuccessfulRequest$)
-            .json(400, errors.BadRequestError$, { err: true })
-            .json(401, errors.AuthenticationFailedError$, { err: true })
-            .json(402, errors.AccountInBadStandingError$, { err: true })
+            .json(200, components.SuccessfulRequest$inboundSchema)
+            .json(400, errors.BadRequestError$inboundSchema, { err: true })
+            .json(401, errors.AuthenticationFailedError$inboundSchema, { err: true })
+            .json(402, errors.AccountInBadStandingError$inboundSchema, { err: true })
             .fail(["4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 
@@ -207,7 +207,7 @@ export class Chats extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.DeleteChatRequest$.outboundSchema.parse(value$),
+            (value$) => operations.DeleteChatRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -259,9 +259,9 @@ export class Chats extends ClientSDK {
         };
 
         const [result$] = await this.matcher<components.SuccessfulRequest>()
-            .json(200, components.SuccessfulRequest$)
-            .json(400, errors.DeleteChatResponseBody$, { err: true })
-            .json(401, errors.DeleteChatChatsResponseBody$, { err: true })
+            .json(200, components.SuccessfulRequest$inboundSchema)
+            .json(400, errors.DeleteChatResponseBody$inboundSchema, { err: true })
+            .json(401, errors.DeleteChatChatsResponseBody$inboundSchema, { err: true })
             .fail(["4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 

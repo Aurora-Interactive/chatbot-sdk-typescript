@@ -22,61 +22,112 @@ export type GetMessageContextSuccessfulRequest = {
 };
 
 /** @internal */
+export const GetMessageContextGlobals$inboundSchema: z.ZodType<
+    GetMessageContextGlobals,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    accessToken: z.string().optional(),
+});
+
+/** @internal */
+export type GetMessageContextGlobals$Outbound = {
+    accessToken?: string | undefined;
+};
+
+/** @internal */
+export const GetMessageContextGlobals$outboundSchema: z.ZodType<
+    GetMessageContextGlobals$Outbound,
+    z.ZodTypeDef,
+    GetMessageContextGlobals
+> = z.object({
+    accessToken: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace GetMessageContextGlobals$ {
-    export const inboundSchema: z.ZodType<GetMessageContextGlobals, z.ZodTypeDef, unknown> =
-        z.object({
-            accessToken: z.string().optional(),
-        });
-
-    export type Outbound = {
-        accessToken?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetMessageContextGlobals> =
-        z.object({
-            accessToken: z.string().optional(),
-        });
+    /** @deprecated use `GetMessageContextGlobals$inboundSchema` instead. */
+    export const inboundSchema = GetMessageContextGlobals$inboundSchema;
+    /** @deprecated use `GetMessageContextGlobals$outboundSchema` instead. */
+    export const outboundSchema = GetMessageContextGlobals$outboundSchema;
+    /** @deprecated use `GetMessageContextGlobals$Outbound` instead. */
+    export type Outbound = GetMessageContextGlobals$Outbound;
 }
 
 /** @internal */
+export const GetMessageContextRequest$inboundSchema: z.ZodType<
+    GetMessageContextRequest,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    chatId: z.number().int(),
+});
+
+/** @internal */
+export type GetMessageContextRequest$Outbound = {
+    chatId: number;
+};
+
+/** @internal */
+export const GetMessageContextRequest$outboundSchema: z.ZodType<
+    GetMessageContextRequest$Outbound,
+    z.ZodTypeDef,
+    GetMessageContextRequest
+> = z.object({
+    chatId: z.number().int(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace GetMessageContextRequest$ {
-    export const inboundSchema: z.ZodType<GetMessageContextRequest, z.ZodTypeDef, unknown> =
-        z.object({
-            chatId: z.number().int(),
-        });
-
-    export type Outbound = {
-        chatId: number;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetMessageContextRequest> =
-        z.object({
-            chatId: z.number().int(),
-        });
+    /** @deprecated use `GetMessageContextRequest$inboundSchema` instead. */
+    export const inboundSchema = GetMessageContextRequest$inboundSchema;
+    /** @deprecated use `GetMessageContextRequest$outboundSchema` instead. */
+    export const outboundSchema = GetMessageContextRequest$outboundSchema;
+    /** @deprecated use `GetMessageContextRequest$Outbound` instead. */
+    export type Outbound = GetMessageContextRequest$Outbound;
 }
 
 /** @internal */
+export const GetMessageContextSuccessfulRequest$inboundSchema: z.ZodType<
+    GetMessageContextSuccessfulRequest,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    success: z.boolean().default(true),
+    chatContext: z.array(components.Message$inboundSchema),
+});
+
+/** @internal */
+export type GetMessageContextSuccessfulRequest$Outbound = {
+    success: boolean;
+    chatContext: Array<components.Message$Outbound>;
+};
+
+/** @internal */
+export const GetMessageContextSuccessfulRequest$outboundSchema: z.ZodType<
+    GetMessageContextSuccessfulRequest$Outbound,
+    z.ZodTypeDef,
+    GetMessageContextSuccessfulRequest
+> = z.object({
+    success: z.boolean().default(true),
+    chatContext: z.array(components.Message$outboundSchema),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace GetMessageContextSuccessfulRequest$ {
-    export const inboundSchema: z.ZodType<
-        GetMessageContextSuccessfulRequest,
-        z.ZodTypeDef,
-        unknown
-    > = z.object({
-        success: z.boolean().default(true),
-        chatContext: z.array(components.Message$.inboundSchema),
-    });
-
-    export type Outbound = {
-        success: boolean;
-        chatContext: Array<components.Message$.Outbound>;
-    };
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        GetMessageContextSuccessfulRequest
-    > = z.object({
-        success: z.boolean().default(true),
-        chatContext: z.array(components.Message$.outboundSchema),
-    });
+    /** @deprecated use `GetMessageContextSuccessfulRequest$inboundSchema` instead. */
+    export const inboundSchema = GetMessageContextSuccessfulRequest$inboundSchema;
+    /** @deprecated use `GetMessageContextSuccessfulRequest$outboundSchema` instead. */
+    export const outboundSchema = GetMessageContextSuccessfulRequest$outboundSchema;
+    /** @deprecated use `GetMessageContextSuccessfulRequest$Outbound` instead. */
+    export type Outbound = GetMessageContextSuccessfulRequest$Outbound;
 }

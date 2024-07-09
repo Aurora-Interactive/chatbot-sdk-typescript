@@ -19,28 +19,60 @@ export type TimestampedMessage = {
 };
 
 /** @internal */
+export const Role$inboundSchema: z.ZodNativeEnum<typeof Role> = z.nativeEnum(Role);
+
+/** @internal */
+export const Role$outboundSchema: z.ZodNativeEnum<typeof Role> = Role$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace Role$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof Role> = z.nativeEnum(Role);
-    export const outboundSchema: z.ZodNativeEnum<typeof Role> = inboundSchema;
+    /** @deprecated use `Role$inboundSchema` instead. */
+    export const inboundSchema = Role$inboundSchema;
+    /** @deprecated use `Role$outboundSchema` instead. */
+    export const outboundSchema = Role$outboundSchema;
 }
 
 /** @internal */
+export const TimestampedMessage$inboundSchema: z.ZodType<
+    TimestampedMessage,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    role: Role$inboundSchema,
+    content: z.string(),
+    timestamp: z.number().int(),
+});
+
+/** @internal */
+export type TimestampedMessage$Outbound = {
+    role: string;
+    content: string;
+    timestamp: number;
+};
+
+/** @internal */
+export const TimestampedMessage$outboundSchema: z.ZodType<
+    TimestampedMessage$Outbound,
+    z.ZodTypeDef,
+    TimestampedMessage
+> = z.object({
+    role: Role$outboundSchema,
+    content: z.string(),
+    timestamp: z.number().int(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace TimestampedMessage$ {
-    export const inboundSchema: z.ZodType<TimestampedMessage, z.ZodTypeDef, unknown> = z.object({
-        role: Role$.inboundSchema,
-        content: z.string(),
-        timestamp: z.number().int(),
-    });
-
-    export type Outbound = {
-        role: string;
-        content: string;
-        timestamp: number;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TimestampedMessage> = z.object({
-        role: Role$.outboundSchema,
-        content: z.string(),
-        timestamp: z.number().int(),
-    });
+    /** @deprecated use `TimestampedMessage$inboundSchema` instead. */
+    export const inboundSchema = TimestampedMessage$inboundSchema;
+    /** @deprecated use `TimestampedMessage$outboundSchema` instead. */
+    export const outboundSchema = TimestampedMessage$outboundSchema;
+    /** @deprecated use `TimestampedMessage$Outbound` instead. */
+    export type Outbound = TimestampedMessage$Outbound;
 }

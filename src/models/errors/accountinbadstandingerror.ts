@@ -30,52 +30,85 @@ export class AccountInBadStandingError extends Error {
     data$: AccountInBadStandingErrorData;
 
     constructor(err: AccountInBadStandingErrorData) {
-        super("");
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
         this.data$ = err;
 
         this.success = err.success;
         this.error = err.error;
-
-        this.message =
-            "message" in err && typeof err.message === "string"
-                ? err.message
-                : "API error occurred";
 
         this.name = "AccountInBadStandingError";
     }
 }
 
 /** @internal */
+export const AccountInBadStandingErrorError$inboundSchema: z.ZodNativeEnum<
+    typeof AccountInBadStandingErrorError
+> = z.nativeEnum(AccountInBadStandingErrorError);
+
+/** @internal */
+export const AccountInBadStandingErrorError$outboundSchema: z.ZodNativeEnum<
+    typeof AccountInBadStandingErrorError
+> = AccountInBadStandingErrorError$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AccountInBadStandingErrorError$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof AccountInBadStandingErrorError> =
-        z.nativeEnum(AccountInBadStandingErrorError);
-    export const outboundSchema: z.ZodNativeEnum<typeof AccountInBadStandingErrorError> =
-        inboundSchema;
+    /** @deprecated use `AccountInBadStandingErrorError$inboundSchema` instead. */
+    export const inboundSchema = AccountInBadStandingErrorError$inboundSchema;
+    /** @deprecated use `AccountInBadStandingErrorError$outboundSchema` instead. */
+    export const outboundSchema = AccountInBadStandingErrorError$outboundSchema;
 }
 
 /** @internal */
-export namespace AccountInBadStandingError$ {
-    export const inboundSchema: z.ZodType<AccountInBadStandingError, z.ZodTypeDef, unknown> = z
-        .object({
+export const AccountInBadStandingError$inboundSchema: z.ZodType<
+    AccountInBadStandingError,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        success: z.boolean().default(false),
+        error: AccountInBadStandingErrorError$inboundSchema,
+    })
+    .transform((v) => {
+        return new AccountInBadStandingError(v);
+    });
+
+/** @internal */
+export type AccountInBadStandingError$Outbound = {
+    success: boolean;
+    error: string;
+};
+
+/** @internal */
+export const AccountInBadStandingError$outboundSchema: z.ZodType<
+    AccountInBadStandingError$Outbound,
+    z.ZodTypeDef,
+    AccountInBadStandingError
+> = z
+    .instanceof(AccountInBadStandingError)
+    .transform((v) => v.data$)
+    .pipe(
+        z.object({
             success: z.boolean().default(false),
-            error: AccountInBadStandingErrorError$.inboundSchema,
+            error: AccountInBadStandingErrorError$outboundSchema,
         })
-        .transform((v) => {
-            return new AccountInBadStandingError(v);
-        });
+    );
 
-    export type Outbound = {
-        success: boolean;
-        error: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AccountInBadStandingError> = z
-        .instanceof(AccountInBadStandingError)
-        .transform((v) => v.data$)
-        .pipe(
-            z.object({
-                success: z.boolean().default(false),
-                error: AccountInBadStandingErrorError$.outboundSchema,
-            })
-        );
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace AccountInBadStandingError$ {
+    /** @deprecated use `AccountInBadStandingError$inboundSchema` instead. */
+    export const inboundSchema = AccountInBadStandingError$inboundSchema;
+    /** @deprecated use `AccountInBadStandingError$outboundSchema` instead. */
+    export const outboundSchema = AccountInBadStandingError$outboundSchema;
+    /** @deprecated use `AccountInBadStandingError$Outbound` instead. */
+    export type Outbound = AccountInBadStandingError$Outbound;
 }

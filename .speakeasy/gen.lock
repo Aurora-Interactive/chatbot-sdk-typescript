@@ -1,17 +1,17 @@
 lockVersion: 2.0.0
 id: d0c6ef81-afa9-4266-a8f1-2430fa28984d
 management:
-  docChecksum: 236f71485e7140f05eaed13e7dd0f458
-  docVersion: 3.0.2
-  speakeasyVersion: 1.327.0
-  generationVersion: 2.359.6
-  releaseVersion: 3.0.0
-  configChecksum: 01472956758562348acac4d6271eaaaf
+  docChecksum: 4d384280a624f12b58a70d5b9867fefd
+  docVersion: 3.1.0
+  speakeasyVersion: 1.330.0
+  generationVersion: 2.361.10
+  releaseVersion: 3.1.0
+  configChecksum: c7b9afd8dbe24fc41ea909c36afad635
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.5
-    core: 3.11.3
+    core: 3.11.5
     devContainers: 2.90.0
     errorUnions: 0.1.0
     flattening: 2.81.1
@@ -20,7 +20,6 @@ features:
     globals: 2.82.1
     groups: 2.81.2
     hiddenGlobals: 0.1.0
-    ignores: 2.81.1
     nameOverrides: 2.81.2
     responseFormat: 0.2.3
     retries: 2.83.0
@@ -28,6 +27,7 @@ features:
     serverEvents: 0.1.4
     unions: 2.85.5
 generatedFiles:
+  - src/sdk/users.ts
   - src/sdk/characters.ts
   - src/sdk/chats.ts
   - src/sdk/messages.ts
@@ -59,6 +59,25 @@ generatedFiles:
   - src/types/operations.ts
   - src/types/rfcdate.ts
   - tsconfig.json
+  - src/models/components/accesstokenobj.ts
+  - src/models/components/successfulrequest.ts
+  - src/models/components/characterid.ts
+  - src/models/components/timestampedmessage.ts
+  - src/models/components/message.ts
+  - src/models/components/chatcompletionfragment.ts
+  - src/models/errors/badrequesterror.ts
+  - src/models/errors/authenticationfailederror.ts
+  - src/models/errors/signup.ts
+  - src/models/errors/accountinbadstandingerror.ts
+  - src/models/errors/createcharacter.ts
+  - src/models/errors/deletechat.ts
+  - src/models/errors/unauthorizediderror.ts
+  - src/models/errors/getmessagehistory.ts
+  - src/models/errors/getmessagecontext.ts
+  - src/models/errors/sendmessage.ts
+  - src/models/errors/deletemessage.ts
+  - src/models/operations/login.ts
+  - src/models/operations/signup.ts
   - src/models/operations/getcharacters.ts
   - src/models/operations/getcharacterimagedata.ts
   - src/models/operations/getcharacteraiinitializationdata.ts
@@ -71,24 +90,53 @@ generatedFiles:
   - src/models/operations/sendmessage.ts
   - src/models/operations/deletemessage.ts
   - src/models/operations/initializechat.ts
-  - src/models/errors/badrequesterror.ts
-  - src/models/errors/authenticationfailederror.ts
-  - src/models/errors/accountinbadstandingerror.ts
-  - src/models/errors/createcharacter.ts
-  - src/models/errors/deletechat.ts
-  - src/models/errors/unauthorizediderror.ts
-  - src/models/errors/getmessagehistory.ts
-  - src/models/errors/getmessagecontext.ts
-  - src/models/errors/sendmessage.ts
-  - src/models/errors/deletemessage.ts
-  - src/models/components/successfulrequest.ts
-  - src/models/components/characterid.ts
-  - src/models/components/timestampedmessage.ts
-  - src/models/components/message.ts
-  - src/models/components/chatcompletionfragment.ts
   - src/models/errors/index.ts
-  - src/models/operations/index.ts
   - src/models/components/index.ts
+  - src/models/operations/index.ts
+  - docs/models/components/accesstokenobj.md
+  - docs/models/components/successfulrequest.md
+  - docs/models/components/characterid.md
+  - docs/models/components/role.md
+  - docs/models/components/timestampedmessage.md
+  - docs/models/components/messagerole.md
+  - docs/models/components/message.md
+  - docs/models/components/data.md
+  - docs/models/components/chatcompletionfragment.md
+  - docs/models/errors/errort.md
+  - docs/models/errors/badrequesterror.md
+  - docs/models/errors/authenticationfailederrorerror.md
+  - docs/models/errors/authenticationfailederror.md
+  - docs/models/errors/signuperror.md
+  - docs/models/errors/signupduplicatesignuperror.md
+  - docs/models/errors/accountinbadstandingerrorerror.md
+  - docs/models/errors/accountinbadstandingerror.md
+  - docs/models/errors/createcharacterresponsebodyerror.md
+  - docs/models/errors/duplicatecharactererrorresponse.md
+  - docs/models/errors/createcharacterresponsebody.md
+  - docs/models/errors/deletechatchatsresponsebody.md
+  - docs/models/errors/deletechatresponsebodyerror.md
+  - docs/models/errors/deletechatresponsebodyinvalidchatiderror.md
+  - docs/models/errors/deletechatresponsebody.md
+  - docs/models/errors/unauthorizediderrorerror.md
+  - docs/models/errors/unauthorizediderror.md
+  - docs/models/errors/getmessagehistorymessagesresponsebody.md
+  - docs/models/errors/responsebodyerror.md
+  - docs/models/errors/invalidchatiderror.md
+  - docs/models/errors/getmessagehistoryresponsebody.md
+  - docs/models/errors/getmessagecontextmessagesresponsebody.md
+  - docs/models/errors/getmessagecontextresponsebodyerror.md
+  - docs/models/errors/responsebodyinvalidchatiderror.md
+  - docs/models/errors/getmessagecontextresponsebody.md
+  - docs/models/errors/sendmessagemessagesresponsebody.md
+  - docs/models/errors/sendmessageresponsebodyerror.md
+  - docs/models/errors/sendmessageresponsebodyinvalidchatiderror.md
+  - docs/models/errors/sendmessageresponsebody.md
+  - docs/models/errors/deletemessagemessagesresponsebody.md
+  - docs/models/errors/deletemessageresponsebodyerror.md
+  - docs/models/errors/invalidmessageiderror.md
+  - docs/models/errors/deletemessageresponsebody.md
+  - docs/models/operations/loginrequestbody.md
+  - docs/models/operations/signuprequestbody.md
   - docs/models/operations/getcharactersglobals.md
   - docs/models/operations/getcharactersrequest.md
   - docs/models/operations/characteroverviewresponse.md
@@ -122,47 +170,9 @@ generatedFiles:
   - docs/models/operations/deletemessageglobals.md
   - docs/models/operations/deletemessagerequest.md
   - docs/models/operations/initializechatglobals.md
-  - docs/models/errors/errort.md
-  - docs/models/errors/badrequesterror.md
-  - docs/models/errors/authenticationfailederrorerror.md
-  - docs/models/errors/authenticationfailederror.md
-  - docs/models/errors/accountinbadstandingerrorerror.md
-  - docs/models/errors/accountinbadstandingerror.md
-  - docs/models/errors/createcharacterresponsebodyerror.md
-  - docs/models/errors/duplicatecharactererrorresponse.md
-  - docs/models/errors/createcharacterresponsebody.md
-  - docs/models/errors/deletechatchatsresponsebody.md
-  - docs/models/errors/deletechatresponsebodyerror.md
-  - docs/models/errors/deletechatresponsebodyinvalidchatiderror.md
-  - docs/models/errors/deletechatresponsebody.md
-  - docs/models/errors/unauthorizediderrorerror.md
-  - docs/models/errors/unauthorizediderror.md
-  - docs/models/errors/getmessagehistorymessagesresponsebody.md
-  - docs/models/errors/responsebodyerror.md
-  - docs/models/errors/invalidchatiderror.md
-  - docs/models/errors/getmessagehistoryresponsebody.md
-  - docs/models/errors/getmessagecontextmessagesresponsebody.md
-  - docs/models/errors/getmessagecontextresponsebodyerror.md
-  - docs/models/errors/responsebodyinvalidchatiderror.md
-  - docs/models/errors/getmessagecontextresponsebody.md
-  - docs/models/errors/sendmessagemessagesresponsebody.md
-  - docs/models/errors/sendmessageresponsebodyerror.md
-  - docs/models/errors/sendmessageresponsebodyinvalidchatiderror.md
-  - docs/models/errors/sendmessageresponsebody.md
-  - docs/models/errors/deletemessagemessagesresponsebody.md
-  - docs/models/errors/deletemessageresponsebodyerror.md
-  - docs/models/errors/invalidmessageiderror.md
-  - docs/models/errors/deletemessageresponsebody.md
-  - docs/models/components/successfulrequest.md
-  - docs/models/components/characterid.md
-  - docs/models/components/role.md
-  - docs/models/components/timestampedmessage.md
-  - docs/models/components/messagerole.md
-  - docs/models/components/message.md
-  - docs/models/components/data.md
-  - docs/models/components/chatcompletionfragment.md
   - docs/sdks/aurorachatbotsdk/README.md
   - docs/lib/utils/retryconfig.md
+  - docs/sdks/users/README.md
   - docs/sdks/characters/README.md
   - docs/sdks/chats/README.md
   - docs/sdks/messages/README.md
