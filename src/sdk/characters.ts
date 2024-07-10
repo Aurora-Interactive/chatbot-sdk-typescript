@@ -13,7 +13,6 @@ import { HTTPClient } from "../lib/http.js";
 import * as retries$ from "../lib/retries.js";
 import * as schemas$ from "../lib/schemas.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as errors from "../models/errors/index.js";
 import * as operations from "../models/operations/index.js";
 
 export class Characters extends ClientSDK {
@@ -51,7 +50,7 @@ export class Characters extends ClientSDK {
      */
     async list(
         options?: RequestOptions & { retries?: retries$.RetryConfig }
-    ): Promise<operations.GetCharactersSuccessfulRequest> {
+    ): Promise<operations.GetCharactersResponse> {
         const input$: operations.GetCharactersRequest = {};
         void input$; // request input is unused
 
@@ -90,21 +89,17 @@ export class Characters extends ClientSDK {
         const response = await retries$.retry(
             () => {
                 const cloned = request$.clone();
-                return this.do$(cloned, { context, errorCodes: ["400", "401", "4XX", "5XX"] });
+                return this.do$(cloned, { context, errorCodes: ["5XX"] });
             },
             { config: retryConfig, statusCodes: ["5XX"] }
         );
 
-        const responseFields$ = {
-            HttpMeta: { Response: response, Request: request$ },
-        };
-
-        const [result$] = await this.matcher<operations.GetCharactersSuccessfulRequest>()
-            .json(200, operations.GetCharactersSuccessfulRequest$inboundSchema)
-            .json(400, errors.BadRequestError$inboundSchema, { err: true })
-            .json(401, errors.AuthenticationFailedError$inboundSchema, { err: true })
-            .fail(["4XX", "5XX"])
-            .match(response, { extraFields: responseFields$ });
+        const [result$] = await this.matcher<operations.GetCharactersResponse>()
+            .json(200, operations.GetCharactersResponse$inboundSchema)
+            .json(400, operations.GetCharactersResponse$inboundSchema)
+            .json(401, operations.GetCharactersResponse$inboundSchema)
+            .fail("5XX")
+            .match(response);
 
         return result$;
     }
@@ -118,7 +113,7 @@ export class Characters extends ClientSDK {
     async getImageData(
         characterId: number,
         options?: RequestOptions & { retries?: retries$.RetryConfig }
-    ): Promise<operations.GetCharacterImageDataSuccessfulRequest> {
+    ): Promise<operations.GetCharacterImageDataResponse> {
         const input$: operations.GetCharacterImageDataRequest = {
             characterId: characterId,
         };
@@ -171,21 +166,17 @@ export class Characters extends ClientSDK {
         const response = await retries$.retry(
             () => {
                 const cloned = request$.clone();
-                return this.do$(cloned, { context, errorCodes: ["400", "401", "4XX", "5XX"] });
+                return this.do$(cloned, { context, errorCodes: ["5XX"] });
             },
             { config: retryConfig, statusCodes: ["5XX"] }
         );
 
-        const responseFields$ = {
-            HttpMeta: { Response: response, Request: request$ },
-        };
-
-        const [result$] = await this.matcher<operations.GetCharacterImageDataSuccessfulRequest>()
-            .json(200, operations.GetCharacterImageDataSuccessfulRequest$inboundSchema)
-            .json(400, errors.BadRequestError$inboundSchema, { err: true })
-            .json(401, errors.AuthenticationFailedError$inboundSchema, { err: true })
-            .fail(["4XX", "5XX"])
-            .match(response, { extraFields: responseFields$ });
+        const [result$] = await this.matcher<operations.GetCharacterImageDataResponse>()
+            .json(200, operations.GetCharacterImageDataResponse$inboundSchema)
+            .json(400, operations.GetCharacterImageDataResponse$inboundSchema)
+            .json(401, operations.GetCharacterImageDataResponse$inboundSchema)
+            .fail("5XX")
+            .match(response);
 
         return result$;
     }
@@ -199,7 +190,7 @@ export class Characters extends ClientSDK {
     async getAiInitializationData(
         characterId: number,
         options?: RequestOptions & { retries?: retries$.RetryConfig }
-    ): Promise<operations.GetCharacterAiInitializationDataSuccessfulRequest> {
+    ): Promise<operations.GetCharacterAiInitializationDataResponse> {
         const input$: operations.GetCharacterAiInitializationDataRequest = {
             characterId: characterId,
         };
@@ -253,29 +244,18 @@ export class Characters extends ClientSDK {
         const response = await retries$.retry(
             () => {
                 const cloned = request$.clone();
-                return this.do$(cloned, {
-                    context,
-                    errorCodes: ["400", "401", "402", "4XX", "5XX"],
-                });
+                return this.do$(cloned, { context, errorCodes: ["5XX"] });
             },
             { config: retryConfig, statusCodes: ["5XX"] }
         );
 
-        const responseFields$ = {
-            HttpMeta: { Response: response, Request: request$ },
-        };
-
-        const [result$] =
-            await this.matcher<operations.GetCharacterAiInitializationDataSuccessfulRequest>()
-                .json(
-                    200,
-                    operations.GetCharacterAiInitializationDataSuccessfulRequest$inboundSchema
-                )
-                .json(400, errors.BadRequestError$inboundSchema, { err: true })
-                .json(401, errors.AuthenticationFailedError$inboundSchema, { err: true })
-                .json(402, errors.AccountInBadStandingError$inboundSchema, { err: true })
-                .fail(["4XX", "5XX"])
-                .match(response, { extraFields: responseFields$ });
+        const [result$] = await this.matcher<operations.GetCharacterAiInitializationDataResponse>()
+            .json(200, operations.GetCharacterAiInitializationDataResponse$inboundSchema)
+            .json(400, operations.GetCharacterAiInitializationDataResponse$inboundSchema)
+            .json(401, operations.GetCharacterAiInitializationDataResponse$inboundSchema)
+            .json(402, operations.GetCharacterAiInitializationDataResponse$inboundSchema)
+            .fail("5XX")
+            .match(response);
 
         return result$;
     }
@@ -294,7 +274,7 @@ export class Characters extends ClientSDK {
         iconImage: string,
         bannerImage: string,
         options?: RequestOptions & { retries?: retries$.RetryConfig }
-    ): Promise<operations.CreateCharacterCharacterIdResponse> {
+    ): Promise<operations.CreateCharacterResponse> {
         const input$: operations.CreateCharacterCharacterImageDataResponse | undefined = {
             aiPrompt: aiPrompt,
             initialResponse: initialResponse,
@@ -351,25 +331,18 @@ export class Characters extends ClientSDK {
         const response = await retries$.retry(
             () => {
                 const cloned = request$.clone();
-                return this.do$(cloned, {
-                    context,
-                    errorCodes: ["400", "401", "402", "4XX", "5XX"],
-                });
+                return this.do$(cloned, { context, errorCodes: ["5XX"] });
             },
             { config: retryConfig, statusCodes: ["5XX"] }
         );
 
-        const responseFields$ = {
-            HttpMeta: { Response: response, Request: request$ },
-        };
-
-        const [result$] = await this.matcher<operations.CreateCharacterCharacterIdResponse>()
-            .json(200, operations.CreateCharacterCharacterIdResponse$inboundSchema)
-            .json(400, errors.CreateCharacterResponseBody$inboundSchema, { err: true })
-            .json(401, errors.AuthenticationFailedError$inboundSchema, { err: true })
-            .json(402, errors.AccountInBadStandingError$inboundSchema, { err: true })
-            .fail(["4XX", "5XX"])
-            .match(response, { extraFields: responseFields$ });
+        const [result$] = await this.matcher<operations.CreateCharacterResponse>()
+            .json(200, operations.CreateCharacterResponse$inboundSchema)
+            .json(400, operations.CreateCharacterResponse$inboundSchema)
+            .json(401, operations.CreateCharacterResponse$inboundSchema)
+            .json(402, operations.CreateCharacterResponse$inboundSchema)
+            .fail("5XX")
+            .match(response);
 
         return result$;
     }

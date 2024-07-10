@@ -46,14 +46,12 @@ run();
 
 ### Response
 
-**Promise\<[components.AccessTokenObj](../../models/components/accesstokenobj.md)\>**
+**Promise\<[operations.LoginResponse](../../models/operations/loginresponse.md)\>**
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| errors.BadRequestError           | 400                              | application/json                 |
-| errors.AuthenticationFailedError | 401                              | application/json                 |
-| errors.SDKError                  | 4xx-5xx                          | */*                              |
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## createAccount
 
@@ -92,11 +90,9 @@ run();
 
 ### Response
 
-**Promise\<[components.AccessTokenObj](../../models/components/accesstokenobj.md)\>**
+**Promise\<[operations.SignupResponse](../../models/operations/signupresponse.md)\>**
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| errors.BadRequestError            | 400                               | application/json                  |
-| errors.SignupDuplicateSignupError | 401                               | application/json                  |
-| errors.SDKError                   | 4xx-5xx                           | */*                               |
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |

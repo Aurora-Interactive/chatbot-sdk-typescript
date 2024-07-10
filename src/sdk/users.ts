@@ -9,8 +9,6 @@ import { HTTPClient } from "../lib/http.js";
 import * as retries$ from "../lib/retries.js";
 import * as schemas$ from "../lib/schemas.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
-import * as errors from "../models/errors/index.js";
 import * as operations from "../models/operations/index.js";
 
 export class Users extends ClientSDK {
@@ -49,7 +47,7 @@ export class Users extends ClientSDK {
     async login(
         request?: operations.LoginRequestBody | undefined,
         options?: RequestOptions & { retries?: retries$.RetryConfig }
-    ): Promise<components.AccessTokenObj> {
+    ): Promise<operations.LoginResponse> {
         const input$ = request;
 
         const payload$ = schemas$.parse(
@@ -92,21 +90,17 @@ export class Users extends ClientSDK {
         const response = await retries$.retry(
             () => {
                 const cloned = request$.clone();
-                return this.do$(cloned, { context, errorCodes: ["400", "401", "4XX", "5XX"] });
+                return this.do$(cloned, { context, errorCodes: ["5XX"] });
             },
             { config: retryConfig, statusCodes: ["5XX"] }
         );
 
-        const responseFields$ = {
-            HttpMeta: { Response: response, Request: request$ },
-        };
-
-        const [result$] = await this.matcher<components.AccessTokenObj>()
-            .json(200, components.AccessTokenObj$inboundSchema)
-            .json(400, errors.BadRequestError$inboundSchema, { err: true })
-            .json(401, errors.AuthenticationFailedError$inboundSchema, { err: true })
-            .fail(["4XX", "5XX"])
-            .match(response, { extraFields: responseFields$ });
+        const [result$] = await this.matcher<operations.LoginResponse>()
+            .json(200, operations.LoginResponse$inboundSchema)
+            .json(400, operations.LoginResponse$inboundSchema)
+            .json(401, operations.LoginResponse$inboundSchema)
+            .fail("5XX")
+            .match(response);
 
         return result$;
     }
@@ -120,7 +114,7 @@ export class Users extends ClientSDK {
     async createAccount(
         request?: operations.SignupRequestBody | undefined,
         options?: RequestOptions & { retries?: retries$.RetryConfig }
-    ): Promise<components.AccessTokenObj> {
+    ): Promise<operations.SignupResponse> {
         const input$ = request;
 
         const payload$ = schemas$.parse(
@@ -163,21 +157,17 @@ export class Users extends ClientSDK {
         const response = await retries$.retry(
             () => {
                 const cloned = request$.clone();
-                return this.do$(cloned, { context, errorCodes: ["400", "401", "4XX", "5XX"] });
+                return this.do$(cloned, { context, errorCodes: ["5XX"] });
             },
             { config: retryConfig, statusCodes: ["5XX"] }
         );
 
-        const responseFields$ = {
-            HttpMeta: { Response: response, Request: request$ },
-        };
-
-        const [result$] = await this.matcher<components.AccessTokenObj>()
-            .json(200, components.AccessTokenObj$inboundSchema)
-            .json(400, errors.BadRequestError$inboundSchema, { err: true })
-            .json(401, errors.SignupDuplicateSignupError$inboundSchema, { err: true })
-            .fail(["4XX", "5XX"])
-            .match(response, { extraFields: responseFields$ });
+        const [result$] = await this.matcher<operations.SignupResponse>()
+            .json(200, operations.SignupResponse$inboundSchema)
+            .json(400, operations.SignupResponse$inboundSchema)
+            .json(401, operations.SignupResponse$inboundSchema)
+            .fail("5XX")
+            .match(response);
 
         return result$;
     }

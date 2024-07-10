@@ -39,14 +39,12 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetChatsForUserSuccessfulRequest](../../models/operations/getchatsforusersuccessfulrequest.md)\>**
+**Promise\<[operations.GetChatsForUserResponse](../../models/operations/getchatsforuserresponse.md)\>**
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| errors.BadRequestError           | 400                              | application/json                 |
-| errors.AuthenticationFailedError | 401                              | application/json                 |
-| errors.SDKError                  | 4xx-5xx                          | */*                              |
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## initialize
 
@@ -81,15 +79,12 @@ run();
 
 ### Response
 
-**Promise\<[components.SuccessfulRequest](../../models/components/successfulrequest.md)\>**
+**Promise\<[operations.InitializeChatResponse](../../models/operations/initializechatresponse.md)\>**
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| errors.BadRequestError           | 400                              | application/json                 |
-| errors.AuthenticationFailedError | 401                              | application/json                 |
-| errors.AccountInBadStandingError | 402                              | application/json                 |
-| errors.SDKError                  | 4xx-5xx                          | */*                              |
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## delete
 
@@ -124,11 +119,9 @@ run();
 
 ### Response
 
-**Promise\<[components.SuccessfulRequest](../../models/components/successfulrequest.md)\>**
+**Promise\<[operations.DeleteChatResponse](../../models/operations/deletechatresponse.md)\>**
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| errors.DeleteChatResponseBody      | 400                                | application/json                   |
-| errors.DeleteChatChatsResponseBody | 401                                | application/json                   |
-| errors.SDKError                    | 4xx-5xx                            | */*                                |
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |

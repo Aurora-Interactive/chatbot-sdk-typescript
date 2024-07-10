@@ -14,7 +14,6 @@ import * as retries$ from "../lib/retries.js";
 import * as schemas$ from "../lib/schemas.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
-import * as errors from "../models/errors/index.js";
 import * as operations from "../models/operations/index.js";
 
 export class Chats extends ClientSDK {
@@ -52,7 +51,7 @@ export class Chats extends ClientSDK {
      */
     async listForUser(
         options?: RequestOptions & { retries?: retries$.RetryConfig }
-    ): Promise<operations.GetChatsForUserSuccessfulRequest> {
+    ): Promise<operations.GetChatsForUserResponse> {
         const input$: operations.GetChatsForUserRequest = {};
         void input$; // request input is unused
 
@@ -91,21 +90,17 @@ export class Chats extends ClientSDK {
         const response = await retries$.retry(
             () => {
                 const cloned = request$.clone();
-                return this.do$(cloned, { context, errorCodes: ["400", "401", "4XX", "5XX"] });
+                return this.do$(cloned, { context, errorCodes: ["5XX"] });
             },
             { config: retryConfig, statusCodes: ["5XX"] }
         );
 
-        const responseFields$ = {
-            HttpMeta: { Response: response, Request: request$ },
-        };
-
-        const [result$] = await this.matcher<operations.GetChatsForUserSuccessfulRequest>()
-            .json(200, operations.GetChatsForUserSuccessfulRequest$inboundSchema)
-            .json(400, errors.BadRequestError$inboundSchema, { err: true })
-            .json(401, errors.AuthenticationFailedError$inboundSchema, { err: true })
-            .fail(["4XX", "5XX"])
-            .match(response, { extraFields: responseFields$ });
+        const [result$] = await this.matcher<operations.GetChatsForUserResponse>()
+            .json(200, operations.GetChatsForUserResponse$inboundSchema)
+            .json(400, operations.GetChatsForUserResponse$inboundSchema)
+            .json(401, operations.GetChatsForUserResponse$inboundSchema)
+            .fail("5XX")
+            .match(response);
 
         return result$;
     }
@@ -119,7 +114,7 @@ export class Chats extends ClientSDK {
     async initialize(
         characterId: number,
         options?: RequestOptions & { retries?: retries$.RetryConfig }
-    ): Promise<components.SuccessfulRequest> {
+    ): Promise<operations.InitializeChatResponse> {
         const input$: components.CharacterId | undefined = {
             characterId: characterId,
         };
@@ -168,25 +163,18 @@ export class Chats extends ClientSDK {
         const response = await retries$.retry(
             () => {
                 const cloned = request$.clone();
-                return this.do$(cloned, {
-                    context,
-                    errorCodes: ["400", "401", "402", "4XX", "5XX"],
-                });
+                return this.do$(cloned, { context, errorCodes: ["5XX"] });
             },
             { config: retryConfig, statusCodes: ["5XX"] }
         );
 
-        const responseFields$ = {
-            HttpMeta: { Response: response, Request: request$ },
-        };
-
-        const [result$] = await this.matcher<components.SuccessfulRequest>()
-            .json(200, components.SuccessfulRequest$inboundSchema)
-            .json(400, errors.BadRequestError$inboundSchema, { err: true })
-            .json(401, errors.AuthenticationFailedError$inboundSchema, { err: true })
-            .json(402, errors.AccountInBadStandingError$inboundSchema, { err: true })
-            .fail(["4XX", "5XX"])
-            .match(response, { extraFields: responseFields$ });
+        const [result$] = await this.matcher<operations.InitializeChatResponse>()
+            .json(200, operations.InitializeChatResponse$inboundSchema)
+            .json(400, operations.InitializeChatResponse$inboundSchema)
+            .json(401, operations.InitializeChatResponse$inboundSchema)
+            .json(402, operations.InitializeChatResponse$inboundSchema)
+            .fail("5XX")
+            .match(response);
 
         return result$;
     }
@@ -200,7 +188,7 @@ export class Chats extends ClientSDK {
     async delete(
         chatId: number,
         options?: RequestOptions & { retries?: retries$.RetryConfig }
-    ): Promise<components.SuccessfulRequest> {
+    ): Promise<operations.DeleteChatResponse> {
         const input$: operations.DeleteChatRequest = {
             chatId: chatId,
         };
@@ -249,21 +237,17 @@ export class Chats extends ClientSDK {
         const response = await retries$.retry(
             () => {
                 const cloned = request$.clone();
-                return this.do$(cloned, { context, errorCodes: ["400", "401", "4XX", "5XX"] });
+                return this.do$(cloned, { context, errorCodes: ["5XX"] });
             },
             { config: retryConfig, statusCodes: ["5XX"] }
         );
 
-        const responseFields$ = {
-            HttpMeta: { Response: response, Request: request$ },
-        };
-
-        const [result$] = await this.matcher<components.SuccessfulRequest>()
-            .json(200, components.SuccessfulRequest$inboundSchema)
-            .json(400, errors.DeleteChatResponseBody$inboundSchema, { err: true })
-            .json(401, errors.DeleteChatChatsResponseBody$inboundSchema, { err: true })
-            .fail(["4XX", "5XX"])
-            .match(response, { extraFields: responseFields$ });
+        const [result$] = await this.matcher<operations.DeleteChatResponse>()
+            .json(200, operations.DeleteChatResponse$inboundSchema)
+            .json(400, operations.DeleteChatResponse$inboundSchema)
+            .json(401, operations.DeleteChatResponse$inboundSchema)
+            .fail("5XX")
+            .match(response);
 
         return result$;
     }

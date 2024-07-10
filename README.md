@@ -46,9 +46,9 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ```typescript
 import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
 
-//! You will need to have a valid access token to use this SDK
-// you can use the login or signup endpoints from the API schema reference
-// shown above to get this value
+//! You will need to have a valid access token to use the SDK with the access token parameter
+// you can use the SDK without the accessToken parameter and then make a new instance
+// after you have gotten an accessToken with sdk.users.login(...) or sdk.users.signup(...)
 const auroraChatbotSDK = new AuroraChatbotSDK({
     accessToken: "abc123"
 });

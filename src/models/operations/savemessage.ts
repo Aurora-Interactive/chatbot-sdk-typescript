@@ -3,6 +3,7 @@
  */
 
 import { ClosedEnum } from "../../types/enums.js";
+import * as components from "../components/index.js";
 import * as z from "zod";
 
 export type SaveMessageGlobals = {
@@ -22,6 +23,12 @@ export type SaveMessageTimestampedMessageResponse = {
     timestamp: number;
     chatId: number;
 };
+
+export type SaveMessageResponse =
+    | components.SuccessfulRequest
+    | components.BadRequestError
+    | components.AuthenticationFailedError
+    | components.AccountInBadStandingError;
 
 /** @internal */
 export const SaveMessageGlobals$inboundSchema: z.ZodType<
@@ -119,4 +126,48 @@ export namespace SaveMessageTimestampedMessageResponse$ {
     export const outboundSchema = SaveMessageTimestampedMessageResponse$outboundSchema;
     /** @deprecated use `SaveMessageTimestampedMessageResponse$Outbound` instead. */
     export type Outbound = SaveMessageTimestampedMessageResponse$Outbound;
+}
+
+/** @internal */
+export const SaveMessageResponse$inboundSchema: z.ZodType<
+    SaveMessageResponse,
+    z.ZodTypeDef,
+    unknown
+> = z.union([
+    components.SuccessfulRequest$inboundSchema,
+    components.BadRequestError$inboundSchema,
+    components.AuthenticationFailedError$inboundSchema,
+    components.AccountInBadStandingError$inboundSchema,
+]);
+
+/** @internal */
+export type SaveMessageResponse$Outbound =
+    | components.SuccessfulRequest$Outbound
+    | components.BadRequestError$Outbound
+    | components.AuthenticationFailedError$Outbound
+    | components.AccountInBadStandingError$Outbound;
+
+/** @internal */
+export const SaveMessageResponse$outboundSchema: z.ZodType<
+    SaveMessageResponse$Outbound,
+    z.ZodTypeDef,
+    SaveMessageResponse
+> = z.union([
+    components.SuccessfulRequest$outboundSchema,
+    components.BadRequestError$outboundSchema,
+    components.AuthenticationFailedError$outboundSchema,
+    components.AccountInBadStandingError$outboundSchema,
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SaveMessageResponse$ {
+    /** @deprecated use `SaveMessageResponse$inboundSchema` instead. */
+    export const inboundSchema = SaveMessageResponse$inboundSchema;
+    /** @deprecated use `SaveMessageResponse$outboundSchema` instead. */
+    export const outboundSchema = SaveMessageResponse$outboundSchema;
+    /** @deprecated use `SaveMessageResponse$Outbound` instead. */
+    export type Outbound = SaveMessageResponse$Outbound;
 }

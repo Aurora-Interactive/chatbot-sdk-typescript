@@ -40,14 +40,12 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetCharactersSuccessfulRequest](../../models/operations/getcharacterssuccessfulrequest.md)\>**
+**Promise\<[operations.GetCharactersResponse](../../models/operations/getcharactersresponse.md)\>**
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| errors.BadRequestError           | 400                              | application/json                 |
-| errors.AuthenticationFailedError | 401                              | application/json                 |
-| errors.SDKError                  | 4xx-5xx                          | */*                              |
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## getImageData
 
@@ -82,14 +80,12 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetCharacterImageDataSuccessfulRequest](../../models/operations/getcharacterimagedatasuccessfulrequest.md)\>**
+**Promise\<[operations.GetCharacterImageDataResponse](../../models/operations/getcharacterimagedataresponse.md)\>**
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| errors.BadRequestError           | 400                              | application/json                 |
-| errors.AuthenticationFailedError | 401                              | application/json                 |
-| errors.SDKError                  | 4xx-5xx                          | */*                              |
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## getAiInitializationData
 
@@ -124,15 +120,12 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetCharacterAiInitializationDataSuccessfulRequest](../../models/operations/getcharacteraiinitializationdatasuccessfulrequest.md)\>**
+**Promise\<[operations.GetCharacterAiInitializationDataResponse](../../models/operations/getcharacteraiinitializationdataresponse.md)\>**
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| errors.BadRequestError           | 400                              | application/json                 |
-| errors.AuthenticationFailedError | 401                              | application/json                 |
-| errors.AccountInBadStandingError | 402                              | application/json                 |
-| errors.SDKError                  | 4xx-5xx                          | */*                              |
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## create
 
@@ -172,12 +165,9 @@ run();
 
 ### Response
 
-**Promise\<[operations.CreateCharacterCharacterIdResponse](../../models/operations/createcharactercharacteridresponse.md)\>**
+**Promise\<[operations.CreateCharacterResponse](../../models/operations/createcharacterresponse.md)\>**
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| errors.CreateCharacterResponseBody | 400                                | application/json                   |
-| errors.AuthenticationFailedError   | 401                                | application/json                   |
-| errors.AccountInBadStandingError   | 402                                | application/json                   |
-| errors.SDKError                    | 4xx-5xx                            | */*                                |
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |

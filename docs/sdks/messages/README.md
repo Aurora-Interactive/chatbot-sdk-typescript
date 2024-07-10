@@ -45,15 +45,12 @@ run();
 
 ### Response
 
-**Promise\<[components.SuccessfulRequest](../../models/components/successfulrequest.md)\>**
+**Promise\<[operations.SaveMessageResponse](../../models/operations/savemessageresponse.md)\>**
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| errors.BadRequestError           | 400                              | application/json                 |
-| errors.AuthenticationFailedError | 401                              | application/json                 |
-| errors.AccountInBadStandingError | 402                              | application/json                 |
-| errors.SDKError                  | 4xx-5xx                          | */*                              |
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## history
 
@@ -88,15 +85,12 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetMessageHistorySuccessfulRequest](../../models/operations/getmessagehistorysuccessfulrequest.md)\>**
+**Promise\<[operations.GetMessageHistoryResponse](../../models/operations/getmessagehistoryresponse.md)\>**
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| errors.GetMessageHistoryResponseBody         | 400                                          | application/json                             |
-| errors.GetMessageHistoryMessagesResponseBody | 401                                          | application/json                             |
-| errors.AccountInBadStandingError             | 402                                          | application/json                             |
-| errors.SDKError                              | 4xx-5xx                                      | */*                                          |
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## context
 
@@ -131,15 +125,12 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetMessageContextSuccessfulRequest](../../models/operations/getmessagecontextsuccessfulrequest.md)\>**
+**Promise\<[operations.GetMessageContextResponse](../../models/operations/getmessagecontextresponse.md)\>**
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| errors.GetMessageContextResponseBody         | 400                                          | application/json                             |
-| errors.GetMessageContextMessagesResponseBody | 401                                          | application/json                             |
-| errors.AccountInBadStandingError             | 402                                          | application/json                             |
-| errors.SDKError                              | 4xx-5xx                                      | */*                                          |
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## send
 
@@ -182,15 +173,12 @@ run();
 
 ### Response
 
-**Promise\<[EventStream<components.ChatCompletionFragment>](../../models/.md)\>**
+**Promise\<[operations.SendMessageResponse](../../models/operations/sendmessageresponse.md)\>**
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.SendMessageResponseBody         | 400                                    | application/json                       |
-| errors.SendMessageMessagesResponseBody | 401                                    | application/json                       |
-| errors.AccountInBadStandingError       | 402                                    | application/json                       |
-| errors.SDKError                        | 4xx-5xx                                | */*                                    |
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## delete
 
@@ -225,12 +213,9 @@ run();
 
 ### Response
 
-**Promise\<[components.SuccessfulRequest](../../models/components/successfulrequest.md)\>**
+**Promise\<[operations.DeleteMessageResponse](../../models/operations/deletemessageresponse.md)\>**
 ### Errors
 
-| Error Object                             | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| errors.DeleteMessageResponseBody         | 400                                      | application/json                         |
-| errors.DeleteMessageMessagesResponseBody | 401                                      | application/json                         |
-| errors.AccountInBadStandingError         | 402                                      | application/json                         |
-| errors.SDKError                          | 4xx-5xx                                  | */*                                      |
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |

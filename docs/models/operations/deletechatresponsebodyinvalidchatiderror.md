@@ -1,0 +1,9 @@
+# DeleteChatResponseBodyInvalidChatIdError
+
+
+## Fields
+
+| Field                                                                                            | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `success`                                                                                        | *boolean*                                                                                        | :heavy_minus_sign:                                                                               | N/A                                                                                              |
+| `error`                                                                                          | [operations.DeleteChatResponseBodyError](../../models/operations/deletechatresponsebodyerror.md) | :heavy_check_mark:                                                                               | N/A                                                                                              |
