@@ -20,7 +20,10 @@ typescript:
     dependencies: {}
     devDependencies: {}
     peerDependencies: {}
-  additionalPackageJSON: {}
+  additionalPackageJSON:
+    repository:
+      type: git
+      url: https://github.com/Aurora-Interactive/chatbot-sdk-typescript.git
   author: Speakeasy
   clientServerStatusCodesAsErrors: true
   enumFormat: union
