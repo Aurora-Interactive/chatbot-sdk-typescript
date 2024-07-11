@@ -55,7 +55,7 @@ export class Chats extends ClientSDK {
         const input$: operations.GetChatsForUserRequest = {};
         void input$; // request input is unused
 
-        const path$ = this.templateURLComponent("/api/v3/allChatsForUser")();
+        const path$ = this.templateURLComponent("/api/v4/allChatsForUser")();
 
         const query$ = "";
 
@@ -71,7 +71,13 @@ export class Chats extends ClientSDK {
 
         const request$ = this.createRequest$(
             context,
-            { method: "GET", path: path$, headers: headers$, query: query$ },
+            {
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
+            },
             options
         );
 
@@ -127,7 +133,7 @@ export class Chats extends ClientSDK {
         const body$ =
             payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/api/v3/initializeChat")();
+        const path$ = this.templateURLComponent("/api/v4/initializeChat")();
 
         const query$ = "";
 
@@ -144,7 +150,14 @@ export class Chats extends ClientSDK {
 
         const request$ = this.createRequest$(
             context,
-            { method: "POST", path: path$, headers: headers$, query: query$, body: body$ },
+            {
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
+            },
             options
         );
 
@@ -200,7 +213,7 @@ export class Chats extends ClientSDK {
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/api/v3/deleteChat")();
+        const path$ = this.templateURLComponent("/api/v4/deleteChat")();
 
         const query$ = encodeFormQuery$({
             chatId: payload$.chatId,
@@ -218,7 +231,14 @@ export class Chats extends ClientSDK {
 
         const request$ = this.createRequest$(
             context,
-            { method: "DELETE", path: path$, headers: headers$, query: query$, body: body$ },
+            {
+                method: "DELETE",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
+            },
             options
         );
 

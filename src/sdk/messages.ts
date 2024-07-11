@@ -79,7 +79,7 @@ export class Messages extends ClientSDK {
         const body$ =
             payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/api/v3/saveMessage")();
+        const path$ = this.templateURLComponent("/api/v4/saveMessage")();
 
         const query$ = "";
 
@@ -96,7 +96,14 @@ export class Messages extends ClientSDK {
 
         const request$ = this.createRequest$(
             context,
-            { method: "POST", path: path$, headers: headers$, query: query$, body: body$ },
+            {
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
+            },
             options
         );
 
@@ -152,7 +159,7 @@ export class Messages extends ClientSDK {
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/api/v3/getMessageHistory")();
+        const path$ = this.templateURLComponent("/api/v4/getMessageHistory")();
 
         const query$ = encodeFormQuery$({
             chatId: payload$.chatId,
@@ -174,7 +181,14 @@ export class Messages extends ClientSDK {
 
         const request$ = this.createRequest$(
             context,
-            { method: "GET", path: path$, headers: headers$, query: query$, body: body$ },
+            {
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
+            },
             options
         );
 
@@ -230,7 +244,7 @@ export class Messages extends ClientSDK {
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/api/v3/getMessageContext")();
+        const path$ = this.templateURLComponent("/api/v4/getMessageContext")();
 
         const query$ = encodeFormQuery$({
             chatId: payload$.chatId,
@@ -252,7 +266,14 @@ export class Messages extends ClientSDK {
 
         const request$ = this.createRequest$(
             context,
-            { method: "GET", path: path$, headers: headers$, query: query$, body: body$ },
+            {
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
+            },
             options
         );
 
@@ -317,7 +338,7 @@ export class Messages extends ClientSDK {
         const body$ =
             payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/api/v3/sendMessage")();
+        const path$ = this.templateURLComponent("/api/v4/sendMessage")();
 
         const query$ = "";
 
@@ -334,7 +355,14 @@ export class Messages extends ClientSDK {
 
         const request$ = this.createRequest$(
             context,
-            { method: "POST", path: path$, headers: headers$, query: query$, body: body$ },
+            {
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
+            },
             options
         );
 
@@ -390,7 +418,7 @@ export class Messages extends ClientSDK {
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/api/v3/deleteMessage")();
+        const path$ = this.templateURLComponent("/api/v4/deleteMessage")();
 
         const query$ = encodeFormQuery$({
             messageId: payload$.messageId,
@@ -408,7 +436,14 @@ export class Messages extends ClientSDK {
 
         const request$ = this.createRequest$(
             context,
-            { method: "DELETE", path: path$, headers: headers$, query: query$, body: body$ },
+            {
+                method: "DELETE",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
+            },
             options
         );
 

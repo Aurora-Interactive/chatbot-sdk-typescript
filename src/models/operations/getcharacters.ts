@@ -9,7 +9,13 @@ export type GetCharactersGlobals = {
     accessToken?: string | undefined;
 };
 
-export type GetCharactersRequest = {};
+export type GetCharactersRequest = {
+    numCharacters: number;
+    /**
+     * Character ID to start results from (useful in pagination)
+     */
+    from?: number | undefined;
+};
 
 export type CharacterOverviewResponse = {
     name: string;
@@ -24,12 +30,13 @@ export type CharacterOverviewResponse = {
 export type GetCharactersSuccessfulRequest = {
     success?: boolean | undefined;
     characters: Array<CharacterOverviewResponse>;
+    isEndOfList: boolean;
 };
 
 export type GetCharactersResponse =
-    | GetCharactersSuccessfulRequest
     | components.BadRequestError
-    | components.AuthenticationFailedError;
+    | components.AuthenticationFailedError
+    | GetCharactersSuccessfulRequest;
 
 /** @internal */
 export const GetCharactersGlobals$inboundSchema: z.ZodType<
@@ -72,17 +79,26 @@ export const GetCharactersRequest$inboundSchema: z.ZodType<
     GetCharactersRequest,
     z.ZodTypeDef,
     unknown
-> = z.object({});
+> = z.object({
+    numCharacters: z.number().int(),
+    from: z.number().int().optional(),
+});
 
 /** @internal */
-export type GetCharactersRequest$Outbound = {};
+export type GetCharactersRequest$Outbound = {
+    numCharacters: number;
+    from?: number | undefined;
+};
 
 /** @internal */
 export const GetCharactersRequest$outboundSchema: z.ZodType<
     GetCharactersRequest$Outbound,
     z.ZodTypeDef,
     GetCharactersRequest
-> = z.object({});
+> = z.object({
+    numCharacters: z.number().int(),
+    from: z.number().int().optional(),
+});
 
 /**
  * @internal
@@ -150,12 +166,14 @@ export const GetCharactersSuccessfulRequest$inboundSchema: z.ZodType<
 > = z.object({
     success: z.boolean().default(true),
     characters: z.array(z.lazy(() => CharacterOverviewResponse$inboundSchema)),
+    isEndOfList: z.boolean(),
 });
 
 /** @internal */
 export type GetCharactersSuccessfulRequest$Outbound = {
     success: boolean;
     characters: Array<CharacterOverviewResponse$Outbound>;
+    isEndOfList: boolean;
 };
 
 /** @internal */
@@ -166,6 +184,7 @@ export const GetCharactersSuccessfulRequest$outboundSchema: z.ZodType<
 > = z.object({
     success: z.boolean().default(true),
     characters: z.array(z.lazy(() => CharacterOverviewResponse$outboundSchema)),
+    isEndOfList: z.boolean(),
 });
 
 /**
@@ -187,16 +206,16 @@ export const GetCharactersResponse$inboundSchema: z.ZodType<
     z.ZodTypeDef,
     unknown
 > = z.union([
-    z.lazy(() => GetCharactersSuccessfulRequest$inboundSchema),
     components.BadRequestError$inboundSchema,
     components.AuthenticationFailedError$inboundSchema,
+    z.lazy(() => GetCharactersSuccessfulRequest$inboundSchema),
 ]);
 
 /** @internal */
 export type GetCharactersResponse$Outbound =
-    | GetCharactersSuccessfulRequest$Outbound
     | components.BadRequestError$Outbound
-    | components.AuthenticationFailedError$Outbound;
+    | components.AuthenticationFailedError$Outbound
+    | GetCharactersSuccessfulRequest$Outbound;
 
 /** @internal */
 export const GetCharactersResponse$outboundSchema: z.ZodType<
@@ -204,9 +223,9 @@ export const GetCharactersResponse$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetCharactersResponse
 > = z.union([
-    z.lazy(() => GetCharactersSuccessfulRequest$outboundSchema),
     components.BadRequestError$outboundSchema,
     components.AuthenticationFailedError$outboundSchema,
+    z.lazy(() => GetCharactersSuccessfulRequest$outboundSchema),
 ]);
 
 /**

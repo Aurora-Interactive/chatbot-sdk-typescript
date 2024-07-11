@@ -46,17 +46,31 @@ export class Characters extends ClientSDK {
      * Character metadata
      *
      * @remarks
-     * Return metadata for all the available characters in the system
+     * Return metadata for available characters in the system. Paginated. Up to 100 characters per request
      */
     async list(
+        numCharacters: number,
+        from?: number | undefined,
         options?: RequestOptions & { retries?: retries$.RetryConfig }
     ): Promise<operations.GetCharactersResponse> {
-        const input$: operations.GetCharactersRequest = {};
-        void input$; // request input is unused
+        const input$: operations.GetCharactersRequest = {
+            numCharacters: numCharacters,
+            from: from,
+        };
 
-        const path$ = this.templateURLComponent("/api/v3/allCharacters")();
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => operations.GetCharactersRequest$outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = null;
 
-        const query$ = "";
+        const path$ = this.templateURLComponent("/api/v4/characters")();
+
+        const query$ = encodeFormQuery$({
+            from: payload$.from,
+            numCharacters: payload$.numCharacters,
+        });
 
         const headers$ = new Headers({
             Accept: "application/json",
@@ -70,7 +84,14 @@ export class Characters extends ClientSDK {
 
         const request$ = this.createRequest$(
             context,
-            { method: "GET", path: path$, headers: headers$, query: query$ },
+            {
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
+            },
             options
         );
 
@@ -125,7 +146,7 @@ export class Characters extends ClientSDK {
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/api/v3/characterImageData")();
+        const path$ = this.templateURLComponent("/api/v4/characterImageData")();
 
         const query$ = encodeFormQuery$({
             characterId: payload$.characterId,
@@ -147,7 +168,14 @@ export class Characters extends ClientSDK {
 
         const request$ = this.createRequest$(
             context,
-            { method: "GET", path: path$, headers: headers$, query: query$, body: body$ },
+            {
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
+            },
             options
         );
 
@@ -203,7 +231,7 @@ export class Characters extends ClientSDK {
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/api/v3/characterAiInitializationData")();
+        const path$ = this.templateURLComponent("/api/v4/characterAiInitializationData")();
 
         const query$ = encodeFormQuery$({
             characterId: payload$.characterId,
@@ -225,7 +253,14 @@ export class Characters extends ClientSDK {
 
         const request$ = this.createRequest$(
             context,
-            { method: "GET", path: path$, headers: headers$, query: query$, body: body$ },
+            {
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
+            },
             options
         );
 
@@ -295,7 +330,7 @@ export class Characters extends ClientSDK {
         const body$ =
             payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/api/v3/createCharacter")();
+        const path$ = this.templateURLComponent("/api/v4/createCharacter")();
 
         const query$ = "";
 
@@ -312,7 +347,14 @@ export class Characters extends ClientSDK {
 
         const request$ = this.createRequest$(
             context,
-            { method: "POST", path: path$, headers: headers$, query: query$, body: body$ },
+            {
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
+            },
             options
         );
 
