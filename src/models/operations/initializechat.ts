@@ -9,8 +9,16 @@ export type InitializeChatGlobals = {
     accessToken?: string | undefined;
 };
 
+/**
+ * Chat initialized successfully with the given AI initialization data
+ */
+export type InitializeChatSuccessfulRequest = {
+    success?: boolean | undefined;
+    chatId: number;
+};
+
 export type InitializeChatResponse =
-    | components.SuccessfulRequest
+    | InitializeChatSuccessfulRequest
     | components.BadRequestError
     | components.AuthenticationFailedError
     | components.AccountInBadStandingError;
@@ -52,12 +60,51 @@ export namespace InitializeChatGlobals$ {
 }
 
 /** @internal */
+export const InitializeChatSuccessfulRequest$inboundSchema: z.ZodType<
+    InitializeChatSuccessfulRequest,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    success: z.boolean().default(true),
+    chatId: z.number().int(),
+});
+
+/** @internal */
+export type InitializeChatSuccessfulRequest$Outbound = {
+    success: boolean;
+    chatId: number;
+};
+
+/** @internal */
+export const InitializeChatSuccessfulRequest$outboundSchema: z.ZodType<
+    InitializeChatSuccessfulRequest$Outbound,
+    z.ZodTypeDef,
+    InitializeChatSuccessfulRequest
+> = z.object({
+    success: z.boolean().default(true),
+    chatId: z.number().int(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace InitializeChatSuccessfulRequest$ {
+    /** @deprecated use `InitializeChatSuccessfulRequest$inboundSchema` instead. */
+    export const inboundSchema = InitializeChatSuccessfulRequest$inboundSchema;
+    /** @deprecated use `InitializeChatSuccessfulRequest$outboundSchema` instead. */
+    export const outboundSchema = InitializeChatSuccessfulRequest$outboundSchema;
+    /** @deprecated use `InitializeChatSuccessfulRequest$Outbound` instead. */
+    export type Outbound = InitializeChatSuccessfulRequest$Outbound;
+}
+
+/** @internal */
 export const InitializeChatResponse$inboundSchema: z.ZodType<
     InitializeChatResponse,
     z.ZodTypeDef,
     unknown
 > = z.union([
-    components.SuccessfulRequest$inboundSchema,
+    z.lazy(() => InitializeChatSuccessfulRequest$inboundSchema),
     components.BadRequestError$inboundSchema,
     components.AuthenticationFailedError$inboundSchema,
     components.AccountInBadStandingError$inboundSchema,
@@ -65,7 +112,7 @@ export const InitializeChatResponse$inboundSchema: z.ZodType<
 
 /** @internal */
 export type InitializeChatResponse$Outbound =
-    | components.SuccessfulRequest$Outbound
+    | InitializeChatSuccessfulRequest$Outbound
     | components.BadRequestError$Outbound
     | components.AuthenticationFailedError$Outbound
     | components.AccountInBadStandingError$Outbound;
@@ -76,7 +123,7 @@ export const InitializeChatResponse$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     InitializeChatResponse
 > = z.union([
-    components.SuccessfulRequest$outboundSchema,
+    z.lazy(() => InitializeChatSuccessfulRequest$outboundSchema),
     components.BadRequestError$outboundSchema,
     components.AuthenticationFailedError$outboundSchema,
     components.AccountInBadStandingError$outboundSchema,

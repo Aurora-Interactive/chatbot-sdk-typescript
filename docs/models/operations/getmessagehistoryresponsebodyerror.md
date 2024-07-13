@@ -1,4 +1,4 @@
-# DeleteChatResponseBodyError
+# GetMessageHistoryResponseBodyError
 
 
 ## Values

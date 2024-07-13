@@ -10,7 +10,6 @@ import {
     encodeSimple as encodeSimple$,
 } from "../lib/encodings.js";
 import { HTTPClient } from "../lib/http.js";
-import * as retries$ from "../lib/retries.js";
 import * as schemas$ from "../lib/schemas.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
@@ -59,7 +58,7 @@ export class Messages extends ClientSDK {
         content: string,
         timestamp: number,
         chatId: number,
-        options?: RequestOptions & { retries?: retries$.RetryConfig }
+        options?: RequestOptions
     ): Promise<operations.SaveMessageResponse> {
         const input$: operations.SaveMessageTimestampedMessageResponse | undefined = {
             role: role,
@@ -79,7 +78,7 @@ export class Messages extends ClientSDK {
         const body$ =
             payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/api/v4/saveMessage")();
+        const path$ = this.templateURLComponent("/api/v4/message/save")();
 
         const query$ = "";
 
@@ -107,25 +106,22 @@ export class Messages extends ClientSDK {
             options
         );
 
-        const retryConfig = options?.retries ||
-            this.options$.retryConfig || {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 1000,
-                    maxInterval: 60000,
-                    exponent: 1.2,
-                    maxElapsedTime: 3600000,
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["5XX"],
+            retryConfig: options?.retries ||
+                this.options$.retryConfig || {
+                    strategy: "backoff",
+                    backoff: {
+                        initialInterval: 1000,
+                        maxInterval: 60000,
+                        exponent: 1.2,
+                        maxElapsedTime: 3600000,
+                    },
+                    retryConnectionErrors: true,
                 },
-                retryConnectionErrors: true,
-            };
-
-        const response = await retries$.retry(
-            () => {
-                const cloned = request$.clone();
-                return this.do$(cloned, { context, errorCodes: ["5XX"] });
-            },
-            { config: retryConfig, statusCodes: ["5XX"] }
-        );
+            retryCodes: options?.retryCodes || ["5XX"],
+        });
 
         const [result$] = await this.matcher<operations.SaveMessageResponse>()
             .json(200, operations.SaveMessageResponse$inboundSchema)
@@ -146,7 +142,7 @@ export class Messages extends ClientSDK {
      */
     async history(
         chatId: number,
-        options?: RequestOptions & { retries?: retries$.RetryConfig }
+        options?: RequestOptions
     ): Promise<operations.GetMessageHistoryResponse> {
         const input$: operations.GetMessageHistoryRequest = {
             chatId: chatId,
@@ -159,7 +155,7 @@ export class Messages extends ClientSDK {
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/api/v4/getMessageHistory")();
+        const path$ = this.templateURLComponent("/api/v4/message/history")();
 
         const query$ = encodeFormQuery$({
             chatId: payload$.chatId,
@@ -192,25 +188,22 @@ export class Messages extends ClientSDK {
             options
         );
 
-        const retryConfig = options?.retries ||
-            this.options$.retryConfig || {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 1000,
-                    maxInterval: 60000,
-                    exponent: 1.2,
-                    maxElapsedTime: 3600000,
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["5XX"],
+            retryConfig: options?.retries ||
+                this.options$.retryConfig || {
+                    strategy: "backoff",
+                    backoff: {
+                        initialInterval: 1000,
+                        maxInterval: 60000,
+                        exponent: 1.2,
+                        maxElapsedTime: 3600000,
+                    },
+                    retryConnectionErrors: true,
                 },
-                retryConnectionErrors: true,
-            };
-
-        const response = await retries$.retry(
-            () => {
-                const cloned = request$.clone();
-                return this.do$(cloned, { context, errorCodes: ["5XX"] });
-            },
-            { config: retryConfig, statusCodes: ["5XX"] }
-        );
+            retryCodes: options?.retryCodes || ["5XX"],
+        });
 
         const [result$] = await this.matcher<operations.GetMessageHistoryResponse>()
             .json(200, operations.GetMessageHistoryResponse$inboundSchema)
@@ -231,7 +224,7 @@ export class Messages extends ClientSDK {
      */
     async context(
         chatId: number,
-        options?: RequestOptions & { retries?: retries$.RetryConfig }
+        options?: RequestOptions
     ): Promise<operations.GetMessageContextResponse> {
         const input$: operations.GetMessageContextRequest = {
             chatId: chatId,
@@ -244,7 +237,7 @@ export class Messages extends ClientSDK {
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/api/v4/getMessageContext")();
+        const path$ = this.templateURLComponent("/api/v4/message/context")();
 
         const query$ = encodeFormQuery$({
             chatId: payload$.chatId,
@@ -277,25 +270,22 @@ export class Messages extends ClientSDK {
             options
         );
 
-        const retryConfig = options?.retries ||
-            this.options$.retryConfig || {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 1000,
-                    maxInterval: 60000,
-                    exponent: 1.2,
-                    maxElapsedTime: 3600000,
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["5XX"],
+            retryConfig: options?.retries ||
+                this.options$.retryConfig || {
+                    strategy: "backoff",
+                    backoff: {
+                        initialInterval: 1000,
+                        maxInterval: 60000,
+                        exponent: 1.2,
+                        maxElapsedTime: 3600000,
+                    },
+                    retryConnectionErrors: true,
                 },
-                retryConnectionErrors: true,
-            };
-
-        const response = await retries$.retry(
-            () => {
-                const cloned = request$.clone();
-                return this.do$(cloned, { context, errorCodes: ["5XX"] });
-            },
-            { config: retryConfig, statusCodes: ["5XX"] }
-        );
+            retryCodes: options?.retryCodes || ["5XX"],
+        });
 
         const [result$] = await this.matcher<operations.GetMessageContextResponse>()
             .json(200, operations.GetMessageContextResponse$inboundSchema)
@@ -312,18 +302,17 @@ export class Messages extends ClientSDK {
      * Send message
      *
      * @remarks
-     * Send a chat message to a particular chat for a response
+     * Send a message to a particular chat for a response
      */
     async send(
+        characterId: number,
         chatId: number,
         message: string,
         messageContext?: Array<components.Message> | undefined,
-        options?: RequestOptions & {
-            acceptHeaderOverride?: SendAcceptEnum;
-            retries?: retries$.RetryConfig;
-        }
+        options?: RequestOptions & { acceptHeaderOverride?: SendAcceptEnum }
     ): Promise<operations.SendMessageResponse> {
-        const input$: operations.SendMessageChatIDResponse | undefined = {
+        const input$: operations.SendMessageRequestBody | undefined = {
+            characterId: characterId,
             chatId: chatId,
             message: message,
             messageContext: messageContext,
@@ -331,14 +320,13 @@ export class Messages extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) =>
-                operations.SendMessageChatIDResponse$outboundSchema.optional().parse(value$),
+            (value$) => operations.SendMessageRequestBody$outboundSchema.optional().parse(value$),
             "Input validation failed"
         );
         const body$ =
             payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/api/v4/sendMessage")();
+        const path$ = this.templateURLComponent("/api/v4/message")();
 
         const query$ = "";
 
@@ -366,25 +354,22 @@ export class Messages extends ClientSDK {
             options
         );
 
-        const retryConfig = options?.retries ||
-            this.options$.retryConfig || {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 1000,
-                    maxInterval: 60000,
-                    exponent: 1.2,
-                    maxElapsedTime: 3600000,
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["5XX"],
+            retryConfig: options?.retries ||
+                this.options$.retryConfig || {
+                    strategy: "backoff",
+                    backoff: {
+                        initialInterval: 1000,
+                        maxInterval: 60000,
+                        exponent: 1.2,
+                        maxElapsedTime: 3600000,
+                    },
+                    retryConnectionErrors: true,
                 },
-                retryConnectionErrors: true,
-            };
-
-        const response = await retries$.retry(
-            () => {
-                const cloned = request$.clone();
-                return this.do$(cloned, { context, errorCodes: ["5XX"] });
-            },
-            { config: retryConfig, statusCodes: ["5XX"] }
-        );
+            retryCodes: options?.retryCodes || ["5XX"],
+        });
 
         const [result$] = await this.matcher<operations.SendMessageResponse>()
             .sse(200, operations.SendMessageResponse$inboundSchema)
@@ -405,7 +390,7 @@ export class Messages extends ClientSDK {
      */
     async delete(
         messageId: number,
-        options?: RequestOptions & { retries?: retries$.RetryConfig }
+        options?: RequestOptions
     ): Promise<operations.DeleteMessageResponse> {
         const input$: operations.DeleteMessageRequest = {
             messageId: messageId,
@@ -418,7 +403,7 @@ export class Messages extends ClientSDK {
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/api/v4/deleteMessage")();
+        const path$ = this.templateURLComponent("/api/v4/message")();
 
         const query$ = encodeFormQuery$({
             messageId: payload$.messageId,
@@ -447,25 +432,22 @@ export class Messages extends ClientSDK {
             options
         );
 
-        const retryConfig = options?.retries ||
-            this.options$.retryConfig || {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 1000,
-                    maxInterval: 60000,
-                    exponent: 1.2,
-                    maxElapsedTime: 3600000,
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["5XX"],
+            retryConfig: options?.retries ||
+                this.options$.retryConfig || {
+                    strategy: "backoff",
+                    backoff: {
+                        initialInterval: 1000,
+                        maxInterval: 60000,
+                        exponent: 1.2,
+                        maxElapsedTime: 3600000,
+                    },
+                    retryConnectionErrors: true,
                 },
-                retryConnectionErrors: true,
-            };
-
-        const response = await retries$.retry(
-            () => {
-                const cloned = request$.clone();
-                return this.do$(cloned, { context, errorCodes: ["5XX"] });
-            },
-            { config: retryConfig, statusCodes: ["5XX"] }
-        );
+            retryCodes: options?.retryCodes || ["5XX"],
+        });
 
         const [result$] = await this.matcher<operations.DeleteMessageResponse>()
             .json(200, operations.DeleteMessageResponse$inboundSchema)

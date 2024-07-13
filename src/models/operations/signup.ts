@@ -20,7 +20,7 @@ export type ErrorT = ClosedEnum<typeof ErrorT>;
 /**
  * Username or email already in use
  */
-export type SignupDuplicateSignupError = {
+export type SignupFailedRequest = {
     success?: boolean | undefined;
     error: ErrorT;
 };
@@ -28,7 +28,7 @@ export type SignupDuplicateSignupError = {
 export type SignupResponse =
     | components.AccessTokenObj
     | components.BadRequestError
-    | SignupDuplicateSignupError;
+    | SignupFailedRequest;
 
 /** @internal */
 export const SignupRequestBody$inboundSchema: z.ZodType<SignupRequestBody, z.ZodTypeDef, unknown> =
@@ -87,8 +87,8 @@ export namespace ErrorT$ {
 }
 
 /** @internal */
-export const SignupDuplicateSignupError$inboundSchema: z.ZodType<
-    SignupDuplicateSignupError,
+export const SignupFailedRequest$inboundSchema: z.ZodType<
+    SignupFailedRequest,
     z.ZodTypeDef,
     unknown
 > = z.object({
@@ -97,16 +97,16 @@ export const SignupDuplicateSignupError$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type SignupDuplicateSignupError$Outbound = {
+export type SignupFailedRequest$Outbound = {
     success: boolean;
     error: string;
 };
 
 /** @internal */
-export const SignupDuplicateSignupError$outboundSchema: z.ZodType<
-    SignupDuplicateSignupError$Outbound,
+export const SignupFailedRequest$outboundSchema: z.ZodType<
+    SignupFailedRequest$Outbound,
     z.ZodTypeDef,
-    SignupDuplicateSignupError
+    SignupFailedRequest
 > = z.object({
     success: z.boolean().default(false),
     error: ErrorT$outboundSchema,
@@ -116,13 +116,13 @@ export const SignupDuplicateSignupError$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace SignupDuplicateSignupError$ {
-    /** @deprecated use `SignupDuplicateSignupError$inboundSchema` instead. */
-    export const inboundSchema = SignupDuplicateSignupError$inboundSchema;
-    /** @deprecated use `SignupDuplicateSignupError$outboundSchema` instead. */
-    export const outboundSchema = SignupDuplicateSignupError$outboundSchema;
-    /** @deprecated use `SignupDuplicateSignupError$Outbound` instead. */
-    export type Outbound = SignupDuplicateSignupError$Outbound;
+export namespace SignupFailedRequest$ {
+    /** @deprecated use `SignupFailedRequest$inboundSchema` instead. */
+    export const inboundSchema = SignupFailedRequest$inboundSchema;
+    /** @deprecated use `SignupFailedRequest$outboundSchema` instead. */
+    export const outboundSchema = SignupFailedRequest$outboundSchema;
+    /** @deprecated use `SignupFailedRequest$Outbound` instead. */
+    export type Outbound = SignupFailedRequest$Outbound;
 }
 
 /** @internal */
@@ -130,14 +130,14 @@ export const SignupResponse$inboundSchema: z.ZodType<SignupResponse, z.ZodTypeDe
     z.union([
         components.AccessTokenObj$inboundSchema,
         components.BadRequestError$inboundSchema,
-        z.lazy(() => SignupDuplicateSignupError$inboundSchema),
+        z.lazy(() => SignupFailedRequest$inboundSchema),
     ]);
 
 /** @internal */
 export type SignupResponse$Outbound =
     | components.AccessTokenObj$Outbound
     | components.BadRequestError$Outbound
-    | SignupDuplicateSignupError$Outbound;
+    | SignupFailedRequest$Outbound;
 
 /** @internal */
 export const SignupResponse$outboundSchema: z.ZodType<
@@ -147,7 +147,7 @@ export const SignupResponse$outboundSchema: z.ZodType<
 > = z.union([
     components.AccessTokenObj$outboundSchema,
     components.BadRequestError$outboundSchema,
-    z.lazy(() => SignupDuplicateSignupError$outboundSchema),
+    z.lazy(() => SignupFailedRequest$outboundSchema),
 ]);
 
 /**

@@ -28,7 +28,7 @@ export type GetMessageContextResponseBodyError = ClosedEnum<
     typeof GetMessageContextResponseBodyError
 >;
 
-export type ResponseBodyInvalidChatIdError = {
+export type GetMessageContextResponseBodyInvalidChatIdError = {
     success?: boolean | undefined;
     error: GetMessageContextResponseBodyError;
 };
@@ -38,7 +38,7 @@ export type ResponseBodyInvalidChatIdError = {
  */
 export type GetMessageContextResponseBody =
     | components.BadRequestError
-    | ResponseBodyInvalidChatIdError;
+    | GetMessageContextResponseBodyInvalidChatIdError;
 
 /**
  * JSON array of chat messages
@@ -52,7 +52,7 @@ export type GetMessageContextResponse =
     | GetMessageContextSuccessfulRequest
     | components.AccountInBadStandingError
     | components.BadRequestError
-    | ResponseBodyInvalidChatIdError
+    | GetMessageContextResponseBodyInvalidChatIdError
     | components.AuthenticationFailedError
     | components.UnauthorizedIdError;
 
@@ -188,8 +188,8 @@ export namespace GetMessageContextResponseBodyError$ {
 }
 
 /** @internal */
-export const ResponseBodyInvalidChatIdError$inboundSchema: z.ZodType<
-    ResponseBodyInvalidChatIdError,
+export const GetMessageContextResponseBodyInvalidChatIdError$inboundSchema: z.ZodType<
+    GetMessageContextResponseBodyInvalidChatIdError,
     z.ZodTypeDef,
     unknown
 > = z.object({
@@ -198,16 +198,16 @@ export const ResponseBodyInvalidChatIdError$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type ResponseBodyInvalidChatIdError$Outbound = {
+export type GetMessageContextResponseBodyInvalidChatIdError$Outbound = {
     success: boolean;
     error: string;
 };
 
 /** @internal */
-export const ResponseBodyInvalidChatIdError$outboundSchema: z.ZodType<
-    ResponseBodyInvalidChatIdError$Outbound,
+export const GetMessageContextResponseBodyInvalidChatIdError$outboundSchema: z.ZodType<
+    GetMessageContextResponseBodyInvalidChatIdError$Outbound,
     z.ZodTypeDef,
-    ResponseBodyInvalidChatIdError
+    GetMessageContextResponseBodyInvalidChatIdError
 > = z.object({
     success: z.boolean().default(false),
     error: GetMessageContextResponseBodyError$outboundSchema,
@@ -217,13 +217,13 @@ export const ResponseBodyInvalidChatIdError$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ResponseBodyInvalidChatIdError$ {
-    /** @deprecated use `ResponseBodyInvalidChatIdError$inboundSchema` instead. */
-    export const inboundSchema = ResponseBodyInvalidChatIdError$inboundSchema;
-    /** @deprecated use `ResponseBodyInvalidChatIdError$outboundSchema` instead. */
-    export const outboundSchema = ResponseBodyInvalidChatIdError$outboundSchema;
-    /** @deprecated use `ResponseBodyInvalidChatIdError$Outbound` instead. */
-    export type Outbound = ResponseBodyInvalidChatIdError$Outbound;
+export namespace GetMessageContextResponseBodyInvalidChatIdError$ {
+    /** @deprecated use `GetMessageContextResponseBodyInvalidChatIdError$inboundSchema` instead. */
+    export const inboundSchema = GetMessageContextResponseBodyInvalidChatIdError$inboundSchema;
+    /** @deprecated use `GetMessageContextResponseBodyInvalidChatIdError$outboundSchema` instead. */
+    export const outboundSchema = GetMessageContextResponseBodyInvalidChatIdError$outboundSchema;
+    /** @deprecated use `GetMessageContextResponseBodyInvalidChatIdError$Outbound` instead. */
+    export type Outbound = GetMessageContextResponseBodyInvalidChatIdError$Outbound;
 }
 
 /** @internal */
@@ -233,13 +233,13 @@ export const GetMessageContextResponseBody$inboundSchema: z.ZodType<
     unknown
 > = z.union([
     components.BadRequestError$inboundSchema,
-    z.lazy(() => ResponseBodyInvalidChatIdError$inboundSchema),
+    z.lazy(() => GetMessageContextResponseBodyInvalidChatIdError$inboundSchema),
 ]);
 
 /** @internal */
 export type GetMessageContextResponseBody$Outbound =
     | components.BadRequestError$Outbound
-    | ResponseBodyInvalidChatIdError$Outbound;
+    | GetMessageContextResponseBodyInvalidChatIdError$Outbound;
 
 /** @internal */
 export const GetMessageContextResponseBody$outboundSchema: z.ZodType<
@@ -248,7 +248,7 @@ export const GetMessageContextResponseBody$outboundSchema: z.ZodType<
     GetMessageContextResponseBody
 > = z.union([
     components.BadRequestError$outboundSchema,
-    z.lazy(() => ResponseBodyInvalidChatIdError$outboundSchema),
+    z.lazy(() => GetMessageContextResponseBodyInvalidChatIdError$outboundSchema),
 ]);
 
 /**
@@ -313,7 +313,7 @@ export const GetMessageContextResponse$inboundSchema: z.ZodType<
     components.AccountInBadStandingError$inboundSchema,
     z.union([
         components.BadRequestError$inboundSchema,
-        z.lazy(() => ResponseBodyInvalidChatIdError$inboundSchema),
+        z.lazy(() => GetMessageContextResponseBodyInvalidChatIdError$inboundSchema),
     ]),
     z.union([
         components.AuthenticationFailedError$inboundSchema,
@@ -326,7 +326,7 @@ export type GetMessageContextResponse$Outbound =
     | GetMessageContextSuccessfulRequest$Outbound
     | components.AccountInBadStandingError$Outbound
     | components.BadRequestError$Outbound
-    | ResponseBodyInvalidChatIdError$Outbound
+    | GetMessageContextResponseBodyInvalidChatIdError$Outbound
     | components.AuthenticationFailedError$Outbound
     | components.UnauthorizedIdError$Outbound;
 
@@ -340,7 +340,7 @@ export const GetMessageContextResponse$outboundSchema: z.ZodType<
     components.AccountInBadStandingError$outboundSchema,
     z.union([
         components.BadRequestError$outboundSchema,
-        z.lazy(() => ResponseBodyInvalidChatIdError$outboundSchema),
+        z.lazy(() => GetMessageContextResponseBodyInvalidChatIdError$outboundSchema),
     ]),
     z.union([
         components.AuthenticationFailedError$outboundSchema,

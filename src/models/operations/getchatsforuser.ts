@@ -11,7 +11,7 @@ export type GetChatsForUserGlobals = {
 
 export type GetChatsForUserRequest = {};
 
-export type ChatIDResponse = {
+export type Chats = {
     characterId: number;
     chatId: number;
 };
@@ -21,7 +21,7 @@ export type ChatIDResponse = {
  */
 export type GetChatsForUserSuccessfulRequest = {
     success?: boolean | undefined;
-    chats: Array<ChatIDResponse>;
+    chats: Array<Chats>;
 };
 
 export type GetChatsForUserResponse =
@@ -96,24 +96,19 @@ export namespace GetChatsForUserRequest$ {
 }
 
 /** @internal */
-export const ChatIDResponse$inboundSchema: z.ZodType<ChatIDResponse, z.ZodTypeDef, unknown> =
-    z.object({
-        characterId: z.number().int(),
-        chatId: z.number().int(),
-    });
+export const Chats$inboundSchema: z.ZodType<Chats, z.ZodTypeDef, unknown> = z.object({
+    characterId: z.number().int(),
+    chatId: z.number().int(),
+});
 
 /** @internal */
-export type ChatIDResponse$Outbound = {
+export type Chats$Outbound = {
     characterId: number;
     chatId: number;
 };
 
 /** @internal */
-export const ChatIDResponse$outboundSchema: z.ZodType<
-    ChatIDResponse$Outbound,
-    z.ZodTypeDef,
-    ChatIDResponse
-> = z.object({
+export const Chats$outboundSchema: z.ZodType<Chats$Outbound, z.ZodTypeDef, Chats> = z.object({
     characterId: z.number().int(),
     chatId: z.number().int(),
 });
@@ -122,13 +117,13 @@ export const ChatIDResponse$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ChatIDResponse$ {
-    /** @deprecated use `ChatIDResponse$inboundSchema` instead. */
-    export const inboundSchema = ChatIDResponse$inboundSchema;
-    /** @deprecated use `ChatIDResponse$outboundSchema` instead. */
-    export const outboundSchema = ChatIDResponse$outboundSchema;
-    /** @deprecated use `ChatIDResponse$Outbound` instead. */
-    export type Outbound = ChatIDResponse$Outbound;
+export namespace Chats$ {
+    /** @deprecated use `Chats$inboundSchema` instead. */
+    export const inboundSchema = Chats$inboundSchema;
+    /** @deprecated use `Chats$outboundSchema` instead. */
+    export const outboundSchema = Chats$outboundSchema;
+    /** @deprecated use `Chats$Outbound` instead. */
+    export type Outbound = Chats$Outbound;
 }
 
 /** @internal */
@@ -138,13 +133,13 @@ export const GetChatsForUserSuccessfulRequest$inboundSchema: z.ZodType<
     unknown
 > = z.object({
     success: z.boolean().default(true),
-    chats: z.array(z.lazy(() => ChatIDResponse$inboundSchema)),
+    chats: z.array(z.lazy(() => Chats$inboundSchema)),
 });
 
 /** @internal */
 export type GetChatsForUserSuccessfulRequest$Outbound = {
     success: boolean;
-    chats: Array<ChatIDResponse$Outbound>;
+    chats: Array<Chats$Outbound>;
 };
 
 /** @internal */
@@ -154,7 +149,7 @@ export const GetChatsForUserSuccessfulRequest$outboundSchema: z.ZodType<
     GetChatsForUserSuccessfulRequest
 > = z.object({
     success: z.boolean().default(true),
-    chats: z.array(z.lazy(() => ChatIDResponse$outboundSchema)),
+    chats: z.array(z.lazy(() => Chats$outboundSchema)),
 });
 
 /**

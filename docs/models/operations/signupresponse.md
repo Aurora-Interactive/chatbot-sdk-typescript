@@ -15,9 +15,9 @@ const value: components.AccessTokenObj = /* values here */
 const value: components.BadRequestError = /* values here */
 ```
 
-### `operations.SignupDuplicateSignupError`
+### `operations.SignupFailedRequest`
 
 ```typescript
-const value: operations.SignupDuplicateSignupError = /* values here */
+const value: operations.SignupFailedRequest = /* values here */
 ```
 

@@ -10,9 +10,13 @@ export type CreateCharacterGlobals = {
     accessToken?: string | undefined;
 };
 
-export type CreateCharacterCharacterImageDataResponse = {
-    aiPrompt: string;
-    initialResponse: string;
+export type SpecialMessages = {
+    startsWith: string;
+    endsWith: Array<string>;
+    prompt: string;
+};
+
+export type CreateCharacterRequestBody = {
     name: string;
     description: string;
     /**
@@ -23,6 +27,9 @@ export type CreateCharacterCharacterImageDataResponse = {
      * base64-encoded AVIF image data
      */
     bannerImage: string;
+    aiPrompt: string;
+    initialResponse: string;
+    specialMessages: Array<SpecialMessages>;
 };
 
 export const CreateCharacterResponseBodyError = {
@@ -45,13 +52,13 @@ export type CreateCharacterResponseBody =
 /**
  * Character was created successfully
  */
-export type CreateCharacterCharacterIdResponse = {
+export type CreateCharacterSuccessfulRequest = {
     success?: boolean | undefined;
     characterId: number;
 };
 
 export type CreateCharacterResponse =
-    | CreateCharacterCharacterIdResponse
+    | CreateCharacterSuccessfulRequest
     | components.AuthenticationFailedError
     | components.AccountInBadStandingError
     | components.BadRequestError
@@ -94,54 +101,96 @@ export namespace CreateCharacterGlobals$ {
 }
 
 /** @internal */
-export const CreateCharacterCharacterImageDataResponse$inboundSchema: z.ZodType<
-    CreateCharacterCharacterImageDataResponse,
-    z.ZodTypeDef,
-    unknown
-> = z.object({
-    aiPrompt: z.string(),
-    initialResponse: z.string(),
-    name: z.string(),
-    description: z.string(),
-    iconImage: z.string(),
-    bannerImage: z.string(),
-});
+export const SpecialMessages$inboundSchema: z.ZodType<SpecialMessages, z.ZodTypeDef, unknown> =
+    z.object({
+        startsWith: z.string(),
+        endsWith: z.array(z.string()),
+        prompt: z.string(),
+    });
 
 /** @internal */
-export type CreateCharacterCharacterImageDataResponse$Outbound = {
-    aiPrompt: string;
-    initialResponse: string;
-    name: string;
-    description: string;
-    iconImage: string;
-    bannerImage: string;
+export type SpecialMessages$Outbound = {
+    startsWith: string;
+    endsWith: Array<string>;
+    prompt: string;
 };
 
 /** @internal */
-export const CreateCharacterCharacterImageDataResponse$outboundSchema: z.ZodType<
-    CreateCharacterCharacterImageDataResponse$Outbound,
+export const SpecialMessages$outboundSchema: z.ZodType<
+    SpecialMessages$Outbound,
     z.ZodTypeDef,
-    CreateCharacterCharacterImageDataResponse
+    SpecialMessages
 > = z.object({
-    aiPrompt: z.string(),
-    initialResponse: z.string(),
-    name: z.string(),
-    description: z.string(),
-    iconImage: z.string(),
-    bannerImage: z.string(),
+    startsWith: z.string(),
+    endsWith: z.array(z.string()),
+    prompt: z.string(),
 });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateCharacterCharacterImageDataResponse$ {
-    /** @deprecated use `CreateCharacterCharacterImageDataResponse$inboundSchema` instead. */
-    export const inboundSchema = CreateCharacterCharacterImageDataResponse$inboundSchema;
-    /** @deprecated use `CreateCharacterCharacterImageDataResponse$outboundSchema` instead. */
-    export const outboundSchema = CreateCharacterCharacterImageDataResponse$outboundSchema;
-    /** @deprecated use `CreateCharacterCharacterImageDataResponse$Outbound` instead. */
-    export type Outbound = CreateCharacterCharacterImageDataResponse$Outbound;
+export namespace SpecialMessages$ {
+    /** @deprecated use `SpecialMessages$inboundSchema` instead. */
+    export const inboundSchema = SpecialMessages$inboundSchema;
+    /** @deprecated use `SpecialMessages$outboundSchema` instead. */
+    export const outboundSchema = SpecialMessages$outboundSchema;
+    /** @deprecated use `SpecialMessages$Outbound` instead. */
+    export type Outbound = SpecialMessages$Outbound;
+}
+
+/** @internal */
+export const CreateCharacterRequestBody$inboundSchema: z.ZodType<
+    CreateCharacterRequestBody,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    name: z.string(),
+    description: z.string(),
+    iconImage: z.string(),
+    bannerImage: z.string(),
+    aiPrompt: z.string(),
+    initialResponse: z.string(),
+    specialMessages: z.array(z.lazy(() => SpecialMessages$inboundSchema)),
+});
+
+/** @internal */
+export type CreateCharacterRequestBody$Outbound = {
+    name: string;
+    description: string;
+    iconImage: string;
+    bannerImage: string;
+    aiPrompt: string;
+    initialResponse: string;
+    specialMessages: Array<SpecialMessages$Outbound>;
+};
+
+/** @internal */
+export const CreateCharacterRequestBody$outboundSchema: z.ZodType<
+    CreateCharacterRequestBody$Outbound,
+    z.ZodTypeDef,
+    CreateCharacterRequestBody
+> = z.object({
+    name: z.string(),
+    description: z.string(),
+    iconImage: z.string(),
+    bannerImage: z.string(),
+    aiPrompt: z.string(),
+    initialResponse: z.string(),
+    specialMessages: z.array(z.lazy(() => SpecialMessages$outboundSchema)),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreateCharacterRequestBody$ {
+    /** @deprecated use `CreateCharacterRequestBody$inboundSchema` instead. */
+    export const inboundSchema = CreateCharacterRequestBody$inboundSchema;
+    /** @deprecated use `CreateCharacterRequestBody$outboundSchema` instead. */
+    export const outboundSchema = CreateCharacterRequestBody$outboundSchema;
+    /** @deprecated use `CreateCharacterRequestBody$Outbound` instead. */
+    export type Outbound = CreateCharacterRequestBody$Outbound;
 }
 
 /** @internal */
@@ -243,8 +292,8 @@ export namespace CreateCharacterResponseBody$ {
 }
 
 /** @internal */
-export const CreateCharacterCharacterIdResponse$inboundSchema: z.ZodType<
-    CreateCharacterCharacterIdResponse,
+export const CreateCharacterSuccessfulRequest$inboundSchema: z.ZodType<
+    CreateCharacterSuccessfulRequest,
     z.ZodTypeDef,
     unknown
 > = z.object({
@@ -253,16 +302,16 @@ export const CreateCharacterCharacterIdResponse$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type CreateCharacterCharacterIdResponse$Outbound = {
+export type CreateCharacterSuccessfulRequest$Outbound = {
     success: boolean;
     characterId: number;
 };
 
 /** @internal */
-export const CreateCharacterCharacterIdResponse$outboundSchema: z.ZodType<
-    CreateCharacterCharacterIdResponse$Outbound,
+export const CreateCharacterSuccessfulRequest$outboundSchema: z.ZodType<
+    CreateCharacterSuccessfulRequest$Outbound,
     z.ZodTypeDef,
-    CreateCharacterCharacterIdResponse
+    CreateCharacterSuccessfulRequest
 > = z.object({
     success: z.boolean().default(true),
     characterId: z.number().int(),
@@ -272,13 +321,13 @@ export const CreateCharacterCharacterIdResponse$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateCharacterCharacterIdResponse$ {
-    /** @deprecated use `CreateCharacterCharacterIdResponse$inboundSchema` instead. */
-    export const inboundSchema = CreateCharacterCharacterIdResponse$inboundSchema;
-    /** @deprecated use `CreateCharacterCharacterIdResponse$outboundSchema` instead. */
-    export const outboundSchema = CreateCharacterCharacterIdResponse$outboundSchema;
-    /** @deprecated use `CreateCharacterCharacterIdResponse$Outbound` instead. */
-    export type Outbound = CreateCharacterCharacterIdResponse$Outbound;
+export namespace CreateCharacterSuccessfulRequest$ {
+    /** @deprecated use `CreateCharacterSuccessfulRequest$inboundSchema` instead. */
+    export const inboundSchema = CreateCharacterSuccessfulRequest$inboundSchema;
+    /** @deprecated use `CreateCharacterSuccessfulRequest$outboundSchema` instead. */
+    export const outboundSchema = CreateCharacterSuccessfulRequest$outboundSchema;
+    /** @deprecated use `CreateCharacterSuccessfulRequest$Outbound` instead. */
+    export type Outbound = CreateCharacterSuccessfulRequest$Outbound;
 }
 
 /** @internal */
@@ -287,7 +336,7 @@ export const CreateCharacterResponse$inboundSchema: z.ZodType<
     z.ZodTypeDef,
     unknown
 > = z.union([
-    z.lazy(() => CreateCharacterCharacterIdResponse$inboundSchema),
+    z.lazy(() => CreateCharacterSuccessfulRequest$inboundSchema),
     components.AuthenticationFailedError$inboundSchema,
     components.AccountInBadStandingError$inboundSchema,
     z.union([
@@ -298,7 +347,7 @@ export const CreateCharacterResponse$inboundSchema: z.ZodType<
 
 /** @internal */
 export type CreateCharacterResponse$Outbound =
-    | CreateCharacterCharacterIdResponse$Outbound
+    | CreateCharacterSuccessfulRequest$Outbound
     | components.AuthenticationFailedError$Outbound
     | components.AccountInBadStandingError$Outbound
     | components.BadRequestError$Outbound
@@ -310,7 +359,7 @@ export const CreateCharacterResponse$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     CreateCharacterResponse
 > = z.union([
-    z.lazy(() => CreateCharacterCharacterIdResponse$outboundSchema),
+    z.lazy(() => CreateCharacterSuccessfulRequest$outboundSchema),
     components.AuthenticationFailedError$outboundSchema,
     components.AccountInBadStandingError$outboundSchema,
     z.union([

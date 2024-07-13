@@ -1,0 +1,14 @@
+# CreateCharacterRequestBody
+
+
+## Fields
+
+| Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `name`                                                                     | *string*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |
+| `description`                                                              | *string*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |
+| `iconImage`                                                                | *string*                                                                   | :heavy_check_mark:                                                         | base64-encoded AVIF image data                                             |
+| `bannerImage`                                                              | *string*                                                                   | :heavy_check_mark:                                                         | base64-encoded AVIF image data                                             |
+| `aiPrompt`                                                                 | *string*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |
+| `initialResponse`                                                          | *string*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |
+| `specialMessages`                                                          | [operations.SpecialMessages](../../models/operations/specialmessages.md)[] | :heavy_check_mark:                                                         | N/A                                                                        |

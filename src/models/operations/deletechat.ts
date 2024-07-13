@@ -21,27 +21,25 @@ export type DeleteChatChatsResponseBody =
     | components.AuthenticationFailedError
     | components.UnauthorizedIdError;
 
-export const DeleteChatResponseBodyError = {
+export const ResponseBodyError = {
     InvalidChatID: "Invalid chat ID",
 } as const;
-export type DeleteChatResponseBodyError = ClosedEnum<typeof DeleteChatResponseBodyError>;
+export type ResponseBodyError = ClosedEnum<typeof ResponseBodyError>;
 
-export type DeleteChatResponseBodyInvalidChatIdError = {
+export type InvalidChatIdError = {
     success?: boolean | undefined;
-    error: DeleteChatResponseBodyError;
+    error: ResponseBodyError;
 };
 
 /**
  * Bad request
  */
-export type DeleteChatResponseBody =
-    | components.BadRequestError
-    | DeleteChatResponseBodyInvalidChatIdError;
+export type DeleteChatResponseBody = components.BadRequestError | InvalidChatIdError;
 
 export type DeleteChatResponse =
     | components.SuccessfulRequest
     | components.BadRequestError
-    | DeleteChatResponseBodyInvalidChatIdError
+    | InvalidChatIdError
     | components.AuthenticationFailedError
     | components.UnauthorizedIdError;
 
@@ -150,63 +148,61 @@ export namespace DeleteChatChatsResponseBody$ {
 }
 
 /** @internal */
-export const DeleteChatResponseBodyError$inboundSchema: z.ZodNativeEnum<
-    typeof DeleteChatResponseBodyError
-> = z.nativeEnum(DeleteChatResponseBodyError);
+export const ResponseBodyError$inboundSchema: z.ZodNativeEnum<typeof ResponseBodyError> =
+    z.nativeEnum(ResponseBodyError);
 
 /** @internal */
-export const DeleteChatResponseBodyError$outboundSchema: z.ZodNativeEnum<
-    typeof DeleteChatResponseBodyError
-> = DeleteChatResponseBodyError$inboundSchema;
+export const ResponseBodyError$outboundSchema: z.ZodNativeEnum<typeof ResponseBodyError> =
+    ResponseBodyError$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace DeleteChatResponseBodyError$ {
-    /** @deprecated use `DeleteChatResponseBodyError$inboundSchema` instead. */
-    export const inboundSchema = DeleteChatResponseBodyError$inboundSchema;
-    /** @deprecated use `DeleteChatResponseBodyError$outboundSchema` instead. */
-    export const outboundSchema = DeleteChatResponseBodyError$outboundSchema;
+export namespace ResponseBodyError$ {
+    /** @deprecated use `ResponseBodyError$inboundSchema` instead. */
+    export const inboundSchema = ResponseBodyError$inboundSchema;
+    /** @deprecated use `ResponseBodyError$outboundSchema` instead. */
+    export const outboundSchema = ResponseBodyError$outboundSchema;
 }
 
 /** @internal */
-export const DeleteChatResponseBodyInvalidChatIdError$inboundSchema: z.ZodType<
-    DeleteChatResponseBodyInvalidChatIdError,
+export const InvalidChatIdError$inboundSchema: z.ZodType<
+    InvalidChatIdError,
     z.ZodTypeDef,
     unknown
 > = z.object({
     success: z.boolean().default(false),
-    error: DeleteChatResponseBodyError$inboundSchema,
+    error: ResponseBodyError$inboundSchema,
 });
 
 /** @internal */
-export type DeleteChatResponseBodyInvalidChatIdError$Outbound = {
+export type InvalidChatIdError$Outbound = {
     success: boolean;
     error: string;
 };
 
 /** @internal */
-export const DeleteChatResponseBodyInvalidChatIdError$outboundSchema: z.ZodType<
-    DeleteChatResponseBodyInvalidChatIdError$Outbound,
+export const InvalidChatIdError$outboundSchema: z.ZodType<
+    InvalidChatIdError$Outbound,
     z.ZodTypeDef,
-    DeleteChatResponseBodyInvalidChatIdError
+    InvalidChatIdError
 > = z.object({
     success: z.boolean().default(false),
-    error: DeleteChatResponseBodyError$outboundSchema,
+    error: ResponseBodyError$outboundSchema,
 });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace DeleteChatResponseBodyInvalidChatIdError$ {
-    /** @deprecated use `DeleteChatResponseBodyInvalidChatIdError$inboundSchema` instead. */
-    export const inboundSchema = DeleteChatResponseBodyInvalidChatIdError$inboundSchema;
-    /** @deprecated use `DeleteChatResponseBodyInvalidChatIdError$outboundSchema` instead. */
-    export const outboundSchema = DeleteChatResponseBodyInvalidChatIdError$outboundSchema;
-    /** @deprecated use `DeleteChatResponseBodyInvalidChatIdError$Outbound` instead. */
-    export type Outbound = DeleteChatResponseBodyInvalidChatIdError$Outbound;
+export namespace InvalidChatIdError$ {
+    /** @deprecated use `InvalidChatIdError$inboundSchema` instead. */
+    export const inboundSchema = InvalidChatIdError$inboundSchema;
+    /** @deprecated use `InvalidChatIdError$outboundSchema` instead. */
+    export const outboundSchema = InvalidChatIdError$outboundSchema;
+    /** @deprecated use `InvalidChatIdError$Outbound` instead. */
+    export type Outbound = InvalidChatIdError$Outbound;
 }
 
 /** @internal */
@@ -216,13 +212,13 @@ export const DeleteChatResponseBody$inboundSchema: z.ZodType<
     unknown
 > = z.union([
     components.BadRequestError$inboundSchema,
-    z.lazy(() => DeleteChatResponseBodyInvalidChatIdError$inboundSchema),
+    z.lazy(() => InvalidChatIdError$inboundSchema),
 ]);
 
 /** @internal */
 export type DeleteChatResponseBody$Outbound =
     | components.BadRequestError$Outbound
-    | DeleteChatResponseBodyInvalidChatIdError$Outbound;
+    | InvalidChatIdError$Outbound;
 
 /** @internal */
 export const DeleteChatResponseBody$outboundSchema: z.ZodType<
@@ -231,7 +227,7 @@ export const DeleteChatResponseBody$outboundSchema: z.ZodType<
     DeleteChatResponseBody
 > = z.union([
     components.BadRequestError$outboundSchema,
-    z.lazy(() => DeleteChatResponseBodyInvalidChatIdError$outboundSchema),
+    z.lazy(() => InvalidChatIdError$outboundSchema),
 ]);
 
 /**
@@ -256,7 +252,7 @@ export const DeleteChatResponse$inboundSchema: z.ZodType<
     components.SuccessfulRequest$inboundSchema,
     z.union([
         components.BadRequestError$inboundSchema,
-        z.lazy(() => DeleteChatResponseBodyInvalidChatIdError$inboundSchema),
+        z.lazy(() => InvalidChatIdError$inboundSchema),
     ]),
     z.union([
         components.AuthenticationFailedError$inboundSchema,
@@ -268,7 +264,7 @@ export const DeleteChatResponse$inboundSchema: z.ZodType<
 export type DeleteChatResponse$Outbound =
     | components.SuccessfulRequest$Outbound
     | components.BadRequestError$Outbound
-    | DeleteChatResponseBodyInvalidChatIdError$Outbound
+    | InvalidChatIdError$Outbound
     | components.AuthenticationFailedError$Outbound
     | components.UnauthorizedIdError$Outbound;
 
@@ -281,7 +277,7 @@ export const DeleteChatResponse$outboundSchema: z.ZodType<
     components.SuccessfulRequest$outboundSchema,
     z.union([
         components.BadRequestError$outboundSchema,
-        z.lazy(() => DeleteChatResponseBodyInvalidChatIdError$outboundSchema),
+        z.lazy(() => InvalidChatIdError$outboundSchema),
     ]),
     z.union([
         components.AuthenticationFailedError$outboundSchema,

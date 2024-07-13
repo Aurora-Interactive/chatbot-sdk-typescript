@@ -1,4 +1,4 @@
-# CreateCharacterCharacterIdResponse
+# CreateCharacterSuccessfulRequest
 
 Character was created successfully
 

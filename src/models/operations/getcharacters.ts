@@ -17,7 +17,7 @@ export type GetCharactersRequest = {
     from?: number | undefined;
 };
 
-export type CharacterOverviewResponse = {
+export type Characters = {
     name: string;
     description: string;
     isOfficial: boolean;
@@ -29,7 +29,7 @@ export type CharacterOverviewResponse = {
  */
 export type GetCharactersSuccessfulRequest = {
     success?: boolean | undefined;
-    characters: Array<CharacterOverviewResponse>;
+    characters: Array<Characters>;
     isEndOfList: boolean;
 };
 
@@ -114,11 +114,7 @@ export namespace GetCharactersRequest$ {
 }
 
 /** @internal */
-export const CharacterOverviewResponse$inboundSchema: z.ZodType<
-    CharacterOverviewResponse,
-    z.ZodTypeDef,
-    unknown
-> = z.object({
+export const Characters$inboundSchema: z.ZodType<Characters, z.ZodTypeDef, unknown> = z.object({
     name: z.string(),
     description: z.string(),
     isOfficial: z.boolean(),
@@ -126,7 +122,7 @@ export const CharacterOverviewResponse$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type CharacterOverviewResponse$Outbound = {
+export type Characters$Outbound = {
     name: string;
     description: string;
     isOfficial: boolean;
@@ -134,28 +130,25 @@ export type CharacterOverviewResponse$Outbound = {
 };
 
 /** @internal */
-export const CharacterOverviewResponse$outboundSchema: z.ZodType<
-    CharacterOverviewResponse$Outbound,
-    z.ZodTypeDef,
-    CharacterOverviewResponse
-> = z.object({
-    name: z.string(),
-    description: z.string(),
-    isOfficial: z.boolean(),
-    id: z.number().int(),
-});
+export const Characters$outboundSchema: z.ZodType<Characters$Outbound, z.ZodTypeDef, Characters> =
+    z.object({
+        name: z.string(),
+        description: z.string(),
+        isOfficial: z.boolean(),
+        id: z.number().int(),
+    });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CharacterOverviewResponse$ {
-    /** @deprecated use `CharacterOverviewResponse$inboundSchema` instead. */
-    export const inboundSchema = CharacterOverviewResponse$inboundSchema;
-    /** @deprecated use `CharacterOverviewResponse$outboundSchema` instead. */
-    export const outboundSchema = CharacterOverviewResponse$outboundSchema;
-    /** @deprecated use `CharacterOverviewResponse$Outbound` instead. */
-    export type Outbound = CharacterOverviewResponse$Outbound;
+export namespace Characters$ {
+    /** @deprecated use `Characters$inboundSchema` instead. */
+    export const inboundSchema = Characters$inboundSchema;
+    /** @deprecated use `Characters$outboundSchema` instead. */
+    export const outboundSchema = Characters$outboundSchema;
+    /** @deprecated use `Characters$Outbound` instead. */
+    export type Outbound = Characters$Outbound;
 }
 
 /** @internal */
@@ -165,14 +158,14 @@ export const GetCharactersSuccessfulRequest$inboundSchema: z.ZodType<
     unknown
 > = z.object({
     success: z.boolean().default(true),
-    characters: z.array(z.lazy(() => CharacterOverviewResponse$inboundSchema)),
+    characters: z.array(z.lazy(() => Characters$inboundSchema)),
     isEndOfList: z.boolean(),
 });
 
 /** @internal */
 export type GetCharactersSuccessfulRequest$Outbound = {
     success: boolean;
-    characters: Array<CharacterOverviewResponse$Outbound>;
+    characters: Array<Characters$Outbound>;
     isEndOfList: boolean;
 };
 
@@ -183,7 +176,7 @@ export const GetCharactersSuccessfulRequest$outboundSchema: z.ZodType<
     GetCharactersSuccessfulRequest
 > = z.object({
     success: z.boolean().default(true),
-    characters: z.array(z.lazy(() => CharacterOverviewResponse$outboundSchema)),
+    characters: z.array(z.lazy(() => Characters$outboundSchema)),
     isEndOfList: z.boolean(),
 });
 

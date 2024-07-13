@@ -1,18 +1,19 @@
 lockVersion: 2.0.0
 id: d0c6ef81-afa9-4266-a8f1-2430fa28984d
 management:
-  docChecksum: 916117190473020ad52647a8e0c7ba28
+  docChecksum: 1be9b7f3da32627eda95b59887bd9b7b
   docVersion: 4.0.0
-  speakeasyVersion: 1.331.2
-  generationVersion: 2.366.1
-  releaseVersion: 4.0.0-beta.1
-  configChecksum: 3db8f144e8fdefcb4fbf96a95aefd68f
+  speakeasyVersion: 1.335.0
+  generationVersion: 2.370.2
+  releaseVersion: 4.0.0-rc.1
+  configChecksum: ca27de0c9c1eca42b77fcca460b233d0
 features:
   typescript:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.5
     core: 3.11.6
+    defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     errors: 2.81.11
     flattening: 2.81.1
@@ -64,7 +65,6 @@ generatedFiles:
   - src/models/operations/signup.ts
   - src/models/operations/getcharacters.ts
   - src/models/operations/getcharacterimagedata.ts
-  - src/models/operations/getcharacteraiinitializationdata.ts
   - src/models/operations/createcharacter.ts
   - src/models/operations/getchatsforuser.ts
   - src/models/operations/initializechat.ts
@@ -78,8 +78,8 @@ generatedFiles:
   - src/models/components/badrequesterror.ts
   - src/models/components/authenticationfailederror.ts
   - src/models/components/accountinbadstandingerror.ts
-  - src/models/components/successfulrequest.ts
   - src/models/components/characterid.ts
+  - src/models/components/successfulrequest.ts
   - src/models/components/unauthorizediderror.ts
   - src/models/components/timestampedmessage.ts
   - src/models/components/message.ts
@@ -91,40 +91,38 @@ generatedFiles:
   - docs/models/operations/loginresponse.md
   - docs/models/operations/signuprequestbody.md
   - docs/models/operations/errort.md
-  - docs/models/operations/signupduplicatesignuperror.md
+  - docs/models/operations/signupfailedrequest.md
   - docs/models/operations/signupresponse.md
   - docs/models/operations/getcharactersglobals.md
   - docs/models/operations/getcharactersrequest.md
-  - docs/models/operations/characteroverviewresponse.md
+  - docs/models/operations/characters.md
   - docs/models/operations/getcharacterssuccessfulrequest.md
   - docs/models/operations/getcharactersresponse.md
   - docs/models/operations/getcharacterimagedataglobals.md
   - docs/models/operations/getcharacterimagedatarequest.md
   - docs/models/operations/getcharacterimagedatasuccessfulrequest.md
   - docs/models/operations/getcharacterimagedataresponse.md
-  - docs/models/operations/getcharacteraiinitializationdataglobals.md
-  - docs/models/operations/getcharacteraiinitializationdatarequest.md
-  - docs/models/operations/getcharacteraiinitializationdatasuccessfulrequest.md
-  - docs/models/operations/getcharacteraiinitializationdataresponse.md
   - docs/models/operations/createcharacterglobals.md
-  - docs/models/operations/createcharactercharacterimagedataresponse.md
+  - docs/models/operations/specialmessages.md
+  - docs/models/operations/createcharacterrequestbody.md
   - docs/models/operations/createcharacterresponsebodyerror.md
   - docs/models/operations/duplicatecharactererrorresponse.md
   - docs/models/operations/createcharacterresponsebody.md
-  - docs/models/operations/createcharactercharacteridresponse.md
+  - docs/models/operations/createcharactersuccessfulrequest.md
   - docs/models/operations/createcharacterresponse.md
   - docs/models/operations/getchatsforuserglobals.md
   - docs/models/operations/getchatsforuserrequest.md
-  - docs/models/operations/chatidresponse.md
+  - docs/models/operations/chats.md
   - docs/models/operations/getchatsforusersuccessfulrequest.md
   - docs/models/operations/getchatsforuserresponse.md
   - docs/models/operations/initializechatglobals.md
+  - docs/models/operations/initializechatsuccessfulrequest.md
   - docs/models/operations/initializechatresponse.md
   - docs/models/operations/deletechatglobals.md
   - docs/models/operations/deletechatrequest.md
   - docs/models/operations/deletechatchatsresponsebody.md
-  - docs/models/operations/deletechatresponsebodyerror.md
-  - docs/models/operations/deletechatresponsebodyinvalidchatiderror.md
+  - docs/models/operations/responsebodyerror.md
+  - docs/models/operations/invalidchatiderror.md
   - docs/models/operations/deletechatresponsebody.md
   - docs/models/operations/deletechatresponse.md
   - docs/models/operations/savemessageglobals.md
@@ -134,8 +132,8 @@ generatedFiles:
   - docs/models/operations/getmessagehistoryglobals.md
   - docs/models/operations/getmessagehistoryrequest.md
   - docs/models/operations/getmessagehistorymessagesresponsebody.md
-  - docs/models/operations/responsebodyerror.md
-  - docs/models/operations/invalidchatiderror.md
+  - docs/models/operations/getmessagehistoryresponsebodyerror.md
+  - docs/models/operations/responsebodyinvalidchatiderror.md
   - docs/models/operations/getmessagehistoryresponsebody.md
   - docs/models/operations/getmessagehistorysuccessfulrequest.md
   - docs/models/operations/getmessagehistoryresponse.md
@@ -143,12 +141,12 @@ generatedFiles:
   - docs/models/operations/getmessagecontextrequest.md
   - docs/models/operations/getmessagecontextmessagesresponsebody.md
   - docs/models/operations/getmessagecontextresponsebodyerror.md
-  - docs/models/operations/responsebodyinvalidchatiderror.md
+  - docs/models/operations/getmessagecontextresponsebodyinvalidchatiderror.md
   - docs/models/operations/getmessagecontextresponsebody.md
   - docs/models/operations/getmessagecontextsuccessfulrequest.md
   - docs/models/operations/getmessagecontextresponse.md
   - docs/models/operations/sendmessageglobals.md
-  - docs/models/operations/sendmessagechatidresponse.md
+  - docs/models/operations/sendmessagerequestbody.md
   - docs/models/operations/sendmessagemessagesresponsebody.md
   - docs/models/operations/sendmessageresponsebodyerror.md
   - docs/models/operations/sendmessageresponsebodyinvalidchatiderror.md
@@ -168,8 +166,8 @@ generatedFiles:
   - docs/models/components/authenticationfailederror.md
   - docs/models/components/accountinbadstandingerrorerror.md
   - docs/models/components/accountinbadstandingerror.md
-  - docs/models/components/successfulrequest.md
   - docs/models/components/characterid.md
+  - docs/models/components/successfulrequest.md
   - docs/models/components/unauthorizediderrorerror.md
   - docs/models/components/unauthorizediderror.md
   - docs/models/components/role.md

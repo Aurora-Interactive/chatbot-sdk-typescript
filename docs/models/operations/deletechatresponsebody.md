@@ -11,9 +11,9 @@ Bad request
 const value: components.BadRequestError = /* values here */
 ```
 
-### `operations.DeleteChatResponseBodyInvalidChatIdError`
+### `operations.InvalidChatIdError`
 
 ```typescript
-const value: operations.DeleteChatResponseBodyInvalidChatIdError = /* values here */
+const value: operations.InvalidChatIdError = /* values here */
 ```
 

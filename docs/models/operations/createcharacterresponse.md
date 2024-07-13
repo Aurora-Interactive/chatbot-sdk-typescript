@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### `operations.CreateCharacterCharacterIdResponse`
+### `operations.CreateCharacterSuccessfulRequest`
 
 ```typescript
-const value: operations.CreateCharacterCharacterIdResponse = /* values here */
+const value: operations.CreateCharacterSuccessfulRequest = /* values here */
 ```
 
 ### `operations.CreateCharacterResponseBody`

@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### `components.SuccessfulRequest`
+### `operations.InitializeChatSuccessfulRequest`
 
 ```typescript
-const value: components.SuccessfulRequest = /* values here */
+const value: operations.InitializeChatSuccessfulRequest = /* values here */
 ```
 
 ### `components.BadRequestError`

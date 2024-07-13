@@ -10,7 +10,6 @@ import {
     encodeSimple as encodeSimple$,
 } from "../lib/encodings.js";
 import { HTTPClient } from "../lib/http.js";
-import * as retries$ from "../lib/retries.js";
 import * as schemas$ from "../lib/schemas.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
@@ -51,7 +50,7 @@ export class Characters extends ClientSDK {
     async list(
         numCharacters: number,
         from?: number | undefined,
-        options?: RequestOptions & { retries?: retries$.RetryConfig }
+        options?: RequestOptions
     ): Promise<operations.GetCharactersResponse> {
         const input$: operations.GetCharactersRequest = {
             numCharacters: numCharacters,
@@ -95,25 +94,22 @@ export class Characters extends ClientSDK {
             options
         );
 
-        const retryConfig = options?.retries ||
-            this.options$.retryConfig || {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 1000,
-                    maxInterval: 60000,
-                    exponent: 1.2,
-                    maxElapsedTime: 3600000,
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["5XX"],
+            retryConfig: options?.retries ||
+                this.options$.retryConfig || {
+                    strategy: "backoff",
+                    backoff: {
+                        initialInterval: 1000,
+                        maxInterval: 60000,
+                        exponent: 1.2,
+                        maxElapsedTime: 3600000,
+                    },
+                    retryConnectionErrors: true,
                 },
-                retryConnectionErrors: true,
-            };
-
-        const response = await retries$.retry(
-            () => {
-                const cloned = request$.clone();
-                return this.do$(cloned, { context, errorCodes: ["5XX"] });
-            },
-            { config: retryConfig, statusCodes: ["5XX"] }
-        );
+            retryCodes: options?.retryCodes || ["5XX"],
+        });
 
         const [result$] = await this.matcher<operations.GetCharactersResponse>()
             .json(200, operations.GetCharactersResponse$inboundSchema)
@@ -133,7 +129,7 @@ export class Characters extends ClientSDK {
      */
     async getImageData(
         characterId: number,
-        options?: RequestOptions & { retries?: retries$.RetryConfig }
+        options?: RequestOptions
     ): Promise<operations.GetCharacterImageDataResponse> {
         const input$: operations.GetCharacterImageDataRequest = {
             characterId: characterId,
@@ -146,7 +142,7 @@ export class Characters extends ClientSDK {
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/api/v4/characterImageData")();
+        const path$ = this.templateURLComponent("/api/v4/characters/imageData")();
 
         const query$ = encodeFormQuery$({
             characterId: payload$.characterId,
@@ -179,116 +175,27 @@ export class Characters extends ClientSDK {
             options
         );
 
-        const retryConfig = options?.retries ||
-            this.options$.retryConfig || {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 1000,
-                    maxInterval: 60000,
-                    exponent: 1.2,
-                    maxElapsedTime: 3600000,
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["5XX"],
+            retryConfig: options?.retries ||
+                this.options$.retryConfig || {
+                    strategy: "backoff",
+                    backoff: {
+                        initialInterval: 1000,
+                        maxInterval: 60000,
+                        exponent: 1.2,
+                        maxElapsedTime: 3600000,
+                    },
+                    retryConnectionErrors: true,
                 },
-                retryConnectionErrors: true,
-            };
-
-        const response = await retries$.retry(
-            () => {
-                const cloned = request$.clone();
-                return this.do$(cloned, { context, errorCodes: ["5XX"] });
-            },
-            { config: retryConfig, statusCodes: ["5XX"] }
-        );
+            retryCodes: options?.retryCodes || ["5XX"],
+        });
 
         const [result$] = await this.matcher<operations.GetCharacterImageDataResponse>()
             .json(200, operations.GetCharacterImageDataResponse$inboundSchema)
             .json(400, operations.GetCharacterImageDataResponse$inboundSchema)
             .json(401, operations.GetCharacterImageDataResponse$inboundSchema)
-            .fail("5XX")
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Character AI initialization data
-     *
-     * @remarks
-     * Get the context prompt and initial message that is associated with the given character
-     */
-    async getAiInitializationData(
-        characterId: number,
-        options?: RequestOptions & { retries?: retries$.RetryConfig }
-    ): Promise<operations.GetCharacterAiInitializationDataResponse> {
-        const input$: operations.GetCharacterAiInitializationDataRequest = {
-            characterId: characterId,
-        };
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.GetCharacterAiInitializationDataRequest$outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const path$ = this.templateURLComponent("/api/v4/characterAiInitializationData")();
-
-        const query$ = encodeFormQuery$({
-            characterId: payload$.characterId,
-        });
-
-        const headers$ = new Headers({
-            Accept: "application/json",
-            "x-access-token": encodeSimple$("x-access-token", this.options$.accessToken, {
-                explode: false,
-                charEncoding: "none",
-            }),
-        });
-
-        const context = {
-            operationID: "getCharacterAiInitializationData",
-            oAuth2Scopes: [],
-            securitySource: null,
-        };
-
-        const request$ = this.createRequest$(
-            context,
-            {
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
-            },
-            options
-        );
-
-        const retryConfig = options?.retries ||
-            this.options$.retryConfig || {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 1000,
-                    maxInterval: 60000,
-                    exponent: 1.2,
-                    maxElapsedTime: 3600000,
-                },
-                retryConnectionErrors: true,
-            };
-
-        const response = await retries$.retry(
-            () => {
-                const cloned = request$.clone();
-                return this.do$(cloned, { context, errorCodes: ["5XX"] });
-            },
-            { config: retryConfig, statusCodes: ["5XX"] }
-        );
-
-        const [result$] = await this.matcher<operations.GetCharacterAiInitializationDataResponse>()
-            .json(200, operations.GetCharacterAiInitializationDataResponse$inboundSchema)
-            .json(400, operations.GetCharacterAiInitializationDataResponse$inboundSchema)
-            .json(401, operations.GetCharacterAiInitializationDataResponse$inboundSchema)
-            .json(402, operations.GetCharacterAiInitializationDataResponse$inboundSchema)
             .fail("5XX")
             .match(response);
 
@@ -302,35 +209,21 @@ export class Characters extends ClientSDK {
      * Upload character data to our system
      */
     async create(
-        aiPrompt: string,
-        initialResponse: string,
-        name: string,
-        description: string,
-        iconImage: string,
-        bannerImage: string,
-        options?: RequestOptions & { retries?: retries$.RetryConfig }
+        request?: operations.CreateCharacterRequestBody | undefined,
+        options?: RequestOptions
     ): Promise<operations.CreateCharacterResponse> {
-        const input$: operations.CreateCharacterCharacterImageDataResponse | undefined = {
-            aiPrompt: aiPrompt,
-            initialResponse: initialResponse,
-            name: name,
-            description: description,
-            iconImage: iconImage,
-            bannerImage: bannerImage,
-        };
+        const input$ = request;
 
         const payload$ = schemas$.parse(
             input$,
             (value$) =>
-                operations.CreateCharacterCharacterImageDataResponse$outboundSchema.optional().parse(
-                    value$
-                ),
+                operations.CreateCharacterRequestBody$outboundSchema.optional().parse(value$),
             "Input validation failed"
         );
         const body$ =
             payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/api/v4/createCharacter")();
+        const path$ = this.templateURLComponent("/api/v4/character")();
 
         const query$ = "";
 
@@ -358,25 +251,22 @@ export class Characters extends ClientSDK {
             options
         );
 
-        const retryConfig = options?.retries ||
-            this.options$.retryConfig || {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 1000,
-                    maxInterval: 60000,
-                    exponent: 1.2,
-                    maxElapsedTime: 3600000,
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["5XX"],
+            retryConfig: options?.retries ||
+                this.options$.retryConfig || {
+                    strategy: "backoff",
+                    backoff: {
+                        initialInterval: 1000,
+                        maxInterval: 60000,
+                        exponent: 1.2,
+                        maxElapsedTime: 3600000,
+                    },
+                    retryConnectionErrors: true,
                 },
-                retryConnectionErrors: true,
-            };
-
-        const response = await retries$.retry(
-            () => {
-                const cloned = request$.clone();
-                return this.do$(cloned, { context, errorCodes: ["5XX"] });
-            },
-            { config: retryConfig, statusCodes: ["5XX"] }
-        );
+            retryCodes: options?.retryCodes || ["5XX"],
+        });
 
         const [result$] = await this.matcher<operations.CreateCharacterResponse>()
             .json(200, operations.CreateCharacterResponse$inboundSchema)

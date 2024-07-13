@@ -1,8 +1,9 @@
-# GetCharacterAiInitializationDataGlobals
+# Chats
 
 
 ## Fields
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `accessToken`      | *string*           | :heavy_minus_sign: | N/A                |
+| `characterId`      | *number*           | :heavy_check_mark: | N/A                |
+| `chatId`           | *number*           | :heavy_check_mark: | N/A                |

@@ -10,7 +10,6 @@ import {
     encodeSimple as encodeSimple$,
 } from "../lib/encodings.js";
 import { HTTPClient } from "../lib/http.js";
-import * as retries$ from "../lib/retries.js";
 import * as schemas$ from "../lib/schemas.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
@@ -49,13 +48,11 @@ export class Chats extends ClientSDK {
      * @remarks
      * Get the chat IDs assigned to a given user ID. useful for getting chat context and message history
      */
-    async listForUser(
-        options?: RequestOptions & { retries?: retries$.RetryConfig }
-    ): Promise<operations.GetChatsForUserResponse> {
+    async listForUser(options?: RequestOptions): Promise<operations.GetChatsForUserResponse> {
         const input$: operations.GetChatsForUserRequest = {};
         void input$; // request input is unused
 
-        const path$ = this.templateURLComponent("/api/v4/allChatsForUser")();
+        const path$ = this.templateURLComponent("/api/v4/chats")();
 
         const query$ = "";
 
@@ -81,25 +78,22 @@ export class Chats extends ClientSDK {
             options
         );
 
-        const retryConfig = options?.retries ||
-            this.options$.retryConfig || {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 1000,
-                    maxInterval: 60000,
-                    exponent: 1.2,
-                    maxElapsedTime: 3600000,
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["5XX"],
+            retryConfig: options?.retries ||
+                this.options$.retryConfig || {
+                    strategy: "backoff",
+                    backoff: {
+                        initialInterval: 1000,
+                        maxInterval: 60000,
+                        exponent: 1.2,
+                        maxElapsedTime: 3600000,
+                    },
+                    retryConnectionErrors: true,
                 },
-                retryConnectionErrors: true,
-            };
-
-        const response = await retries$.retry(
-            () => {
-                const cloned = request$.clone();
-                return this.do$(cloned, { context, errorCodes: ["5XX"] });
-            },
-            { config: retryConfig, statusCodes: ["5XX"] }
-        );
+            retryCodes: options?.retryCodes || ["5XX"],
+        });
 
         const [result$] = await this.matcher<operations.GetChatsForUserResponse>()
             .json(200, operations.GetChatsForUserResponse$inboundSchema)
@@ -119,7 +113,7 @@ export class Chats extends ClientSDK {
      */
     async initialize(
         characterId: number,
-        options?: RequestOptions & { retries?: retries$.RetryConfig }
+        options?: RequestOptions
     ): Promise<operations.InitializeChatResponse> {
         const input$: components.CharacterId | undefined = {
             characterId: characterId,
@@ -133,7 +127,7 @@ export class Chats extends ClientSDK {
         const body$ =
             payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/api/v4/initializeChat")();
+        const path$ = this.templateURLComponent("/api/v4/chat")();
 
         const query$ = "";
 
@@ -161,25 +155,22 @@ export class Chats extends ClientSDK {
             options
         );
 
-        const retryConfig = options?.retries ||
-            this.options$.retryConfig || {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 1000,
-                    maxInterval: 60000,
-                    exponent: 1.2,
-                    maxElapsedTime: 3600000,
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["5XX"],
+            retryConfig: options?.retries ||
+                this.options$.retryConfig || {
+                    strategy: "backoff",
+                    backoff: {
+                        initialInterval: 1000,
+                        maxInterval: 60000,
+                        exponent: 1.2,
+                        maxElapsedTime: 3600000,
+                    },
+                    retryConnectionErrors: true,
                 },
-                retryConnectionErrors: true,
-            };
-
-        const response = await retries$.retry(
-            () => {
-                const cloned = request$.clone();
-                return this.do$(cloned, { context, errorCodes: ["5XX"] });
-            },
-            { config: retryConfig, statusCodes: ["5XX"] }
-        );
+            retryCodes: options?.retryCodes || ["5XX"],
+        });
 
         const [result$] = await this.matcher<operations.InitializeChatResponse>()
             .json(200, operations.InitializeChatResponse$inboundSchema)
@@ -198,10 +189,7 @@ export class Chats extends ClientSDK {
      * @remarks
      * Delete a chat, given a chat ID. All message history that is still stored is also deleted
      */
-    async delete(
-        chatId: number,
-        options?: RequestOptions & { retries?: retries$.RetryConfig }
-    ): Promise<operations.DeleteChatResponse> {
+    async delete(chatId: number, options?: RequestOptions): Promise<operations.DeleteChatResponse> {
         const input$: operations.DeleteChatRequest = {
             chatId: chatId,
         };
@@ -213,7 +201,7 @@ export class Chats extends ClientSDK {
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/api/v4/deleteChat")();
+        const path$ = this.templateURLComponent("/api/v4/chat")();
 
         const query$ = encodeFormQuery$({
             chatId: payload$.chatId,
@@ -242,25 +230,22 @@ export class Chats extends ClientSDK {
             options
         );
 
-        const retryConfig = options?.retries ||
-            this.options$.retryConfig || {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 1000,
-                    maxInterval: 60000,
-                    exponent: 1.2,
-                    maxElapsedTime: 3600000,
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["5XX"],
+            retryConfig: options?.retries ||
+                this.options$.retryConfig || {
+                    strategy: "backoff",
+                    backoff: {
+                        initialInterval: 1000,
+                        maxInterval: 60000,
+                        exponent: 1.2,
+                        maxElapsedTime: 3600000,
+                    },
+                    retryConnectionErrors: true,
                 },
-                retryConnectionErrors: true,
-            };
-
-        const response = await retries$.retry(
-            () => {
-                const cloned = request$.clone();
-                return this.do$(cloned, { context, errorCodes: ["5XX"] });
-            },
-            { config: retryConfig, statusCodes: ["5XX"] }
-        );
+            retryCodes: options?.retryCodes || ["5XX"],
+        });
 
         const [result$] = await this.matcher<operations.DeleteChatResponse>()
             .json(200, operations.DeleteChatResponse$inboundSchema)

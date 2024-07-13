@@ -1,4 +1,4 @@
-# CharacterOverviewResponse
+# Characters
 
 
 ## Fields

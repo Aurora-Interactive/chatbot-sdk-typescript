@@ -1,4 +1,4 @@
-# SignupDuplicateSignupError
+# SignupFailedRequest
 
 Username or email already in use
 

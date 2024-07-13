@@ -11,7 +11,8 @@ export type SendMessageGlobals = {
     accessToken?: string | undefined;
 };
 
-export type SendMessageChatIDResponse = {
+export type SendMessageRequestBody = {
+    characterId: number;
     chatId: number;
     message: string;
     /**
@@ -89,29 +90,32 @@ export namespace SendMessageGlobals$ {
 }
 
 /** @internal */
-export const SendMessageChatIDResponse$inboundSchema: z.ZodType<
-    SendMessageChatIDResponse,
+export const SendMessageRequestBody$inboundSchema: z.ZodType<
+    SendMessageRequestBody,
     z.ZodTypeDef,
     unknown
 > = z.object({
+    characterId: z.number().int(),
     chatId: z.number().int(),
     message: z.string(),
     messageContext: z.array(components.Message$inboundSchema).optional(),
 });
 
 /** @internal */
-export type SendMessageChatIDResponse$Outbound = {
+export type SendMessageRequestBody$Outbound = {
+    characterId: number;
     chatId: number;
     message: string;
     messageContext?: Array<components.Message$Outbound> | undefined;
 };
 
 /** @internal */
-export const SendMessageChatIDResponse$outboundSchema: z.ZodType<
-    SendMessageChatIDResponse$Outbound,
+export const SendMessageRequestBody$outboundSchema: z.ZodType<
+    SendMessageRequestBody$Outbound,
     z.ZodTypeDef,
-    SendMessageChatIDResponse
+    SendMessageRequestBody
 > = z.object({
+    characterId: z.number().int(),
     chatId: z.number().int(),
     message: z.string(),
     messageContext: z.array(components.Message$outboundSchema).optional(),
@@ -121,13 +125,13 @@ export const SendMessageChatIDResponse$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace SendMessageChatIDResponse$ {
-    /** @deprecated use `SendMessageChatIDResponse$inboundSchema` instead. */
-    export const inboundSchema = SendMessageChatIDResponse$inboundSchema;
-    /** @deprecated use `SendMessageChatIDResponse$outboundSchema` instead. */
-    export const outboundSchema = SendMessageChatIDResponse$outboundSchema;
-    /** @deprecated use `SendMessageChatIDResponse$Outbound` instead. */
-    export type Outbound = SendMessageChatIDResponse$Outbound;
+export namespace SendMessageRequestBody$ {
+    /** @deprecated use `SendMessageRequestBody$inboundSchema` instead. */
+    export const inboundSchema = SendMessageRequestBody$inboundSchema;
+    /** @deprecated use `SendMessageRequestBody$outboundSchema` instead. */
+    export const outboundSchema = SendMessageRequestBody$outboundSchema;
+    /** @deprecated use `SendMessageRequestBody$Outbound` instead. */
+    export type Outbound = SendMessageRequestBody$Outbound;
 }
 
 /** @internal */

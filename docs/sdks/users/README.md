@@ -7,7 +7,7 @@ Endpoints used in querying or updating information about users in the system
 
 ### Available Operations
 
-* [login](#login) - Username and password login
+* [login](#login) - Login
 * [createAccount](#createaccount) - User signup
 
 ## login

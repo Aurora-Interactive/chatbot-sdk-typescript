@@ -5,7 +5,6 @@
 export * from "./createcharacter.js";
 export * from "./deletechat.js";
 export * from "./deletemessage.js";
-export * from "./getcharacteraiinitializationdata.js";
 export * from "./getcharacterimagedata.js";
 export * from "./getcharacters.js";
 export * from "./getchatsforuser.js";
