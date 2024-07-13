@@ -72,7 +72,6 @@ run();
 
 * [list](docs/sdks/characters/README.md#list) - Character metadata
 * [getImageData](docs/sdks/characters/README.md#getimagedata) - Character image visuals
-* [getAiInitializationData](docs/sdks/characters/README.md#getaiinitializationdata) - Character AI initialization data
 * [create](docs/sdks/characters/README.md#create) - Create character
 
 ### [chats](docs/sdks/chats/README.md)
