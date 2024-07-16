@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: d0c6ef81-afa9-4266-a8f1-2430fa28984d
 management:
-  docChecksum: 90bb9fbe7f84664feee749c18b86b3b9
-  docVersion: 4.0.0
-  speakeasyVersion: 1.335.0
-  generationVersion: 2.370.2
-  releaseVersion: 4.0.0
-  configChecksum: c64e379c48a41974a8f750b8418eac04
+  docChecksum: 53a20bc1e72886341da87409a2a6cb42
+  docVersion: 5.0.0
+  speakeasyVersion: 1.335.2
+  generationVersion: 2.372.3
+  releaseVersion: 5.0.0
+  configChecksum: f1fd2d15f731b57a60e8b16964b3be8f
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -65,9 +65,11 @@ generatedFiles:
   - src/models/operations/login.ts
   - src/models/operations/signup.ts
   - src/models/operations/getcharacters.ts
-  - src/models/operations/getcharacterimagedata.ts
+  - src/models/operations/getcharacterbanner.ts
+  - src/models/operations/getcharacter.ts
   - src/models/operations/createcharacter.ts
   - src/models/operations/getchatsforuser.ts
+  - src/models/operations/getchatpreview.ts
   - src/models/operations/initializechat.ts
   - src/models/operations/deletechat.ts
   - src/models/operations/savemessage.ts
@@ -79,11 +81,11 @@ generatedFiles:
   - src/models/components/badrequesterror.ts
   - src/models/components/authenticationfailederror.ts
   - src/models/components/accountinbadstandingerror.ts
+  - src/models/components/message.ts
   - src/models/components/characterid.ts
   - src/models/components/successfulrequest.ts
   - src/models/components/unauthorizediderror.ts
   - src/models/components/timestampedmessage.ts
-  - src/models/components/message.ts
   - src/models/components/chatcompletionfragment.ts
   - src/models/errors/index.ts
   - src/models/operations/index.ts
@@ -99,10 +101,13 @@ generatedFiles:
   - docs/models/operations/characters.md
   - docs/models/operations/getcharacterssuccessfulrequest.md
   - docs/models/operations/getcharactersresponse.md
-  - docs/models/operations/getcharacterimagedataglobals.md
-  - docs/models/operations/getcharacterimagedatarequest.md
-  - docs/models/operations/getcharacterimagedatasuccessfulrequest.md
-  - docs/models/operations/getcharacterimagedataresponse.md
+  - docs/models/operations/getcharacterbannerglobals.md
+  - docs/models/operations/getcharacterbannerrequest.md
+  - docs/models/operations/getcharacterbannersuccessfulrequest.md
+  - docs/models/operations/getcharacterbannerresponse.md
+  - docs/models/operations/getcharacterglobals.md
+  - docs/models/operations/getcharacterrequest.md
+  - docs/models/operations/getcharacterresponsebody.md
   - docs/models/operations/createcharacterglobals.md
   - docs/models/operations/specialmessages.md
   - docs/models/operations/createcharacterrequestbody.md
@@ -116,6 +121,9 @@ generatedFiles:
   - docs/models/operations/chats.md
   - docs/models/operations/getchatsforusersuccessfulrequest.md
   - docs/models/operations/getchatsforuserresponse.md
+  - docs/models/operations/getchatpreviewglobals.md
+  - docs/models/operations/getchatpreviewrequest.md
+  - docs/models/operations/getchatpreviewresponse.md
   - docs/models/operations/initializechatglobals.md
   - docs/models/operations/initializechatsuccessfulrequest.md
   - docs/models/operations/initializechatresponse.md
@@ -167,14 +175,14 @@ generatedFiles:
   - docs/models/components/authenticationfailederror.md
   - docs/models/components/accountinbadstandingerrorerror.md
   - docs/models/components/accountinbadstandingerror.md
+  - docs/models/components/role.md
+  - docs/models/components/message.md
   - docs/models/components/characterid.md
   - docs/models/components/successfulrequest.md
   - docs/models/components/unauthorizediderrorerror.md
   - docs/models/components/unauthorizediderror.md
-  - docs/models/components/role.md
+  - docs/models/components/timestampedmessagerole.md
   - docs/models/components/timestampedmessage.md
-  - docs/models/components/messagerole.md
-  - docs/models/components/message.md
   - docs/models/components/data.md
   - docs/models/components/chatcompletionfragment.md
   - docs/sdks/aurorachatbotsdk/README.md

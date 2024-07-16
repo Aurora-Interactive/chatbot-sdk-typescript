@@ -1,4 +1,4 @@
-# GetCharacterImageDataSuccessfulRequest
+# GetCharacterBannerSuccessfulRequest
 
 Banner and icon images assigned to the character
 
@@ -7,6 +7,5 @@ Banner and icon images assigned to the character
 
 | Field                          | Type                           | Required                       | Description                    |
 | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `iconImage`                    | *string*                       | :heavy_check_mark:             | base64-encoded AVIF image data |
 | `bannerImage`                  | *string*                       | :heavy_check_mark:             | base64-encoded AVIF image data |
 | `success`                      | *boolean*                      | :heavy_minus_sign:             | N/A                            |

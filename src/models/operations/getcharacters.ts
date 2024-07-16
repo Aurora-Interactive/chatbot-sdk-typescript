@@ -20,6 +20,10 @@ export type GetCharactersRequest = {
 export type Characters = {
     name: string;
     description: string;
+    /**
+     * base64-encoded AVIF image data
+     */
+    iconImage: string;
     isOfficial: boolean;
     id: number;
 };
@@ -117,6 +121,7 @@ export namespace GetCharactersRequest$ {
 export const Characters$inboundSchema: z.ZodType<Characters, z.ZodTypeDef, unknown> = z.object({
     name: z.string(),
     description: z.string(),
+    iconImage: z.string(),
     isOfficial: z.boolean(),
     id: z.number().int(),
 });
@@ -125,6 +130,7 @@ export const Characters$inboundSchema: z.ZodType<Characters, z.ZodTypeDef, unkno
 export type Characters$Outbound = {
     name: string;
     description: string;
+    iconImage: string;
     isOfficial: boolean;
     id: number;
 };
@@ -134,6 +140,7 @@ export const Characters$outboundSchema: z.ZodType<Characters$Outbound, z.ZodType
     z.object({
         name: z.string(),
         description: z.string(),
+        iconImage: z.string(),
         isOfficial: z.boolean(),
         id: z.number().int(),
     });

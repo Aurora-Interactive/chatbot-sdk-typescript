@@ -64,7 +64,7 @@ export class Characters extends ClientSDK {
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/api/v4/characters")();
+        const path$ = this.templateURLComponent("/api/v5/characters")();
 
         const query$ = encodeFormQuery$({
             from: payload$.from,
@@ -127,22 +127,22 @@ export class Characters extends ClientSDK {
      * @remarks
      * Get the banner and profile icon that is assigned to a given character
      */
-    async getImageData(
+    async bannerImage(
         characterId: number,
         options?: RequestOptions
-    ): Promise<operations.GetCharacterImageDataResponse> {
-        const input$: operations.GetCharacterImageDataRequest = {
+    ): Promise<operations.GetCharacterBannerResponse> {
+        const input$: operations.GetCharacterBannerRequest = {
             characterId: characterId,
         };
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetCharacterImageDataRequest$outboundSchema.parse(value$),
+            (value$) => operations.GetCharacterBannerRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/api/v4/characters/imageData")();
+        const path$ = this.templateURLComponent("/api/v5/characters/banner")();
 
         const query$ = encodeFormQuery$({
             characterId: payload$.characterId,
@@ -157,7 +157,7 @@ export class Characters extends ClientSDK {
         });
 
         const context = {
-            operationID: "getCharacterImageData",
+            operationID: "getCharacterBanner",
             oAuth2Scopes: [],
             securitySource: null,
         };
@@ -192,10 +192,82 @@ export class Characters extends ClientSDK {
             retryCodes: options?.retryCodes || ["5XX"],
         });
 
-        const [result$] = await this.matcher<operations.GetCharacterImageDataResponse>()
-            .json(200, operations.GetCharacterImageDataResponse$inboundSchema)
-            .json(400, operations.GetCharacterImageDataResponse$inboundSchema)
-            .json(401, operations.GetCharacterImageDataResponse$inboundSchema)
+        const [result$] = await this.matcher<operations.GetCharacterBannerResponse>()
+            .json(200, operations.GetCharacterBannerResponse$inboundSchema)
+            .json(400, operations.GetCharacterBannerResponse$inboundSchema)
+            .json(401, operations.GetCharacterBannerResponse$inboundSchema)
+            .fail("5XX")
+            .match(response);
+
+        return result$;
+    }
+
+    /**
+     * Get information about a specific character
+     */
+    async character(
+        characterId: number,
+        options?: RequestOptions
+    ): Promise<operations.GetCharacterResponseBody> {
+        const input$: operations.GetCharacterRequest = {
+            characterId: characterId,
+        };
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => operations.GetCharacterRequest$outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = null;
+
+        const path$ = this.templateURLComponent("/api/v5/character")();
+
+        const query$ = encodeFormQuery$({
+            characterId: payload$.characterId,
+        });
+
+        const headers$ = new Headers({
+            Accept: "application/json",
+            "x-access-token": encodeSimple$("x-access-token", this.options$.accessToken, {
+                explode: false,
+                charEncoding: "none",
+            }),
+        });
+
+        const context = { operationID: "getCharacter", oAuth2Scopes: [], securitySource: null };
+
+        const request$ = this.createRequest$(
+            context,
+            {
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["5XX"],
+            retryConfig: options?.retries ||
+                this.options$.retryConfig || {
+                    strategy: "backoff",
+                    backoff: {
+                        initialInterval: 1000,
+                        maxInterval: 60000,
+                        exponent: 1.2,
+                        maxElapsedTime: 3600000,
+                    },
+                    retryConnectionErrors: true,
+                },
+            retryCodes: options?.retryCodes || ["5XX"],
+        });
+
+        const [result$] = await this.matcher<operations.GetCharacterResponseBody>()
+            .json(200, operations.GetCharacterResponseBody$inboundSchema)
             .fail("5XX")
             .match(response);
 
@@ -223,7 +295,7 @@ export class Characters extends ClientSDK {
         const body$ =
             payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/api/v4/character")();
+        const path$ = this.templateURLComponent("/api/v5/character")();
 
         const query$ = "";
 

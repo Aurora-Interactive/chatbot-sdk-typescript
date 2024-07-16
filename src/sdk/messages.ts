@@ -78,7 +78,7 @@ export class Messages extends ClientSDK {
         const body$ =
             payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/api/v4/message/save")();
+        const path$ = this.templateURLComponent("/api/v5/message/save")();
 
         const query$ = "";
 
@@ -155,7 +155,7 @@ export class Messages extends ClientSDK {
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/api/v4/message/history")();
+        const path$ = this.templateURLComponent("/api/v5/message/history")();
 
         const query$ = encodeFormQuery$({
             chatId: payload$.chatId,
@@ -237,7 +237,7 @@ export class Messages extends ClientSDK {
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/api/v4/message/context")();
+        const path$ = this.templateURLComponent("/api/v5/message/context")();
 
         const query$ = encodeFormQuery$({
             chatId: payload$.chatId,
@@ -326,7 +326,7 @@ export class Messages extends ClientSDK {
         const body$ =
             payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/api/v4/message")();
+        const path$ = this.templateURLComponent("/api/v5/message")();
 
         const query$ = "";
 
@@ -403,7 +403,7 @@ export class Messages extends ClientSDK {
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/api/v4/message")();
+        const path$ = this.templateURLComponent("/api/v5/message")();
 
         const query$ = encodeFormQuery$({
             messageId: payload$.messageId,

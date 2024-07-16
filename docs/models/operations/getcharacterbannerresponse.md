@@ -1,12 +1,12 @@
-# GetCharacterImageDataResponse
+# GetCharacterBannerResponse
 
 
 ## Supported Types
 
-### `operations.GetCharacterImageDataSuccessfulRequest`
+### `operations.GetCharacterBannerSuccessfulRequest`
 
 ```typescript
-const value: operations.GetCharacterImageDataSuccessfulRequest = /* values here */
+const value: operations.GetCharacterBannerSuccessfulRequest = /* values here */
 ```
 
 ### `components.BadRequestError`

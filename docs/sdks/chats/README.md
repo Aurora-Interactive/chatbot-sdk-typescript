@@ -4,6 +4,7 @@
 ### Available Operations
 
 * [listForUser](#listforuser) - Get all chats assigned to user
+* [preview](#preview) - Get the latest message from the given chat
 * [initialize](#initialize) - Initialize chat with AI character
 * [delete](#delete) - Delete a chat
 
@@ -40,6 +41,46 @@ run();
 ### Response
 
 **Promise\<[operations.GetChatsForUserResponse](../../models/operations/getchatsforuserresponse.md)\>**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+## preview
+
+Useful when previwing the chat in the chat list sidebar
+
+### Example Usage
+
+```typescript
+import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
+
+const auroraChatbotSDK = new AuroraChatbotSDK();
+
+async function run() {
+  const result = await auroraChatbotSDK.chats.preview(8);
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `chatId`                                                                                                                                                                       | *number*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            | [object Object]                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
+
+
+### Response
+
+**Promise\<[operations.GetChatPreviewResponse](../../models/operations/getchatpreviewresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

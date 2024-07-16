@@ -41,10 +41,10 @@ const auroraChatbotSDK = new AuroraChatbotSDK();
 
 async function run() {
     const result = await auroraChatbotSDK.characters.create({
-        name: "<value>",
-        description: "Multi-tiered human-resource model",
         iconImage: "<value>",
         bannerImage: "<value>",
+        name: "<value>",
+        description: "Multi-tiered human-resource model",
         aiPrompt: "<value>",
         initialResponse: "<value>",
         specialMessages: [

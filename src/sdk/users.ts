@@ -57,7 +57,7 @@ export class Users extends ClientSDK {
         const body$ =
             payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/api/v4/login")();
+        const path$ = this.templateURLComponent("/api/v5/login")();
 
         const query$ = "";
 
@@ -128,7 +128,7 @@ export class Users extends ClientSDK {
         const body$ =
             payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/api/v4/signup")();
+        const path$ = this.templateURLComponent("/api/v5/signup")();
 
         const query$ = "";
 

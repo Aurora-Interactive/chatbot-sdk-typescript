@@ -52,7 +52,7 @@ export class Chats extends ClientSDK {
         const input$: operations.GetChatsForUserRequest = {};
         void input$; // request input is unused
 
-        const path$ = this.templateURLComponent("/api/v4/chats")();
+        const path$ = this.templateURLComponent("/api/v5/chats")();
 
         const query$ = "";
 
@@ -106,6 +106,84 @@ export class Chats extends ClientSDK {
     }
 
     /**
+     * Get the latest message from the given chat
+     *
+     * @remarks
+     * Useful when previwing the chat in the chat list sidebar
+     */
+    async preview(
+        chatId: number,
+        options?: RequestOptions
+    ): Promise<operations.GetChatPreviewResponse> {
+        const input$: operations.GetChatPreviewRequest = {
+            chatId: chatId,
+        };
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => operations.GetChatPreviewRequest$outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = null;
+
+        const path$ = this.templateURLComponent("/api/v5/chat/preview")();
+
+        const query$ = encodeFormQuery$({
+            chatId: payload$.chatId,
+        });
+
+        const headers$ = new Headers({
+            Accept: "application/json",
+            "x-access-token": encodeSimple$("x-access-token", this.options$.accessToken, {
+                explode: false,
+                charEncoding: "none",
+            }),
+        });
+
+        const context = { operationID: "getChatPreview", oAuth2Scopes: [], securitySource: null };
+
+        const request$ = this.createRequest$(
+            context,
+            {
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["5XX"],
+            retryConfig: options?.retries ||
+                this.options$.retryConfig || {
+                    strategy: "backoff",
+                    backoff: {
+                        initialInterval: 1000,
+                        maxInterval: 60000,
+                        exponent: 1.2,
+                        maxElapsedTime: 3600000,
+                    },
+                    retryConnectionErrors: true,
+                },
+            retryCodes: options?.retryCodes || ["5XX"],
+        });
+
+        const [result$] = await this.matcher<operations.GetChatPreviewResponse>()
+            .json(200, operations.GetChatPreviewResponse$inboundSchema)
+            .json(400, operations.GetChatPreviewResponse$inboundSchema)
+            .json(401, operations.GetChatPreviewResponse$inboundSchema)
+            .json(402, operations.GetChatPreviewResponse$inboundSchema)
+            .fail("5XX")
+            .match(response);
+
+        return result$;
+    }
+
+    /**
      * Initialize chat with AI character
      *
      * @remarks
@@ -127,7 +205,7 @@ export class Chats extends ClientSDK {
         const body$ =
             payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/api/v4/chat")();
+        const path$ = this.templateURLComponent("/api/v5/chat")();
 
         const query$ = "";
 
@@ -201,7 +279,7 @@ export class Chats extends ClientSDK {
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/api/v4/chat")();
+        const path$ = this.templateURLComponent("/api/v5/chat")();
 
         const query$ = encodeFormQuery$({
             chatId: payload$.chatId,

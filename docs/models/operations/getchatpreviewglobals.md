@@ -1,4 +1,4 @@
-# GetCharacterImageDataGlobals
+# GetChatPreviewGlobals
 
 
 ## Fields

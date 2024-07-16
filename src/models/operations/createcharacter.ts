@@ -17,8 +17,6 @@ export type SpecialMessages = {
 };
 
 export type CreateCharacterRequestBody = {
-    name: string;
-    description: string;
     /**
      * base64-encoded AVIF image data
      */
@@ -27,6 +25,8 @@ export type CreateCharacterRequestBody = {
      * base64-encoded AVIF image data
      */
     bannerImage: string;
+    name: string;
+    description: string;
     aiPrompt: string;
     initialResponse: string;
     specialMessages: Array<SpecialMessages>;
@@ -145,10 +145,10 @@ export const CreateCharacterRequestBody$inboundSchema: z.ZodType<
     z.ZodTypeDef,
     unknown
 > = z.object({
-    name: z.string(),
-    description: z.string(),
     iconImage: z.string(),
     bannerImage: z.string(),
+    name: z.string(),
+    description: z.string(),
     aiPrompt: z.string(),
     initialResponse: z.string(),
     specialMessages: z.array(z.lazy(() => SpecialMessages$inboundSchema)),
@@ -156,10 +156,10 @@ export const CreateCharacterRequestBody$inboundSchema: z.ZodType<
 
 /** @internal */
 export type CreateCharacterRequestBody$Outbound = {
-    name: string;
-    description: string;
     iconImage: string;
     bannerImage: string;
+    name: string;
+    description: string;
     aiPrompt: string;
     initialResponse: string;
     specialMessages: Array<SpecialMessages$Outbound>;
@@ -171,10 +171,10 @@ export const CreateCharacterRequestBody$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     CreateCharacterRequestBody
 > = z.object({
-    name: z.string(),
-    description: z.string(),
     iconImage: z.string(),
     bannerImage: z.string(),
+    name: z.string(),
+    description: z.string(),
     aiPrompt: z.string(),
     initialResponse: z.string(),
     specialMessages: z.array(z.lazy(() => SpecialMessages$outboundSchema)),

@@ -5,40 +5,38 @@
 import { ClosedEnum } from "../../types/enums.js";
 import * as z from "zod";
 
-export const MessageRole = {
+export const Role = {
     System: "system",
     User: "user",
     Assistant: "assistant",
 } as const;
-export type MessageRole = ClosedEnum<typeof MessageRole>;
+export type Role = ClosedEnum<typeof Role>;
 
 export type Message = {
-    role: MessageRole;
+    role: Role;
     content: string;
 };
 
 /** @internal */
-export const MessageRole$inboundSchema: z.ZodNativeEnum<typeof MessageRole> =
-    z.nativeEnum(MessageRole);
+export const Role$inboundSchema: z.ZodNativeEnum<typeof Role> = z.nativeEnum(Role);
 
 /** @internal */
-export const MessageRole$outboundSchema: z.ZodNativeEnum<typeof MessageRole> =
-    MessageRole$inboundSchema;
+export const Role$outboundSchema: z.ZodNativeEnum<typeof Role> = Role$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace MessageRole$ {
-    /** @deprecated use `MessageRole$inboundSchema` instead. */
-    export const inboundSchema = MessageRole$inboundSchema;
-    /** @deprecated use `MessageRole$outboundSchema` instead. */
-    export const outboundSchema = MessageRole$outboundSchema;
+export namespace Role$ {
+    /** @deprecated use `Role$inboundSchema` instead. */
+    export const inboundSchema = Role$inboundSchema;
+    /** @deprecated use `Role$outboundSchema` instead. */
+    export const outboundSchema = Role$outboundSchema;
 }
 
 /** @internal */
 export const Message$inboundSchema: z.ZodType<Message, z.ZodTypeDef, unknown> = z.object({
-    role: MessageRole$inboundSchema,
+    role: Role$inboundSchema,
     content: z.string(),
 });
 
@@ -50,7 +48,7 @@ export type Message$Outbound = {
 
 /** @internal */
 export const Message$outboundSchema: z.ZodType<Message$Outbound, z.ZodTypeDef, Message> = z.object({
-    role: MessageRole$outboundSchema,
+    role: Role$outboundSchema,
     content: z.string(),
 });
 
