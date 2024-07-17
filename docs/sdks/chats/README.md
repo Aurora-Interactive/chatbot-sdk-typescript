@@ -3,14 +3,14 @@
 
 ### Available Operations
 
-* [listForUser](#listforuser) - Get all chats assigned to user
+* [list](#list) - Get all chats assigned to a user
 * [preview](#preview) - Get the latest message from the given chat
 * [initialize](#initialize) - Initialize chat with AI character
 * [delete](#delete) - Delete a chat
 
-## listForUser
+## list
 
-Get the chat IDs assigned to a given user ID. useful for getting chat context and message history
+Get chat IDs assigned to a user ID
 
 ### Example Usage
 
@@ -20,7 +20,7 @@ import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
 const auroraChatbotSDK = new AuroraChatbotSDK();
 
 async function run() {
-  const result = await auroraChatbotSDK.chats.listForUser();
+  const result = await auroraChatbotSDK.chats.list();
 
   // Handle the result
   console.log(result)
@@ -40,7 +40,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetChatsForUserResponse](../../models/operations/getchatsforuserresponse.md)\>**
+**Promise\<[operations.ChatsListResponse](../../models/operations/chatslistresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -49,7 +49,7 @@ run();
 
 ## preview
 
-Useful when previwing the chat in the chat list sidebar
+Get the latest message from the given chat
 
 ### Example Usage
 
@@ -80,7 +80,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetChatPreviewResponse](../../models/operations/getchatpreviewresponse.md)\>**
+**Promise\<[operations.ChatsPreviewResponse](../../models/operations/chatspreviewresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -120,7 +120,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.InitializeChatResponse](../../models/operations/initializechatresponse.md)\>**
+**Promise\<[operations.ChatsInitializeResponse](../../models/operations/chatsinitializeresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -129,7 +129,7 @@ run();
 
 ## delete
 
-Delete a chat, given a chat ID. All message history that is still stored is also deleted
+Delete a chat by ID. All messages in the chat are also deleted.
 
 ### Example Usage
 
@@ -160,7 +160,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.DeleteChatResponse](../../models/operations/deletechatresponse.md)\>**
+**Promise\<[operations.ChatsDeleteResponse](../../models/operations/chatsdeleteresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

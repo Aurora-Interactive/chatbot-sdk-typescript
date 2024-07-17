@@ -8,7 +8,5 @@ export * from "./authenticationfailederror.js";
 export * from "./badrequesterror.js";
 export * from "./characterid.js";
 export * from "./chatcompletionfragment.js";
-export * from "./message.js";
 export * from "./successfulrequest.js";
 export * from "./timestampedmessage.js";
-export * from "./unauthorizediderror.js";

@@ -1,21 +1,21 @@
 lockVersion: 2.0.0
 id: d0c6ef81-afa9-4266-a8f1-2430fa28984d
 management:
-  docChecksum: b6c1a4c27056188f25195321bc7cbb09
-  docVersion: 5.1.0
-  speakeasyVersion: 1.335.2
-  generationVersion: 2.372.3
-  releaseVersion: 5.1.0
-  configChecksum: 9adda15f09cb32b9a8ace14347d6dae7
+  docChecksum: f2d72299b55c66bd5c1cf932316f88f0
+  docVersion: 6.0.0
+  speakeasyVersion: 1.338.3
+  generationVersion: 2.375.5
+  releaseVersion: 6.0.0
+  configChecksum: c3dfecea7ecd45bc12449c8642b78b20
 features:
   typescript:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.5
-    core: 3.11.6
+    core: 3.11.7
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
-    errors: 2.81.11
+    errors: 2.81.12
     examples: 2.81.4
     flattening: 2.81.1
     globalSecurityCallbacks: 0.1.0
@@ -28,7 +28,6 @@ features:
     retries: 2.83.0
     sdkHooks: 0.1.0
     serverEvents: 0.1.4
-    unions: 2.85.5
 generatedFiles:
   - src/sdk/users.ts
   - src/sdk/characters.ts
@@ -62,113 +61,82 @@ generatedFiles:
   - src/types/operations.ts
   - src/types/rfcdate.ts
   - tsconfig.json
-  - src/models/operations/login.ts
-  - src/models/operations/signup.ts
-  - src/models/operations/getcharacters.ts
-  - src/models/operations/getcharacterbanner.ts
-  - src/models/operations/getcharacter.ts
-  - src/models/operations/createcharacter.ts
-  - src/models/operations/getchatsforuser.ts
-  - src/models/operations/getchatpreview.ts
-  - src/models/operations/initializechat.ts
-  - src/models/operations/deletechat.ts
-  - src/models/operations/savemessage.ts
-  - src/models/operations/getmessagehistory.ts
-  - src/models/operations/getmessagecontext.ts
-  - src/models/operations/sendmessage.ts
-  - src/models/operations/deletemessage.ts
+  - src/models/operations/userslogin.ts
+  - src/models/operations/userssignup.ts
+  - src/models/operations/characterslist.ts
+  - src/models/operations/charactersbanner.ts
+  - src/models/operations/charactersget.ts
+  - src/models/operations/characterscreate.ts
+  - src/models/operations/chatslist.ts
+  - src/models/operations/chatspreview.ts
+  - src/models/operations/chatsinitialize.ts
+  - src/models/operations/chatsdelete.ts
+  - src/models/operations/messagessave.ts
+  - src/models/operations/messageshistory.ts
+  - src/models/operations/messagessend.ts
+  - src/models/operations/messagesdelete.ts
   - src/models/components/accesstokenobj.ts
   - src/models/components/badrequesterror.ts
   - src/models/components/authenticationfailederror.ts
   - src/models/components/accountinbadstandingerror.ts
   - src/models/components/characterid.ts
   - src/models/components/successfulrequest.ts
-  - src/models/components/unauthorizediderror.ts
   - src/models/components/timestampedmessage.ts
-  - src/models/components/message.ts
   - src/models/components/chatcompletionfragment.ts
   - src/models/errors/index.ts
   - src/models/operations/index.ts
   - src/models/components/index.ts
-  - docs/models/operations/loginrequestbody.md
-  - docs/models/operations/loginresponse.md
-  - docs/models/operations/signuprequestbody.md
-  - docs/models/operations/errort.md
-  - docs/models/operations/signupfailedrequest.md
-  - docs/models/operations/signupresponse.md
-  - docs/models/operations/getcharactersglobals.md
-  - docs/models/operations/getcharactersrequest.md
+  - docs/models/operations/usersloginrequestbody.md
+  - docs/models/operations/usersloginresponse.md
+  - docs/models/operations/userssignuprequestbody.md
+  - docs/models/operations/userssignupresponse.md
+  - docs/models/operations/characterslistglobals.md
+  - docs/models/operations/characterslistrequest.md
   - docs/models/operations/characters.md
-  - docs/models/operations/getcharacterssuccessfulrequest.md
-  - docs/models/operations/getcharactersresponse.md
-  - docs/models/operations/getcharacterbannerglobals.md
-  - docs/models/operations/getcharacterbannerrequest.md
-  - docs/models/operations/getcharacterbannersuccessfulrequest.md
-  - docs/models/operations/getcharacterbannerresponse.md
-  - docs/models/operations/getcharacterglobals.md
-  - docs/models/operations/getcharacterrequest.md
-  - docs/models/operations/getcharacterresponsebody.md
-  - docs/models/operations/createcharacterglobals.md
+  - docs/models/operations/characterslistsuccessfulrequest.md
+  - docs/models/operations/characterslistresponse.md
+  - docs/models/operations/charactersbannerglobals.md
+  - docs/models/operations/charactersbannerrequest.md
+  - docs/models/operations/charactersbannersuccessfulrequest.md
+  - docs/models/operations/charactersbannerresponse.md
+  - docs/models/operations/charactersgetglobals.md
+  - docs/models/operations/charactersgetrequest.md
+  - docs/models/operations/charactersgetresponsebody.md
+  - docs/models/operations/charactersgetresponse.md
+  - docs/models/operations/characterscreateglobals.md
   - docs/models/operations/specialmessages.md
-  - docs/models/operations/createcharacterrequestbody.md
-  - docs/models/operations/createcharacterresponsebodyerror.md
-  - docs/models/operations/duplicatecharactererrorresponse.md
-  - docs/models/operations/createcharacterresponsebody.md
-  - docs/models/operations/createcharactersuccessfulrequest.md
-  - docs/models/operations/createcharacterresponse.md
-  - docs/models/operations/getchatsforuserglobals.md
-  - docs/models/operations/getchatsforuserrequest.md
+  - docs/models/operations/characterscreaterequestbody.md
+  - docs/models/operations/characterscreatesuccessfulrequest.md
+  - docs/models/operations/characterscreateresponse.md
+  - docs/models/operations/chatslistglobals.md
+  - docs/models/operations/chatslistrequest.md
   - docs/models/operations/chats.md
-  - docs/models/operations/getchatsforusersuccessfulrequest.md
-  - docs/models/operations/getchatsforuserresponse.md
-  - docs/models/operations/getchatpreviewglobals.md
-  - docs/models/operations/getchatpreviewrequest.md
-  - docs/models/operations/getchatpreviewresponsebody.md
-  - docs/models/operations/getchatpreviewresponse.md
-  - docs/models/operations/initializechatglobals.md
-  - docs/models/operations/initializechatsuccessfulrequest.md
-  - docs/models/operations/initializechatresponse.md
-  - docs/models/operations/deletechatglobals.md
-  - docs/models/operations/deletechatrequest.md
-  - docs/models/operations/deletechatchatsresponsebody.md
-  - docs/models/operations/responsebodyerror.md
-  - docs/models/operations/invalidchatiderror.md
-  - docs/models/operations/deletechatresponsebody.md
-  - docs/models/operations/deletechatresponse.md
-  - docs/models/operations/savemessageglobals.md
+  - docs/models/operations/chatslistsuccessfulrequest.md
+  - docs/models/operations/chatslistresponse.md
+  - docs/models/operations/chatspreviewglobals.md
+  - docs/models/operations/chatspreviewrequest.md
+  - docs/models/operations/chatspreviewresponsebody.md
+  - docs/models/operations/chatspreviewresponse.md
+  - docs/models/operations/chatsinitializeglobals.md
+  - docs/models/operations/chatsinitializesuccessfulrequest.md
+  - docs/models/operations/chatsinitializeresponse.md
+  - docs/models/operations/chatsdeleteglobals.md
+  - docs/models/operations/chatsdeleterequest.md
+  - docs/models/operations/chatsdeleteresponse.md
+  - docs/models/operations/messagessaveglobals.md
   - docs/models/operations/role.md
-  - docs/models/operations/savemessagetimestampedmessageresponse.md
-  - docs/models/operations/savemessageresponse.md
-  - docs/models/operations/getmessagehistoryglobals.md
-  - docs/models/operations/getmessagehistoryrequest.md
-  - docs/models/operations/getmessagehistorymessagesresponsebody.md
-  - docs/models/operations/getmessagehistoryresponsebodyerror.md
-  - docs/models/operations/responsebodyinvalidchatiderror.md
-  - docs/models/operations/getmessagehistoryresponsebody.md
-  - docs/models/operations/getmessagehistorysuccessfulrequest.md
-  - docs/models/operations/getmessagehistoryresponse.md
-  - docs/models/operations/getmessagecontextglobals.md
-  - docs/models/operations/getmessagecontextrequest.md
-  - docs/models/operations/getmessagecontextmessagesresponsebody.md
-  - docs/models/operations/getmessagecontextresponsebodyerror.md
-  - docs/models/operations/getmessagecontextresponsebodyinvalidchatiderror.md
-  - docs/models/operations/getmessagecontextresponsebody.md
-  - docs/models/operations/getmessagecontextsuccessfulrequest.md
-  - docs/models/operations/getmessagecontextresponse.md
-  - docs/models/operations/sendmessageglobals.md
-  - docs/models/operations/sendmessagerequestbody.md
-  - docs/models/operations/sendmessagemessagesresponsebody.md
-  - docs/models/operations/sendmessageresponsebodyerror.md
-  - docs/models/operations/sendmessageresponsebodyinvalidchatiderror.md
-  - docs/models/operations/sendmessageresponsebody.md
-  - docs/models/operations/sendmessageresponse.md
-  - docs/models/operations/deletemessageglobals.md
-  - docs/models/operations/deletemessagerequest.md
-  - docs/models/operations/deletemessagemessagesresponsebody.md
-  - docs/models/operations/deletemessageresponsebodyerror.md
-  - docs/models/operations/invalidmessageiderror.md
-  - docs/models/operations/deletemessageresponsebody.md
-  - docs/models/operations/deletemessageresponse.md
+  - docs/models/operations/messagessavetimestampedmessageresponse.md
+  - docs/models/operations/messagessaveresponse.md
+  - docs/models/operations/messageshistoryglobals.md
+  - docs/models/operations/messageshistoryrequest.md
+  - docs/models/operations/messageshistorysuccessfulrequest.md
+  - docs/models/operations/messageshistoryresponse.md
+  - docs/models/operations/messagessendglobals.md
+  - docs/models/operations/messagessendrequestbody.md
+  - docs/models/operations/messagessendresponse.md
+  - docs/models/operations/messagesdeleteglobals.md
+  - docs/models/operations/messagesdeleterequest.md
+  - docs/models/operations/messagesdeleteresponse.md
   - docs/models/components/accesstokenobj.md
   - docs/models/components/errort.md
   - docs/models/components/badrequesterror.md
@@ -178,12 +146,8 @@ generatedFiles:
   - docs/models/components/accountinbadstandingerror.md
   - docs/models/components/characterid.md
   - docs/models/components/successfulrequest.md
-  - docs/models/components/unauthorizediderrorerror.md
-  - docs/models/components/unauthorizediderror.md
   - docs/models/components/role.md
   - docs/models/components/timestampedmessage.md
-  - docs/models/components/messagerole.md
-  - docs/models/components/message.md
   - docs/models/components/data.md
   - docs/models/components/chatcompletionfragment.md
   - docs/sdks/aurorachatbotsdk/README.md
@@ -200,3 +164,4 @@ generatedFiles:
   - src/hooks/hooks.ts
   - src/hooks/types.ts
   - src/hooks/index.ts
+  - CONTRIBUTING.md

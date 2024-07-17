@@ -1,18 +1,14 @@
 # Users
 (*users*)
 
-## Overview
-
-Endpoints used in querying or updating information about users in the system
-
 ### Available Operations
 
 * [login](#login) - Login
-* [createAccount](#createaccount) - User signup
+* [signup](#signup) - User signup
 
 ## login
 
-Login and retrieve a reusable access token for use with the rest of the API
+Login and retrieve an access token for use with the API
 
 ### Example Usage
 
@@ -38,7 +34,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.LoginRequestBody](../../models/operations/loginrequestbody.md)                                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.UsersLoginRequestBody](../../models/operations/usersloginrequestbody.md)                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -46,16 +42,16 @@ run();
 
 ### Response
 
-**Promise\<[operations.LoginResponse](../../models/operations/loginresponse.md)\>**
+**Promise\<[operations.UsersLoginResponse](../../models/operations/usersloginresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## createAccount
+## signup
 
-Create a user account
+Create an account
 
 ### Example Usage
 
@@ -65,10 +61,10 @@ import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
 const auroraChatbotSDK = new AuroraChatbotSDK();
 
 async function run() {
-  const result = await auroraChatbotSDK.users.createAccount({
-    username: "Serena.Daniel",
-    email: "Serena.Pagac@gmail.com",
-    password: "IZX7gQmXTJjWNkn",
+  const result = await auroraChatbotSDK.users.signup({
+    username: "Araceli63",
+    email: "Chelsea.Corkery@hotmail.com",
+    password: "XjKhUH_8vLtOzMO",
   });
 
   // Handle the result
@@ -82,7 +78,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.SignupRequestBody](../../models/operations/signuprequestbody.md)                                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.UsersSignupRequestBody](../../models/operations/userssignuprequestbody.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -90,7 +86,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.SignupResponse](../../models/operations/signupresponse.md)\>**
+**Promise\<[operations.UsersSignupResponse](../../models/operations/userssignupresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

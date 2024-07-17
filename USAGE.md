@@ -70,7 +70,7 @@ import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
 const auroraChatbotSDK = new AuroraChatbotSDK();
 
 async function run() {
-    const result = await auroraChatbotSDK.chats.listForUser();
+    const result = await auroraChatbotSDK.chats.list();
 
     // Handle the result
     console.log(result);
@@ -134,28 +134,7 @@ import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
 const auroraChatbotSDK = new AuroraChatbotSDK();
 
 async function run() {
-    const result = await auroraChatbotSDK.messages.context(8);
-
-    // Handle the result
-    console.log(result);
-}
-
-run();
-
-```
-
-```typescript
-import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
-
-const auroraChatbotSDK = new AuroraChatbotSDK();
-
-async function run() {
-    const result = await auroraChatbotSDK.messages.send(516969, 157994, "<value>", [
-        {
-            role: "user",
-            content: "<value>",
-        },
-    ]);
+    const result = await auroraChatbotSDK.messages.send(516969, 157994, "<value>");
 
     for await (const event of result) {
         // Handle the event

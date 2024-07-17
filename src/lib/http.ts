@@ -5,6 +5,7 @@
 import { never as znever } from "zod";
 import { parse } from "./schemas.js";
 import { isPlainObject } from "./is-plain-object.js";
+import { discardSentinel } from "./event-streams.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 
 export type Fetcher = (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -284,6 +285,7 @@ type ResponsePredicateMatch<Result> = {
     key: string | undefined;
     err: boolean;
     fail: boolean;
+    sseSentinel?: string | undefined;
 };
 
 type ResponsePredicateOptions = {
@@ -291,6 +293,8 @@ type ResponsePredicateOptions = {
     ctype?: string;
     /** Pass HTTP headers to deserializer. */
     hdrs?: boolean;
+    /** A value for an SSE event's data field that indicates a stream should be terminated. */
+    sseSentinel?: string;
 } & (
     | {
           /** The result key to store the deserialized value into. */
@@ -326,6 +330,7 @@ export class ResponseMatcher<Result> {
         const key = opts?.key;
         const err = !!opts?.err;
         const fail = !!opts?.fail;
+        const sseSentinel = opts?.sseSentinel;
         this.predicates.push({
             method,
             codes,
@@ -335,6 +340,7 @@ export class ResponseMatcher<Result> {
             key,
             err,
             fail,
+            sseSentinel,
         });
         return this;
     }
@@ -430,7 +436,10 @@ export class ResponseMatcher<Result> {
                 raw = await response.text();
                 break;
             case "sse":
-                raw = response.body;
+                raw =
+                    response.body && pred.sseSentinel
+                        ? discardSentinel(response.body, pred.sseSentinel)
+                        : response.body;
                 break;
             case "void":
                 raw = await discardResponseBody(response);

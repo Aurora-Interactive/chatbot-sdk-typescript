@@ -4,13 +4,13 @@
 ### Available Operations
 
 * [list](#list) - Character metadata
-* [bannerImage](#bannerimage) - Character image visuals
-* [character](#character) - Get information about a specific character
+* [banner](#banner) - Character banner image
+* [get](#get) - Get information about a character
 * [create](#create) - Create character
 
 ## list
 
-Return metadata for available characters in the system. Paginated. Up to 100 characters per request
+Get data for available characters in the system. Paginated. Up to 100 characters per request
 
 ### Example Usage
 
@@ -42,16 +42,16 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetCharactersResponse](../../models/operations/getcharactersresponse.md)\>**
+**Promise\<[operations.CharactersListResponse](../../models/operations/characterslistresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## bannerImage
+## banner
 
-Get the banner and profile icon that is assigned to a given character
+Character banner image
 
 ### Example Usage
 
@@ -61,7 +61,7 @@ import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
 const auroraChatbotSDK = new AuroraChatbotSDK();
 
 async function run() {
-  const result = await auroraChatbotSDK.characters.bannerImage(8);
+  const result = await auroraChatbotSDK.characters.banner(8);
 
   // Handle the result
   console.log(result)
@@ -82,16 +82,16 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetCharacterBannerResponse](../../models/operations/getcharacterbannerresponse.md)\>**
+**Promise\<[operations.CharactersBannerResponse](../../models/operations/charactersbannerresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## character
+## get
 
-Get information about a specific character
+Get information about a character
 
 ### Example Usage
 
@@ -101,7 +101,7 @@ import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
 const auroraChatbotSDK = new AuroraChatbotSDK();
 
 async function run() {
-  const result = await auroraChatbotSDK.characters.character(8);
+  const result = await auroraChatbotSDK.characters.get(8);
 
   // Handle the result
   console.log(result)
@@ -122,7 +122,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetCharacterResponseBody](../../models/operations/getcharacterresponsebody.md)\>**
+**Promise\<[operations.CharactersGetResponse](../../models/operations/charactersgetresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -170,7 +170,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.CreateCharacterRequestBody](../../models/operations/createcharacterrequestbody.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.CharactersCreateRequestBody](../../models/operations/characterscreaterequestbody.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -178,7 +178,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.CreateCharacterResponse](../../models/operations/createcharacterresponse.md)\>**
+**Promise\<[operations.CharactersCreateResponse](../../models/operations/characterscreateresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

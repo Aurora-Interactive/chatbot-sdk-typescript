@@ -185,3 +185,69 @@ function parseEvent<Event extends ServerEvent<unknown>>(
 
     return decoder(rawEvent);
 }
+
+export function discardSentinel(
+    stream: ReadableStream<Uint8Array>,
+    sentinel: string
+): ReadableStream<Uint8Array> {
+    return new ReadableStream<Uint8Array>({
+        async start(controller) {
+            let buffer = new Uint8Array([]);
+            let position = 0;
+            let done = false;
+            let discard = false;
+            const rdr = stream.getReader();
+            try {
+                while (!done) {
+                    const result = await rdr.read();
+                    const value = result.value;
+                    done = done || result.done;
+                    // We keep consuming from the source to its completion so it can
+                    // flush all its contents and release resources.
+                    if (discard) {
+                        continue;
+                    }
+                    if (typeof value === "undefined") {
+                        continue;
+                    }
+
+                    const newBuffer = new Uint8Array(buffer.length + value.length);
+                    newBuffer.set(buffer);
+                    newBuffer.set(value, buffer.length);
+                    buffer = newBuffer;
+
+                    for (let i = position; i < buffer.length; i++) {
+                        const boundary = findBoundary(buffer, i);
+                        if (boundary == null) {
+                            continue;
+                        }
+
+                        const start = position;
+                        const chunk = buffer.slice(start, i);
+                        position = i + boundary.length;
+                        const event = parseEvent(chunk, id);
+                        if (event?.data === sentinel) {
+                            controller.enqueue(buffer.slice(0, start));
+                            discard = true;
+                        } else {
+                            controller.enqueue(buffer.slice(0, position));
+                            buffer = buffer.slice(position);
+                            position = 0;
+                        }
+                    }
+                }
+            } catch (e) {
+                controller.error(e);
+            } finally {
+                // If the source stream terminates, flush its contents and terminate.
+                // If the sentinel event was found, flush everything up to its start.
+                controller.close();
+                rdr.releaseLock();
+            }
+        },
+    });
+}
+
+function id<T>(v: T): T {
+    return v;
+}

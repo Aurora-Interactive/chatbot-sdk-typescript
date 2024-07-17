@@ -41,23 +41,23 @@ export class Users extends ClientSDK {
      * Login
      *
      * @remarks
-     * Login and retrieve a reusable access token for use with the rest of the API
+     * Login and retrieve an access token for use with the API
      */
     async login(
-        request?: operations.LoginRequestBody | undefined,
+        request?: operations.UsersLoginRequestBody | undefined,
         options?: RequestOptions
-    ): Promise<operations.LoginResponse> {
+    ): Promise<operations.UsersLoginResponse> {
         const input$ = request;
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.LoginRequestBody$outboundSchema.optional().parse(value$),
+            (value$) => operations.UsersLoginRequestBody$outboundSchema.optional().parse(value$),
             "Input validation failed"
         );
         const body$ =
             payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/api/v5/login")();
+        const path$ = this.templateURLComponent("/api/v6/login")();
 
         const query$ = "";
 
@@ -66,7 +66,7 @@ export class Users extends ClientSDK {
             Accept: "application/json",
         });
 
-        const context = { operationID: "login", oAuth2Scopes: [], securitySource: null };
+        const context = { operationID: "users.login", oAuth2Scopes: [], securitySource: null };
 
         const request$ = this.createRequest$(
             context,
@@ -98,10 +98,10 @@ export class Users extends ClientSDK {
             retryCodes: options?.retryCodes || ["5XX"],
         });
 
-        const [result$] = await this.matcher<operations.LoginResponse>()
-            .json(200, operations.LoginResponse$inboundSchema)
-            .json(400, operations.LoginResponse$inboundSchema)
-            .json(401, operations.LoginResponse$inboundSchema)
+        const [result$] = await this.matcher<operations.UsersLoginResponse>()
+            .json(200, operations.UsersLoginResponse$inboundSchema)
+            .json(400, operations.UsersLoginResponse$inboundSchema)
+            .json(401, operations.UsersLoginResponse$inboundSchema)
             .fail("5XX")
             .match(response);
 
@@ -112,23 +112,23 @@ export class Users extends ClientSDK {
      * User signup
      *
      * @remarks
-     * Create a user account
+     * Create an account
      */
-    async createAccount(
-        request?: operations.SignupRequestBody | undefined,
+    async signup(
+        request?: operations.UsersSignupRequestBody | undefined,
         options?: RequestOptions
-    ): Promise<operations.SignupResponse> {
+    ): Promise<operations.UsersSignupResponse> {
         const input$ = request;
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.SignupRequestBody$outboundSchema.optional().parse(value$),
+            (value$) => operations.UsersSignupRequestBody$outboundSchema.optional().parse(value$),
             "Input validation failed"
         );
         const body$ =
             payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/api/v5/signup")();
+        const path$ = this.templateURLComponent("/api/v6/signup")();
 
         const query$ = "";
 
@@ -137,7 +137,7 @@ export class Users extends ClientSDK {
             Accept: "application/json",
         });
 
-        const context = { operationID: "signup", oAuth2Scopes: [], securitySource: null };
+        const context = { operationID: "users.signup", oAuth2Scopes: [], securitySource: null };
 
         const request$ = this.createRequest$(
             context,
@@ -169,10 +169,9 @@ export class Users extends ClientSDK {
             retryCodes: options?.retryCodes || ["5XX"],
         });
 
-        const [result$] = await this.matcher<operations.SignupResponse>()
-            .json(200, operations.SignupResponse$inboundSchema)
-            .json(400, operations.SignupResponse$inboundSchema)
-            .json(401, operations.SignupResponse$inboundSchema)
+        const [result$] = await this.matcher<operations.UsersSignupResponse>()
+            .json(200, operations.UsersSignupResponse$inboundSchema)
+            .json(400, operations.UsersSignupResponse$inboundSchema)
             .fail("5XX")
             .match(response);
 

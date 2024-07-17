@@ -43,16 +43,16 @@ export class Chats extends ClientSDK {
     }
 
     /**
-     * Get all chats assigned to user
+     * Get all chats assigned to a user
      *
      * @remarks
-     * Get the chat IDs assigned to a given user ID. useful for getting chat context and message history
+     * Get chat IDs assigned to a user ID
      */
-    async listForUser(options?: RequestOptions): Promise<operations.GetChatsForUserResponse> {
-        const input$: operations.GetChatsForUserRequest = {};
+    async list(options?: RequestOptions): Promise<operations.ChatsListResponse> {
+        const input$: operations.ChatsListRequest = {};
         void input$; // request input is unused
 
-        const path$ = this.templateURLComponent("/api/v5/chats")();
+        const path$ = this.templateURLComponent("/api/v6/chats")();
 
         const query$ = "";
 
@@ -64,7 +64,7 @@ export class Chats extends ClientSDK {
             }),
         });
 
-        const context = { operationID: "getChatsForUser", oAuth2Scopes: [], securitySource: null };
+        const context = { operationID: "chats.list", oAuth2Scopes: [], securitySource: null };
 
         const request$ = this.createRequest$(
             context,
@@ -95,10 +95,10 @@ export class Chats extends ClientSDK {
             retryCodes: options?.retryCodes || ["5XX"],
         });
 
-        const [result$] = await this.matcher<operations.GetChatsForUserResponse>()
-            .json(200, operations.GetChatsForUserResponse$inboundSchema)
-            .json(400, operations.GetChatsForUserResponse$inboundSchema)
-            .json(401, operations.GetChatsForUserResponse$inboundSchema)
+        const [result$] = await this.matcher<operations.ChatsListResponse>()
+            .json(200, operations.ChatsListResponse$inboundSchema)
+            .json(400, operations.ChatsListResponse$inboundSchema)
+            .json(401, operations.ChatsListResponse$inboundSchema)
             .fail("5XX")
             .match(response);
 
@@ -107,26 +107,23 @@ export class Chats extends ClientSDK {
 
     /**
      * Get the latest message from the given chat
-     *
-     * @remarks
-     * Useful when previwing the chat in the chat list sidebar
      */
     async preview(
         chatId: number,
         options?: RequestOptions
-    ): Promise<operations.GetChatPreviewResponse> {
-        const input$: operations.GetChatPreviewRequest = {
+    ): Promise<operations.ChatsPreviewResponse> {
+        const input$: operations.ChatsPreviewRequest = {
             chatId: chatId,
         };
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetChatPreviewRequest$outboundSchema.parse(value$),
+            (value$) => operations.ChatsPreviewRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/api/v5/chat/preview")();
+        const path$ = this.templateURLComponent("/api/v6/chat/preview")();
 
         const query$ = encodeFormQuery$({
             chatId: payload$.chatId,
@@ -140,7 +137,7 @@ export class Chats extends ClientSDK {
             }),
         });
 
-        const context = { operationID: "getChatPreview", oAuth2Scopes: [], securitySource: null };
+        const context = { operationID: "chats.preview", oAuth2Scopes: [], securitySource: null };
 
         const request$ = this.createRequest$(
             context,
@@ -172,11 +169,11 @@ export class Chats extends ClientSDK {
             retryCodes: options?.retryCodes || ["5XX"],
         });
 
-        const [result$] = await this.matcher<operations.GetChatPreviewResponse>()
-            .json(200, operations.GetChatPreviewResponse$inboundSchema)
-            .json(400, operations.GetChatPreviewResponse$inboundSchema)
-            .json(401, operations.GetChatPreviewResponse$inboundSchema)
-            .json(402, operations.GetChatPreviewResponse$inboundSchema)
+        const [result$] = await this.matcher<operations.ChatsPreviewResponse>()
+            .json(200, operations.ChatsPreviewResponse$inboundSchema)
+            .json(400, operations.ChatsPreviewResponse$inboundSchema)
+            .json(401, operations.ChatsPreviewResponse$inboundSchema)
+            .json(402, operations.ChatsPreviewResponse$inboundSchema)
             .fail("5XX")
             .match(response);
 
@@ -192,7 +189,7 @@ export class Chats extends ClientSDK {
     async initialize(
         characterId: number,
         options?: RequestOptions
-    ): Promise<operations.InitializeChatResponse> {
+    ): Promise<operations.ChatsInitializeResponse> {
         const input$: components.CharacterId | undefined = {
             characterId: characterId,
         };
@@ -205,7 +202,7 @@ export class Chats extends ClientSDK {
         const body$ =
             payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/api/v5/chat")();
+        const path$ = this.templateURLComponent("/api/v6/chat")();
 
         const query$ = "";
 
@@ -218,7 +215,7 @@ export class Chats extends ClientSDK {
             }),
         });
 
-        const context = { operationID: "initializeChat", oAuth2Scopes: [], securitySource: null };
+        const context = { operationID: "chats.initialize", oAuth2Scopes: [], securitySource: null };
 
         const request$ = this.createRequest$(
             context,
@@ -250,11 +247,11 @@ export class Chats extends ClientSDK {
             retryCodes: options?.retryCodes || ["5XX"],
         });
 
-        const [result$] = await this.matcher<operations.InitializeChatResponse>()
-            .json(200, operations.InitializeChatResponse$inboundSchema)
-            .json(400, operations.InitializeChatResponse$inboundSchema)
-            .json(401, operations.InitializeChatResponse$inboundSchema)
-            .json(402, operations.InitializeChatResponse$inboundSchema)
+        const [result$] = await this.matcher<operations.ChatsInitializeResponse>()
+            .json(200, operations.ChatsInitializeResponse$inboundSchema)
+            .json(400, operations.ChatsInitializeResponse$inboundSchema)
+            .json(401, operations.ChatsInitializeResponse$inboundSchema)
+            .json(402, operations.ChatsInitializeResponse$inboundSchema)
             .fail("5XX")
             .match(response);
 
@@ -265,21 +262,24 @@ export class Chats extends ClientSDK {
      * Delete a chat
      *
      * @remarks
-     * Delete a chat, given a chat ID. All message history that is still stored is also deleted
+     * Delete a chat by ID. All messages in the chat are also deleted.
      */
-    async delete(chatId: number, options?: RequestOptions): Promise<operations.DeleteChatResponse> {
-        const input$: operations.DeleteChatRequest = {
+    async delete(
+        chatId: number,
+        options?: RequestOptions
+    ): Promise<operations.ChatsDeleteResponse> {
+        const input$: operations.ChatsDeleteRequest = {
             chatId: chatId,
         };
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.DeleteChatRequest$outboundSchema.parse(value$),
+            (value$) => operations.ChatsDeleteRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/api/v5/chat")();
+        const path$ = this.templateURLComponent("/api/v6/chat")();
 
         const query$ = encodeFormQuery$({
             chatId: payload$.chatId,
@@ -293,7 +293,7 @@ export class Chats extends ClientSDK {
             }),
         });
 
-        const context = { operationID: "deleteChat", oAuth2Scopes: [], securitySource: null };
+        const context = { operationID: "chats.delete", oAuth2Scopes: [], securitySource: null };
 
         const request$ = this.createRequest$(
             context,
@@ -325,10 +325,10 @@ export class Chats extends ClientSDK {
             retryCodes: options?.retryCodes || ["5XX"],
         });
 
-        const [result$] = await this.matcher<operations.DeleteChatResponse>()
-            .json(200, operations.DeleteChatResponse$inboundSchema)
-            .json(400, operations.DeleteChatResponse$inboundSchema)
-            .json(401, operations.DeleteChatResponse$inboundSchema)
+        const [result$] = await this.matcher<operations.ChatsDeleteResponse>()
+            .json(200, operations.ChatsDeleteResponse$inboundSchema)
+            .json(400, operations.ChatsDeleteResponse$inboundSchema)
+            .json(401, operations.ChatsDeleteResponse$inboundSchema)
             .fail("5XX")
             .match(response);
 

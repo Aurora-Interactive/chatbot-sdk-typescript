@@ -12,7 +12,6 @@ import {
 import { HTTPClient } from "../lib/http.js";
 import * as schemas$ from "../lib/schemas.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 
 export enum SendAcceptEnum {
@@ -51,7 +50,7 @@ export class Messages extends ClientSDK {
      * Save chat message
      *
      * @remarks
-     * Save chat message either from the initial context prompt or after AI generation
+     * Save chat message after AI response
      */
     async save(
         role: operations.Role,
@@ -59,8 +58,8 @@ export class Messages extends ClientSDK {
         timestamp: number,
         chatId: number,
         options?: RequestOptions
-    ): Promise<operations.SaveMessageResponse> {
-        const input$: operations.SaveMessageTimestampedMessageResponse | undefined = {
+    ): Promise<operations.MessagesSaveResponse> {
+        const input$: operations.MessagesSaveTimestampedMessageResponse | undefined = {
             role: role,
             content: content,
             timestamp: timestamp,
@@ -70,7 +69,7 @@ export class Messages extends ClientSDK {
         const payload$ = schemas$.parse(
             input$,
             (value$) =>
-                operations.SaveMessageTimestampedMessageResponse$outboundSchema.optional().parse(
+                operations.MessagesSaveTimestampedMessageResponse$outboundSchema.optional().parse(
                     value$
                 ),
             "Input validation failed"
@@ -78,7 +77,7 @@ export class Messages extends ClientSDK {
         const body$ =
             payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/api/v5/message/save")();
+        const path$ = this.templateURLComponent("/api/v6/message/save")();
 
         const query$ = "";
 
@@ -91,7 +90,7 @@ export class Messages extends ClientSDK {
             }),
         });
 
-        const context = { operationID: "saveMessage", oAuth2Scopes: [], securitySource: null };
+        const context = { operationID: "messages.save", oAuth2Scopes: [], securitySource: null };
 
         const request$ = this.createRequest$(
             context,
@@ -123,11 +122,11 @@ export class Messages extends ClientSDK {
             retryCodes: options?.retryCodes || ["5XX"],
         });
 
-        const [result$] = await this.matcher<operations.SaveMessageResponse>()
-            .json(200, operations.SaveMessageResponse$inboundSchema)
-            .json(400, operations.SaveMessageResponse$inboundSchema)
-            .json(401, operations.SaveMessageResponse$inboundSchema)
-            .json(402, operations.SaveMessageResponse$inboundSchema)
+        const [result$] = await this.matcher<operations.MessagesSaveResponse>()
+            .json(200, operations.MessagesSaveResponse$inboundSchema)
+            .json(400, operations.MessagesSaveResponse$inboundSchema)
+            .json(401, operations.MessagesSaveResponse$inboundSchema)
+            .json(402, operations.MessagesSaveResponse$inboundSchema)
             .fail("5XX")
             .match(response);
 
@@ -138,24 +137,24 @@ export class Messages extends ClientSDK {
      * Get full message history
      *
      * @remarks
-     * Get all of the messages sent in a given chat
+     * Get user-facing chat transcript. Does not include special messages (enhanced context) or system messages.
      */
     async history(
         chatId: number,
         options?: RequestOptions
-    ): Promise<operations.GetMessageHistoryResponse> {
-        const input$: operations.GetMessageHistoryRequest = {
+    ): Promise<operations.MessagesHistoryResponse> {
+        const input$: operations.MessagesHistoryRequest = {
             chatId: chatId,
         };
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetMessageHistoryRequest$outboundSchema.parse(value$),
+            (value$) => operations.MessagesHistoryRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/api/v5/message/history")();
+        const path$ = this.templateURLComponent("/api/v6/message/history")();
 
         const query$ = encodeFormQuery$({
             chatId: payload$.chatId,
@@ -169,11 +168,7 @@ export class Messages extends ClientSDK {
             }),
         });
 
-        const context = {
-            operationID: "getMessageHistory",
-            oAuth2Scopes: [],
-            securitySource: null,
-        };
+        const context = { operationID: "messages.history", oAuth2Scopes: [], securitySource: null };
 
         const request$ = this.createRequest$(
             context,
@@ -205,93 +200,11 @@ export class Messages extends ClientSDK {
             retryCodes: options?.retryCodes || ["5XX"],
         });
 
-        const [result$] = await this.matcher<operations.GetMessageHistoryResponse>()
-            .json(200, operations.GetMessageHistoryResponse$inboundSchema)
-            .json(400, operations.GetMessageHistoryResponse$inboundSchema)
-            .json(401, operations.GetMessageHistoryResponse$inboundSchema)
-            .json(402, operations.GetMessageHistoryResponse$inboundSchema)
-            .fail("5XX")
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Get chat context
-     *
-     * @remarks
-     * Get all the messages from a given chat that are allocated to be used as AI model context. Almost always less messages than full chat history for performance reasons when running against our AI model.
-     */
-    async context(
-        chatId: number,
-        options?: RequestOptions
-    ): Promise<operations.GetMessageContextResponse> {
-        const input$: operations.GetMessageContextRequest = {
-            chatId: chatId,
-        };
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.GetMessageContextRequest$outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const path$ = this.templateURLComponent("/api/v5/message/context")();
-
-        const query$ = encodeFormQuery$({
-            chatId: payload$.chatId,
-        });
-
-        const headers$ = new Headers({
-            Accept: "application/json",
-            "x-access-token": encodeSimple$("x-access-token", this.options$.accessToken, {
-                explode: false,
-                charEncoding: "none",
-            }),
-        });
-
-        const context = {
-            operationID: "getMessageContext",
-            oAuth2Scopes: [],
-            securitySource: null,
-        };
-
-        const request$ = this.createRequest$(
-            context,
-            {
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, {
-            context,
-            errorCodes: ["5XX"],
-            retryConfig: options?.retries ||
-                this.options$.retryConfig || {
-                    strategy: "backoff",
-                    backoff: {
-                        initialInterval: 1000,
-                        maxInterval: 60000,
-                        exponent: 1.2,
-                        maxElapsedTime: 3600000,
-                    },
-                    retryConnectionErrors: true,
-                },
-            retryCodes: options?.retryCodes || ["5XX"],
-        });
-
-        const [result$] = await this.matcher<operations.GetMessageContextResponse>()
-            .json(200, operations.GetMessageContextResponse$inboundSchema)
-            .json(400, operations.GetMessageContextResponse$inboundSchema)
-            .json(401, operations.GetMessageContextResponse$inboundSchema)
-            .json(402, operations.GetMessageContextResponse$inboundSchema)
+        const [result$] = await this.matcher<operations.MessagesHistoryResponse>()
+            .json(200, operations.MessagesHistoryResponse$inboundSchema)
+            .json(400, operations.MessagesHistoryResponse$inboundSchema)
+            .json(401, operations.MessagesHistoryResponse$inboundSchema)
+            .json(402, operations.MessagesHistoryResponse$inboundSchema)
             .fail("5XX")
             .match(response);
 
@@ -308,25 +221,23 @@ export class Messages extends ClientSDK {
         characterId: number,
         chatId: number,
         message: string,
-        messageContext?: Array<components.Message> | undefined,
         options?: RequestOptions & { acceptHeaderOverride?: SendAcceptEnum }
-    ): Promise<operations.SendMessageResponse> {
-        const input$: operations.SendMessageRequestBody | undefined = {
+    ): Promise<operations.MessagesSendResponse> {
+        const input$: operations.MessagesSendRequestBody | undefined = {
             characterId: characterId,
             chatId: chatId,
             message: message,
-            messageContext: messageContext,
         };
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.SendMessageRequestBody$outboundSchema.optional().parse(value$),
+            (value$) => operations.MessagesSendRequestBody$outboundSchema.optional().parse(value$),
             "Input validation failed"
         );
         const body$ =
             payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/api/v5/message")();
+        const path$ = this.templateURLComponent("/api/v6/message")();
 
         const query$ = "";
 
@@ -339,7 +250,7 @@ export class Messages extends ClientSDK {
             }),
         });
 
-        const context = { operationID: "sendMessage", oAuth2Scopes: [], securitySource: null };
+        const context = { operationID: "messages.send", oAuth2Scopes: [], securitySource: null };
 
         const request$ = this.createRequest$(
             context,
@@ -371,11 +282,11 @@ export class Messages extends ClientSDK {
             retryCodes: options?.retryCodes || ["5XX"],
         });
 
-        const [result$] = await this.matcher<operations.SendMessageResponse>()
-            .sse(200, operations.SendMessageResponse$inboundSchema)
-            .json(400, operations.SendMessageResponse$inboundSchema)
-            .json(401, operations.SendMessageResponse$inboundSchema)
-            .json(402, operations.SendMessageResponse$inboundSchema)
+        const [result$] = await this.matcher<operations.MessagesSendResponse>()
+            .sse(200, operations.MessagesSendResponse$inboundSchema)
+            .json(400, operations.MessagesSendResponse$inboundSchema)
+            .json(401, operations.MessagesSendResponse$inboundSchema)
+            .json(402, operations.MessagesSendResponse$inboundSchema)
             .fail("5XX")
             .match(response);
 
@@ -386,24 +297,24 @@ export class Messages extends ClientSDK {
      * Delete message
      *
      * @remarks
-     * Remove message from message history, given a message ID
+     * Remove message from message history by ID
      */
     async delete(
         messageId: number,
         options?: RequestOptions
-    ): Promise<operations.DeleteMessageResponse> {
-        const input$: operations.DeleteMessageRequest = {
+    ): Promise<operations.MessagesDeleteResponse> {
+        const input$: operations.MessagesDeleteRequest = {
             messageId: messageId,
         };
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.DeleteMessageRequest$outboundSchema.parse(value$),
+            (value$) => operations.MessagesDeleteRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/api/v5/message")();
+        const path$ = this.templateURLComponent("/api/v6/message")();
 
         const query$ = encodeFormQuery$({
             messageId: payload$.messageId,
@@ -417,7 +328,7 @@ export class Messages extends ClientSDK {
             }),
         });
 
-        const context = { operationID: "deleteMessage", oAuth2Scopes: [], securitySource: null };
+        const context = { operationID: "messages.delete", oAuth2Scopes: [], securitySource: null };
 
         const request$ = this.createRequest$(
             context,
@@ -449,11 +360,11 @@ export class Messages extends ClientSDK {
             retryCodes: options?.retryCodes || ["5XX"],
         });
 
-        const [result$] = await this.matcher<operations.DeleteMessageResponse>()
-            .json(200, operations.DeleteMessageResponse$inboundSchema)
-            .json(400, operations.DeleteMessageResponse$inboundSchema)
-            .json(401, operations.DeleteMessageResponse$inboundSchema)
-            .json(402, operations.DeleteMessageResponse$inboundSchema)
+        const [result$] = await this.matcher<operations.MessagesDeleteResponse>()
+            .json(200, operations.MessagesDeleteResponse$inboundSchema)
+            .json(400, operations.MessagesDeleteResponse$inboundSchema)
+            .json(401, operations.MessagesDeleteResponse$inboundSchema)
+            .json(402, operations.MessagesDeleteResponse$inboundSchema)
             .fail("5XX")
             .match(response);
 
