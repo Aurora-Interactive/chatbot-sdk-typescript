@@ -13,8 +13,16 @@ export type GetChatPreviewRequest = {
     chatId: number;
 };
 
+/**
+ * Latest message in the given chat, useful as a preview
+ */
+export type GetChatPreviewResponseBody = {
+    content: string;
+    timestamp: number;
+};
+
 export type GetChatPreviewResponse =
-    | components.Message
+    | GetChatPreviewResponseBody
     | components.BadRequestError
     | components.AuthenticationFailedError
     | components.AccountInBadStandingError;
@@ -92,12 +100,51 @@ export namespace GetChatPreviewRequest$ {
 }
 
 /** @internal */
+export const GetChatPreviewResponseBody$inboundSchema: z.ZodType<
+    GetChatPreviewResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    content: z.string(),
+    timestamp: z.number().int(),
+});
+
+/** @internal */
+export type GetChatPreviewResponseBody$Outbound = {
+    content: string;
+    timestamp: number;
+};
+
+/** @internal */
+export const GetChatPreviewResponseBody$outboundSchema: z.ZodType<
+    GetChatPreviewResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetChatPreviewResponseBody
+> = z.object({
+    content: z.string(),
+    timestamp: z.number().int(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetChatPreviewResponseBody$ {
+    /** @deprecated use `GetChatPreviewResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetChatPreviewResponseBody$inboundSchema;
+    /** @deprecated use `GetChatPreviewResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetChatPreviewResponseBody$outboundSchema;
+    /** @deprecated use `GetChatPreviewResponseBody$Outbound` instead. */
+    export type Outbound = GetChatPreviewResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetChatPreviewResponse$inboundSchema: z.ZodType<
     GetChatPreviewResponse,
     z.ZodTypeDef,
     unknown
 > = z.union([
-    components.Message$inboundSchema,
+    z.lazy(() => GetChatPreviewResponseBody$inboundSchema),
     components.BadRequestError$inboundSchema,
     components.AuthenticationFailedError$inboundSchema,
     components.AccountInBadStandingError$inboundSchema,
@@ -105,7 +152,7 @@ export const GetChatPreviewResponse$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetChatPreviewResponse$Outbound =
-    | components.Message$Outbound
+    | GetChatPreviewResponseBody$Outbound
     | components.BadRequestError$Outbound
     | components.AuthenticationFailedError$Outbound
     | components.AccountInBadStandingError$Outbound;
@@ -116,7 +163,7 @@ export const GetChatPreviewResponse$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetChatPreviewResponse
 > = z.union([
-    components.Message$outboundSchema,
+    z.lazy(() => GetChatPreviewResponseBody$outboundSchema),
     components.BadRequestError$outboundSchema,
     components.AuthenticationFailedError$outboundSchema,
     components.AccountInBadStandingError$outboundSchema,

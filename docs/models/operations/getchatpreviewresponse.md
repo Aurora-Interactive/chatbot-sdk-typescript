@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### `components.Message`
+### `operations.GetChatPreviewResponseBody`
 
 ```typescript
-const value: components.Message = /* values here */
+const value: operations.GetChatPreviewResponseBody = /* values here */
 ```
 
 ### `components.BadRequestError`
