@@ -12,16 +12,28 @@
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
-### NPM/PNMP/Bun/Yarn
+### NPM
 
 ```bash
-[npm/pnpm/bun] add @aurora-interactive/chatbot-api-sdk
+npm add <UNSET>
+```
+
+### PNPM
+
+```bash
+pnpm add <UNSET>
+```
+
+### Bun
+
+```bash
+bun add <UNSET>
 ```
 
 ### Yarn
 
 ```bash
-yarn add @aurora-interactive/chatbot-api-sdk zod
+yarn add <UNSET> zod
 
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.
@@ -41,23 +53,162 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 <!-- Start SDK Example Usage [usage] -->
 ## SDK Example Usage
 
-### Example
+### Example 1
 
 ```typescript
 import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
 
-//! You will need to have a valid access token to use the SDK with the access token parameter
-// you can use the SDK without the accessToken parameter and then make a new instance
-// after you have gotten an accessToken with sdk.users.login(...) or sdk.users.signup(...)
-const auroraChatbotSDK = new AuroraChatbotSDK({
-    accessToken: "abc123"
-});
+const auroraChatbotSDK = new AuroraChatbotSDK();
 
 async function run() {
-    const result = await auroraChatbotSDK.characters.list();
+    const result = await auroraChatbotSDK.users.login({
+        username: "Christelle68",
+        password: "VVxb7UVU0peMp3a",
+    });
 
     // Handle the result
     console.log(result);
+}
+
+run();
+
+```
+
+### Example 2
+
+```typescript
+import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
+
+const auroraChatbotSDK = new AuroraChatbotSDK();
+
+async function run() {
+    const result = await auroraChatbotSDK.characters.list(25, 150);
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+
+### Example 3
+
+```typescript
+import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
+
+const auroraChatbotSDK = new AuroraChatbotSDK();
+
+async function run() {
+    const result = await auroraChatbotSDK.characters.create({
+        iconImage: "<value>",
+        bannerImage: "<value>",
+        name: "<value>",
+        description: "Multi-tiered human-resource model",
+        aiPrompt: "<value>",
+        initialResponse: "<value>",
+        specialMessages: [
+            {
+                startsWith: "<value>",
+                endsWith: ["<value>"],
+                prompt: "<value>",
+            },
+        ],
+    });
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+
+### Example 4
+
+```typescript
+import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
+
+const auroraChatbotSDK = new AuroraChatbotSDK();
+
+async function run() {
+    const result = await auroraChatbotSDK.chats.list();
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+
+### Example 5
+
+```typescript
+import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
+
+const auroraChatbotSDK = new AuroraChatbotSDK();
+
+async function run() {
+    const result = await auroraChatbotSDK.chats.initialize(330905);
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+
+### Example 6
+
+```typescript
+import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
+
+const auroraChatbotSDK = new AuroraChatbotSDK();
+
+async function run() {
+    const result = await auroraChatbotSDK.chats.delete(8);
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+
+### Example 7
+
+```typescript
+import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
+
+const auroraChatbotSDK = new AuroraChatbotSDK();
+
+async function run() {
+    const result = await auroraChatbotSDK.messages.save("system", "<value>", 25408, 337);
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+
+### Example 8
+
+```typescript
+import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
+
+const auroraChatbotSDK = new AuroraChatbotSDK();
+
+async function run() {
+    const result = await auroraChatbotSDK.messages.send(516969, 157994, "<value>");
+
+    for await (const event of result) {
+        // Handle the event
+    }
 }
 
 run();
@@ -68,15 +219,22 @@ run();
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
+### [users](docs/sdks/users/README.md)
+
+* [login](docs/sdks/users/README.md#login) - Login
+* [signup](docs/sdks/users/README.md#signup) - User signup
+
 ### [characters](docs/sdks/characters/README.md)
 
 * [list](docs/sdks/characters/README.md#list) - Character metadata
-* [getImageData](docs/sdks/characters/README.md#getimagedata) - Character image visuals
+* [banner](docs/sdks/characters/README.md#banner) - Character banner image
+* [get](docs/sdks/characters/README.md#get) - Get information about a character
 * [create](docs/sdks/characters/README.md#create) - Create character
 
 ### [chats](docs/sdks/chats/README.md)
 
-* [listForUser](docs/sdks/chats/README.md#listforuser) - Get all chats assigned to user
+* [list](docs/sdks/chats/README.md#list) - Get all chats assigned to a user
+* [preview](docs/sdks/chats/README.md#preview) - Get the latest message from the given chat
 * [initialize](docs/sdks/chats/README.md#initialize) - Initialize chat with AI character
 * [delete](docs/sdks/chats/README.md#delete) - Delete a chat
 
@@ -84,7 +242,6 @@ run();
 
 * [save](docs/sdks/messages/README.md#save) - Save chat message
 * [history](docs/sdks/messages/README.md#history) - Get full message history
-* [context](docs/sdks/messages/README.md#context) - Get chat context
 * [send](docs/sdks/messages/README.md#send) - Send message
 * [delete](docs/sdks/messages/README.md#delete) - Delete message
 <!-- End Available Resources and Operations [operations] -->
@@ -94,11 +251,9 @@ run();
 
 All SDK methods return a response object or throw an error. If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Error type.
 
-| Error Object                     | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| errors.BadRequestError           | 400                              | application/json                 |
-| errors.AuthenticationFailedError | 401                              | application/json                 |
-| errors.SDKError                  | 4xx-5xx                          | */*                              |
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging. 
 
@@ -112,7 +267,10 @@ const auroraChatbotSDK = new AuroraChatbotSDK();
 async function run() {
     let result;
     try {
-        result = await auroraChatbotSDK.characters.list();
+        result = await auroraChatbotSDK.users.login({
+            username: "Christelle68",
+            password: "VVxb7UVU0peMp3a",
+        });
     } catch (err) {
         switch (true) {
             case err instanceof SDKValidationError: {
@@ -120,14 +278,6 @@ async function run() {
                 console.error(err.pretty());
                 // Raw value may also be inspected
                 console.error(err.rawValue);
-                return;
-            }
-            case err instanceof errors.BadRequestError: {
-                console.error(err); // handle exception
-                return;
-            }
-            case err instanceof errors.AuthenticationFailedError: {
-                console.error(err); // handle exception
                 return;
             }
             default: {
@@ -154,7 +304,7 @@ You can override the default server globally by passing a server index to the `s
 
 | # | Server | Variables |
 | - | ------ | --------- |
-| 0 | `https://api.chatbot.aurora-interactive.online:8443` | None |
+| 0 | `https://chat-api.aurora-interactive.online:8443` | None |
 
 ```typescript
 import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
@@ -164,7 +314,10 @@ const auroraChatbotSDK = new AuroraChatbotSDK({
 });
 
 async function run() {
-    const result = await auroraChatbotSDK.characters.list();
+    const result = await auroraChatbotSDK.users.login({
+        username: "Christelle68",
+        password: "VVxb7UVU0peMp3a",
+    });
 
     // Handle the result
     console.log(result);
@@ -183,11 +336,14 @@ The default server can also be overridden globally by passing a URL to the `serv
 import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
 
 const auroraChatbotSDK = new AuroraChatbotSDK({
-    serverURL: "https://api.chatbot.aurora-interactive.online:8443",
+    serverURL: "https://chat-api.aurora-interactive.online:8443",
 });
 
 async function run() {
-    const result = await auroraChatbotSDK.characters.list();
+    const result = await auroraChatbotSDK.users.login({
+        username: "Christelle68",
+        password: "VVxb7UVU0peMp3a",
+    });
 
     // Handle the result
     console.log(result);
@@ -262,18 +418,9 @@ import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
 const auroraChatbotSDK = new AuroraChatbotSDK();
 
 async function run() {
-    const result = await auroraChatbotSDK.messages.send(516969, "<value>", [
-        {
-            role: "assistant",
-            content: "Hello there! How may I be of assistance?",
-        },
-    ]);
+    const result = await auroraChatbotSDK.messages.send(516969, 157994, "<value>");
 
-    if (res.chatCompletionFragment == null) {
-        throw new Error("failed to create stream: received null value");
-    }
-
-    for await (const event of res.chatCompletionFragment) {
+    for await (const event of result) {
         // Handle the event
     }
 }
@@ -298,18 +445,24 @@ import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
 const auroraChatbotSDK = new AuroraChatbotSDK();
 
 async function run() {
-    const result = await auroraChatbotSDK.characters.list({
-        retries: {
-            strategy: "backoff",
-            backoff: {
-                initialInterval: 1,
-                maxInterval: 50,
-                exponent: 1.1,
-                maxElapsedTime: 100,
-            },
-            retryConnectionErrors: false,
+    const result = await auroraChatbotSDK.users.login(
+        {
+            username: "Christelle68",
+            password: "VVxb7UVU0peMp3a",
         },
-    });
+        {
+            retries: {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 1,
+                    maxInterval: 50,
+                    exponent: 1.1,
+                    maxElapsedTime: 100,
+                },
+                retryConnectionErrors: false,
+            },
+        }
+    );
 
     // Handle the result
     console.log(result);
@@ -337,7 +490,10 @@ const auroraChatbotSDK = new AuroraChatbotSDK({
 });
 
 async function run() {
-    const result = await auroraChatbotSDK.characters.list();
+    const result = await auroraChatbotSDK.users.login({
+        username: "Christelle68",
+        password: "VVxb7UVU0peMp3a",
+    });
 
     // Handle the result
     console.log(result);
