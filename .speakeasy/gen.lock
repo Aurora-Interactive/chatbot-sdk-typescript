@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: d0c6ef81-afa9-4266-a8f1-2430fa28984d
 management:
-  docChecksum: 2c758a3f1dd9cbf8383aebc18ba2aaaf
-  docVersion: 6.1.0
+  docChecksum: 6f41eb22c99964276151e7f8b0ffe81e
+  docVersion: 6.2.0
   speakeasyVersion: 1.344.0
   generationVersion: 2.376.0
-  releaseVersion: 6.1.0
-  configChecksum: 73e7bfe423107ffba2583353bda1bca0
+  releaseVersion: 6.2.0
+  configChecksum: 1a50ff30beeb0b2f947791987043d3b2
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -125,6 +125,7 @@ generatedFiles:
   - docs/models/operations/messagessaveglobals.md
   - docs/models/operations/role.md
   - docs/models/operations/messagessavetimestampedmessageresponse.md
+  - docs/models/operations/messagessavesuccessfulrequest.md
   - docs/models/operations/messagessaveresponse.md
   - docs/models/operations/messageshistoryglobals.md
   - docs/models/operations/messageshistoryrequest.md

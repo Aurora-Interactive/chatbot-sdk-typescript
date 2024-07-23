@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### `components.SuccessfulRequest`
+### `operations.MessagesSaveSuccessfulRequest`
 
 ```typescript
-const value: components.SuccessfulRequest = /* values here */
+const value: operations.MessagesSaveSuccessfulRequest = /* values here */
 ```
 
 ### `components.BadRequestError`

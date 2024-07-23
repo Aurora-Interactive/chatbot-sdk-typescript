@@ -24,8 +24,16 @@ export type MessagesSaveTimestampedMessageResponse = {
     chatId: number;
 };
 
+/**
+ * Message saved successfully
+ */
+export type MessagesSaveSuccessfulRequest = {
+    success?: boolean | undefined;
+    id: number;
+};
+
 export type MessagesSaveResponse =
-    | components.SuccessfulRequest
+    | MessagesSaveSuccessfulRequest
     | components.BadRequestError
     | components.AuthenticationFailedError
     | components.AccountInBadStandingError;
@@ -129,12 +137,51 @@ export namespace MessagesSaveTimestampedMessageResponse$ {
 }
 
 /** @internal */
+export const MessagesSaveSuccessfulRequest$inboundSchema: z.ZodType<
+    MessagesSaveSuccessfulRequest,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    success: z.boolean().default(true),
+    id: z.number().int(),
+});
+
+/** @internal */
+export type MessagesSaveSuccessfulRequest$Outbound = {
+    success: boolean;
+    id: number;
+};
+
+/** @internal */
+export const MessagesSaveSuccessfulRequest$outboundSchema: z.ZodType<
+    MessagesSaveSuccessfulRequest$Outbound,
+    z.ZodTypeDef,
+    MessagesSaveSuccessfulRequest
+> = z.object({
+    success: z.boolean().default(true),
+    id: z.number().int(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace MessagesSaveSuccessfulRequest$ {
+    /** @deprecated use `MessagesSaveSuccessfulRequest$inboundSchema` instead. */
+    export const inboundSchema = MessagesSaveSuccessfulRequest$inboundSchema;
+    /** @deprecated use `MessagesSaveSuccessfulRequest$outboundSchema` instead. */
+    export const outboundSchema = MessagesSaveSuccessfulRequest$outboundSchema;
+    /** @deprecated use `MessagesSaveSuccessfulRequest$Outbound` instead. */
+    export type Outbound = MessagesSaveSuccessfulRequest$Outbound;
+}
+
+/** @internal */
 export const MessagesSaveResponse$inboundSchema: z.ZodType<
     MessagesSaveResponse,
     z.ZodTypeDef,
     unknown
 > = z.union([
-    components.SuccessfulRequest$inboundSchema,
+    z.lazy(() => MessagesSaveSuccessfulRequest$inboundSchema),
     components.BadRequestError$inboundSchema,
     components.AuthenticationFailedError$inboundSchema,
     components.AccountInBadStandingError$inboundSchema,
@@ -142,7 +189,7 @@ export const MessagesSaveResponse$inboundSchema: z.ZodType<
 
 /** @internal */
 export type MessagesSaveResponse$Outbound =
-    | components.SuccessfulRequest$Outbound
+    | MessagesSaveSuccessfulRequest$Outbound
     | components.BadRequestError$Outbound
     | components.AuthenticationFailedError$Outbound
     | components.AccountInBadStandingError$Outbound;
@@ -153,7 +200,7 @@ export const MessagesSaveResponse$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     MessagesSaveResponse
 > = z.union([
-    components.SuccessfulRequest$outboundSchema,
+    z.lazy(() => MessagesSaveSuccessfulRequest$outboundSchema),
     components.BadRequestError$outboundSchema,
     components.AuthenticationFailedError$outboundSchema,
     components.AccountInBadStandingError$outboundSchema,
