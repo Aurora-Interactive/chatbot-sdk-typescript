@@ -9,4 +9,3 @@ export * from "./badrequesterror.js";
 export * from "./characterid.js";
 export * from "./chatcompletionfragment.js";
 export * from "./successfulrequest.js";
-export * from "./timestampedmessage.js";

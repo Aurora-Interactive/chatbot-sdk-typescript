@@ -1,0 +1,11 @@
+# TimestampedMessageResponse
+
+
+## Fields
+
+| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `role`                                                                           | [operations.MessagesHistoryRole](../../models/operations/messageshistoryrole.md) | :heavy_check_mark:                                                               | N/A                                                                              |
+| `content`                                                                        | *string*                                                                         | :heavy_check_mark:                                                               | N/A                                                                              |
+| `timestamp`                                                                      | *number*                                                                         | :heavy_check_mark:                                                               | N/A                                                                              |
+| `id`                                                                             | *number*                                                                         | :heavy_check_mark:                                                               | N/A                                                                              |

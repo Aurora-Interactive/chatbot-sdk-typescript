@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: d0c6ef81-afa9-4266-a8f1-2430fa28984d
 management:
-  docChecksum: 56975056b2a4fdae4dccc6395de92565
-  docVersion: 6.0.1
+  docChecksum: 2c758a3f1dd9cbf8383aebc18ba2aaaf
+  docVersion: 6.1.0
   speakeasyVersion: 1.344.0
   generationVersion: 2.376.0
-  releaseVersion: 6.0.1
-  configChecksum: 290a2d1bf29c61f157dd9500bfbafb26
+  releaseVersion: 6.1.0
+  configChecksum: 73e7bfe423107ffba2583353bda1bca0
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -81,7 +81,6 @@ generatedFiles:
   - src/models/components/accountinbadstandingerror.ts
   - src/models/components/characterid.ts
   - src/models/components/successfulrequest.ts
-  - src/models/components/timestampedmessage.ts
   - src/models/components/chatcompletionfragment.ts
   - src/models/errors/index.ts
   - src/models/operations/index.ts
@@ -129,6 +128,8 @@ generatedFiles:
   - docs/models/operations/messagessaveresponse.md
   - docs/models/operations/messageshistoryglobals.md
   - docs/models/operations/messageshistoryrequest.md
+  - docs/models/operations/messageshistoryrole.md
+  - docs/models/operations/timestampedmessageresponse.md
   - docs/models/operations/messageshistorysuccessfulrequest.md
   - docs/models/operations/messageshistoryresponse.md
   - docs/models/operations/messagessendglobals.md
@@ -146,8 +147,6 @@ generatedFiles:
   - docs/models/components/accountinbadstandingerror.md
   - docs/models/components/characterid.md
   - docs/models/components/successfulrequest.md
-  - docs/models/components/role.md
-  - docs/models/components/timestampedmessage.md
   - docs/models/components/data.md
   - docs/models/components/chatcompletionfragment.md
   - docs/sdks/aurorachatbotsdk/README.md
