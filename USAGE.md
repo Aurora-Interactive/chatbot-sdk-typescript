@@ -5,10 +5,39 @@ import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
 const auroraChatbotSDK = new AuroraChatbotSDK();
 
 async function run() {
-    const result = await auroraChatbotSDK.users.login({
-        username: "Christelle68",
-        password: "VVxb7UVU0peMp3a",
-    });
+    const result = await auroraChatbotSDK.users.login();
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+
+```typescript
+import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
+
+const auroraChatbotSDK = new AuroraChatbotSDK();
+
+async function run() {
+    const result = await auroraChatbotSDK.users.getInfo();
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+
+```typescript
+import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
+
+const auroraChatbotSDK = new AuroraChatbotSDK();
+
+async function run() {
+    const result = await auroraChatbotSDK.users.setInfo("<value>", "<value>");
 
     // Handle the result
     console.log(result);
@@ -41,12 +70,12 @@ const auroraChatbotSDK = new AuroraChatbotSDK();
 
 async function run() {
     const result = await auroraChatbotSDK.characters.create({
-        iconImage: "<value>",
-        bannerImage: "<value>",
         name: "<value>",
         description: "Multi-tiered human-resource model",
         aiPrompt: "<value>",
         initialResponse: "<value>",
+        banner: "AAAAbx",
+        icon: "AAAAbx",
         specialMessages: [
             {
                 startsWith: "<value>",

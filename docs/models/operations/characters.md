@@ -3,10 +3,9 @@
 
 ## Fields
 
-| Field                          | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `name`                         | *string*                       | :heavy_check_mark:             | N/A                            |
-| `description`                  | *string*                       | :heavy_check_mark:             | N/A                            |
-| `iconImage`                    | *string*                       | :heavy_check_mark:             | base64-encoded AVIF image data |
-| `isOfficial`                   | *boolean*                      | :heavy_check_mark:             | N/A                            |
-| `id`                           | *number*                       | :heavy_check_mark:             | N/A                            |
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `name`             | *string*           | :heavy_check_mark: | N/A                |
+| `description`      | *string*           | :heavy_check_mark: | N/A                |
+| `isOfficial`       | *boolean*          | :heavy_check_mark: | N/A                |
+| `id`               | *number*           | :heavy_check_mark: | N/A                |

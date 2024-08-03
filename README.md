@@ -352,6 +352,10 @@ run();
 
 # Development
 
+## Getting Character Images
+Banner and icon (pfp-style) images for each character are stored on an S3 server instance that isn't tied to the API, thus querying for these images is not included in this SDK. To get the character images, make a GET request to our CDN using the following format:
+`https://ai-chat-cdn.aurora-interactive.online/characters/<characterId>/<(banner | icon).avif>`
+
 ## Contributions
 
 While we value open-source contributions to this SDK, this library is generated programmatically. Any manual changes added to internal files will be overwritten on the next generation. 

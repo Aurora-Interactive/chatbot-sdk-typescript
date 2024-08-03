@@ -4,7 +4,6 @@
 ### Available Operations
 
 * [list](#list) - Character metadata
-* [banner](#banner) - Character banner image
 * [get](#get) - Get information about a character
 * [create](#create) - Create character
 
@@ -43,46 +42,6 @@ run();
 ### Response
 
 **Promise\<[operations.CharactersListResponse](../../models/operations/characterslistresponse.md)\>**
-### Errors
-
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
-## banner
-
-Character banner image
-
-### Example Usage
-
-```typescript
-import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
-
-const auroraChatbotSDK = new AuroraChatbotSDK();
-
-async function run() {
-  const result = await auroraChatbotSDK.characters.banner(8);
-
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `characterId`                                                                                                                                                                  | *number*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            | [object Object]                                                                                                                                                                |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
-
-
-### Response
-
-**Promise\<[operations.CharactersBannerResponse](../../models/operations/charactersbannerresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -142,12 +101,12 @@ const auroraChatbotSDK = new AuroraChatbotSDK();
 
 async function run() {
   const result = await auroraChatbotSDK.characters.create({
-    iconImage: "<value>",
-    bannerImage: "<value>",
     name: "<value>",
     description: "Multi-tiered human-resource model",
     aiPrompt: "<value>",
     initialResponse: "<value>",
+    banner: "AAAAbx",
+    icon: "AAAAbx",
     specialMessages: [
       {
         startsWith: "<value>",

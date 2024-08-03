@@ -1,12 +1,12 @@
-# CharactersBannerResponse
+# UsersSetUserInfoResponse
 
 
 ## Supported Types
 
-### `operations.CharactersBannerSuccessfulRequest`
+### `components.SuccessfulRequest`
 
 ```typescript
-const value: operations.CharactersBannerSuccessfulRequest = /* values here */
+const value: components.SuccessfulRequest = /* values here */
 ```
 
 ### `components.BadRequestError`

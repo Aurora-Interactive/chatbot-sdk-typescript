@@ -1,17 +1,17 @@
-speakeasyVersion: 1.344.0
+speakeasyVersion: 1.352.1
 sources:
     aurora-chatbot-api-schema:
         sourceNamespace: aurora-chatbot-api-schema
-        sourceRevisionDigest: sha256:01ac8bbb8169849b39e2730100f3698a2676e7cf58e6f8d980edb42df02fbda9
-        sourceBlobDigest: sha256:1562dbaf7e9826b30e608fdd7bf7ea65a5b693a029f8c0f7d587b9559763e269
+        sourceRevisionDigest: sha256:759f0e7967b562c393b82078413dc262caba62c9c926f78814b533be16d347fa
+        sourceBlobDigest: sha256:92cf58a82c9c5355e7bd30510785a69263ba3638eb4de3c1d74d4c31e0d838e8
         tags:
             - latest
 targets:
     aurora-chatbot-sdk:
         source: aurora-chatbot-api-schema
         sourceNamespace: aurora-chatbot-api-schema
-        sourceRevisionDigest: sha256:01ac8bbb8169849b39e2730100f3698a2676e7cf58e6f8d980edb42df02fbda9
-        sourceBlobDigest: sha256:1562dbaf7e9826b30e608fdd7bf7ea65a5b693a029f8c0f7d587b9559763e269
+        sourceRevisionDigest: sha256:759f0e7967b562c393b82078413dc262caba62c9c926f78814b533be16d347fa
+        sourceBlobDigest: sha256:92cf58a82c9c5355e7bd30510785a69263ba3638eb4de3c1d74d4c31e0d838e8
         outLocation: /Users/antoniospapadakis/Desktop/repos/aurora-chatbot-sdk-typescript
 workflow:
     workflowVersion: 1.0.0

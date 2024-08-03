@@ -1,21 +1,22 @@
 lockVersion: 2.0.0
 id: d0c6ef81-afa9-4266-a8f1-2430fa28984d
 management:
-  docChecksum: 6f41eb22c99964276151e7f8b0ffe81e
-  docVersion: 6.2.0
-  speakeasyVersion: 1.344.0
-  generationVersion: 2.376.0
-  releaseVersion: 6.2.0
-  configChecksum: 1a50ff30beeb0b2f947791987043d3b2
+  docChecksum: 41c558cb2fbc7a06600296dc7e87f782
+  docVersion: 7.0.0
+  speakeasyVersion: 1.352.1
+  generationVersion: 2.385.1
+  releaseVersion: 7.0.0
+  configChecksum: f4a4116292d6b57e4d889b7ebd1c0bb9
 features:
   typescript:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.5
-    core: 3.11.7
+    core: 3.11.13
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
-    errors: 2.81.12
+    envVarSecurityUsage: 0.1.1
+    errors: 2.82.0
     examples: 2.81.4
     flattening: 2.81.1
     globalSecurityCallbacks: 0.1.0
@@ -42,10 +43,12 @@ generatedFiles:
   - src/index.ts
   - src/lib/base64.ts
   - src/lib/config.ts
+  - src/lib/dlv.ts
   - src/lib/encodings.ts
   - src/lib/event-streams.ts
   - src/lib/http.ts
   - src/lib/is-plain-object.ts
+  - src/lib/matchers.ts
   - src/lib/primitives.ts
   - src/lib/retries.ts
   - src/lib/schemas.ts
@@ -53,18 +56,21 @@ generatedFiles:
   - src/lib/security.ts
   - src/lib/url.ts
   - src/sdk/index.ts
+  - src/models/errors/httpclienterrors.ts
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
   - src/types/blobs.ts
   - src/types/enums.ts
+  - src/types/fp.ts
   - src/types/index.ts
   - src/types/operations.ts
   - src/types/rfcdate.ts
   - tsconfig.json
   - src/models/operations/userslogin.ts
+  - src/models/operations/usersgetuserinfo.ts
+  - src/models/operations/userssetuserinfo.ts
   - src/models/operations/userssignup.ts
   - src/models/operations/characterslist.ts
-  - src/models/operations/charactersbanner.ts
   - src/models/operations/charactersget.ts
   - src/models/operations/characterscreate.ts
   - src/models/operations/chatslist.ts
@@ -78,15 +84,21 @@ generatedFiles:
   - src/models/components/accesstokenobj.ts
   - src/models/components/badrequesterror.ts
   - src/models/components/authenticationfailederror.ts
+  - src/models/components/userinfo.ts
+  - src/models/components/successfulrequest.ts
   - src/models/components/accountinbadstandingerror.ts
   - src/models/components/characterid.ts
-  - src/models/components/successfulrequest.ts
   - src/models/components/chatcompletionfragment.ts
   - src/models/errors/index.ts
   - src/models/operations/index.ts
   - src/models/components/index.ts
   - docs/models/operations/usersloginrequestbody.md
   - docs/models/operations/usersloginresponse.md
+  - docs/models/operations/usersgetuserinfoglobals.md
+  - docs/models/operations/usersgetuserinforequest.md
+  - docs/models/operations/usersgetuserinforesponse.md
+  - docs/models/operations/userssetuserinfoglobals.md
+  - docs/models/operations/userssetuserinforesponse.md
   - docs/models/operations/userssignuprequestbody.md
   - docs/models/operations/userssignupresponse.md
   - docs/models/operations/characterslistglobals.md
@@ -94,10 +106,6 @@ generatedFiles:
   - docs/models/operations/characters.md
   - docs/models/operations/characterslistsuccessfulrequest.md
   - docs/models/operations/characterslistresponse.md
-  - docs/models/operations/charactersbannerglobals.md
-  - docs/models/operations/charactersbannerrequest.md
-  - docs/models/operations/charactersbannersuccessfulrequest.md
-  - docs/models/operations/charactersbannerresponse.md
   - docs/models/operations/charactersgetglobals.md
   - docs/models/operations/charactersgetrequest.md
   - docs/models/operations/charactersgetresponsebody.md
@@ -144,10 +152,11 @@ generatedFiles:
   - docs/models/components/badrequesterror.md
   - docs/models/components/authenticationfailederrorerror.md
   - docs/models/components/authenticationfailederror.md
+  - docs/models/components/userinfo.md
+  - docs/models/components/successfulrequest.md
   - docs/models/components/accountinbadstandingerrorerror.md
   - docs/models/components/accountinbadstandingerror.md
   - docs/models/components/characterid.md
-  - docs/models/components/successfulrequest.md
   - docs/models/components/data.md
   - docs/models/components/chatcompletionfragment.md
   - docs/sdks/aurorachatbotsdk/README.md
