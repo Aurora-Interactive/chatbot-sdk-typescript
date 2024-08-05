@@ -15,8 +15,8 @@ export type ChatsDeleteRequest = {
 
 export type ChatsDeleteResponse =
     | components.SuccessfulRequest
-    | components.BadRequestError
-    | components.AuthenticationFailedError;
+    | components.DefaultBadRequest
+    | components.DefaultUnauthorizedResponse;
 
 /** @internal */
 export const ChatsDeleteGlobals$inboundSchema: z.ZodType<
@@ -97,15 +97,15 @@ export const ChatsDeleteResponse$inboundSchema: z.ZodType<
     unknown
 > = z.union([
     components.SuccessfulRequest$inboundSchema,
-    components.BadRequestError$inboundSchema,
-    components.AuthenticationFailedError$inboundSchema,
+    components.DefaultBadRequest$inboundSchema,
+    components.DefaultUnauthorizedResponse$inboundSchema,
 ]);
 
 /** @internal */
 export type ChatsDeleteResponse$Outbound =
     | components.SuccessfulRequest$Outbound
-    | components.BadRequestError$Outbound
-    | components.AuthenticationFailedError$Outbound;
+    | components.DefaultBadRequest$Outbound
+    | components.DefaultUnauthorizedResponse$Outbound;
 
 /** @internal */
 export const ChatsDeleteResponse$outboundSchema: z.ZodType<
@@ -114,8 +114,8 @@ export const ChatsDeleteResponse$outboundSchema: z.ZodType<
     ChatsDeleteResponse
 > = z.union([
     components.SuccessfulRequest$outboundSchema,
-    components.BadRequestError$outboundSchema,
-    components.AuthenticationFailedError$outboundSchema,
+    components.DefaultBadRequest$outboundSchema,
+    components.DefaultUnauthorizedResponse$outboundSchema,
 ]);
 
 /**

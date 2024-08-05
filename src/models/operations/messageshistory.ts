@@ -38,9 +38,9 @@ export type MessagesHistorySuccessfulRequest = {
 
 export type MessagesHistoryResponse =
     | MessagesHistorySuccessfulRequest
-    | components.BadRequestError
-    | components.AuthenticationFailedError
-    | components.AccountInBadStandingError;
+    | components.DefaultBadRequest
+    | components.DefaultUnauthorizedResponse
+    | components.DefaultBadStandingResponse;
 
 /** @internal */
 export const MessagesHistoryGlobals$inboundSchema: z.ZodType<
@@ -224,17 +224,17 @@ export const MessagesHistoryResponse$inboundSchema: z.ZodType<
     unknown
 > = z.union([
     z.lazy(() => MessagesHistorySuccessfulRequest$inboundSchema),
-    components.BadRequestError$inboundSchema,
-    components.AuthenticationFailedError$inboundSchema,
-    components.AccountInBadStandingError$inboundSchema,
+    components.DefaultBadRequest$inboundSchema,
+    components.DefaultUnauthorizedResponse$inboundSchema,
+    components.DefaultBadStandingResponse$inboundSchema,
 ]);
 
 /** @internal */
 export type MessagesHistoryResponse$Outbound =
     | MessagesHistorySuccessfulRequest$Outbound
-    | components.BadRequestError$Outbound
-    | components.AuthenticationFailedError$Outbound
-    | components.AccountInBadStandingError$Outbound;
+    | components.DefaultBadRequest$Outbound
+    | components.DefaultUnauthorizedResponse$Outbound
+    | components.DefaultBadStandingResponse$Outbound;
 
 /** @internal */
 export const MessagesHistoryResponse$outboundSchema: z.ZodType<
@@ -243,9 +243,9 @@ export const MessagesHistoryResponse$outboundSchema: z.ZodType<
     MessagesHistoryResponse
 > = z.union([
     z.lazy(() => MessagesHistorySuccessfulRequest$outboundSchema),
-    components.BadRequestError$outboundSchema,
-    components.AuthenticationFailedError$outboundSchema,
-    components.AccountInBadStandingError$outboundSchema,
+    components.DefaultBadRequest$outboundSchema,
+    components.DefaultUnauthorizedResponse$outboundSchema,
+    components.DefaultBadStandingResponse$outboundSchema,
 ]);
 
 /**

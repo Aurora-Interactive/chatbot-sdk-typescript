@@ -34,8 +34,8 @@ export type CharactersListSuccessfulRequest = {
 };
 
 export type CharactersListResponse =
-    | components.BadRequestError
-    | components.AuthenticationFailedError
+    | components.DefaultBadRequest
+    | components.DefaultUnauthorizedResponse
     | CharactersListSuccessfulRequest;
 
 /** @internal */
@@ -199,15 +199,15 @@ export const CharactersListResponse$inboundSchema: z.ZodType<
     z.ZodTypeDef,
     unknown
 > = z.union([
-    components.BadRequestError$inboundSchema,
-    components.AuthenticationFailedError$inboundSchema,
+    components.DefaultBadRequest$inboundSchema,
+    components.DefaultUnauthorizedResponse$inboundSchema,
     z.lazy(() => CharactersListSuccessfulRequest$inboundSchema),
 ]);
 
 /** @internal */
 export type CharactersListResponse$Outbound =
-    | components.BadRequestError$Outbound
-    | components.AuthenticationFailedError$Outbound
+    | components.DefaultBadRequest$Outbound
+    | components.DefaultUnauthorizedResponse$Outbound
     | CharactersListSuccessfulRequest$Outbound;
 
 /** @internal */
@@ -216,8 +216,8 @@ export const CharactersListResponse$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     CharactersListResponse
 > = z.union([
-    components.BadRequestError$outboundSchema,
-    components.AuthenticationFailedError$outboundSchema,
+    components.DefaultBadRequest$outboundSchema,
+    components.DefaultUnauthorizedResponse$outboundSchema,
     z.lazy(() => CharactersListSuccessfulRequest$outboundSchema),
 ]);
 

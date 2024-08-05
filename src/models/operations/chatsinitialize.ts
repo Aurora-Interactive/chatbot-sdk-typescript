@@ -19,9 +19,9 @@ export type ChatsInitializeSuccessfulRequest = {
 
 export type ChatsInitializeResponse =
     | ChatsInitializeSuccessfulRequest
-    | components.BadRequestError
-    | components.AuthenticationFailedError
-    | components.AccountInBadStandingError;
+    | components.DefaultBadRequest
+    | components.DefaultUnauthorizedResponse
+    | components.DefaultBadStandingResponse;
 
 /** @internal */
 export const ChatsInitializeGlobals$inboundSchema: z.ZodType<
@@ -105,17 +105,17 @@ export const ChatsInitializeResponse$inboundSchema: z.ZodType<
     unknown
 > = z.union([
     z.lazy(() => ChatsInitializeSuccessfulRequest$inboundSchema),
-    components.BadRequestError$inboundSchema,
-    components.AuthenticationFailedError$inboundSchema,
-    components.AccountInBadStandingError$inboundSchema,
+    components.DefaultBadRequest$inboundSchema,
+    components.DefaultUnauthorizedResponse$inboundSchema,
+    components.DefaultBadStandingResponse$inboundSchema,
 ]);
 
 /** @internal */
 export type ChatsInitializeResponse$Outbound =
     | ChatsInitializeSuccessfulRequest$Outbound
-    | components.BadRequestError$Outbound
-    | components.AuthenticationFailedError$Outbound
-    | components.AccountInBadStandingError$Outbound;
+    | components.DefaultBadRequest$Outbound
+    | components.DefaultUnauthorizedResponse$Outbound
+    | components.DefaultBadStandingResponse$Outbound;
 
 /** @internal */
 export const ChatsInitializeResponse$outboundSchema: z.ZodType<
@@ -124,9 +124,9 @@ export const ChatsInitializeResponse$outboundSchema: z.ZodType<
     ChatsInitializeResponse
 > = z.union([
     z.lazy(() => ChatsInitializeSuccessfulRequest$outboundSchema),
-    components.BadRequestError$outboundSchema,
-    components.AuthenticationFailedError$outboundSchema,
-    components.AccountInBadStandingError$outboundSchema,
+    components.DefaultBadRequest$outboundSchema,
+    components.DefaultUnauthorizedResponse$outboundSchema,
+    components.DefaultBadStandingResponse$outboundSchema,
 ]);
 
 /**

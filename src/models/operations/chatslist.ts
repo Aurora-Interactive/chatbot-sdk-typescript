@@ -26,8 +26,8 @@ export type ChatsListSuccessfulRequest = {
 
 export type ChatsListResponse =
     | ChatsListSuccessfulRequest
-    | components.BadRequestError
-    | components.AuthenticationFailedError;
+    | components.DefaultBadRequest
+    | components.DefaultUnauthorizedResponse;
 
 /** @internal */
 export const ChatsListGlobals$inboundSchema: z.ZodType<ChatsListGlobals, z.ZodTypeDef, unknown> =
@@ -163,15 +163,15 @@ export namespace ChatsListSuccessfulRequest$ {
 export const ChatsListResponse$inboundSchema: z.ZodType<ChatsListResponse, z.ZodTypeDef, unknown> =
     z.union([
         z.lazy(() => ChatsListSuccessfulRequest$inboundSchema),
-        components.BadRequestError$inboundSchema,
-        components.AuthenticationFailedError$inboundSchema,
+        components.DefaultBadRequest$inboundSchema,
+        components.DefaultUnauthorizedResponse$inboundSchema,
     ]);
 
 /** @internal */
 export type ChatsListResponse$Outbound =
     | ChatsListSuccessfulRequest$Outbound
-    | components.BadRequestError$Outbound
-    | components.AuthenticationFailedError$Outbound;
+    | components.DefaultBadRequest$Outbound
+    | components.DefaultUnauthorizedResponse$Outbound;
 
 /** @internal */
 export const ChatsListResponse$outboundSchema: z.ZodType<
@@ -180,8 +180,8 @@ export const ChatsListResponse$outboundSchema: z.ZodType<
     ChatsListResponse
 > = z.union([
     z.lazy(() => ChatsListSuccessfulRequest$outboundSchema),
-    components.BadRequestError$outboundSchema,
-    components.AuthenticationFailedError$outboundSchema,
+    components.DefaultBadRequest$outboundSchema,
+    components.DefaultUnauthorizedResponse$outboundSchema,
 ]);
 
 /**

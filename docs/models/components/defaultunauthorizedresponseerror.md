@@ -1,4 +1,4 @@
-# AuthenticationFailedErrorError
+# DefaultUnauthorizedResponseError
 
 
 ## Values

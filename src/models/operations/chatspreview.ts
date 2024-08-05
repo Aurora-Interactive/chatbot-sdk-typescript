@@ -23,9 +23,9 @@ export type ChatsPreviewResponseBody = {
 
 export type ChatsPreviewResponse =
     | ChatsPreviewResponseBody
-    | components.BadRequestError
-    | components.AuthenticationFailedError
-    | components.AccountInBadStandingError;
+    | components.DefaultBadRequest
+    | components.DefaultUnauthorizedResponse
+    | components.DefaultBadStandingResponse;
 
 /** @internal */
 export const ChatsPreviewGlobals$inboundSchema: z.ZodType<
@@ -145,17 +145,17 @@ export const ChatsPreviewResponse$inboundSchema: z.ZodType<
     unknown
 > = z.union([
     z.lazy(() => ChatsPreviewResponseBody$inboundSchema),
-    components.BadRequestError$inboundSchema,
-    components.AuthenticationFailedError$inboundSchema,
-    components.AccountInBadStandingError$inboundSchema,
+    components.DefaultBadRequest$inboundSchema,
+    components.DefaultUnauthorizedResponse$inboundSchema,
+    components.DefaultBadStandingResponse$inboundSchema,
 ]);
 
 /** @internal */
 export type ChatsPreviewResponse$Outbound =
     | ChatsPreviewResponseBody$Outbound
-    | components.BadRequestError$Outbound
-    | components.AuthenticationFailedError$Outbound
-    | components.AccountInBadStandingError$Outbound;
+    | components.DefaultBadRequest$Outbound
+    | components.DefaultUnauthorizedResponse$Outbound
+    | components.DefaultBadStandingResponse$Outbound;
 
 /** @internal */
 export const ChatsPreviewResponse$outboundSchema: z.ZodType<
@@ -164,9 +164,9 @@ export const ChatsPreviewResponse$outboundSchema: z.ZodType<
     ChatsPreviewResponse
 > = z.union([
     z.lazy(() => ChatsPreviewResponseBody$outboundSchema),
-    components.BadRequestError$outboundSchema,
-    components.AuthenticationFailedError$outboundSchema,
-    components.AccountInBadStandingError$outboundSchema,
+    components.DefaultBadRequest$outboundSchema,
+    components.DefaultUnauthorizedResponse$outboundSchema,
+    components.DefaultBadStandingResponse$outboundSchema,
 ]);
 
 /**

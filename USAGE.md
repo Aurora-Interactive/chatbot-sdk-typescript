@@ -37,7 +37,7 @@ import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
 const auroraChatbotSDK = new AuroraChatbotSDK();
 
 async function run() {
-    const result = await auroraChatbotSDK.users.setInfo("<value>", "<value>");
+    const result = await auroraChatbotSDK.users.setInfo("<value>", "<value>", "<value>");
 
     // Handle the result
     console.log(result);

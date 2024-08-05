@@ -3,10 +3,9 @@
  */
 
 export * from "./accesstokenobj.js";
-export * from "./accountinbadstandingerror.js";
-export * from "./authenticationfailederror.js";
-export * from "./badrequesterror.js";
 export * from "./characterid.js";
 export * from "./chatcompletionfragment.js";
+export * from "./defaultbadrequest.js";
+export * from "./defaultbadstandingresponse.js";
+export * from "./defaultunauthorizedresponse.js";
 export * from "./successfulrequest.js";
-export * from "./userinfo.js";

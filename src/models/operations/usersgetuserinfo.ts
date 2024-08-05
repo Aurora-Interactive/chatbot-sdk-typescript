@@ -11,7 +11,18 @@ export type UsersGetUserInfoGlobals = {
 
 export type UsersGetUserInfoRequest = {};
 
-export type UsersGetUserInfoResponse = components.UserInfo | components.AuthenticationFailedError;
+/**
+ * User info
+ */
+export type UsersGetUserInfoSuccessfulRequest = {
+    success?: boolean | undefined;
+    username: string;
+    email: string;
+};
+
+export type UsersGetUserInfoResponse =
+    | components.DefaultUnauthorizedResponse
+    | UsersGetUserInfoSuccessfulRequest;
 
 /** @internal */
 export const UsersGetUserInfoGlobals$inboundSchema: z.ZodType<
@@ -80,19 +91,61 @@ export namespace UsersGetUserInfoRequest$ {
 }
 
 /** @internal */
+export const UsersGetUserInfoSuccessfulRequest$inboundSchema: z.ZodType<
+    UsersGetUserInfoSuccessfulRequest,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    success: z.boolean().default(true),
+    username: z.string(),
+    email: z.string(),
+});
+
+/** @internal */
+export type UsersGetUserInfoSuccessfulRequest$Outbound = {
+    success: boolean;
+    username: string;
+    email: string;
+};
+
+/** @internal */
+export const UsersGetUserInfoSuccessfulRequest$outboundSchema: z.ZodType<
+    UsersGetUserInfoSuccessfulRequest$Outbound,
+    z.ZodTypeDef,
+    UsersGetUserInfoSuccessfulRequest
+> = z.object({
+    success: z.boolean().default(true),
+    username: z.string(),
+    email: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace UsersGetUserInfoSuccessfulRequest$ {
+    /** @deprecated use `UsersGetUserInfoSuccessfulRequest$inboundSchema` instead. */
+    export const inboundSchema = UsersGetUserInfoSuccessfulRequest$inboundSchema;
+    /** @deprecated use `UsersGetUserInfoSuccessfulRequest$outboundSchema` instead. */
+    export const outboundSchema = UsersGetUserInfoSuccessfulRequest$outboundSchema;
+    /** @deprecated use `UsersGetUserInfoSuccessfulRequest$Outbound` instead. */
+    export type Outbound = UsersGetUserInfoSuccessfulRequest$Outbound;
+}
+
+/** @internal */
 export const UsersGetUserInfoResponse$inboundSchema: z.ZodType<
     UsersGetUserInfoResponse,
     z.ZodTypeDef,
     unknown
 > = z.union([
-    components.UserInfo$inboundSchema,
-    components.AuthenticationFailedError$inboundSchema,
+    components.DefaultUnauthorizedResponse$inboundSchema,
+    z.lazy(() => UsersGetUserInfoSuccessfulRequest$inboundSchema),
 ]);
 
 /** @internal */
 export type UsersGetUserInfoResponse$Outbound =
-    | components.UserInfo$Outbound
-    | components.AuthenticationFailedError$Outbound;
+    | components.DefaultUnauthorizedResponse$Outbound
+    | UsersGetUserInfoSuccessfulRequest$Outbound;
 
 /** @internal */
 export const UsersGetUserInfoResponse$outboundSchema: z.ZodType<
@@ -100,8 +153,8 @@ export const UsersGetUserInfoResponse$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     UsersGetUserInfoResponse
 > = z.union([
-    components.UserInfo$outboundSchema,
-    components.AuthenticationFailedError$outboundSchema,
+    components.DefaultUnauthorizedResponse$outboundSchema,
+    z.lazy(() => UsersGetUserInfoSuccessfulRequest$outboundSchema),
 ]);
 
 /**

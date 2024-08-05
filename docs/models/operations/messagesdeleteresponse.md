@@ -9,21 +9,21 @@
 const value: components.SuccessfulRequest = /* values here */
 ```
 
-### `components.BadRequestError`
+### `components.DefaultBadRequest`
 
 ```typescript
-const value: components.BadRequestError = /* values here */
+const value: components.DefaultBadRequest = /* values here */
 ```
 
-### `components.AuthenticationFailedError`
+### `components.DefaultUnauthorizedResponse`
 
 ```typescript
-const value: components.AuthenticationFailedError = /* values here */
+const value: components.DefaultUnauthorizedResponse = /* values here */
 ```
 
-### `components.AccountInBadStandingError`
+### `components.DefaultBadStandingResponse`
 
 ```typescript
-const value: components.AccountInBadStandingError = /* values here */
+const value: components.DefaultBadStandingResponse = /* values here */
 ```
 

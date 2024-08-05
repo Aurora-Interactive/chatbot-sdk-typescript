@@ -1,4 +1,4 @@
-# BadRequestError
+# DefaultBadRequest
 
 One or more request parameters are malformed or invalid
 

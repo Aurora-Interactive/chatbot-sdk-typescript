@@ -17,9 +17,9 @@ export type MessagesSendRequestBody = {
 };
 
 export type MessagesSendResponse =
-    | components.BadRequestError
-    | components.AuthenticationFailedError
-    | components.AccountInBadStandingError
+    | components.DefaultBadRequest
+    | components.DefaultUnauthorizedResponse
+    | components.DefaultBadStandingResponse
     | EventStream<components.ChatCompletionFragment>;
 
 /** @internal */
@@ -106,9 +106,9 @@ export const MessagesSendResponse$inboundSchema: z.ZodType<
     z.ZodTypeDef,
     unknown
 > = z.union([
-    components.BadRequestError$inboundSchema,
-    components.AuthenticationFailedError$inboundSchema,
-    components.AccountInBadStandingError$inboundSchema,
+    components.DefaultBadRequest$inboundSchema,
+    components.DefaultUnauthorizedResponse$inboundSchema,
+    components.DefaultBadStandingResponse$inboundSchema,
     z.instanceof(ReadableStream<Uint8Array>).transform((stream) => {
         return new EventStream({
             stream,
@@ -122,9 +122,9 @@ export const MessagesSendResponse$inboundSchema: z.ZodType<
 
 /** @internal */
 export type MessagesSendResponse$Outbound =
-    | components.BadRequestError$Outbound
-    | components.AuthenticationFailedError$Outbound
-    | components.AccountInBadStandingError$Outbound
+    | components.DefaultBadRequest$Outbound
+    | components.DefaultUnauthorizedResponse$Outbound
+    | components.DefaultBadStandingResponse$Outbound
     | never;
 
 /** @internal */
@@ -133,9 +133,9 @@ export const MessagesSendResponse$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     MessagesSendResponse
 > = z.union([
-    components.BadRequestError$outboundSchema,
-    components.AuthenticationFailedError$outboundSchema,
-    components.AccountInBadStandingError$outboundSchema,
+    components.DefaultBadRequest$outboundSchema,
+    components.DefaultUnauthorizedResponse$outboundSchema,
+    components.DefaultBadStandingResponse$outboundSchema,
     z.never(),
 ]);
 

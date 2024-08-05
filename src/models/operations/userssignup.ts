@@ -11,7 +11,7 @@ export type UsersSignupRequestBody = {
     password: string;
 };
 
-export type UsersSignupResponse = components.AccessTokenObj | components.BadRequestError;
+export type UsersSignupResponse = components.AccessTokenObj | components.DefaultBadRequest;
 
 /** @internal */
 export const UsersSignupRequestBody$inboundSchema: z.ZodType<
@@ -60,19 +60,22 @@ export const UsersSignupResponse$inboundSchema: z.ZodType<
     UsersSignupResponse,
     z.ZodTypeDef,
     unknown
-> = z.union([components.AccessTokenObj$inboundSchema, components.BadRequestError$inboundSchema]);
+> = z.union([components.AccessTokenObj$inboundSchema, components.DefaultBadRequest$inboundSchema]);
 
 /** @internal */
 export type UsersSignupResponse$Outbound =
     | components.AccessTokenObj$Outbound
-    | components.BadRequestError$Outbound;
+    | components.DefaultBadRequest$Outbound;
 
 /** @internal */
 export const UsersSignupResponse$outboundSchema: z.ZodType<
     UsersSignupResponse$Outbound,
     z.ZodTypeDef,
     UsersSignupResponse
-> = z.union([components.AccessTokenObj$outboundSchema, components.BadRequestError$outboundSchema]);
+> = z.union([
+    components.AccessTokenObj$outboundSchema,
+    components.DefaultBadRequest$outboundSchema,
+]);
 
 /**
  * @internal

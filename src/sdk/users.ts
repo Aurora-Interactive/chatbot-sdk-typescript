@@ -7,7 +7,6 @@ import * as m$ from "../lib/matchers.js";
 import * as schemas$ from "../lib/schemas.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import { pathToFunc } from "../lib/url.js";
-import * as components from "../models/components/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
@@ -165,16 +164,19 @@ export class Users extends ClientSDK {
     async setInfo(
         username: string,
         email: string,
+        password: string,
         options?: RequestOptions
     ): Promise<operations.UsersSetUserInfoResponse> {
-        const input$: components.UserInfo | undefined = {
+        const input$: operations.UsersSetUserInfoRequestBody | undefined = {
             username: username,
             email: email,
+            password: password,
         };
 
         const parsed$ = schemas$.safeParse(
             input$,
-            (value$) => components.UserInfo$outboundSchema.optional().parse(value$),
+            (value$) =>
+                operations.UsersSetUserInfoRequestBody$outboundSchema.optional().parse(value$),
             "Input validation failed"
         );
         const payload$ = unwrap$(parsed$);

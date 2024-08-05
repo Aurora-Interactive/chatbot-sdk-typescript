@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: d0c6ef81-afa9-4266-a8f1-2430fa28984d
 management:
-  docChecksum: 41c558cb2fbc7a06600296dc7e87f782
-  docVersion: 7.0.0
+  docChecksum: 12852124efee113b71f3ba8c68610800
+  docVersion: 7.1.0
   speakeasyVersion: 1.352.1
   generationVersion: 2.385.1
-  releaseVersion: 7.0.0
-  configChecksum: f4a4116292d6b57e4d889b7ebd1c0bb9
+  releaseVersion: 7.1.0
+  configChecksum: 82aa6781919516aeb3af424f1fc154c6
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -82,11 +82,10 @@ generatedFiles:
   - src/models/operations/messagessend.ts
   - src/models/operations/messagesdelete.ts
   - src/models/components/accesstokenobj.ts
-  - src/models/components/badrequesterror.ts
-  - src/models/components/authenticationfailederror.ts
-  - src/models/components/userinfo.ts
+  - src/models/components/defaultbadrequest.ts
+  - src/models/components/defaultunauthorizedresponse.ts
   - src/models/components/successfulrequest.ts
-  - src/models/components/accountinbadstandingerror.ts
+  - src/models/components/defaultbadstandingresponse.ts
   - src/models/components/characterid.ts
   - src/models/components/chatcompletionfragment.ts
   - src/models/errors/index.ts
@@ -96,8 +95,10 @@ generatedFiles:
   - docs/models/operations/usersloginresponse.md
   - docs/models/operations/usersgetuserinfoglobals.md
   - docs/models/operations/usersgetuserinforequest.md
+  - docs/models/operations/usersgetuserinfosuccessfulrequest.md
   - docs/models/operations/usersgetuserinforesponse.md
   - docs/models/operations/userssetuserinfoglobals.md
+  - docs/models/operations/userssetuserinforequestbody.md
   - docs/models/operations/userssetuserinforesponse.md
   - docs/models/operations/userssignuprequestbody.md
   - docs/models/operations/userssignupresponse.md
@@ -149,13 +150,12 @@ generatedFiles:
   - docs/models/operations/messagesdeleteresponse.md
   - docs/models/components/accesstokenobj.md
   - docs/models/components/errort.md
-  - docs/models/components/badrequesterror.md
-  - docs/models/components/authenticationfailederrorerror.md
-  - docs/models/components/authenticationfailederror.md
-  - docs/models/components/userinfo.md
+  - docs/models/components/defaultbadrequest.md
+  - docs/models/components/defaultunauthorizedresponseerror.md
+  - docs/models/components/defaultunauthorizedresponse.md
   - docs/models/components/successfulrequest.md
-  - docs/models/components/accountinbadstandingerrorerror.md
-  - docs/models/components/accountinbadstandingerror.md
+  - docs/models/components/defaultbadstandingresponseerror.md
+  - docs/models/components/defaultbadstandingresponse.md
   - docs/models/components/characterid.md
   - docs/models/components/data.md
   - docs/models/components/chatcompletionfragment.md

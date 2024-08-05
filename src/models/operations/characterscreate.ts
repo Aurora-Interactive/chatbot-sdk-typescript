@@ -41,9 +41,9 @@ export type CharactersCreateSuccessfulRequest = {
 
 export type CharactersCreateResponse =
     | CharactersCreateSuccessfulRequest
-    | components.BadRequestError
-    | components.AuthenticationFailedError
-    | components.AccountInBadStandingError;
+    | components.DefaultBadRequest
+    | components.DefaultUnauthorizedResponse
+    | components.DefaultBadStandingResponse;
 
 /** @internal */
 export const CharactersCreateGlobals$inboundSchema: z.ZodType<
@@ -220,17 +220,17 @@ export const CharactersCreateResponse$inboundSchema: z.ZodType<
     unknown
 > = z.union([
     z.lazy(() => CharactersCreateSuccessfulRequest$inboundSchema),
-    components.BadRequestError$inboundSchema,
-    components.AuthenticationFailedError$inboundSchema,
-    components.AccountInBadStandingError$inboundSchema,
+    components.DefaultBadRequest$inboundSchema,
+    components.DefaultUnauthorizedResponse$inboundSchema,
+    components.DefaultBadStandingResponse$inboundSchema,
 ]);
 
 /** @internal */
 export type CharactersCreateResponse$Outbound =
     | CharactersCreateSuccessfulRequest$Outbound
-    | components.BadRequestError$Outbound
-    | components.AuthenticationFailedError$Outbound
-    | components.AccountInBadStandingError$Outbound;
+    | components.DefaultBadRequest$Outbound
+    | components.DefaultUnauthorizedResponse$Outbound
+    | components.DefaultBadStandingResponse$Outbound;
 
 /** @internal */
 export const CharactersCreateResponse$outboundSchema: z.ZodType<
@@ -239,9 +239,9 @@ export const CharactersCreateResponse$outboundSchema: z.ZodType<
     CharactersCreateResponse
 > = z.union([
     z.lazy(() => CharactersCreateSuccessfulRequest$outboundSchema),
-    components.BadRequestError$outboundSchema,
-    components.AuthenticationFailedError$outboundSchema,
-    components.AccountInBadStandingError$outboundSchema,
+    components.DefaultBadRequest$outboundSchema,
+    components.DefaultUnauthorizedResponse$outboundSchema,
+    components.DefaultBadStandingResponse$outboundSchema,
 ]);
 
 /**

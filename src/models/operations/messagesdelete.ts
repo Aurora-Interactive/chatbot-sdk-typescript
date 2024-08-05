@@ -15,9 +15,9 @@ export type MessagesDeleteRequest = {
 
 export type MessagesDeleteResponse =
     | components.SuccessfulRequest
-    | components.BadRequestError
-    | components.AuthenticationFailedError
-    | components.AccountInBadStandingError;
+    | components.DefaultBadRequest
+    | components.DefaultUnauthorizedResponse
+    | components.DefaultBadStandingResponse;
 
 /** @internal */
 export const MessagesDeleteGlobals$inboundSchema: z.ZodType<
@@ -98,17 +98,17 @@ export const MessagesDeleteResponse$inboundSchema: z.ZodType<
     unknown
 > = z.union([
     components.SuccessfulRequest$inboundSchema,
-    components.BadRequestError$inboundSchema,
-    components.AuthenticationFailedError$inboundSchema,
-    components.AccountInBadStandingError$inboundSchema,
+    components.DefaultBadRequest$inboundSchema,
+    components.DefaultUnauthorizedResponse$inboundSchema,
+    components.DefaultBadStandingResponse$inboundSchema,
 ]);
 
 /** @internal */
 export type MessagesDeleteResponse$Outbound =
     | components.SuccessfulRequest$Outbound
-    | components.BadRequestError$Outbound
-    | components.AuthenticationFailedError$Outbound
-    | components.AccountInBadStandingError$Outbound;
+    | components.DefaultBadRequest$Outbound
+    | components.DefaultUnauthorizedResponse$Outbound
+    | components.DefaultBadStandingResponse$Outbound;
 
 /** @internal */
 export const MessagesDeleteResponse$outboundSchema: z.ZodType<
@@ -117,9 +117,9 @@ export const MessagesDeleteResponse$outboundSchema: z.ZodType<
     MessagesDeleteResponse
 > = z.union([
     components.SuccessfulRequest$outboundSchema,
-    components.BadRequestError$outboundSchema,
-    components.AuthenticationFailedError$outboundSchema,
-    components.AccountInBadStandingError$outboundSchema,
+    components.DefaultBadRequest$outboundSchema,
+    components.DefaultUnauthorizedResponse$outboundSchema,
+    components.DefaultBadStandingResponse$outboundSchema,
 ]);
 
 /**

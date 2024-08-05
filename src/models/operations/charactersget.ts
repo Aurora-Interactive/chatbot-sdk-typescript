@@ -23,8 +23,8 @@ export type CharactersGetResponseBody = {
 };
 
 export type CharactersGetResponse =
-    | components.BadRequestError
-    | components.AuthenticationFailedError
+    | components.DefaultBadRequest
+    | components.DefaultUnauthorizedResponse
     | CharactersGetResponseBody;
 
 /** @internal */
@@ -147,15 +147,15 @@ export const CharactersGetResponse$inboundSchema: z.ZodType<
     z.ZodTypeDef,
     unknown
 > = z.union([
-    components.BadRequestError$inboundSchema,
-    components.AuthenticationFailedError$inboundSchema,
+    components.DefaultBadRequest$inboundSchema,
+    components.DefaultUnauthorizedResponse$inboundSchema,
     z.lazy(() => CharactersGetResponseBody$inboundSchema),
 ]);
 
 /** @internal */
 export type CharactersGetResponse$Outbound =
-    | components.BadRequestError$Outbound
-    | components.AuthenticationFailedError$Outbound
+    | components.DefaultBadRequest$Outbound
+    | components.DefaultUnauthorizedResponse$Outbound
     | CharactersGetResponseBody$Outbound;
 
 /** @internal */
@@ -164,8 +164,8 @@ export const CharactersGetResponse$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     CharactersGetResponse
 > = z.union([
-    components.BadRequestError$outboundSchema,
-    components.AuthenticationFailedError$outboundSchema,
+    components.DefaultBadRequest$outboundSchema,
+    components.DefaultUnauthorizedResponse$outboundSchema,
     z.lazy(() => CharactersGetResponseBody$outboundSchema),
 ]);
 

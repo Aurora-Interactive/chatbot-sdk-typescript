@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### `components.UserInfo`
+### `operations.UsersGetUserInfoSuccessfulRequest`
 
 ```typescript
-const value: components.UserInfo = /* values here */
+const value: operations.UsersGetUserInfoSuccessfulRequest = /* values here */
 ```
 
-### `components.AuthenticationFailedError`
+### `components.DefaultUnauthorizedResponse`
 
 ```typescript
-const value: components.AuthenticationFailedError = /* values here */
+const value: components.DefaultUnauthorizedResponse = /* values here */
 ```
 

@@ -1,4 +1,4 @@
-# AccountInBadStandingErrorError
+# DefaultBadStandingResponseError
 
 
 ## Values

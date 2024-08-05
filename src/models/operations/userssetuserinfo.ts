@@ -9,10 +9,16 @@ export type UsersSetUserInfoGlobals = {
     accessToken?: string | undefined;
 };
 
+export type UsersSetUserInfoRequestBody = {
+    username: string;
+    email: string;
+    password: string;
+};
+
 export type UsersSetUserInfoResponse =
     | components.SuccessfulRequest
-    | components.BadRequestError
-    | components.AuthenticationFailedError;
+    | components.DefaultBadRequest
+    | components.DefaultUnauthorizedResponse;
 
 /** @internal */
 export const UsersSetUserInfoGlobals$inboundSchema: z.ZodType<
@@ -51,21 +57,63 @@ export namespace UsersSetUserInfoGlobals$ {
 }
 
 /** @internal */
+export const UsersSetUserInfoRequestBody$inboundSchema: z.ZodType<
+    UsersSetUserInfoRequestBody,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    username: z.string(),
+    email: z.string(),
+    password: z.string(),
+});
+
+/** @internal */
+export type UsersSetUserInfoRequestBody$Outbound = {
+    username: string;
+    email: string;
+    password: string;
+};
+
+/** @internal */
+export const UsersSetUserInfoRequestBody$outboundSchema: z.ZodType<
+    UsersSetUserInfoRequestBody$Outbound,
+    z.ZodTypeDef,
+    UsersSetUserInfoRequestBody
+> = z.object({
+    username: z.string(),
+    email: z.string(),
+    password: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace UsersSetUserInfoRequestBody$ {
+    /** @deprecated use `UsersSetUserInfoRequestBody$inboundSchema` instead. */
+    export const inboundSchema = UsersSetUserInfoRequestBody$inboundSchema;
+    /** @deprecated use `UsersSetUserInfoRequestBody$outboundSchema` instead. */
+    export const outboundSchema = UsersSetUserInfoRequestBody$outboundSchema;
+    /** @deprecated use `UsersSetUserInfoRequestBody$Outbound` instead. */
+    export type Outbound = UsersSetUserInfoRequestBody$Outbound;
+}
+
+/** @internal */
 export const UsersSetUserInfoResponse$inboundSchema: z.ZodType<
     UsersSetUserInfoResponse,
     z.ZodTypeDef,
     unknown
 > = z.union([
     components.SuccessfulRequest$inboundSchema,
-    components.BadRequestError$inboundSchema,
-    components.AuthenticationFailedError$inboundSchema,
+    components.DefaultBadRequest$inboundSchema,
+    components.DefaultUnauthorizedResponse$inboundSchema,
 ]);
 
 /** @internal */
 export type UsersSetUserInfoResponse$Outbound =
     | components.SuccessfulRequest$Outbound
-    | components.BadRequestError$Outbound
-    | components.AuthenticationFailedError$Outbound;
+    | components.DefaultBadRequest$Outbound
+    | components.DefaultUnauthorizedResponse$Outbound;
 
 /** @internal */
 export const UsersSetUserInfoResponse$outboundSchema: z.ZodType<
@@ -74,8 +122,8 @@ export const UsersSetUserInfoResponse$outboundSchema: z.ZodType<
     UsersSetUserInfoResponse
 > = z.union([
     components.SuccessfulRequest$outboundSchema,
-    components.BadRequestError$outboundSchema,
-    components.AuthenticationFailedError$outboundSchema,
+    components.DefaultBadRequest$outboundSchema,
+    components.DefaultUnauthorizedResponse$outboundSchema,
 ]);
 
 /**

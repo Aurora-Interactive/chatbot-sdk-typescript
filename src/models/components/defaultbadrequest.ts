@@ -14,7 +14,7 @@ export type ErrorT = ClosedEnum<typeof ErrorT>;
 /**
  * One or more request parameters are malformed or invalid
  */
-export type BadRequestError = {
+export type DefaultBadRequest = {
     success?: boolean | undefined;
     error: ErrorT;
 };
@@ -37,23 +37,23 @@ export namespace ErrorT$ {
 }
 
 /** @internal */
-export const BadRequestError$inboundSchema: z.ZodType<BadRequestError, z.ZodTypeDef, unknown> =
+export const DefaultBadRequest$inboundSchema: z.ZodType<DefaultBadRequest, z.ZodTypeDef, unknown> =
     z.object({
         success: z.boolean().default(false),
         error: ErrorT$inboundSchema,
     });
 
 /** @internal */
-export type BadRequestError$Outbound = {
+export type DefaultBadRequest$Outbound = {
     success: boolean;
     error: string;
 };
 
 /** @internal */
-export const BadRequestError$outboundSchema: z.ZodType<
-    BadRequestError$Outbound,
+export const DefaultBadRequest$outboundSchema: z.ZodType<
+    DefaultBadRequest$Outbound,
     z.ZodTypeDef,
-    BadRequestError
+    DefaultBadRequest
 > = z.object({
     success: z.boolean().default(false),
     error: ErrorT$outboundSchema,
@@ -63,11 +63,11 @@ export const BadRequestError$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace BadRequestError$ {
-    /** @deprecated use `BadRequestError$inboundSchema` instead. */
-    export const inboundSchema = BadRequestError$inboundSchema;
-    /** @deprecated use `BadRequestError$outboundSchema` instead. */
-    export const outboundSchema = BadRequestError$outboundSchema;
-    /** @deprecated use `BadRequestError$Outbound` instead. */
-    export type Outbound = BadRequestError$Outbound;
+export namespace DefaultBadRequest$ {
+    /** @deprecated use `DefaultBadRequest$inboundSchema` instead. */
+    export const inboundSchema = DefaultBadRequest$inboundSchema;
+    /** @deprecated use `DefaultBadRequest$outboundSchema` instead. */
+    export const outboundSchema = DefaultBadRequest$outboundSchema;
+    /** @deprecated use `DefaultBadRequest$Outbound` instead. */
+    export type Outbound = DefaultBadRequest$Outbound;
 }

@@ -12,8 +12,8 @@ export type UsersLoginRequestBody = {
 
 export type UsersLoginResponse =
     | components.AccessTokenObj
-    | components.BadRequestError
-    | components.AuthenticationFailedError;
+    | components.DefaultBadRequest
+    | components.DefaultUnauthorizedResponse;
 
 /** @internal */
 export const UsersLoginRequestBody$inboundSchema: z.ZodType<
@@ -61,15 +61,15 @@ export const UsersLoginResponse$inboundSchema: z.ZodType<
     unknown
 > = z.union([
     components.AccessTokenObj$inboundSchema,
-    components.BadRequestError$inboundSchema,
-    components.AuthenticationFailedError$inboundSchema,
+    components.DefaultBadRequest$inboundSchema,
+    components.DefaultUnauthorizedResponse$inboundSchema,
 ]);
 
 /** @internal */
 export type UsersLoginResponse$Outbound =
     | components.AccessTokenObj$Outbound
-    | components.BadRequestError$Outbound
-    | components.AuthenticationFailedError$Outbound;
+    | components.DefaultBadRequest$Outbound
+    | components.DefaultUnauthorizedResponse$Outbound;
 
 /** @internal */
 export const UsersLoginResponse$outboundSchema: z.ZodType<
@@ -78,8 +78,8 @@ export const UsersLoginResponse$outboundSchema: z.ZodType<
     UsersLoginResponse
 > = z.union([
     components.AccessTokenObj$outboundSchema,
-    components.BadRequestError$outboundSchema,
-    components.AuthenticationFailedError$outboundSchema,
+    components.DefaultBadRequest$outboundSchema,
+    components.DefaultUnauthorizedResponse$outboundSchema,
 ]);
 
 /**
