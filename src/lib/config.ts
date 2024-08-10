@@ -3,6 +3,7 @@
  */
 
 import { HTTPClient } from "./http.js";
+import { Logger } from "./logger.js";
 import { RetryConfig } from "./retries.js";
 import { Params, pathToFunc } from "./url.js";
 
@@ -36,6 +37,7 @@ export type SDKOptions = {
      */
     retryConfig?: RetryConfig;
     timeoutMs?: number;
+    debugLogger?: Logger;
 };
 
 export function serverURLFromOptions(options: SDKOptions): URL | null {
@@ -57,8 +59,8 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 
 export const SDK_METADATA = {
     language: "typescript",
-    openapiDocVersion: "7.1.0",
-    sdkVersion: "7.1.0",
-    genVersion: "2.385.1",
-    userAgent: "speakeasy-sdk/typescript 7.1.0 2.385.1 7.1.0 @aurora-interactive/chatbot-api-sdk",
+    openapiDocVersion: "7.2.0",
+    sdkVersion: "7.2.0",
+    genVersion: "2.393.4",
+    userAgent: "speakeasy-sdk/typescript 7.2.0 2.393.4 7.2.0 @aurora-interactive/chatbot-api-sdk",
 } as const;

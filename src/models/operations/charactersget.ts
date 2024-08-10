@@ -5,10 +5,6 @@
 import * as components from "../components/index.js";
 import * as z from "zod";
 
-export type CharactersGetGlobals = {
-    accessToken?: string | undefined;
-};
-
 export type CharactersGetRequest = {
     characterId: number;
 };
@@ -26,42 +22,6 @@ export type CharactersGetResponse =
     | components.DefaultBadRequest
     | components.DefaultUnauthorizedResponse
     | CharactersGetResponseBody;
-
-/** @internal */
-export const CharactersGetGlobals$inboundSchema: z.ZodType<
-    CharactersGetGlobals,
-    z.ZodTypeDef,
-    unknown
-> = z.object({
-    accessToken: z.string().optional(),
-});
-
-/** @internal */
-export type CharactersGetGlobals$Outbound = {
-    accessToken?: string | undefined;
-};
-
-/** @internal */
-export const CharactersGetGlobals$outboundSchema: z.ZodType<
-    CharactersGetGlobals$Outbound,
-    z.ZodTypeDef,
-    CharactersGetGlobals
-> = z.object({
-    accessToken: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CharactersGetGlobals$ {
-    /** @deprecated use `CharactersGetGlobals$inboundSchema` instead. */
-    export const inboundSchema = CharactersGetGlobals$inboundSchema;
-    /** @deprecated use `CharactersGetGlobals$outboundSchema` instead. */
-    export const outboundSchema = CharactersGetGlobals$outboundSchema;
-    /** @deprecated use `CharactersGetGlobals$Outbound` instead. */
-    export type Outbound = CharactersGetGlobals$Outbound;
-}
 
 /** @internal */
 export const CharactersGetRequest$inboundSchema: z.ZodType<

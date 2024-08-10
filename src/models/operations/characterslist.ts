@@ -5,10 +5,6 @@
 import * as components from "../components/index.js";
 import * as z from "zod";
 
-export type CharactersListGlobals = {
-    accessToken?: string | undefined;
-};
-
 export type CharactersListRequest = {
     numCharacters: number;
     /**
@@ -37,42 +33,6 @@ export type CharactersListResponse =
     | components.DefaultBadRequest
     | components.DefaultUnauthorizedResponse
     | CharactersListSuccessfulRequest;
-
-/** @internal */
-export const CharactersListGlobals$inboundSchema: z.ZodType<
-    CharactersListGlobals,
-    z.ZodTypeDef,
-    unknown
-> = z.object({
-    accessToken: z.string().optional(),
-});
-
-/** @internal */
-export type CharactersListGlobals$Outbound = {
-    accessToken?: string | undefined;
-};
-
-/** @internal */
-export const CharactersListGlobals$outboundSchema: z.ZodType<
-    CharactersListGlobals$Outbound,
-    z.ZodTypeDef,
-    CharactersListGlobals
-> = z.object({
-    accessToken: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CharactersListGlobals$ {
-    /** @deprecated use `CharactersListGlobals$inboundSchema` instead. */
-    export const inboundSchema = CharactersListGlobals$inboundSchema;
-    /** @deprecated use `CharactersListGlobals$outboundSchema` instead. */
-    export const outboundSchema = CharactersListGlobals$outboundSchema;
-    /** @deprecated use `CharactersListGlobals$Outbound` instead. */
-    export type Outbound = CharactersListGlobals$Outbound;
-}
 
 /** @internal */
 export const CharactersListRequest$inboundSchema: z.ZodType<
