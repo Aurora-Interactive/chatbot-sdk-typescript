@@ -1,10 +1,15 @@
 # Role
 
+## Example Usage
+
+```typescript
+import { Role } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+
+let value: Role = "assistant";
+```
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `System`    | system      |
-| `User`      | user        |
-| `Assistant` | assistant   |
+```typescript
+"system" | "user" | "assistant"
+```

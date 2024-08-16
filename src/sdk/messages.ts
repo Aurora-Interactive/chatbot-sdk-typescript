@@ -3,6 +3,7 @@
  */
 
 import { messagesDelete } from "../funcs/messagesDelete.js";
+import { messagesGetMany } from "../funcs/messagesGetMany.js";
 import { messagesHistory } from "../funcs/messagesHistory.js";
 import { messagesSave } from "../funcs/messagesSave.js";
 import { messagesSend, SendAcceptEnum } from "../funcs/messagesSend.js";
@@ -40,6 +41,18 @@ export class Messages extends ClientSDK {
         options?: RequestOptions
     ): Promise<operations.MessagesHistoryResponse> {
         return unwrapAsync(messagesHistory(this, chatId, options));
+    }
+
+    /**
+     * Get a certain number of messages from the message history, up to 100 per request.
+     */
+    async getMany(
+        chatId: number,
+        numMessages: number,
+        from?: number | undefined,
+        options?: RequestOptions
+    ): Promise<operations.MessagesGetManyResponse> {
+        return unwrapAsync(messagesGetMany(this, chatId, numMessages, from, options));
     }
 
     /**

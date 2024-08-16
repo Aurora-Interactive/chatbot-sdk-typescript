@@ -29,6 +29,35 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { AuroraChatbotSDKCore } from "@aurora-interactive/chatbot-api-sdk/core.js";
+import { usersLogin } from "@aurora-interactive/chatbot-api-sdk/funcs/usersLogin.js";
+
+// Use `AuroraChatbotSDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const auroraChatbotSDK = new AuroraChatbotSDKCore();
+
+async function run() {
+  const res = await usersLogin(auroraChatbotSDK);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -61,6 +90,35 @@ const auroraChatbotSDK = new AuroraChatbotSDK();
 
 async function run() {
   const result = await auroraChatbotSDK.users.getInfo();
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { AuroraChatbotSDKCore } from "@aurora-interactive/chatbot-api-sdk/core.js";
+import { usersGetInfo } from "@aurora-interactive/chatbot-api-sdk/funcs/usersGetInfo.js";
+
+// Use `AuroraChatbotSDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const auroraChatbotSDK = new AuroraChatbotSDKCore();
+
+async function run() {
+  const res = await usersGetInfo(auroraChatbotSDK);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -108,6 +166,35 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { AuroraChatbotSDKCore } from "@aurora-interactive/chatbot-api-sdk/core.js";
+import { usersSetInfo } from "@aurora-interactive/chatbot-api-sdk/funcs/usersSetInfo.js";
+
+// Use `AuroraChatbotSDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const auroraChatbotSDK = new AuroraChatbotSDKCore();
+
+async function run() {
+  const res = await usersSetInfo(auroraChatbotSDK, "<value>", "<value>", "<value>");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -142,6 +229,35 @@ const auroraChatbotSDK = new AuroraChatbotSDK();
 
 async function run() {
   const result = await auroraChatbotSDK.users.signup();
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { AuroraChatbotSDKCore } from "@aurora-interactive/chatbot-api-sdk/core.js";
+import { usersSignup } from "@aurora-interactive/chatbot-api-sdk/funcs/usersSignup.js";
+
+// Use `AuroraChatbotSDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const auroraChatbotSDK = new AuroraChatbotSDKCore();
+
+async function run() {
+  const res = await usersSignup(auroraChatbotSDK);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)

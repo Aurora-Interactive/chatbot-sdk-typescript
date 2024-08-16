@@ -1,5 +1,14 @@
 # UsersSignupResponse
 
+## Example Usage
+
+```typescript
+import { UsersSignupResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+
+let value: UsersSignupResponse = {
+    accessToken: "<value>",
+};
+```
 
 ## Supported Types
 

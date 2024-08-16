@@ -29,6 +29,35 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { AuroraChatbotSDKCore } from "@aurora-interactive/chatbot-api-sdk/core.js";
+import { chatsList } from "@aurora-interactive/chatbot-api-sdk/funcs/chatsList.js";
+
+// Use `AuroraChatbotSDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const auroraChatbotSDK = new AuroraChatbotSDKCore();
+
+async function run() {
+  const res = await chatsList(auroraChatbotSDK);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -60,6 +89,35 @@ const auroraChatbotSDK = new AuroraChatbotSDK();
 
 async function run() {
   const result = await auroraChatbotSDK.chats.preview(8);
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { AuroraChatbotSDKCore } from "@aurora-interactive/chatbot-api-sdk/core.js";
+import { chatsPreview } from "@aurora-interactive/chatbot-api-sdk/funcs/chatsPreview.js";
+
+// Use `AuroraChatbotSDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const auroraChatbotSDK = new AuroraChatbotSDKCore();
+
+async function run() {
+  const res = await chatsPreview(auroraChatbotSDK, 8);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -108,6 +166,35 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { AuroraChatbotSDKCore } from "@aurora-interactive/chatbot-api-sdk/core.js";
+import { chatsInitialize } from "@aurora-interactive/chatbot-api-sdk/funcs/chatsInitialize.js";
+
+// Use `AuroraChatbotSDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const auroraChatbotSDK = new AuroraChatbotSDKCore();
+
+async function run() {
+  const res = await chatsInitialize(auroraChatbotSDK, 991592);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -140,6 +227,35 @@ const auroraChatbotSDK = new AuroraChatbotSDK();
 
 async function run() {
   const result = await auroraChatbotSDK.chats.delete(8);
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { AuroraChatbotSDKCore } from "@aurora-interactive/chatbot-api-sdk/core.js";
+import { chatsDelete } from "@aurora-interactive/chatbot-api-sdk/funcs/chatsDelete.js";
+
+// Use `AuroraChatbotSDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const auroraChatbotSDK = new AuroraChatbotSDKCore();
+
+async function run() {
+  const res = await chatsDelete(auroraChatbotSDK, 8);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)

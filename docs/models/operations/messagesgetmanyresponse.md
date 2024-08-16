@@ -1,21 +1,21 @@
-# MessagesSaveResponse
+# MessagesGetManyResponse
 
 ## Example Usage
 
 ```typescript
-import { MessagesSaveResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+import { MessagesGetManyResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
-let value: MessagesSaveResponse = {
+let value: MessagesGetManyResponse = {
     error: "Account associated with this access token is not subscribed to a paid plan",
 };
 ```
 
 ## Supported Types
 
-### `operations.MessagesSaveSuccessfulRequest`
+### `operations.MessagesGetManySuccessfulRequest`
 
 ```typescript
-const value: operations.MessagesSaveSuccessfulRequest = /* values here */
+const value: operations.MessagesGetManySuccessfulRequest = /* values here */
 ```
 
 ### `components.DefaultBadRequest`

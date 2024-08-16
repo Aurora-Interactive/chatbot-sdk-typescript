@@ -1,5 +1,12 @@
 # MessagesSaveGlobals
 
+## Example Usage
+
+```typescript
+import { MessagesSaveGlobals } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+
+let value: MessagesSaveGlobals = {};
+```
 
 ## Fields
 

@@ -1,5 +1,16 @@
 # ChatCompletionFragment
 
+## Example Usage
+
+```typescript
+import { ChatCompletionFragment } from "@aurora-interactive/chatbot-api-sdk/models/components";
+
+let value: ChatCompletionFragment = {
+    data: {
+        content: "<value>",
+    },
+};
+```
 
 ## Fields
 

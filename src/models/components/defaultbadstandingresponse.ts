@@ -46,7 +46,7 @@ export const DefaultBadStandingResponse$inboundSchema: z.ZodType<
     z.ZodTypeDef,
     unknown
 > = z.object({
-    success: z.boolean().default(false),
+    success: z.boolean(),
     error: DefaultBadStandingResponseError$inboundSchema,
 });
 

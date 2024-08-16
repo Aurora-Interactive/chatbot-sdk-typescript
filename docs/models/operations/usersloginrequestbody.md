@@ -1,5 +1,15 @@
 # UsersLoginRequestBody
 
+## Example Usage
+
+```typescript
+import { UsersLoginRequestBody } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+
+let value: UsersLoginRequestBody = {
+    username: "Katharina_Medhurst60",
+    password: "rTqIEJuENlnSNVF",
+};
+```
 
 ## Fields
 

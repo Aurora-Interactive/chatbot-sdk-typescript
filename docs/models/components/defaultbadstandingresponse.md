@@ -2,6 +2,15 @@
 
 Given user is not allowed to use the API, usually because they don't have an active subscription to our services
 
+## Example Usage
+
+```typescript
+import { DefaultBadStandingResponse } from "@aurora-interactive/chatbot-api-sdk/models/components";
+
+let value: DefaultBadStandingResponse = {
+    error: "Account associated with this access token is not subscribed to a paid plan",
+};
+```
 
 ## Fields
 

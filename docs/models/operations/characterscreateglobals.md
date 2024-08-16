@@ -1,5 +1,12 @@
 # CharactersCreateGlobals
 
+## Example Usage
+
+```typescript
+import { CharactersCreateGlobals } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+
+let value: CharactersCreateGlobals = {};
+```
 
 ## Fields
 

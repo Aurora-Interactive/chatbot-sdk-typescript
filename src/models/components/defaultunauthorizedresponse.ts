@@ -45,7 +45,7 @@ export const DefaultUnauthorizedResponse$inboundSchema: z.ZodType<
     z.ZodTypeDef,
     unknown
 > = z.object({
-    success: z.boolean().default(false),
+    success: z.boolean(),
     error: DefaultUnauthorizedResponseError$inboundSchema,
 });
 

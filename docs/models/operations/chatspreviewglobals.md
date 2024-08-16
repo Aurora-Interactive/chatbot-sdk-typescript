@@ -1,5 +1,12 @@
 # ChatsPreviewGlobals
 
+## Example Usage
+
+```typescript
+import { ChatsPreviewGlobals } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+
+let value: ChatsPreviewGlobals = {};
+```
 
 ## Fields
 

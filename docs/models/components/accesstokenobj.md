@@ -1,5 +1,14 @@
 # AccessTokenObj
 
+## Example Usage
+
+```typescript
+import { AccessTokenObj } from "@aurora-interactive/chatbot-api-sdk/models/components";
+
+let value: AccessTokenObj = {
+    accessToken: "<value>",
+};
+```
 
 ## Fields
 

@@ -39,7 +39,7 @@ export namespace ErrorT$ {
 /** @internal */
 export const DefaultBadRequest$inboundSchema: z.ZodType<DefaultBadRequest, z.ZodTypeDef, unknown> =
     z.object({
-        success: z.boolean().default(false),
+        success: z.boolean(),
         error: ErrorT$inboundSchema,
     });
 

@@ -1,5 +1,12 @@
 # UsersGetUserInfoGlobals
 
+## Example Usage
+
+```typescript
+import { UsersGetUserInfoGlobals } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+
+let value: UsersGetUserInfoGlobals = {};
+```
 
 ## Fields
 

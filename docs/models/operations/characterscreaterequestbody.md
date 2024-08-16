@@ -1,5 +1,26 @@
 # CharactersCreateRequestBody
 
+## Example Usage
+
+```typescript
+import { CharactersCreateRequestBody } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+
+let value: CharactersCreateRequestBody = {
+    name: "<value>",
+    description: "Stand-alone 24/7 artificial intelligence",
+    aiPrompt: "<value>",
+    initialResponse: "<value>",
+    banner: "AAAAbx",
+    icon: "AAAAbx",
+    specialMessages: [
+        {
+            startsWith: "<value>",
+            endsWith: ["<value>"],
+            prompt: "<value>",
+        },
+    ],
+};
+```
 
 ## Fields
 

@@ -163,6 +163,22 @@ import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
 const auroraChatbotSDK = new AuroraChatbotSDK();
 
 async function run() {
+    const result = await auroraChatbotSDK.messages.getMany(8, 10, 150);
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+
+```typescript
+import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
+
+const auroraChatbotSDK = new AuroraChatbotSDK();
+
+async function run() {
     const result = await auroraChatbotSDK.messages.send(516969, 157994, "<value>");
 
     for await (const event of result) {

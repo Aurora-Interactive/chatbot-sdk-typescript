@@ -1,10 +1,15 @@
 # MessagesHistoryRole
 
+## Example Usage
+
+```typescript
+import { MessagesHistoryRole } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+
+let value: MessagesHistoryRole = "system";
+```
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `System`    | system      |
-| `User`      | user        |
-| `Assistant` | assistant   |
+```typescript
+"system" | "user" | "assistant"
+```

@@ -1,5 +1,14 @@
 # MessagesHistoryResponse
 
+## Example Usage
+
+```typescript
+import { MessagesHistoryResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+
+let value: MessagesHistoryResponse = {
+    error: "Account associated with this access token is not subscribed to a paid plan",
+};
+```
 
 ## Supported Types
 

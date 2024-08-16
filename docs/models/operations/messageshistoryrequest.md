@@ -1,5 +1,14 @@
 # MessagesHistoryRequest
 
+## Example Usage
+
+```typescript
+import { MessagesHistoryRequest } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+
+let value: MessagesHistoryRequest = {
+    chatId: 8,
+};
+```
 
 ## Fields
 

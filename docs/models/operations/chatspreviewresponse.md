@@ -1,5 +1,14 @@
 # ChatsPreviewResponse
 
+## Example Usage
+
+```typescript
+import { ChatsPreviewResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+
+let value: ChatsPreviewResponse = {
+    error: "Invalid username, password, or access token",
+};
+```
 
 ## Supported Types
 

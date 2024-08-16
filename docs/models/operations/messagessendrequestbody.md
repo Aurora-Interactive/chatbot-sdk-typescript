@@ -1,5 +1,16 @@
 # MessagesSendRequestBody
 
+## Example Usage
+
+```typescript
+import { MessagesSendRequestBody } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+
+let value: MessagesSendRequestBody = {
+    characterId: 265389,
+    chatId: 508969,
+    message: "<value>",
+};
+```
 
 ## Fields
 

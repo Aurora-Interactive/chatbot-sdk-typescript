@@ -1,5 +1,12 @@
 # MessagesSendResponse
 
+## Example Usage
+
+```typescript
+import { MessagesSendResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+
+// No examples available for this model
+```
 
 ## Supported Types
 

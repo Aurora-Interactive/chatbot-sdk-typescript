@@ -1,5 +1,14 @@
 # ChatsInitializeResponse
 
+## Example Usage
+
+```typescript
+import { ChatsInitializeResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+
+let value: ChatsInitializeResponse = {
+    chatId: 604846,
+};
+```
 
 ## Supported Types
 

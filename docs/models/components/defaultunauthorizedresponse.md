@@ -2,6 +2,15 @@
 
 The given access token is invalid
 
+## Example Usage
+
+```typescript
+import { DefaultUnauthorizedResponse } from "@aurora-interactive/chatbot-api-sdk/models/components";
+
+let value: DefaultUnauthorizedResponse = {
+    error: "Invalid username, password, or access token",
+};
+```
 
 ## Fields
 

@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: d0c6ef81-afa9-4266-a8f1-2430fa28984d
 management:
-  docChecksum: 5a1f0e9203cbf6db56db015dacc48bf5
-  docVersion: 7.2.0
-  speakeasyVersion: 1.361.1
-  generationVersion: 2.393.4
-  releaseVersion: 7.2.0
-  configChecksum: 967641c1844416686a3e18405b82e192
+  docChecksum: ecfe140801161143ac13c9655d9951ae
+  docVersion: 7.3.0
+  speakeasyVersion: 1.373.2
+  generationVersion: 2.401.2
+  releaseVersion: 7.3.0
+  configChecksum: 1412a3adf63adbed272db2a21790adef
 features:
   typescript:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
-    constsAndDefaults: 0.1.7
-    core: 3.13.1
+    constsAndDefaults: 0.1.10
+    core: 3.13.2
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     envVarSecurityUsage: 0.1.1
@@ -43,6 +43,7 @@ generatedFiles:
   - src/funcs/chatsDelete.ts
   - src/funcs/messagesSave.ts
   - src/funcs/messagesHistory.ts
+  - src/funcs/messagesGetMany.ts
   - src/funcs/messagesSend.ts
   - src/funcs/messagesDelete.ts
   - src/sdk/users.ts
@@ -52,6 +53,7 @@ generatedFiles:
   - src/sdk/sdk.ts
   - .eslintrc.cjs
   - .npmignore
+  - FUNCTIONS.md
   - RUNTIMES.md
   - jsr.json
   - package.json
@@ -97,6 +99,7 @@ generatedFiles:
   - src/models/operations/chatsdelete.ts
   - src/models/operations/messagessave.ts
   - src/models/operations/messageshistory.ts
+  - src/models/operations/messagesgetmany.ts
   - src/models/operations/messagessend.ts
   - src/models/operations/messagesdelete.ts
   - src/models/components/accesstokenobj.ts
@@ -158,6 +161,12 @@ generatedFiles:
   - docs/models/operations/timestampedmessageresponse.md
   - docs/models/operations/messageshistorysuccessfulrequest.md
   - docs/models/operations/messageshistoryresponse.md
+  - docs/models/operations/messagesgetmanyglobals.md
+  - docs/models/operations/messagesgetmanyrequest.md
+  - docs/models/operations/messagesgetmanyrole.md
+  - docs/models/operations/messagesgetmanytimestampedmessageresponse.md
+  - docs/models/operations/messagesgetmanysuccessfulrequest.md
+  - docs/models/operations/messagesgetmanyresponse.md
   - docs/models/operations/messagessendglobals.md
   - docs/models/operations/messagessendrequestbody.md
   - docs/models/operations/messagessendresponse.md

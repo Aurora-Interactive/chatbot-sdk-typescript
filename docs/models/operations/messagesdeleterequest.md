@@ -1,5 +1,14 @@
 # MessagesDeleteRequest
 
+## Example Usage
+
+```typescript
+import { MessagesDeleteRequest } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+
+let value: MessagesDeleteRequest = {
+    messageId: 8,
+};
+```
 
 ## Fields
 

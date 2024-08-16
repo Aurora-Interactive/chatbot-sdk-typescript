@@ -1,5 +1,12 @@
 # SuccessfulRequest
 
+## Example Usage
+
+```typescript
+import { SuccessfulRequest } from "@aurora-interactive/chatbot-api-sdk/models/components";
+
+let value: SuccessfulRequest = {};
+```
 
 ## Fields
 

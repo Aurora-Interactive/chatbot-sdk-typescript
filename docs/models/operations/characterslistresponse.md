@@ -1,5 +1,14 @@
 # CharactersListResponse
 
+## Example Usage
+
+```typescript
+import { CharactersListResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+
+let value: CharactersListResponse = {
+    error: "Invalid username, password, or access token",
+};
+```
 
 ## Supported Types
 

@@ -1,5 +1,12 @@
 # MessagesSendGlobals
 
+## Example Usage
+
+```typescript
+import { MessagesSendGlobals } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+
+let value: MessagesSendGlobals = {};
+```
 
 ## Fields
 

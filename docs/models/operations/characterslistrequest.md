@@ -1,5 +1,15 @@
 # CharactersListRequest
 
+## Example Usage
+
+```typescript
+import { CharactersListRequest } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+
+let value: CharactersListRequest = {
+    numCharacters: 25,
+    from: 150,
+};
+```
 
 ## Fields
 

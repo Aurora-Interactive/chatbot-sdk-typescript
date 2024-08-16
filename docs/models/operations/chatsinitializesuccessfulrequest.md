@@ -2,6 +2,15 @@
 
 Chat initialized successfully with the given AI initialization data
 
+## Example Usage
+
+```typescript
+import { ChatsInitializeSuccessfulRequest } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+
+let value: ChatsInitializeSuccessfulRequest = {
+    chatId: 976762,
+};
+```
 
 ## Fields
 

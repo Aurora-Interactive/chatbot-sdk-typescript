@@ -1,11 +1,11 @@
-# MessagesHistoryGlobals
+# MessagesGetManyGlobals
 
 ## Example Usage
 
 ```typescript
-import { MessagesHistoryGlobals } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+import { MessagesGetManyGlobals } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
-let value: MessagesHistoryGlobals = {};
+let value: MessagesGetManyGlobals = {};
 ```
 
 ## Fields

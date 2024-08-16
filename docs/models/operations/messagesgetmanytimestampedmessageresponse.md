@@ -1,15 +1,15 @@
-# TimestampedMessageResponse
+# MessagesGetManyTimestampedMessageResponse
 
 ## Example Usage
 
 ```typescript
-import { TimestampedMessageResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+import { MessagesGetManyTimestampedMessageResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
-let value: TimestampedMessageResponse = {
-    role: "user",
+let value: MessagesGetManyTimestampedMessageResponse = {
+    role: "assistant",
     content: "<value>",
-    timestamp: 296140,
-    id: 480894,
+    timestamp: 64147,
+    id: 216822,
 };
 ```
 
@@ -17,7 +17,7 @@ let value: TimestampedMessageResponse = {
 
 | Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `role`                                                                           | [operations.MessagesHistoryRole](../../models/operations/messageshistoryrole.md) | :heavy_check_mark:                                                               | N/A                                                                              |
+| `role`                                                                           | [operations.MessagesGetManyRole](../../models/operations/messagesgetmanyrole.md) | :heavy_check_mark:                                                               | N/A                                                                              |
 | `content`                                                                        | *string*                                                                         | :heavy_check_mark:                                                               | N/A                                                                              |
 | `timestamp`                                                                      | *number*                                                                         | :heavy_check_mark:                                                               | N/A                                                                              |
 | `id`                                                                             | *number*                                                                         | :heavy_check_mark:                                                               | N/A                                                                              |

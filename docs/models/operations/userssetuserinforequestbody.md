@@ -1,5 +1,16 @@
 # UsersSetUserInfoRequestBody
 
+## Example Usage
+
+```typescript
+import { UsersSetUserInfoRequestBody } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+
+let value: UsersSetUserInfoRequestBody = {
+    username: "Minerva.Nikolaus",
+    email: "Tyrel.Rosenbaum@yahoo.com",
+    password: "HM2jgL5W6EzvaKC",
+};
+```
 
 ## Fields
 

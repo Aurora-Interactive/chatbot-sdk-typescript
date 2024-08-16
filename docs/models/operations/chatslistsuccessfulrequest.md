@@ -2,6 +2,20 @@
 
 JSON array of chat info
 
+## Example Usage
+
+```typescript
+import { ChatsListSuccessfulRequest } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+
+let value: ChatsListSuccessfulRequest = {
+    chats: [
+        {
+            characterId: 971945,
+            chatId: 976460,
+        },
+    ],
+};
+```
 
 ## Fields
 

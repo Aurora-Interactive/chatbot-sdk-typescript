@@ -1,5 +1,14 @@
 # MessagesDeleteResponse
 
+## Example Usage
+
+```typescript
+import { MessagesDeleteResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+
+let value: MessagesDeleteResponse = {
+    error: "Invalid username, password, or access token",
+};
+```
 
 ## Supported Types
 

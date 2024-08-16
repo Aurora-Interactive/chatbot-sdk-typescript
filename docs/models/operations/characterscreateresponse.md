@@ -1,5 +1,14 @@
 # CharactersCreateResponse
 
+## Example Usage
+
+```typescript
+import { CharactersCreateResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+
+let value: CharactersCreateResponse = {
+    error: "Account associated with this access token is not subscribed to a paid plan",
+};
+```
 
 ## Supported Types
 

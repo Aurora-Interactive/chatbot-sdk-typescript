@@ -28,6 +28,35 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { AuroraChatbotSDKCore } from "@aurora-interactive/chatbot-api-sdk/core.js";
+import { charactersList } from "@aurora-interactive/chatbot-api-sdk/funcs/charactersList.js";
+
+// Use `AuroraChatbotSDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const auroraChatbotSDK = new AuroraChatbotSDKCore();
+
+async function run() {
+  const res = await charactersList(auroraChatbotSDK, 25, 150);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
@@ -61,6 +90,35 @@ const auroraChatbotSDK = new AuroraChatbotSDK();
 
 async function run() {
   const result = await auroraChatbotSDK.characters.get(8);
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { AuroraChatbotSDKCore } from "@aurora-interactive/chatbot-api-sdk/core.js";
+import { charactersGet } from "@aurora-interactive/chatbot-api-sdk/funcs/charactersGet.js";
+
+// Use `AuroraChatbotSDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const auroraChatbotSDK = new AuroraChatbotSDKCore();
+
+async function run() {
+  const res = await charactersGet(auroraChatbotSDK, 8);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -117,6 +175,51 @@ async function run() {
       },
     ],
   });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { AuroraChatbotSDKCore } from "@aurora-interactive/chatbot-api-sdk/core.js";
+import { charactersCreate } from "@aurora-interactive/chatbot-api-sdk/funcs/charactersCreate.js";
+
+// Use `AuroraChatbotSDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const auroraChatbotSDK = new AuroraChatbotSDKCore();
+
+async function run() {
+  const res = await charactersCreate(auroraChatbotSDK, {
+    name: "<value>",
+    description: "Customer-focused regional approach",
+    aiPrompt: "<value>",
+    initialResponse: "<value>",
+    banner: "AAAAbx",
+    icon: "AAAAbx",
+    specialMessages: [
+      {
+        startsWith: "<value>",
+        endsWith: [
+          "<value>",
+        ],
+        prompt: "<value>",
+      },
+    ],
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)

@@ -1,5 +1,17 @@
 # MessagesSaveTimestampedMessageResponse
 
+## Example Usage
+
+```typescript
+import { MessagesSaveTimestampedMessageResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+
+let value: MessagesSaveTimestampedMessageResponse = {
+    role: "system",
+    content: "<value>",
+    timestamp: 39187,
+    chatId: 441711,
+};
+```
 
 ## Fields
 

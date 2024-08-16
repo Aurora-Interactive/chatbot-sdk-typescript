@@ -1,5 +1,14 @@
 # CharactersGetResponse
 
+## Example Usage
+
+```typescript
+import { CharactersGetResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
+
+let value: CharactersGetResponse = {
+    error: "One or more API parameters are malformed. Please check your request and try again",
+};
+```
 
 ## Supported Types
 
