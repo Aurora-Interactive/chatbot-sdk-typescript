@@ -183,6 +183,7 @@ async function run() {
 
     for await (const event of result) {
         // Handle the event
+        console.log(event);
     }
 }
 

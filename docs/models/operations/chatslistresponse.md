@@ -6,7 +6,7 @@
 import { ChatsListResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
 let value: ChatsListResponse = {
-    error: "Invalid username, password, or access token",
+    error: "Account associated with this access token is not subscribed to a paid plan",
 };
 ```
 
@@ -28,5 +28,11 @@ const value: components.DefaultBadRequest = /* values here */
 
 ```typescript
 const value: components.DefaultUnauthorizedResponse = /* values here */
+```
+
+### `components.DefaultBadStandingResponse`
+
+```typescript
+const value: components.DefaultBadStandingResponse = /* values here */
 ```
 
