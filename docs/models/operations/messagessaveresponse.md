@@ -6,7 +6,7 @@
 import { MessagesSaveResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
 let value: MessagesSaveResponse = {
-    error: "Account associated with this access token is not subscribed to a paid plan",
+    error: "You have exceeded your message quota. To send more messages, please upgrade your plan or wait until your subscription renews.",
 };
 ```
 
@@ -34,5 +34,11 @@ const value: components.DefaultUnauthorizedResponse = /* values here */
 
 ```typescript
 const value: components.DefaultBadStandingResponse = /* values here */
+```
+
+### `components.DefaultMessageQuotaExceeded`
+
+```typescript
+const value: components.DefaultMessageQuotaExceeded = /* values here */
 ```
 

@@ -58,7 +58,7 @@ export async function chatsInitialize(
     const payload$ = parsed$.value;
     const body$ = payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-    const path$ = pathToFunc("/api/v7/chat")();
+    const path$ = pathToFunc("/api/v8/chat")();
 
     const headers$ = new Headers({
         "Content-Type": "application/json",

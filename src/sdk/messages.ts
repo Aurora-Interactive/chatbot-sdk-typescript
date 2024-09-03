@@ -4,7 +4,6 @@
 
 import { messagesDelete } from "../funcs/messagesDelete.js";
 import { messagesGetMany } from "../funcs/messagesGetMany.js";
-import { messagesHistory } from "../funcs/messagesHistory.js";
 import { messagesSave } from "../funcs/messagesSave.js";
 import { messagesSend, SendAcceptEnum } from "../funcs/messagesSend.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
@@ -28,19 +27,6 @@ export class Messages extends ClientSDK {
         options?: RequestOptions
     ): Promise<operations.MessagesSaveResponse> {
         return unwrapAsync(messagesSave(this, role, content, timestamp, chatId, options));
-    }
-
-    /**
-     * Get full message history
-     *
-     * @remarks
-     * Get user-facing chat transcript. Does not include special messages (enhanced context) or system messages.
-     */
-    async history(
-        chatId: number,
-        options?: RequestOptions
-    ): Promise<operations.MessagesHistoryResponse> {
-        return unwrapAsync(messagesHistory(this, chatId, options));
     }
 
     /**

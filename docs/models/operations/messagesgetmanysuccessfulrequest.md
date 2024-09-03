@@ -10,10 +10,10 @@ import { MessagesGetManySuccessfulRequest } from "@aurora-interactive/chatbot-ap
 let value: MessagesGetManySuccessfulRequest = {
     messages: [
         {
-            role: "assistant",
+            role: "system",
             content: "<value>",
-            timestamp: 565189,
-            id: 566602,
+            timestamp: 688661,
+            id: 317983,
         },
     ],
     endOfList: false,
@@ -22,8 +22,8 @@ let value: MessagesGetManySuccessfulRequest = {
 
 ## Fields
 
-| Field                                                                                                                          | Type                                                                                                                           | Required                                                                                                                       | Description                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
-| `success`                                                                                                                      | *boolean*                                                                                                                      | :heavy_minus_sign:                                                                                                             | N/A                                                                                                                            |
-| `messages`                                                                                                                     | [operations.MessagesGetManyTimestampedMessageResponse](../../models/operations/messagesgetmanytimestampedmessageresponse.md)[] | :heavy_check_mark:                                                                                                             | N/A                                                                                                                            |
-| `endOfList`                                                                                                                    | *boolean*                                                                                                                      | :heavy_check_mark:                                                                                                             | N/A                                                                                                                            |
+| Field                                                                                            | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `success`                                                                                        | *boolean*                                                                                        | :heavy_minus_sign:                                                                               | N/A                                                                                              |
+| `messages`                                                                                       | [operations.TimestampedMessageResponse](../../models/operations/timestampedmessageresponse.md)[] | :heavy_check_mark:                                                                               | N/A                                                                                              |
+| `endOfList`                                                                                      | *boolean*                                                                                        | :heavy_check_mark:                                                                               | N/A                                                                                              |

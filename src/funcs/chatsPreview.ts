@@ -57,7 +57,7 @@ export async function chatsPreview(
     const payload$ = parsed$.value;
     const body$ = null;
 
-    const path$ = pathToFunc("/api/v7/chat/preview")();
+    const path$ = pathToFunc("/api/v8/chat/preview")();
 
     const query$ = encodeFormQuery$({
         chatId: payload$.chatId,

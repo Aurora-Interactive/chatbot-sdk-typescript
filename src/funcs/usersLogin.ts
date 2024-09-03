@@ -55,7 +55,7 @@ export async function usersLogin(
     const payload$ = parsed$.value;
     const body$ = payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-    const path$ = pathToFunc("/api/v7/login")();
+    const path$ = pathToFunc("/api/v8/login")();
 
     const headers$ = new Headers({
         "Content-Type": "application/json",

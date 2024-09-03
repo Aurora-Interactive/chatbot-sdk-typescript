@@ -66,7 +66,7 @@ export async function messagesSave(
     const payload$ = parsed$.value;
     const body$ = payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-    const path$ = pathToFunc("/api/v7/message/save")();
+    const path$ = pathToFunc("/api/v8/message/save")();
 
     const headers$ = new Headers({
         "Content-Type": "application/json",
@@ -130,6 +130,7 @@ export async function messagesSave(
         m$.json(400, operations.MessagesSaveResponse$inboundSchema),
         m$.json(401, operations.MessagesSaveResponse$inboundSchema),
         m$.json(402, operations.MessagesSaveResponse$inboundSchema),
+        m$.json(429, operations.MessagesSaveResponse$inboundSchema),
         m$.fail("5XX")
     )(response);
     if (!result$.ok) {

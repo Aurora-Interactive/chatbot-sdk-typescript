@@ -26,7 +26,7 @@ export const MessagesGetManyRole = {
 } as const;
 export type MessagesGetManyRole = ClosedEnum<typeof MessagesGetManyRole>;
 
-export type MessagesGetManyTimestampedMessageResponse = {
+export type TimestampedMessageResponse = {
     role: MessagesGetManyRole;
     content: string;
     timestamp: number;
@@ -38,7 +38,7 @@ export type MessagesGetManyTimestampedMessageResponse = {
  */
 export type MessagesGetManySuccessfulRequest = {
     success?: boolean | undefined;
-    messages: Array<MessagesGetManyTimestampedMessageResponse>;
+    messages: Array<TimestampedMessageResponse>;
     endOfList: boolean;
 };
 
@@ -146,8 +146,8 @@ export namespace MessagesGetManyRole$ {
 }
 
 /** @internal */
-export const MessagesGetManyTimestampedMessageResponse$inboundSchema: z.ZodType<
-    MessagesGetManyTimestampedMessageResponse,
+export const TimestampedMessageResponse$inboundSchema: z.ZodType<
+    TimestampedMessageResponse,
     z.ZodTypeDef,
     unknown
 > = z.object({
@@ -158,7 +158,7 @@ export const MessagesGetManyTimestampedMessageResponse$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type MessagesGetManyTimestampedMessageResponse$Outbound = {
+export type TimestampedMessageResponse$Outbound = {
     role: string;
     content: string;
     timestamp: number;
@@ -166,10 +166,10 @@ export type MessagesGetManyTimestampedMessageResponse$Outbound = {
 };
 
 /** @internal */
-export const MessagesGetManyTimestampedMessageResponse$outboundSchema: z.ZodType<
-    MessagesGetManyTimestampedMessageResponse$Outbound,
+export const TimestampedMessageResponse$outboundSchema: z.ZodType<
+    TimestampedMessageResponse$Outbound,
     z.ZodTypeDef,
-    MessagesGetManyTimestampedMessageResponse
+    TimestampedMessageResponse
 > = z.object({
     role: MessagesGetManyRole$outboundSchema,
     content: z.string(),
@@ -181,13 +181,13 @@ export const MessagesGetManyTimestampedMessageResponse$outboundSchema: z.ZodType
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace MessagesGetManyTimestampedMessageResponse$ {
-    /** @deprecated use `MessagesGetManyTimestampedMessageResponse$inboundSchema` instead. */
-    export const inboundSchema = MessagesGetManyTimestampedMessageResponse$inboundSchema;
-    /** @deprecated use `MessagesGetManyTimestampedMessageResponse$outboundSchema` instead. */
-    export const outboundSchema = MessagesGetManyTimestampedMessageResponse$outboundSchema;
-    /** @deprecated use `MessagesGetManyTimestampedMessageResponse$Outbound` instead. */
-    export type Outbound = MessagesGetManyTimestampedMessageResponse$Outbound;
+export namespace TimestampedMessageResponse$ {
+    /** @deprecated use `TimestampedMessageResponse$inboundSchema` instead. */
+    export const inboundSchema = TimestampedMessageResponse$inboundSchema;
+    /** @deprecated use `TimestampedMessageResponse$outboundSchema` instead. */
+    export const outboundSchema = TimestampedMessageResponse$outboundSchema;
+    /** @deprecated use `TimestampedMessageResponse$Outbound` instead. */
+    export type Outbound = TimestampedMessageResponse$Outbound;
 }
 
 /** @internal */
@@ -197,14 +197,14 @@ export const MessagesGetManySuccessfulRequest$inboundSchema: z.ZodType<
     unknown
 > = z.object({
     success: z.boolean().default(true),
-    messages: z.array(z.lazy(() => MessagesGetManyTimestampedMessageResponse$inboundSchema)),
+    messages: z.array(z.lazy(() => TimestampedMessageResponse$inboundSchema)),
     endOfList: z.boolean(),
 });
 
 /** @internal */
 export type MessagesGetManySuccessfulRequest$Outbound = {
     success: boolean;
-    messages: Array<MessagesGetManyTimestampedMessageResponse$Outbound>;
+    messages: Array<TimestampedMessageResponse$Outbound>;
     endOfList: boolean;
 };
 
@@ -215,7 +215,7 @@ export const MessagesGetManySuccessfulRequest$outboundSchema: z.ZodType<
     MessagesGetManySuccessfulRequest
 > = z.object({
     success: z.boolean().default(true),
-    messages: z.array(z.lazy(() => MessagesGetManyTimestampedMessageResponse$outboundSchema)),
+    messages: z.array(z.lazy(() => TimestampedMessageResponse$outboundSchema)),
     endOfList: z.boolean(),
 });
 

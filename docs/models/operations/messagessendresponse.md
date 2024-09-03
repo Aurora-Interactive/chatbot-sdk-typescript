@@ -34,3 +34,9 @@ const value: components.DefaultUnauthorizedResponse = /* values here */
 const value: components.DefaultBadStandingResponse = /* values here */
 ```
 
+### `components.DefaultMessageQuotaExceeded`
+
+```typescript
+const value: components.DefaultMessageQuotaExceeded = /* values here */
+```
+

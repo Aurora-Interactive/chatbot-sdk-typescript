@@ -11,7 +11,6 @@ export * from "./chatslist.js";
 export * from "./chatspreview.js";
 export * from "./messagesdelete.js";
 export * from "./messagesgetmany.js";
-export * from "./messageshistory.js";
 export * from "./messagessave.js";
 export * from "./messagessend.js";
 export * from "./usersgetuserinfo.js";

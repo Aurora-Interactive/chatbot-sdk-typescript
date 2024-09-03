@@ -43,7 +43,7 @@ export async function chatsList(
     const input$: operations.ChatsListRequest = {};
     void input$; // request input is unused
 
-    const path$ = pathToFunc("/api/v7/chats")();
+    const path$ = pathToFunc("/api/v8/chats")();
 
     const headers$ = new Headers({
         Accept: "application/json",
