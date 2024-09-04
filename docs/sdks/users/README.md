@@ -159,7 +159,7 @@ import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
 const auroraChatbotSDK = new AuroraChatbotSDK();
 
 async function run() {
-  const result = await auroraChatbotSDK.users.setInfo("Brandy.Roberts", "Dejuan.Mohr49@yahoo.com", "tKlzho8SIiHB9cI");
+  const result = await auroraChatbotSDK.users.setInfo("<value>", "<value>", "<value>");
 
   // Handle the result
   console.log(result)
@@ -181,7 +181,7 @@ import { usersSetInfo } from "@aurora-interactive/chatbot-api-sdk/funcs/usersSet
 const auroraChatbotSDK = new AuroraChatbotSDKCore();
 
 async function run() {
-  const res = await usersSetInfo(auroraChatbotSDK, "Lou_Ondricka30", "Unique_Price@gmail.com", "xluTkfvRrrXS1d7");
+  const res = await usersSetInfo(auroraChatbotSDK, "<value>", "<value>", "<value>");
 
   if (!res.ok) {
     throw res.error;

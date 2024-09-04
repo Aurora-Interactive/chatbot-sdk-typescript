@@ -1,6 +1,6 @@
 {
   "name": "@aurora-interactive/chatbot-api-sdk",
-  "version": "8.0.0",
+  "version": "8.0.1",
   "author": "Speakeasy",
   "repository": {
     "type": "git",
@@ -56,7 +56,6 @@
     "zod": ">= 3"
   },
   "devDependencies": {
-    "@types/node": "^18.19.3",
     "@typescript-eslint/eslint-plugin": "^7.7.1",
     "@typescript-eslint/parser": "^7.7.1",
     "eslint": "^8.57.0",
