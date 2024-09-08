@@ -61,7 +61,7 @@ export async function messagesGetMany(
     const payload$ = parsed$.value;
     const body$ = null;
 
-    const path$ = pathToFunc("/api/v8/messages")();
+    const path$ = pathToFunc("/api/v9/messages")();
 
     const query$ = encodeFormQuery$({
         chatId: payload$.chatId,
@@ -130,7 +130,6 @@ export async function messagesGetMany(
         m$.json(200, operations.MessagesGetManyResponse$inboundSchema),
         m$.json(400, operations.MessagesGetManyResponse$inboundSchema),
         m$.json(401, operations.MessagesGetManyResponse$inboundSchema),
-        m$.json(402, operations.MessagesGetManyResponse$inboundSchema),
         m$.fail("5XX")
     )(response);
     if (!result$.ok) {

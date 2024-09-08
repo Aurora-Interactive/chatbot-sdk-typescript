@@ -61,7 +61,7 @@ export async function usersSetInfo(
     const payload$ = parsed$.value;
     const body$ = payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-    const path$ = pathToFunc("/api/v8/user/info")();
+    const path$ = pathToFunc("/api/v9/user/info")();
 
     const headers$ = new Headers({
         "Content-Type": "application/json",

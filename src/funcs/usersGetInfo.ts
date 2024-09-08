@@ -43,7 +43,7 @@ export async function usersGetInfo(
     const input$: operations.UsersGetUserInfoRequest = {};
     void input$; // request input is unused
 
-    const path$ = pathToFunc("/api/v8/user/info")();
+    const path$ = pathToFunc("/api/v9/user/info")();
 
     const headers$ = new Headers({
         Accept: "application/json",

@@ -57,7 +57,7 @@ export async function chatsPreview(
     const payload$ = parsed$.value;
     const body$ = null;
 
-    const path$ = pathToFunc("/api/v8/chat/preview")();
+    const path$ = pathToFunc("/api/v9/chat/preview")();
 
     const query$ = encodeFormQuery$({
         chatId: payload$.chatId,
@@ -124,7 +124,6 @@ export async function chatsPreview(
         m$.json(200, operations.ChatsPreviewResponse$inboundSchema),
         m$.json(400, operations.ChatsPreviewResponse$inboundSchema),
         m$.json(401, operations.ChatsPreviewResponse$inboundSchema),
-        m$.json(402, operations.ChatsPreviewResponse$inboundSchema),
         m$.fail("5XX")
     )(response);
     if (!result$.ok) {

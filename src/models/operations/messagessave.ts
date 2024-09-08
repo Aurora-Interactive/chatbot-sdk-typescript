@@ -36,7 +36,6 @@ export type MessagesSaveResponse =
     | MessagesSaveSuccessfulRequest
     | components.DefaultBadRequest
     | components.DefaultUnauthorizedResponse
-    | components.DefaultBadStandingResponse
     | components.DefaultMessageQuotaExceeded;
 
 /** @internal */
@@ -185,7 +184,6 @@ export const MessagesSaveResponse$inboundSchema: z.ZodType<
     z.lazy(() => MessagesSaveSuccessfulRequest$inboundSchema),
     components.DefaultBadRequest$inboundSchema,
     components.DefaultUnauthorizedResponse$inboundSchema,
-    components.DefaultBadStandingResponse$inboundSchema,
     components.DefaultMessageQuotaExceeded$inboundSchema,
 ]);
 
@@ -194,7 +192,6 @@ export type MessagesSaveResponse$Outbound =
     | MessagesSaveSuccessfulRequest$Outbound
     | components.DefaultBadRequest$Outbound
     | components.DefaultUnauthorizedResponse$Outbound
-    | components.DefaultBadStandingResponse$Outbound
     | components.DefaultMessageQuotaExceeded$Outbound;
 
 /** @internal */
@@ -206,7 +203,6 @@ export const MessagesSaveResponse$outboundSchema: z.ZodType<
     z.lazy(() => MessagesSaveSuccessfulRequest$outboundSchema),
     components.DefaultBadRequest$outboundSchema,
     components.DefaultUnauthorizedResponse$outboundSchema,
-    components.DefaultBadStandingResponse$outboundSchema,
     components.DefaultMessageQuotaExceeded$outboundSchema,
 ]);
 

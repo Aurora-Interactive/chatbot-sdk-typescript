@@ -19,7 +19,6 @@ export type MessagesSendRequestBody = {
 export type MessagesSendResponse =
     | components.DefaultBadRequest
     | components.DefaultUnauthorizedResponse
-    | components.DefaultBadStandingResponse
     | components.DefaultMessageQuotaExceeded
     | EventStream<components.ChatCompletionFragment>;
 
@@ -109,7 +108,6 @@ export const MessagesSendResponse$inboundSchema: z.ZodType<
 > = z.union([
     components.DefaultBadRequest$inboundSchema,
     components.DefaultUnauthorizedResponse$inboundSchema,
-    components.DefaultBadStandingResponse$inboundSchema,
     components.DefaultMessageQuotaExceeded$inboundSchema,
     z.instanceof(ReadableStream<Uint8Array>).transform((stream) => {
         return new EventStream({
@@ -126,7 +124,6 @@ export const MessagesSendResponse$inboundSchema: z.ZodType<
 export type MessagesSendResponse$Outbound =
     | components.DefaultBadRequest$Outbound
     | components.DefaultUnauthorizedResponse$Outbound
-    | components.DefaultBadStandingResponse$Outbound
     | components.DefaultMessageQuotaExceeded$Outbound
     | never;
 
@@ -138,7 +135,6 @@ export const MessagesSendResponse$outboundSchema: z.ZodType<
 > = z.union([
     components.DefaultBadRequest$outboundSchema,
     components.DefaultUnauthorizedResponse$outboundSchema,
-    components.DefaultBadStandingResponse$outboundSchema,
     components.DefaultMessageQuotaExceeded$outboundSchema,
     z.never(),
 ]);

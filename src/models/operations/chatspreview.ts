@@ -24,8 +24,7 @@ export type ChatsPreviewResponseBody = {
 export type ChatsPreviewResponse =
     | ChatsPreviewResponseBody
     | components.DefaultBadRequest
-    | components.DefaultUnauthorizedResponse
-    | components.DefaultBadStandingResponse;
+    | components.DefaultUnauthorizedResponse;
 
 /** @internal */
 export const ChatsPreviewGlobals$inboundSchema: z.ZodType<
@@ -147,15 +146,13 @@ export const ChatsPreviewResponse$inboundSchema: z.ZodType<
     z.lazy(() => ChatsPreviewResponseBody$inboundSchema),
     components.DefaultBadRequest$inboundSchema,
     components.DefaultUnauthorizedResponse$inboundSchema,
-    components.DefaultBadStandingResponse$inboundSchema,
 ]);
 
 /** @internal */
 export type ChatsPreviewResponse$Outbound =
     | ChatsPreviewResponseBody$Outbound
     | components.DefaultBadRequest$Outbound
-    | components.DefaultUnauthorizedResponse$Outbound
-    | components.DefaultBadStandingResponse$Outbound;
+    | components.DefaultUnauthorizedResponse$Outbound;
 
 /** @internal */
 export const ChatsPreviewResponse$outboundSchema: z.ZodType<
@@ -166,7 +163,6 @@ export const ChatsPreviewResponse$outboundSchema: z.ZodType<
     z.lazy(() => ChatsPreviewResponseBody$outboundSchema),
     components.DefaultBadRequest$outboundSchema,
     components.DefaultUnauthorizedResponse$outboundSchema,
-    components.DefaultBadStandingResponse$outboundSchema,
 ]);
 
 /**

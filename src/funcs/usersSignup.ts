@@ -55,7 +55,7 @@ export async function usersSignup(
     const payload$ = parsed$.value;
     const body$ = payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-    const path$ = pathToFunc("/api/v8/signup")();
+    const path$ = pathToFunc("/api/v9/signup")();
 
     const headers$ = new Headers({
         "Content-Type": "application/json",

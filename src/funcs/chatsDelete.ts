@@ -60,7 +60,7 @@ export async function chatsDelete(
     const payload$ = parsed$.value;
     const body$ = null;
 
-    const path$ = pathToFunc("/api/v8/chat")();
+    const path$ = pathToFunc("/api/v9/chat")();
 
     const query$ = encodeFormQuery$({
         chatId: payload$.chatId,

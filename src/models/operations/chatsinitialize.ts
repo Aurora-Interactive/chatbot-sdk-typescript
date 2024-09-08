@@ -20,8 +20,7 @@ export type ChatsInitializeSuccessfulRequest = {
 export type ChatsInitializeResponse =
     | ChatsInitializeSuccessfulRequest
     | components.DefaultBadRequest
-    | components.DefaultUnauthorizedResponse
-    | components.DefaultBadStandingResponse;
+    | components.DefaultUnauthorizedResponse;
 
 /** @internal */
 export const ChatsInitializeGlobals$inboundSchema: z.ZodType<
@@ -107,15 +106,13 @@ export const ChatsInitializeResponse$inboundSchema: z.ZodType<
     z.lazy(() => ChatsInitializeSuccessfulRequest$inboundSchema),
     components.DefaultBadRequest$inboundSchema,
     components.DefaultUnauthorizedResponse$inboundSchema,
-    components.DefaultBadStandingResponse$inboundSchema,
 ]);
 
 /** @internal */
 export type ChatsInitializeResponse$Outbound =
     | ChatsInitializeSuccessfulRequest$Outbound
     | components.DefaultBadRequest$Outbound
-    | components.DefaultUnauthorizedResponse$Outbound
-    | components.DefaultBadStandingResponse$Outbound;
+    | components.DefaultUnauthorizedResponse$Outbound;
 
 /** @internal */
 export const ChatsInitializeResponse$outboundSchema: z.ZodType<
@@ -126,7 +123,6 @@ export const ChatsInitializeResponse$outboundSchema: z.ZodType<
     z.lazy(() => ChatsInitializeSuccessfulRequest$outboundSchema),
     components.DefaultBadRequest$outboundSchema,
     components.DefaultUnauthorizedResponse$outboundSchema,
-    components.DefaultBadStandingResponse$outboundSchema,
 ]);
 
 /**

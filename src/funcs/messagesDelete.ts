@@ -60,7 +60,7 @@ export async function messagesDelete(
     const payload$ = parsed$.value;
     const body$ = null;
 
-    const path$ = pathToFunc("/api/v8/message")();
+    const path$ = pathToFunc("/api/v9/message")();
 
     const query$ = encodeFormQuery$({
         messageId: payload$.messageId,
@@ -127,7 +127,6 @@ export async function messagesDelete(
         m$.json(200, operations.MessagesDeleteResponse$inboundSchema),
         m$.json(400, operations.MessagesDeleteResponse$inboundSchema),
         m$.json(401, operations.MessagesDeleteResponse$inboundSchema),
-        m$.json(402, operations.MessagesDeleteResponse$inboundSchema),
         m$.fail("5XX")
     )(response);
     if (!result$.ok) {

@@ -66,7 +66,7 @@ export async function messagesSend(
     const payload$ = parsed$.value;
     const body$ = payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-    const path$ = pathToFunc("/api/v8/message")();
+    const path$ = pathToFunc("/api/v9/message")();
 
     const headers$ = new Headers({
         "Content-Type": "application/json",
@@ -129,7 +129,6 @@ export async function messagesSend(
         m$.sse(200, operations.MessagesSendResponse$inboundSchema),
         m$.json(400, operations.MessagesSendResponse$inboundSchema),
         m$.json(401, operations.MessagesSendResponse$inboundSchema),
-        m$.json(402, operations.MessagesSendResponse$inboundSchema),
         m$.json(429, operations.MessagesSendResponse$inboundSchema),
         m$.fail("5XX")
     )(response);

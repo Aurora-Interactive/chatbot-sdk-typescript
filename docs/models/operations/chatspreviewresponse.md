@@ -6,7 +6,7 @@
 import { ChatsPreviewResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
 let value: ChatsPreviewResponse = {
-    error: "Invalid username, password, or access token",
+    error: "One or more API parameters are malformed. Please check your request and try again",
 };
 ```
 
@@ -28,11 +28,5 @@ const value: components.DefaultBadRequest = /* values here */
 
 ```typescript
 const value: components.DefaultUnauthorizedResponse = /* values here */
-```
-
-### `components.DefaultBadStandingResponse`
-
-```typescript
-const value: components.DefaultBadStandingResponse = /* values here */
 ```
 

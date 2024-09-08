@@ -54,7 +54,7 @@ export async function charactersGet(
     const payload$ = parsed$.value;
     const body$ = null;
 
-    const path$ = pathToFunc("/api/v8/character")();
+    const path$ = pathToFunc("/api/v9/character")();
 
     const query$ = encodeFormQuery$({
         characterId: payload$.characterId,

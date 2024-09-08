@@ -42,8 +42,7 @@ export type CharactersCreateSuccessfulRequest = {
 export type CharactersCreateResponse =
     | CharactersCreateSuccessfulRequest
     | components.DefaultBadRequest
-    | components.DefaultUnauthorizedResponse
-    | components.DefaultBadStandingResponse;
+    | components.DefaultUnauthorizedResponse;
 
 /** @internal */
 export const CharactersCreateGlobals$inboundSchema: z.ZodType<
@@ -222,15 +221,13 @@ export const CharactersCreateResponse$inboundSchema: z.ZodType<
     z.lazy(() => CharactersCreateSuccessfulRequest$inboundSchema),
     components.DefaultBadRequest$inboundSchema,
     components.DefaultUnauthorizedResponse$inboundSchema,
-    components.DefaultBadStandingResponse$inboundSchema,
 ]);
 
 /** @internal */
 export type CharactersCreateResponse$Outbound =
     | CharactersCreateSuccessfulRequest$Outbound
     | components.DefaultBadRequest$Outbound
-    | components.DefaultUnauthorizedResponse$Outbound
-    | components.DefaultBadStandingResponse$Outbound;
+    | components.DefaultUnauthorizedResponse$Outbound;
 
 /** @internal */
 export const CharactersCreateResponse$outboundSchema: z.ZodType<
@@ -241,7 +238,6 @@ export const CharactersCreateResponse$outboundSchema: z.ZodType<
     z.lazy(() => CharactersCreateSuccessfulRequest$outboundSchema),
     components.DefaultBadRequest$outboundSchema,
     components.DefaultUnauthorizedResponse$outboundSchema,
-    components.DefaultBadStandingResponse$outboundSchema,
 ]);
 
 /**

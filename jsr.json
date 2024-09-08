@@ -2,7 +2,7 @@
 
 {
   "name": "@aurora-interactive/chatbot-api-sdk",
-  "version": "8.0.1",
+  "version": "9.0.0",
   "exports": {
     ".": "./src/index.ts",    
     "./models/errors": "./src/models/errors/index.ts",    

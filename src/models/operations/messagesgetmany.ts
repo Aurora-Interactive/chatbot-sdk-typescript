@@ -45,7 +45,6 @@ export type MessagesGetManySuccessfulRequest = {
 export type MessagesGetManyResponse =
     | components.DefaultBadRequest
     | components.DefaultUnauthorizedResponse
-    | components.DefaultBadStandingResponse
     | MessagesGetManySuccessfulRequest;
 
 /** @internal */
@@ -240,7 +239,6 @@ export const MessagesGetManyResponse$inboundSchema: z.ZodType<
 > = z.union([
     components.DefaultBadRequest$inboundSchema,
     components.DefaultUnauthorizedResponse$inboundSchema,
-    components.DefaultBadStandingResponse$inboundSchema,
     z.lazy(() => MessagesGetManySuccessfulRequest$inboundSchema),
 ]);
 
@@ -248,7 +246,6 @@ export const MessagesGetManyResponse$inboundSchema: z.ZodType<
 export type MessagesGetManyResponse$Outbound =
     | components.DefaultBadRequest$Outbound
     | components.DefaultUnauthorizedResponse$Outbound
-    | components.DefaultBadStandingResponse$Outbound
     | MessagesGetManySuccessfulRequest$Outbound;
 
 /** @internal */
@@ -259,7 +256,6 @@ export const MessagesGetManyResponse$outboundSchema: z.ZodType<
 > = z.union([
     components.DefaultBadRequest$outboundSchema,
     components.DefaultUnauthorizedResponse$outboundSchema,
-    components.DefaultBadStandingResponse$outboundSchema,
     z.lazy(() => MessagesGetManySuccessfulRequest$outboundSchema),
 ]);
 

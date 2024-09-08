@@ -59,7 +59,7 @@ export async function charactersList(
     const payload$ = parsed$.value;
     const body$ = null;
 
-    const path$ = pathToFunc("/api/v8/characters")();
+    const path$ = pathToFunc("/api/v9/characters")();
 
     const query$ = encodeFormQuery$({
         from: payload$.from,

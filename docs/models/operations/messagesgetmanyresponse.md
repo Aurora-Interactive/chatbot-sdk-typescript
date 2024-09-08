@@ -6,7 +6,7 @@
 import { MessagesGetManyResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
 let value: MessagesGetManyResponse = {
-    error: "Account associated with this access token is not subscribed to a paid plan",
+    error: "Invalid username, password, or access token",
 };
 ```
 
@@ -28,11 +28,5 @@ const value: components.DefaultBadRequest = /* values here */
 
 ```typescript
 const value: components.DefaultUnauthorizedResponse = /* values here */
-```
-
-### `components.DefaultBadStandingResponse`
-
-```typescript
-const value: components.DefaultBadStandingResponse = /* values here */
 ```
 

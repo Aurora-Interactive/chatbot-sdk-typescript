@@ -43,7 +43,7 @@ export async function chatsList(
     const input$: operations.ChatsListRequest = {};
     void input$; // request input is unused
 
-    const path$ = pathToFunc("/api/v8/chats")();
+    const path$ = pathToFunc("/api/v9/chats")();
 
     const headers$ = new Headers({
         Accept: "application/json",
@@ -104,7 +104,6 @@ export async function chatsList(
         m$.json(200, operations.ChatsListResponse$inboundSchema),
         m$.json(400, operations.ChatsListResponse$inboundSchema),
         m$.json(401, operations.ChatsListResponse$inboundSchema),
-        m$.json(402, operations.ChatsListResponse$inboundSchema),
         m$.fail("5XX")
     )(response);
     if (!result$.ok) {

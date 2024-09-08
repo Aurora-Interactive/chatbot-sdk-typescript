@@ -55,7 +55,7 @@ export async function charactersCreate(
     const payload$ = parsed$.value;
     const body$ = payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-    const path$ = pathToFunc("/api/v8/character")();
+    const path$ = pathToFunc("/api/v9/character")();
 
     const headers$ = new Headers({
         "Content-Type": "application/json",
@@ -118,7 +118,6 @@ export async function charactersCreate(
         m$.json(200, operations.CharactersCreateResponse$inboundSchema),
         m$.json(400, operations.CharactersCreateResponse$inboundSchema),
         m$.json(401, operations.CharactersCreateResponse$inboundSchema),
-        m$.json(402, operations.CharactersCreateResponse$inboundSchema),
         m$.fail("5XX")
     )(response);
     if (!result$.ok) {
