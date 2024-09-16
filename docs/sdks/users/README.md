@@ -8,6 +8,7 @@
 * [login](#login) - Login
 * [getInfo](#getinfo) - Get User Info
 * [setInfo](#setinfo) - Update account information
+* [quota](#quota) - Quota and plan info
 * [signup](#signup) - User signup
 
 ## login
@@ -210,6 +211,74 @@ run();
 ### Response
 
 **Promise\<[operations.UsersSetUserInfoResponse](../../models/operations/userssetuserinforesponse.md)\>**
+
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+
+## quota
+
+Get information related to the user's subscription quota and plan details.
+
+### Example Usage
+
+```typescript
+import { AuroraChatbotSDK } from "@aurora-interactive/chatbot-api-sdk";
+
+const auroraChatbotSDK = new AuroraChatbotSDK();
+
+async function run() {
+  const result = await auroraChatbotSDK.users.quota();
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { AuroraChatbotSDKCore } from "@aurora-interactive/chatbot-api-sdk/core.js";
+import { usersQuota } from "@aurora-interactive/chatbot-api-sdk/funcs/usersQuota.js";
+
+// Use `AuroraChatbotSDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const auroraChatbotSDK = new AuroraChatbotSDKCore();
+
+async function run() {
+  const res = await usersQuota(auroraChatbotSDK);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.UsersQuotaSuccessfulRequest](../../models/operations/usersquotasuccessfulrequest.md)\>**
 
 ### Errors
 

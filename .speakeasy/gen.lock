@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: d0c6ef81-afa9-4266-a8f1-2430fa28984d
 management:
-  docChecksum: c90f391ec03c1d497c0e2e713b513699
-  docVersion: 9.0.0
+  docChecksum: b7357add79a011e162a9ed634364dc88
+  docVersion: 9.1.0
   speakeasyVersion: 1.385.0
   generationVersion: 2.407.2
-  releaseVersion: 9.0.0
-  configChecksum: 8da4ad552f24fc8fe27556471728cc54
+  releaseVersion: 9.1.0
+  configChecksum: ffbc2606d7b005b4764acc4a6152ddd5
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -33,6 +33,7 @@ generatedFiles:
   - src/funcs/usersLogin.ts
   - src/funcs/usersGetInfo.ts
   - src/funcs/usersSetInfo.ts
+  - src/funcs/usersQuota.ts
   - src/funcs/usersSignup.ts
   - src/funcs/charactersList.ts
   - src/funcs/charactersGet.ts
@@ -88,6 +89,7 @@ generatedFiles:
   - src/models/operations/userslogin.ts
   - src/models/operations/usersgetuserinfo.ts
   - src/models/operations/userssetuserinfo.ts
+  - src/models/operations/usersquota.ts
   - src/models/operations/userssignup.ts
   - src/models/operations/characterslist.ts
   - src/models/operations/charactersget.ts
@@ -119,6 +121,9 @@ generatedFiles:
   - docs/models/operations/userssetuserinfoglobals.md
   - docs/models/operations/userssetuserinforequestbody.md
   - docs/models/operations/userssetuserinforesponse.md
+  - docs/models/operations/usersquotaglobals.md
+  - docs/models/operations/usersquotarequest.md
+  - docs/models/operations/usersquotasuccessfulrequest.md
   - docs/models/operations/userssignuprequestbody.md
   - docs/models/operations/userssignupresponse.md
   - docs/models/operations/characterslistrequest.md

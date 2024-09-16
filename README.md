@@ -300,6 +300,7 @@ run();
 * [login](docs/sdks/users/README.md#login) - Login
 * [getInfo](docs/sdks/users/README.md#getinfo) - Get User Info
 * [setInfo](docs/sdks/users/README.md#setinfo) - Update account information
+* [quota](docs/sdks/users/README.md#quota) - Quota and plan info
 * [signup](docs/sdks/users/README.md#signup) - User signup
 
 ### [characters](docs/sdks/characters/README.md)
@@ -499,6 +500,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [messagesSend](docs/sdks/messages/README.md#send)
 - [usersGetInfo](docs/sdks/users/README.md#getinfo)
 - [usersLogin](docs/sdks/users/README.md#login)
+- [usersQuota](docs/sdks/users/README.md#quota)
 - [usersSetInfo](docs/sdks/users/README.md#setinfo)
 - [usersSignup](docs/sdks/users/README.md#signup)
 

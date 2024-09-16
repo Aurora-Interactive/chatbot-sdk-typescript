@@ -15,5 +15,6 @@ export * from "./messagessave.js";
 export * from "./messagessend.js";
 export * from "./usersgetuserinfo.js";
 export * from "./userslogin.js";
+export * from "./usersquota.js";
 export * from "./userssetuserinfo.js";
 export * from "./userssignup.js";

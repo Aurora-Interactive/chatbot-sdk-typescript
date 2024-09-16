@@ -4,6 +4,7 @@
 
 import { usersGetInfo } from "../funcs/usersGetInfo.js";
 import { usersLogin } from "../funcs/usersLogin.js";
+import { usersQuota } from "../funcs/usersQuota.js";
 import { usersSetInfo } from "../funcs/usersSetInfo.js";
 import { usersSignup } from "../funcs/usersSignup.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
@@ -47,6 +48,16 @@ export class Users extends ClientSDK {
         options?: RequestOptions
     ): Promise<operations.UsersSetUserInfoResponse> {
         return unwrapAsync(usersSetInfo(this, username, email, password, options));
+    }
+
+    /**
+     * Quota and plan info
+     *
+     * @remarks
+     * Get information related to the user's subscription quota and plan details.
+     */
+    async quota(options?: RequestOptions): Promise<operations.UsersQuotaSuccessfulRequest> {
+        return unwrapAsync(usersQuota(this, options));
     }
 
     /**
