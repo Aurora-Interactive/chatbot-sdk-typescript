@@ -1,10 +1,10 @@
 {
   "name": "@aurora-interactive/chatbot-api-sdk",
-  "version": "9.2.0",
+  "version": "9.2.1",
   "author": "Speakeasy",
   "repository": {
-    "url": "https://github.com/Aurora-Interactive/chatbot-sdk-typescript.git",
-    "type": "git"
+    "type": "git",
+    "url": "https://github.com/Aurora-Interactive/chatbot-sdk-typescript.git"
   },
   "type": "module",
   "main": "./esm/index.js",

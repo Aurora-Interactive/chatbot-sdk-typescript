@@ -79,12 +79,12 @@ export async function usersQuota(
                 backoff: {
                     initialInterval: 1000,
                     maxInterval: 60000,
-                    exponent: 1.2,
+                    exponent: 1.3,
                     maxElapsedTime: 3600000,
                 },
                 retryConnectionErrors: true,
             },
-        retryCodes: options?.retryCodes || ["5XX"],
+        retryCodes: options?.retryCodes || ["429", "5XX"],
     });
     if (!doResult.ok) {
         return doResult;
