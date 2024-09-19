@@ -6,8 +6,8 @@
 import { UsersSignupRequestBody } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
 let value: UsersSignupRequestBody = {
-    username: "Maxie96",
-    email: "Madaline21@hotmail.com",
+    username: "Humberto.Turcotte6",
+    email: "Manuela.OHara21@hotmail.com",
     password: "ChZCWJ_40_X9HMN",
 };
 ```

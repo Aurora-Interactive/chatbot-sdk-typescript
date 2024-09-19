@@ -22,7 +22,8 @@ export type UsersGetUserInfoSuccessfulRequest = {
 
 export type UsersGetUserInfoResponse =
     | components.DefaultUnauthorizedResponse
-    | UsersGetUserInfoSuccessfulRequest;
+    | UsersGetUserInfoSuccessfulRequest
+    | components.RateLimitReachedError;
 
 /** @internal */
 export const UsersGetUserInfoGlobals$inboundSchema: z.ZodType<
@@ -140,12 +141,14 @@ export const UsersGetUserInfoResponse$inboundSchema: z.ZodType<
 > = z.union([
     components.DefaultUnauthorizedResponse$inboundSchema,
     z.lazy(() => UsersGetUserInfoSuccessfulRequest$inboundSchema),
+    components.RateLimitReachedError$inboundSchema,
 ]);
 
 /** @internal */
 export type UsersGetUserInfoResponse$Outbound =
     | components.DefaultUnauthorizedResponse$Outbound
-    | UsersGetUserInfoSuccessfulRequest$Outbound;
+    | UsersGetUserInfoSuccessfulRequest$Outbound
+    | components.RateLimitReachedError$Outbound;
 
 /** @internal */
 export const UsersGetUserInfoResponse$outboundSchema: z.ZodType<
@@ -155,6 +158,7 @@ export const UsersGetUserInfoResponse$outboundSchema: z.ZodType<
 > = z.union([
     components.DefaultUnauthorizedResponse$outboundSchema,
     z.lazy(() => UsersGetUserInfoSuccessfulRequest$outboundSchema),
+    components.RateLimitReachedError$outboundSchema,
 ]);
 
 /**

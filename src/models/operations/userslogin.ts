@@ -13,7 +13,8 @@ export type UsersLoginRequestBody = {
 export type UsersLoginResponse =
     | components.AccessTokenObj
     | components.DefaultBadRequest
-    | components.DefaultUnauthorizedResponse;
+    | components.DefaultUnauthorizedResponse
+    | components.RateLimitReachedError;
 
 /** @internal */
 export const UsersLoginRequestBody$inboundSchema: z.ZodType<
@@ -63,13 +64,15 @@ export const UsersLoginResponse$inboundSchema: z.ZodType<
     components.AccessTokenObj$inboundSchema,
     components.DefaultBadRequest$inboundSchema,
     components.DefaultUnauthorizedResponse$inboundSchema,
+    components.RateLimitReachedError$inboundSchema,
 ]);
 
 /** @internal */
 export type UsersLoginResponse$Outbound =
     | components.AccessTokenObj$Outbound
     | components.DefaultBadRequest$Outbound
-    | components.DefaultUnauthorizedResponse$Outbound;
+    | components.DefaultUnauthorizedResponse$Outbound
+    | components.RateLimitReachedError$Outbound;
 
 /** @internal */
 export const UsersLoginResponse$outboundSchema: z.ZodType<
@@ -80,6 +83,7 @@ export const UsersLoginResponse$outboundSchema: z.ZodType<
     components.AccessTokenObj$outboundSchema,
     components.DefaultBadRequest$outboundSchema,
     components.DefaultUnauthorizedResponse$outboundSchema,
+    components.RateLimitReachedError$outboundSchema,
 ]);
 
 /**

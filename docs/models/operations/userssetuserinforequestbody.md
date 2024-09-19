@@ -6,9 +6,9 @@
 import { UsersSetUserInfoRequestBody } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
 let value: UsersSetUserInfoRequestBody = {
-    username: "Minerva.Nikolaus",
-    email: "Tyrel.Rosenbaum@yahoo.com",
-    password: "HM2jgL5W6EzvaKC",
+    username: "Pinkie_Schmidt",
+    email: "Marielle_Carroll58@hotmail.com",
+    password: "TziRHM2jgL5W6Ez",
 };
 ```
 

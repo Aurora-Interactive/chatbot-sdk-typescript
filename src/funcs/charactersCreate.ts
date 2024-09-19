@@ -118,6 +118,7 @@ export async function charactersCreate(
         m$.json(200, operations.CharactersCreateResponse$inboundSchema),
         m$.json(400, operations.CharactersCreateResponse$inboundSchema),
         m$.json(401, operations.CharactersCreateResponse$inboundSchema),
+        m$.json(429, operations.CharactersCreateResponse$inboundSchema),
         m$.fail("5XX")
     )(response);
     if (!result$.ok) {

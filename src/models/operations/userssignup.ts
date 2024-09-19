@@ -11,7 +11,10 @@ export type UsersSignupRequestBody = {
     password: string;
 };
 
-export type UsersSignupResponse = components.AccessTokenObj | components.DefaultBadRequest;
+export type UsersSignupResponse =
+    | components.AccessTokenObj
+    | components.DefaultBadRequest
+    | components.RateLimitReachedError;
 
 /** @internal */
 export const UsersSignupRequestBody$inboundSchema: z.ZodType<
@@ -60,12 +63,17 @@ export const UsersSignupResponse$inboundSchema: z.ZodType<
     UsersSignupResponse,
     z.ZodTypeDef,
     unknown
-> = z.union([components.AccessTokenObj$inboundSchema, components.DefaultBadRequest$inboundSchema]);
+> = z.union([
+    components.AccessTokenObj$inboundSchema,
+    components.DefaultBadRequest$inboundSchema,
+    components.RateLimitReachedError$inboundSchema,
+]);
 
 /** @internal */
 export type UsersSignupResponse$Outbound =
     | components.AccessTokenObj$Outbound
-    | components.DefaultBadRequest$Outbound;
+    | components.DefaultBadRequest$Outbound
+    | components.RateLimitReachedError$Outbound;
 
 /** @internal */
 export const UsersSignupResponse$outboundSchema: z.ZodType<
@@ -75,6 +83,7 @@ export const UsersSignupResponse$outboundSchema: z.ZodType<
 > = z.union([
     components.AccessTokenObj$outboundSchema,
     components.DefaultBadRequest$outboundSchema,
+    components.RateLimitReachedError$outboundSchema,
 ]);
 
 /**

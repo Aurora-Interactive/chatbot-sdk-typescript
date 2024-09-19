@@ -9,7 +9,7 @@ import { CharactersGetResponseBody } from "@aurora-interactive/chatbot-api-sdk/m
 
 let value: CharactersGetResponseBody = {
     name: "<value>",
-    description: "Distributed value-added framework",
+    description: "User-centric explicit monitoring",
     isOfficial: false,
 };
 ```

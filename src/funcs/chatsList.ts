@@ -104,6 +104,7 @@ export async function chatsList(
         m$.json(200, operations.ChatsListResponse$inboundSchema),
         m$.json(400, operations.ChatsListResponse$inboundSchema),
         m$.json(401, operations.ChatsListResponse$inboundSchema),
+        m$.json(429, operations.ChatsListResponse$inboundSchema),
         m$.fail("5XX")
     )(response);
     if (!result$.ok) {

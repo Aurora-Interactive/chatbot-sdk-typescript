@@ -8,8 +8,8 @@ User info
 import { UsersQuotaSuccessfulRequest } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
 let value: UsersQuotaSuccessfulRequest = {
-    quotaUsed: 437032,
-    quotaMax: 902349,
+    quotaUsed: 359508,
+    quotaMax: 613064,
     planName: "<value>",
 };
 ```

@@ -10,8 +10,8 @@ import { ChatsListSuccessfulRequest } from "@aurora-interactive/chatbot-api-sdk/
 let value: ChatsListSuccessfulRequest = {
     chats: [
         {
-            characterId: 971945,
-            chatId: 976460,
+            characterId: 468651,
+            chatId: 509624,
         },
     ],
 };

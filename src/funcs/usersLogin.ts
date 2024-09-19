@@ -114,6 +114,7 @@ export async function usersLogin(
         m$.json(200, operations.UsersLoginResponse$inboundSchema),
         m$.json(400, operations.UsersLoginResponse$inboundSchema),
         m$.json(401, operations.UsersLoginResponse$inboundSchema),
+        m$.json(429, operations.UsersLoginResponse$inboundSchema),
         m$.fail("5XX")
     )(response);
     if (!result$.ok) {

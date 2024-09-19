@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: d0c6ef81-afa9-4266-a8f1-2430fa28984d
 management:
-  docChecksum: b7357add79a011e162a9ed634364dc88
-  docVersion: 9.1.0
+  docChecksum: aa8124d6ac22ac4c188a8aac32909ccc
+  docVersion: 9.2.0
   speakeasyVersion: 1.385.0
   generationVersion: 2.407.2
-  releaseVersion: 9.1.0
-  configChecksum: ffbc2606d7b005b4764acc4a6152ddd5
+  releaseVersion: 9.2.0
+  configChecksum: 9a1076dfc1f1b02c308db8a4bbe46739
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -29,6 +29,7 @@ features:
     retries: 2.83.0
     sdkHooks: 0.1.0
     serverEvents: 0.1.4
+    unions: 2.85.7
 generatedFiles:
   - src/funcs/usersLogin.ts
   - src/funcs/usersGetInfo.ts
@@ -105,9 +106,9 @@ generatedFiles:
   - src/models/components/accesstokenobj.ts
   - src/models/components/defaultbadrequest.ts
   - src/models/components/defaultunauthorizedresponse.ts
+  - src/models/components/ratelimitreachederror.ts
   - src/models/components/successfulrequest.ts
   - src/models/components/characterid.ts
-  - src/models/components/defaultmessagequotaexceeded.ts
   - src/models/components/chatcompletionfragment.ts
   - src/models/errors/index.ts
   - src/models/operations/index.ts
@@ -175,10 +176,12 @@ generatedFiles:
   - docs/models/components/defaultbadrequest.md
   - docs/models/components/defaultunauthorizedresponseerror.md
   - docs/models/components/defaultunauthorizedresponse.md
+  - docs/models/components/two.md
+  - docs/models/components/ratelimitreachederrorerror.md
+  - docs/models/components/failedrequest.md
+  - docs/models/components/ratelimitreachederror.md
   - docs/models/components/successfulrequest.md
   - docs/models/components/characterid.md
-  - docs/models/components/defaultmessagequotaexceedederror.md
-  - docs/models/components/defaultmessagequotaexceeded.md
   - docs/models/components/data.md
   - docs/models/components/chatcompletionfragment.md
   - docs/sdks/aurorachatbotsdk/README.md

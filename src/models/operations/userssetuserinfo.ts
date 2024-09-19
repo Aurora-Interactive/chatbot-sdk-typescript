@@ -18,7 +18,8 @@ export type UsersSetUserInfoRequestBody = {
 export type UsersSetUserInfoResponse =
     | components.SuccessfulRequest
     | components.DefaultBadRequest
-    | components.DefaultUnauthorizedResponse;
+    | components.DefaultUnauthorizedResponse
+    | components.RateLimitReachedError;
 
 /** @internal */
 export const UsersSetUserInfoGlobals$inboundSchema: z.ZodType<
@@ -107,13 +108,15 @@ export const UsersSetUserInfoResponse$inboundSchema: z.ZodType<
     components.SuccessfulRequest$inboundSchema,
     components.DefaultBadRequest$inboundSchema,
     components.DefaultUnauthorizedResponse$inboundSchema,
+    components.RateLimitReachedError$inboundSchema,
 ]);
 
 /** @internal */
 export type UsersSetUserInfoResponse$Outbound =
     | components.SuccessfulRequest$Outbound
     | components.DefaultBadRequest$Outbound
-    | components.DefaultUnauthorizedResponse$Outbound;
+    | components.DefaultUnauthorizedResponse$Outbound
+    | components.RateLimitReachedError$Outbound;
 
 /** @internal */
 export const UsersSetUserInfoResponse$outboundSchema: z.ZodType<
@@ -124,6 +127,7 @@ export const UsersSetUserInfoResponse$outboundSchema: z.ZodType<
     components.SuccessfulRequest$outboundSchema,
     components.DefaultBadRequest$outboundSchema,
     components.DefaultUnauthorizedResponse$outboundSchema,
+    components.RateLimitReachedError$outboundSchema,
 ]);
 
 /**

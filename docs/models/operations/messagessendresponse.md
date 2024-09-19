@@ -28,9 +28,9 @@ const value: components.DefaultBadRequest = /* values here */
 const value: components.DefaultUnauthorizedResponse = /* values here */
 ```
 
-### `components.DefaultMessageQuotaExceeded`
+### `components.RateLimitReachedError`
 
 ```typescript
-const value: components.DefaultMessageQuotaExceeded = /* values here */
+const value: components.RateLimitReachedError = /* values here */
 ```
 

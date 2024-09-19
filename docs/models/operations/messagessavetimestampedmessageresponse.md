@@ -6,10 +6,10 @@
 import { MessagesSaveTimestampedMessageResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
 let value: MessagesSaveTimestampedMessageResponse = {
-    role: "system",
+    role: "assistant",
     content: "<value>",
-    timestamp: 39187,
-    chatId: 441711,
+    timestamp: 120196,
+    chatId: 359444,
 };
 ```
 

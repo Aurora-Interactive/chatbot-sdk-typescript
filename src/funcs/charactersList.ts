@@ -123,6 +123,7 @@ export async function charactersList(
         m$.json(200, operations.CharactersListResponse$inboundSchema),
         m$.json(400, operations.CharactersListResponse$inboundSchema),
         m$.json(401, operations.CharactersListResponse$inboundSchema),
+        m$.json(429, operations.CharactersListResponse$inboundSchema),
         m$.fail("5XX")
     )(response);
     if (!result$.ok) {

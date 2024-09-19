@@ -6,6 +6,6 @@ export * from "./accesstokenobj.js";
 export * from "./characterid.js";
 export * from "./chatcompletionfragment.js";
 export * from "./defaultbadrequest.js";
-export * from "./defaultmessagequotaexceeded.js";
 export * from "./defaultunauthorizedresponse.js";
+export * from "./ratelimitreachederror.js";
 export * from "./successfulrequest.js";

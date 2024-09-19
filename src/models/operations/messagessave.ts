@@ -36,7 +36,7 @@ export type MessagesSaveResponse =
     | MessagesSaveSuccessfulRequest
     | components.DefaultBadRequest
     | components.DefaultUnauthorizedResponse
-    | components.DefaultMessageQuotaExceeded;
+    | components.RateLimitReachedError;
 
 /** @internal */
 export const MessagesSaveGlobals$inboundSchema: z.ZodType<
@@ -184,7 +184,7 @@ export const MessagesSaveResponse$inboundSchema: z.ZodType<
     z.lazy(() => MessagesSaveSuccessfulRequest$inboundSchema),
     components.DefaultBadRequest$inboundSchema,
     components.DefaultUnauthorizedResponse$inboundSchema,
-    components.DefaultMessageQuotaExceeded$inboundSchema,
+    components.RateLimitReachedError$inboundSchema,
 ]);
 
 /** @internal */
@@ -192,7 +192,7 @@ export type MessagesSaveResponse$Outbound =
     | MessagesSaveSuccessfulRequest$Outbound
     | components.DefaultBadRequest$Outbound
     | components.DefaultUnauthorizedResponse$Outbound
-    | components.DefaultMessageQuotaExceeded$Outbound;
+    | components.RateLimitReachedError$Outbound;
 
 /** @internal */
 export const MessagesSaveResponse$outboundSchema: z.ZodType<
@@ -203,7 +203,7 @@ export const MessagesSaveResponse$outboundSchema: z.ZodType<
     z.lazy(() => MessagesSaveSuccessfulRequest$outboundSchema),
     components.DefaultBadRequest$outboundSchema,
     components.DefaultUnauthorizedResponse$outboundSchema,
-    components.DefaultMessageQuotaExceeded$outboundSchema,
+    components.RateLimitReachedError$outboundSchema,
 ]);
 
 /**

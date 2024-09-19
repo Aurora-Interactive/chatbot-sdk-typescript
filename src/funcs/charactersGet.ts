@@ -117,6 +117,7 @@ export async function charactersGet(
         m$.json(200, operations.CharactersGetResponse$inboundSchema),
         m$.json(400, operations.CharactersGetResponse$inboundSchema),
         m$.json(401, operations.CharactersGetResponse$inboundSchema),
+        m$.json(429, operations.CharactersGetResponse$inboundSchema),
         m$.fail("5XX")
     )(response);
     if (!result$.ok) {

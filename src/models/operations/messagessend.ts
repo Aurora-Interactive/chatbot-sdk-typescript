@@ -19,8 +19,8 @@ export type MessagesSendRequestBody = {
 export type MessagesSendResponse =
     | components.DefaultBadRequest
     | components.DefaultUnauthorizedResponse
-    | components.DefaultMessageQuotaExceeded
-    | EventStream<components.ChatCompletionFragment>;
+    | EventStream<components.ChatCompletionFragment>
+    | components.RateLimitReachedError;
 
 /** @internal */
 export const MessagesSendGlobals$inboundSchema: z.ZodType<
@@ -108,7 +108,6 @@ export const MessagesSendResponse$inboundSchema: z.ZodType<
 > = z.union([
     components.DefaultBadRequest$inboundSchema,
     components.DefaultUnauthorizedResponse$inboundSchema,
-    components.DefaultMessageQuotaExceeded$inboundSchema,
     z.instanceof(ReadableStream<Uint8Array>).transform((stream) => {
         return new EventStream({
             stream,
@@ -118,14 +117,15 @@ export const MessagesSendResponse$inboundSchema: z.ZodType<
             },
         });
     }),
+    components.RateLimitReachedError$inboundSchema,
 ]);
 
 /** @internal */
 export type MessagesSendResponse$Outbound =
     | components.DefaultBadRequest$Outbound
     | components.DefaultUnauthorizedResponse$Outbound
-    | components.DefaultMessageQuotaExceeded$Outbound
-    | never;
+    | never
+    | components.RateLimitReachedError$Outbound;
 
 /** @internal */
 export const MessagesSendResponse$outboundSchema: z.ZodType<
@@ -135,8 +135,8 @@ export const MessagesSendResponse$outboundSchema: z.ZodType<
 > = z.union([
     components.DefaultBadRequest$outboundSchema,
     components.DefaultUnauthorizedResponse$outboundSchema,
-    components.DefaultMessageQuotaExceeded$outboundSchema,
     z.never(),
+    components.RateLimitReachedError$outboundSchema,
 ]);
 
 /**

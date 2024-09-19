@@ -113,6 +113,7 @@ export async function usersSignup(
     >(
         m$.json(200, operations.UsersSignupResponse$inboundSchema),
         m$.json(400, operations.UsersSignupResponse$inboundSchema),
+        m$.json(429, operations.UsersSignupResponse$inboundSchema),
         m$.fail("5XX")
     )(response);
     if (!result$.ok) {

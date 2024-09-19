@@ -6,7 +6,7 @@
 import { MessagesSaveResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
 let value: MessagesSaveResponse = {
-    error: "You have exceeded your message quota. To send more messages, please upgrade your plan or wait until your subscription renews.",
+    error: "One or more API parameters are malformed. Please check your request and try again",
 };
 ```
 
@@ -30,9 +30,9 @@ const value: components.DefaultBadRequest = /* values here */
 const value: components.DefaultUnauthorizedResponse = /* values here */
 ```
 
-### `components.DefaultMessageQuotaExceeded`
+### `components.RateLimitReachedError`
 
 ```typescript
-const value: components.DefaultMessageQuotaExceeded = /* values here */
+const value: components.RateLimitReachedError = /* values here */
 ```
 

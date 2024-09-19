@@ -30,3 +30,9 @@ const value: components.DefaultBadRequest = /* values here */
 const value: components.DefaultUnauthorizedResponse = /* values here */
 ```
 
+### `components.RateLimitReachedError`
+
+```typescript
+const value: components.RateLimitReachedError = /* values here */
+```
+

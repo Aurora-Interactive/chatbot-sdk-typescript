@@ -6,7 +6,7 @@
 import { ChatsInitializeResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
 let value: ChatsInitializeResponse = {
-    chatId: 604846,
+    chatId: 39187,
 };
 ```
 
@@ -28,5 +28,11 @@ const value: components.DefaultBadRequest = /* values here */
 
 ```typescript
 const value: components.DefaultUnauthorizedResponse = /* values here */
+```
+
+### `components.RateLimitReachedError`
+
+```typescript
+const value: components.RateLimitReachedError = /* values here */
 ```
 

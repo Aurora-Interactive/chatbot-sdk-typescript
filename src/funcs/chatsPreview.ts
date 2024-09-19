@@ -124,6 +124,7 @@ export async function chatsPreview(
         m$.json(200, operations.ChatsPreviewResponse$inboundSchema),
         m$.json(400, operations.ChatsPreviewResponse$inboundSchema),
         m$.json(401, operations.ChatsPreviewResponse$inboundSchema),
+        m$.json(429, operations.ChatsPreviewResponse$inboundSchema),
         m$.fail("5XX")
     )(response);
     if (!result$.ok) {

@@ -45,7 +45,8 @@ export type MessagesGetManySuccessfulRequest = {
 export type MessagesGetManyResponse =
     | components.DefaultBadRequest
     | components.DefaultUnauthorizedResponse
-    | MessagesGetManySuccessfulRequest;
+    | MessagesGetManySuccessfulRequest
+    | components.RateLimitReachedError;
 
 /** @internal */
 export const MessagesGetManyGlobals$inboundSchema: z.ZodType<
@@ -240,13 +241,15 @@ export const MessagesGetManyResponse$inboundSchema: z.ZodType<
     components.DefaultBadRequest$inboundSchema,
     components.DefaultUnauthorizedResponse$inboundSchema,
     z.lazy(() => MessagesGetManySuccessfulRequest$inboundSchema),
+    components.RateLimitReachedError$inboundSchema,
 ]);
 
 /** @internal */
 export type MessagesGetManyResponse$Outbound =
     | components.DefaultBadRequest$Outbound
     | components.DefaultUnauthorizedResponse$Outbound
-    | MessagesGetManySuccessfulRequest$Outbound;
+    | MessagesGetManySuccessfulRequest$Outbound
+    | components.RateLimitReachedError$Outbound;
 
 /** @internal */
 export const MessagesGetManyResponse$outboundSchema: z.ZodType<
@@ -257,6 +260,7 @@ export const MessagesGetManyResponse$outboundSchema: z.ZodType<
     components.DefaultBadRequest$outboundSchema,
     components.DefaultUnauthorizedResponse$outboundSchema,
     z.lazy(() => MessagesGetManySuccessfulRequest$outboundSchema),
+    components.RateLimitReachedError$outboundSchema,
 ]);
 
 /**

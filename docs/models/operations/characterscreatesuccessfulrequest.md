@@ -8,7 +8,7 @@ Character was created successfully
 import { CharactersCreateSuccessfulRequest } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
 let value: CharactersCreateSuccessfulRequest = {
-    characterId: 622846,
+    characterId: 673660,
 };
 ```
 

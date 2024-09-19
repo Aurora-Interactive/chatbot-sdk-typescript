@@ -6,7 +6,9 @@
 import { UsersLoginResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
 let value: UsersLoginResponse = {
-    error: "Invalid username, password, or access token",
+    statusCode: 71036,
+    error: "<value>",
+    message: "<value>",
 };
 ```
 
@@ -28,5 +30,11 @@ const value: components.DefaultBadRequest = /* values here */
 
 ```typescript
 const value: components.DefaultUnauthorizedResponse = /* values here */
+```
+
+### `components.RateLimitReachedError`
+
+```typescript
+const value: components.RateLimitReachedError = /* values here */
 ```
 

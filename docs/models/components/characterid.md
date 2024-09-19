@@ -6,7 +6,7 @@
 import { CharacterId } from "@aurora-interactive/chatbot-api-sdk/models/components";
 
 let value: CharacterId = {
-    characterId: 216822,
+    characterId: 921158,
 };
 ```
 

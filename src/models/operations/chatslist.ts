@@ -27,7 +27,8 @@ export type ChatsListSuccessfulRequest = {
 export type ChatsListResponse =
     | ChatsListSuccessfulRequest
     | components.DefaultBadRequest
-    | components.DefaultUnauthorizedResponse;
+    | components.DefaultUnauthorizedResponse
+    | components.RateLimitReachedError;
 
 /** @internal */
 export const ChatsListGlobals$inboundSchema: z.ZodType<ChatsListGlobals, z.ZodTypeDef, unknown> =
@@ -165,13 +166,15 @@ export const ChatsListResponse$inboundSchema: z.ZodType<ChatsListResponse, z.Zod
         z.lazy(() => ChatsListSuccessfulRequest$inboundSchema),
         components.DefaultBadRequest$inboundSchema,
         components.DefaultUnauthorizedResponse$inboundSchema,
+        components.RateLimitReachedError$inboundSchema,
     ]);
 
 /** @internal */
 export type ChatsListResponse$Outbound =
     | ChatsListSuccessfulRequest$Outbound
     | components.DefaultBadRequest$Outbound
-    | components.DefaultUnauthorizedResponse$Outbound;
+    | components.DefaultUnauthorizedResponse$Outbound
+    | components.RateLimitReachedError$Outbound;
 
 /** @internal */
 export const ChatsListResponse$outboundSchema: z.ZodType<
@@ -182,6 +185,7 @@ export const ChatsListResponse$outboundSchema: z.ZodType<
     z.lazy(() => ChatsListSuccessfulRequest$outboundSchema),
     components.DefaultBadRequest$outboundSchema,
     components.DefaultUnauthorizedResponse$outboundSchema,
+    components.RateLimitReachedError$outboundSchema,
 ]);
 
 /**

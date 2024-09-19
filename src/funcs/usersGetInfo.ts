@@ -103,6 +103,7 @@ export async function usersGetInfo(
     >(
         m$.json(200, operations.UsersGetUserInfoResponse$inboundSchema),
         m$.json(401, operations.UsersGetUserInfoResponse$inboundSchema),
+        m$.json(429, operations.UsersGetUserInfoResponse$inboundSchema),
         m$.fail("5XX")
     )(response);
     if (!result$.ok) {

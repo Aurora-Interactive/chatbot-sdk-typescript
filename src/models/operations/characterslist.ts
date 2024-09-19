@@ -32,7 +32,8 @@ export type CharactersListSuccessfulRequest = {
 export type CharactersListResponse =
     | components.DefaultBadRequest
     | components.DefaultUnauthorizedResponse
-    | CharactersListSuccessfulRequest;
+    | CharactersListSuccessfulRequest
+    | components.RateLimitReachedError;
 
 /** @internal */
 export const CharactersListRequest$inboundSchema: z.ZodType<
@@ -162,13 +163,15 @@ export const CharactersListResponse$inboundSchema: z.ZodType<
     components.DefaultBadRequest$inboundSchema,
     components.DefaultUnauthorizedResponse$inboundSchema,
     z.lazy(() => CharactersListSuccessfulRequest$inboundSchema),
+    components.RateLimitReachedError$inboundSchema,
 ]);
 
 /** @internal */
 export type CharactersListResponse$Outbound =
     | components.DefaultBadRequest$Outbound
     | components.DefaultUnauthorizedResponse$Outbound
-    | CharactersListSuccessfulRequest$Outbound;
+    | CharactersListSuccessfulRequest$Outbound
+    | components.RateLimitReachedError$Outbound;
 
 /** @internal */
 export const CharactersListResponse$outboundSchema: z.ZodType<
@@ -179,6 +182,7 @@ export const CharactersListResponse$outboundSchema: z.ZodType<
     components.DefaultBadRequest$outboundSchema,
     components.DefaultUnauthorizedResponse$outboundSchema,
     z.lazy(() => CharactersListSuccessfulRequest$outboundSchema),
+    components.RateLimitReachedError$outboundSchema,
 ]);
 
 /**

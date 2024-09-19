@@ -127,6 +127,7 @@ export async function chatsDelete(
         m$.json(200, operations.ChatsDeleteResponse$inboundSchema),
         m$.json(400, operations.ChatsDeleteResponse$inboundSchema),
         m$.json(401, operations.ChatsDeleteResponse$inboundSchema),
+        m$.json(429, operations.ChatsDeleteResponse$inboundSchema),
         m$.fail("5XX")
     )(response);
     if (!result$.ok) {

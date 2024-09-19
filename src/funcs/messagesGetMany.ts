@@ -130,6 +130,7 @@ export async function messagesGetMany(
         m$.json(200, operations.MessagesGetManyResponse$inboundSchema),
         m$.json(400, operations.MessagesGetManyResponse$inboundSchema),
         m$.json(401, operations.MessagesGetManyResponse$inboundSchema),
+        m$.json(429, operations.MessagesGetManyResponse$inboundSchema),
         m$.fail("5XX")
     )(response);
     if (!result$.ok) {

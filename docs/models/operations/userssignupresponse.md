@@ -24,3 +24,9 @@ const value: components.AccessTokenObj = /* values here */
 const value: components.DefaultBadRequest = /* values here */
 ```
 
+### `components.RateLimitReachedError`
+
+```typescript
+const value: components.RateLimitReachedError = /* values here */
+```
+

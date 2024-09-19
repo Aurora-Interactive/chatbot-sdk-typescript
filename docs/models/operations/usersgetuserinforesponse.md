@@ -6,8 +6,9 @@
 import { UsersGetUserInfoResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
 let value: UsersGetUserInfoResponse = {
-    username: "Sarah.Strosin79",
-    email: "Jakayla_Lebsack11@hotmail.com",
+    statusCode: 473608,
+    error: "<value>",
+    message: "<value>",
 };
 ```
 
@@ -23,5 +24,11 @@ const value: operations.UsersGetUserInfoSuccessfulRequest = /* values here */
 
 ```typescript
 const value: components.DefaultUnauthorizedResponse = /* values here */
+```
+
+### `components.RateLimitReachedError`
+
+```typescript
+const value: components.RateLimitReachedError = /* values here */
 ```
 

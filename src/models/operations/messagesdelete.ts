@@ -16,7 +16,8 @@ export type MessagesDeleteRequest = {
 export type MessagesDeleteResponse =
     | components.SuccessfulRequest
     | components.DefaultBadRequest
-    | components.DefaultUnauthorizedResponse;
+    | components.DefaultUnauthorizedResponse
+    | components.RateLimitReachedError;
 
 /** @internal */
 export const MessagesDeleteGlobals$inboundSchema: z.ZodType<
@@ -99,13 +100,15 @@ export const MessagesDeleteResponse$inboundSchema: z.ZodType<
     components.SuccessfulRequest$inboundSchema,
     components.DefaultBadRequest$inboundSchema,
     components.DefaultUnauthorizedResponse$inboundSchema,
+    components.RateLimitReachedError$inboundSchema,
 ]);
 
 /** @internal */
 export type MessagesDeleteResponse$Outbound =
     | components.SuccessfulRequest$Outbound
     | components.DefaultBadRequest$Outbound
-    | components.DefaultUnauthorizedResponse$Outbound;
+    | components.DefaultUnauthorizedResponse$Outbound
+    | components.RateLimitReachedError$Outbound;
 
 /** @internal */
 export const MessagesDeleteResponse$outboundSchema: z.ZodType<
@@ -116,6 +119,7 @@ export const MessagesDeleteResponse$outboundSchema: z.ZodType<
     components.SuccessfulRequest$outboundSchema,
     components.DefaultBadRequest$outboundSchema,
     components.DefaultUnauthorizedResponse$outboundSchema,
+    components.RateLimitReachedError$outboundSchema,
 ]);
 
 /**

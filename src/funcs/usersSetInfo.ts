@@ -124,6 +124,7 @@ export async function usersSetInfo(
         m$.json(200, operations.UsersSetUserInfoResponse$inboundSchema),
         m$.json(400, operations.UsersSetUserInfoResponse$inboundSchema),
         m$.json(401, operations.UsersSetUserInfoResponse$inboundSchema),
+        m$.json(429, operations.UsersSetUserInfoResponse$inboundSchema),
         m$.fail("5XX")
     )(response);
     if (!result$.ok) {
