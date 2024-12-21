@@ -18,6 +18,7 @@ export type UsersQuotaSuccessfulRequest = {
     quotaUsed: number;
     quotaMax: number;
     planName: string;
+    isChristy: boolean;
 };
 
 /** @internal */
@@ -90,6 +91,7 @@ export const UsersQuotaSuccessfulRequest$inboundSchema: z.ZodType<
     quotaUsed: z.number().int(),
     quotaMax: z.number().int(),
     planName: z.string(),
+    isChristy: z.boolean(),
 });
 
 /** @internal */
@@ -98,6 +100,7 @@ export type UsersQuotaSuccessfulRequest$Outbound = {
     quotaUsed: number;
     quotaMax: number;
     planName: string;
+    isChristy: boolean;
 };
 
 /** @internal */
@@ -110,6 +113,7 @@ export const UsersQuotaSuccessfulRequest$outboundSchema: z.ZodType<
     quotaUsed: z.number().int(),
     quotaMax: z.number().int(),
     planName: z.string(),
+    isChristy: z.boolean(),
 });
 
 /**

@@ -11,6 +11,7 @@ let value: UsersQuotaSuccessfulRequest = {
     quotaUsed: 359508,
     quotaMax: 613064,
     planName: "<value>",
+    isChristy: false,
 };
 ```
 
@@ -22,3 +23,4 @@ let value: UsersQuotaSuccessfulRequest = {
 | `quotaUsed`        | *number*           | :heavy_check_mark: | N/A                |
 | `quotaMax`         | *number*           | :heavy_check_mark: | N/A                |
 | `planName`         | *string*           | :heavy_check_mark: | N/A                |
+| `isChristy`        | *boolean*          | :heavy_check_mark: | N/A                |
