@@ -6,7 +6,7 @@
 import { ChatsListResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
 let value: ChatsListResponse = {
-    error: "You have exceeded your message quota. To send more messages, please upgrade your plan or wait until your subscription renews.",
+    error: "One or more API parameters are malformed. Please check your request and try again",
 };
 ```
 

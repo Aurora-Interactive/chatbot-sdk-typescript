@@ -3,7 +3,10 @@
  */
 
 import { AuroraChatbotSDKCore } from "../core.js";
-import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings.js";
+import {
+    encodeFormQuery as encodeFormQuery$,
+    encodeSimple as encodeSimple$,
+} from "../lib/encodings.js";
 import * as m$ from "../lib/matchers.js";
 import * as schemas$ from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -54,7 +57,7 @@ export async function charactersGet(
     const payload$ = parsed$.value;
     const body$ = null;
 
-    const path$ = pathToFunc("/api/v9/character")();
+    const path$ = pathToFunc("/api/v11/character")();
 
     const query$ = encodeFormQuery$({
         characterId: payload$.characterId,
@@ -62,6 +65,10 @@ export async function charactersGet(
 
     const headers$ = new Headers({
         Accept: "application/json",
+        "x-access-token": encodeSimple$("x-access-token", client$.options$.accessToken, {
+            explode: false,
+            charEncoding: "none",
+        }),
     });
 
     const context = { operationID: "characters.get", oAuth2Scopes: [], securitySource: null };
@@ -117,6 +124,7 @@ export async function charactersGet(
         m$.json(200, operations.CharactersGetResponse$inboundSchema),
         m$.json(400, operations.CharactersGetResponse$inboundSchema),
         m$.json(401, operations.CharactersGetResponse$inboundSchema),
+        m$.json(403, operations.CharactersGetResponse$inboundSchema),
         m$.json(429, operations.CharactersGetResponse$inboundSchema),
         m$.fail("5XX")
     )(response);

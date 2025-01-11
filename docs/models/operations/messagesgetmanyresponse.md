@@ -6,15 +6,7 @@
 import { MessagesGetManyResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
 let value: MessagesGetManyResponse = {
-    messages: [
-        {
-            role: "assistant",
-            content: "<value>",
-            timestamp: 565189,
-            id: 566602,
-        },
-    ],
-    endOfList: false,
+    error: "You have exceeded your Message/TTS quota. To send more messages, please upgrade your plan or wait until your subscription renews.",
 };
 ```
 

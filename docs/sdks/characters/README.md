@@ -167,6 +167,7 @@ async function run() {
     initialResponse: "<value>",
     banner: "AAAAbx",
     icon: "AAAAbx",
+    isPrivate: false,
     specialMessages: [
       {
         startsWith: "<value>",
@@ -205,6 +206,7 @@ async function run() {
     initialResponse: "<value>",
     banner: "AAAAbx",
     icon: "AAAAbx",
+    isPrivate: false,
     specialMessages: [
       {
         startsWith: "<value>",

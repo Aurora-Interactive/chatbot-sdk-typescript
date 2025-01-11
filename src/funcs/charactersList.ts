@@ -3,7 +3,10 @@
  */
 
 import { AuroraChatbotSDKCore } from "../core.js";
-import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings.js";
+import {
+    encodeFormQuery as encodeFormQuery$,
+    encodeSimple as encodeSimple$,
+} from "../lib/encodings.js";
 import * as m$ from "../lib/matchers.js";
 import * as schemas$ from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -59,7 +62,7 @@ export async function charactersList(
     const payload$ = parsed$.value;
     const body$ = null;
 
-    const path$ = pathToFunc("/api/v9/characters")();
+    const path$ = pathToFunc("/api/v11/characters")();
 
     const query$ = encodeFormQuery$({
         from: payload$.from,
@@ -68,6 +71,10 @@ export async function charactersList(
 
     const headers$ = new Headers({
         Accept: "application/json",
+        "x-access-token": encodeSimple$("x-access-token", client$.options$.accessToken, {
+            explode: false,
+            charEncoding: "none",
+        }),
     });
 
     const context = { operationID: "characters.list", oAuth2Scopes: [], securitySource: null };

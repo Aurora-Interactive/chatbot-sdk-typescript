@@ -6,6 +6,7 @@ import { ClientSDK } from "../lib/sdks.js";
 import { Characters } from "./characters.js";
 import { Chats } from "./chats.js";
 import { Messages } from "./messages.js";
+import { Tts } from "./tts.js";
 import { Users } from "./users.js";
 
 export class AuroraChatbotSDK extends ClientSDK {
@@ -27,5 +28,10 @@ export class AuroraChatbotSDK extends ClientSDK {
     private _messages?: Messages;
     get messages(): Messages {
         return (this._messages ??= new Messages(this.options$));
+    }
+
+    private _tts?: Tts;
+    get tts(): Tts {
+        return (this._tts ??= new Tts(this.options$));
     }
 }

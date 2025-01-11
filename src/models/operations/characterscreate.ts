@@ -28,6 +28,7 @@ export type CharactersCreateRequestBody = {
      * base64-encoded AVIF image
      */
     icon: string;
+    isPrivate: boolean;
     specialMessages: Array<SpecialMessages>;
 };
 
@@ -132,6 +133,7 @@ export const CharactersCreateRequestBody$inboundSchema: z.ZodType<
     initialResponse: z.string(),
     banner: z.string(),
     icon: z.string(),
+    isPrivate: z.boolean(),
     specialMessages: z.array(z.lazy(() => SpecialMessages$inboundSchema)),
 });
 
@@ -143,6 +145,7 @@ export type CharactersCreateRequestBody$Outbound = {
     initialResponse: string;
     banner: string;
     icon: string;
+    isPrivate: boolean;
     specialMessages: Array<SpecialMessages$Outbound>;
 };
 
@@ -158,6 +161,7 @@ export const CharactersCreateRequestBody$outboundSchema: z.ZodType<
     initialResponse: z.string(),
     banner: z.string(),
     icon: z.string(),
+    isPrivate: z.boolean(),
     specialMessages: z.array(z.lazy(() => SpecialMessages$outboundSchema)),
 });
 

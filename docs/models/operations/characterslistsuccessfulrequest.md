@@ -13,6 +13,7 @@ let value: CharactersListSuccessfulRequest = {
             name: "<value>",
             description: "Progressive multi-state extranet",
             isOfficial: false,
+            isPrivate: false,
             id: 138183,
         },
     ],

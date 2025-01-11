@@ -66,7 +66,7 @@ export async function messagesSave(
     const payload$ = parsed$.value;
     const body$ = payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-    const path$ = pathToFunc("/api/v9/message/save")();
+    const path$ = pathToFunc("/api/v11/message/save")();
 
     const headers$ = new Headers({
         "Content-Type": "application/json",

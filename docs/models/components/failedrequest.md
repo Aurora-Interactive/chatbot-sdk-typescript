@@ -6,7 +6,7 @@
 import { FailedRequest } from "@aurora-interactive/chatbot-api-sdk/models/components";
 
 let value: FailedRequest = {
-    error: "You have exceeded your message quota. To send more messages, please upgrade your plan or wait until your subscription renews.",
+    error: "You have exceeded your Message/TTS quota. To send more messages, please upgrade your plan or wait until your subscription renews.",
 };
 ```
 

@@ -6,7 +6,7 @@
 import { ChatsPreviewResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
 let value: ChatsPreviewResponse = {
-    error: "One or more API parameters are malformed. Please check your request and try again",
+    error: "You have exceeded your Message/TTS quota. To send more messages, please upgrade your plan or wait until your subscription renews.",
 };
 ```
 

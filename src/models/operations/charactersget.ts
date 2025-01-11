@@ -5,6 +5,10 @@
 import * as components from "../components/index.js";
 import * as z from "zod";
 
+export type CharactersGetGlobals = {
+    accessToken?: string | undefined;
+};
+
 export type CharactersGetRequest = {
     characterId: number;
 };
@@ -16,13 +20,51 @@ export type CharactersGetResponseBody = {
     name: string;
     description: string;
     isOfficial: boolean;
+    isPrivate: boolean;
 };
 
 export type CharactersGetResponse =
+    | components.PrivateCharacterError
     | components.DefaultBadRequest
     | components.DefaultUnauthorizedResponse
     | CharactersGetResponseBody
     | components.RateLimitReachedError;
+
+/** @internal */
+export const CharactersGetGlobals$inboundSchema: z.ZodType<
+    CharactersGetGlobals,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    accessToken: z.string().optional(),
+});
+
+/** @internal */
+export type CharactersGetGlobals$Outbound = {
+    accessToken?: string | undefined;
+};
+
+/** @internal */
+export const CharactersGetGlobals$outboundSchema: z.ZodType<
+    CharactersGetGlobals$Outbound,
+    z.ZodTypeDef,
+    CharactersGetGlobals
+> = z.object({
+    accessToken: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CharactersGetGlobals$ {
+    /** @deprecated use `CharactersGetGlobals$inboundSchema` instead. */
+    export const inboundSchema = CharactersGetGlobals$inboundSchema;
+    /** @deprecated use `CharactersGetGlobals$outboundSchema` instead. */
+    export const outboundSchema = CharactersGetGlobals$outboundSchema;
+    /** @deprecated use `CharactersGetGlobals$Outbound` instead. */
+    export type Outbound = CharactersGetGlobals$Outbound;
+}
 
 /** @internal */
 export const CharactersGetRequest$inboundSchema: z.ZodType<
@@ -69,6 +111,7 @@ export const CharactersGetResponseBody$inboundSchema: z.ZodType<
     name: z.string(),
     description: z.string(),
     isOfficial: z.boolean(),
+    isPrivate: z.boolean(),
 });
 
 /** @internal */
@@ -76,6 +119,7 @@ export type CharactersGetResponseBody$Outbound = {
     name: string;
     description: string;
     isOfficial: boolean;
+    isPrivate: boolean;
 };
 
 /** @internal */
@@ -87,6 +131,7 @@ export const CharactersGetResponseBody$outboundSchema: z.ZodType<
     name: z.string(),
     description: z.string(),
     isOfficial: z.boolean(),
+    isPrivate: z.boolean(),
 });
 
 /**
@@ -108,6 +153,7 @@ export const CharactersGetResponse$inboundSchema: z.ZodType<
     z.ZodTypeDef,
     unknown
 > = z.union([
+    components.PrivateCharacterError$inboundSchema,
     components.DefaultBadRequest$inboundSchema,
     components.DefaultUnauthorizedResponse$inboundSchema,
     z.lazy(() => CharactersGetResponseBody$inboundSchema),
@@ -116,6 +162,7 @@ export const CharactersGetResponse$inboundSchema: z.ZodType<
 
 /** @internal */
 export type CharactersGetResponse$Outbound =
+    | components.PrivateCharacterError$Outbound
     | components.DefaultBadRequest$Outbound
     | components.DefaultUnauthorizedResponse$Outbound
     | CharactersGetResponseBody$Outbound
@@ -127,6 +174,7 @@ export const CharactersGetResponse$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     CharactersGetResponse
 > = z.union([
+    components.PrivateCharacterError$outboundSchema,
     components.DefaultBadRequest$outboundSchema,
     components.DefaultUnauthorizedResponse$outboundSchema,
     z.lazy(() => CharactersGetResponseBody$outboundSchema),

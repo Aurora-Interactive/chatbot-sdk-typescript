@@ -10,10 +10,10 @@ import { MessagesGetManySuccessfulRequest } from "@aurora-interactive/chatbot-ap
 let value: MessagesGetManySuccessfulRequest = {
     messages: [
         {
-            role: "user",
+            role: "system",
             content: "<value>",
-            timestamp: 918236,
-            id: 64147,
+            timestamp: 880476,
+            id: 414263,
         },
     ],
     endOfList: false,

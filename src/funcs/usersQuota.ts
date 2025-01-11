@@ -43,7 +43,7 @@ export async function usersQuota(
     const input$: operations.UsersQuotaRequest = {};
     void input$; // request input is unused
 
-    const path$ = pathToFunc("/api/v9/user/quota")();
+    const path$ = pathToFunc("/api/v11/user/quota")();
 
     const headers$ = new Headers({
         Accept: "application/json",

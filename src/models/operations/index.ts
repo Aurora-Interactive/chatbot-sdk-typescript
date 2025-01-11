@@ -13,6 +13,8 @@ export * from "./messagesdelete.js";
 export * from "./messagesgetmany.js";
 export * from "./messagessave.js";
 export * from "./messagessend.js";
+export * from "./ttsexecute.js";
+export * from "./ttsretrieve.js";
 export * from "./usersgetuserinfo.js";
 export * from "./userslogin.js";
 export * from "./usersquota.js";

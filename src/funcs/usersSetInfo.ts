@@ -30,6 +30,7 @@ export async function usersSetInfo(
     client$: AuroraChatbotSDKCore,
     username: string,
     email: string,
+    preferredTtsCharacter: number,
     password: string,
     options?: RequestOptions
 ): Promise<
@@ -47,6 +48,7 @@ export async function usersSetInfo(
     const input$: operations.UsersSetUserInfoRequestBody | undefined = {
         username: username,
         email: email,
+        preferredTtsCharacter: preferredTtsCharacter,
         password: password,
     };
 
@@ -61,7 +63,7 @@ export async function usersSetInfo(
     const payload$ = parsed$.value;
     const body$ = payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
-    const path$ = pathToFunc("/api/v9/user/info")();
+    const path$ = pathToFunc("/api/v11/user/info")();
 
     const headers$ = new Headers({
         "Content-Type": "application/json",

@@ -12,8 +12,8 @@ export type Two = {
 };
 
 export const RateLimitReachedErrorError = {
-    YouHaveExceededYourMessageQuotaToSendMoreMessagesPleaseUpgradeYourPlanOrWaitUntilYourSubscriptionRenews:
-        "You have exceeded your message quota. To send more messages, please upgrade your plan or wait until your subscription renews.",
+    YouHaveExceededYourMessageTTSQuotaToSendMoreMessagesPleaseUpgradeYourPlanOrWaitUntilYourSubscriptionRenews:
+        "You have exceeded your Message/TTS quota. To send more messages, please upgrade your plan or wait until your subscription renews.",
 } as const;
 export type RateLimitReachedErrorError = ClosedEnum<typeof RateLimitReachedErrorError>;
 

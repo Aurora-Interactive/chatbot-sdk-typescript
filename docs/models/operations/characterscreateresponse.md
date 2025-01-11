@@ -6,7 +6,7 @@
 import { CharactersCreateResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
 let value: CharactersCreateResponse = {
-    characterId: 971945,
+    error: "Invalid username, password, or access token",
 };
 ```
 

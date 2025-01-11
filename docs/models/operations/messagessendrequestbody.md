@@ -6,8 +6,8 @@
 import { MessagesSendRequestBody } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
 let value: MessagesSendRequestBody = {
-    characterId: 865103,
-    chatId: 265389,
+    characterId: 216822,
+    chatId: 692472,
     message: "<value>",
 };
 ```

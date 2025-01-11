@@ -11,6 +11,7 @@ let value: CharactersGetResponseBody = {
     name: "<value>",
     description: "User-centric explicit monitoring",
     isOfficial: false,
+    isPrivate: false,
 };
 ```
 
@@ -21,3 +22,4 @@ let value: CharactersGetResponseBody = {
 | `name`             | *string*           | :heavy_check_mark: | N/A                |
 | `description`      | *string*           | :heavy_check_mark: | N/A                |
 | `isOfficial`       | *boolean*          | :heavy_check_mark: | N/A                |
+| `isPrivate`        | *boolean*          | :heavy_check_mark: | N/A                |

@@ -61,7 +61,7 @@ export async function messagesGetMany(
     const payload$ = parsed$.value;
     const body$ = null;
 
-    const path$ = pathToFunc("/api/v9/messages")();
+    const path$ = pathToFunc("/api/v11/messages")();
 
     const query$ = encodeFormQuery$({
         chatId: payload$.chatId,

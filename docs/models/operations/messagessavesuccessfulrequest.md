@@ -8,7 +8,7 @@ Message saved successfully
 import { MessagesSaveSuccessfulRequest } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
 let value: MessagesSaveSuccessfulRequest = {
-    id: 296140,
+    id: 979587,
 };
 ```
 

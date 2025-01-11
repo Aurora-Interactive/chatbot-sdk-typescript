@@ -7,11 +7,12 @@ import { CharactersCreateRequestBody } from "@aurora-interactive/chatbot-api-sdk
 
 let value: CharactersCreateRequestBody = {
     name: "<value>",
-    description: "Compatible mobile software",
+    description: "Advanced asynchronous middleware",
     aiPrompt: "<value>",
     initialResponse: "<value>",
     banner: "AAAAbx",
     icon: "AAAAbx",
+    isPrivate: false,
     specialMessages: [
         {
             startsWith: "<value>",
@@ -32,4 +33,5 @@ let value: CharactersCreateRequestBody = {
 | `initialResponse`                                                          | *string*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |                                                                            |
 | `banner`                                                                   | *string*                                                                   | :heavy_check_mark:                                                         | base64-encoded AVIF image                                                  | AAAAbx                                                                     |
 | `icon`                                                                     | *string*                                                                   | :heavy_check_mark:                                                         | base64-encoded AVIF image                                                  | AAAAbx                                                                     |
+| `isPrivate`                                                                | *boolean*                                                                  | :heavy_check_mark:                                                         | N/A                                                                        |                                                                            |
 | `specialMessages`                                                          | [operations.SpecialMessages](../../models/operations/specialmessages.md)[] | :heavy_check_mark:                                                         | N/A                                                                        |                                                                            |

@@ -60,7 +60,7 @@ export async function messagesDelete(
     const payload$ = parsed$.value;
     const body$ = null;
 
-    const path$ = pathToFunc("/api/v9/message")();
+    const path$ = pathToFunc("/api/v11/message")();
 
     const query$ = encodeFormQuery$({
         messageId: payload$.messageId,

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: d0c6ef81-afa9-4266-a8f1-2430fa28984d
 management:
-  docChecksum: 48ffabcb928f8a96c011d8995cd3c99c
-  docVersion: 9.3.0
+  docChecksum: 8f2d9c115a0a131eff045cff35399c8d
+  docVersion: 11.0.0
   speakeasyVersion: 1.385.0
   generationVersion: 2.407.2
-  releaseVersion: 9.3.0
-  configChecksum: 7013994ea76ae0d091716cb222177276
+  releaseVersion: 11.0.0
+  configChecksum: d799d1ca7f3f426ea315fff0e0f105ec
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -15,6 +15,7 @@ features:
     core: 3.14.2
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
+    downloadStreams: 0.1.1
     envVarSecurityUsage: 0.1.1
     errors: 2.82.2
     examples: 2.81.4
@@ -47,10 +48,13 @@ generatedFiles:
   - src/funcs/messagesGetMany.ts
   - src/funcs/messagesSend.ts
   - src/funcs/messagesDelete.ts
+  - src/funcs/ttsExecute.ts
+  - src/funcs/ttsRetrieve.ts
   - src/sdk/users.ts
   - src/sdk/characters.ts
   - src/sdk/chats.ts
   - src/sdk/messages.ts
+  - src/sdk/tts.ts
   - src/sdk/sdk.ts
   - .eslintrc.cjs
   - .npmignore
@@ -103,11 +107,14 @@ generatedFiles:
   - src/models/operations/messagesgetmany.ts
   - src/models/operations/messagessend.ts
   - src/models/operations/messagesdelete.ts
+  - src/models/operations/ttsexecute.ts
+  - src/models/operations/ttsretrieve.ts
   - src/models/components/accesstokenobj.ts
   - src/models/components/defaultbadrequest.ts
   - src/models/components/defaultunauthorizedresponse.ts
   - src/models/components/ratelimitreachederror.ts
   - src/models/components/successfulrequest.ts
+  - src/models/components/privatecharactererror.ts
   - src/models/components/characterid.ts
   - src/models/components/chatcompletionfragment.ts
   - src/models/errors/index.ts
@@ -127,10 +134,12 @@ generatedFiles:
   - docs/models/operations/usersquotasuccessfulrequest.md
   - docs/models/operations/userssignuprequestbody.md
   - docs/models/operations/userssignupresponse.md
+  - docs/models/operations/characterslistglobals.md
   - docs/models/operations/characterslistrequest.md
   - docs/models/operations/characters.md
   - docs/models/operations/characterslistsuccessfulrequest.md
   - docs/models/operations/characterslistresponse.md
+  - docs/models/operations/charactersgetglobals.md
   - docs/models/operations/charactersgetrequest.md
   - docs/models/operations/charactersgetresponsebody.md
   - docs/models/operations/charactersgetresponse.md
@@ -171,6 +180,13 @@ generatedFiles:
   - docs/models/operations/messagesdeleteglobals.md
   - docs/models/operations/messagesdeleterequest.md
   - docs/models/operations/messagesdeleteresponse.md
+  - docs/models/operations/ttsexecuteglobals.md
+  - docs/models/operations/ttsexecuterequestbody.md
+  - docs/models/operations/ttsexecutesuccessfulrequest.md
+  - docs/models/operations/ttsexecuteresponse.md
+  - docs/models/operations/ttsretrieveglobals.md
+  - docs/models/operations/ttsretrieverequest.md
+  - docs/models/operations/ttsretrieveresponse.md
   - docs/models/components/accesstokenobj.md
   - docs/models/components/errort.md
   - docs/models/components/defaultbadrequest.md
@@ -181,6 +197,8 @@ generatedFiles:
   - docs/models/components/failedrequest.md
   - docs/models/components/ratelimitreachederror.md
   - docs/models/components/successfulrequest.md
+  - docs/models/components/privatecharactererrorerror.md
+  - docs/models/components/privatecharactererror.md
   - docs/models/components/characterid.md
   - docs/models/components/data.md
   - docs/models/components/chatcompletionfragment.md
@@ -190,6 +208,7 @@ generatedFiles:
   - docs/sdks/characters/README.md
   - docs/sdks/chats/README.md
   - docs/sdks/messages/README.md
+  - docs/sdks/tts/README.md
   - USAGE.md
   - .gitattributes
   - .devcontainer/README.md

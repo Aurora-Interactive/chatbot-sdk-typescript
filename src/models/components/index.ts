@@ -7,5 +7,6 @@ export * from "./characterid.js";
 export * from "./chatcompletionfragment.js";
 export * from "./defaultbadrequest.js";
 export * from "./defaultunauthorizedresponse.js";
+export * from "./privatecharactererror.js";
 export * from "./ratelimitreachederror.js";
 export * from "./successfulrequest.js";

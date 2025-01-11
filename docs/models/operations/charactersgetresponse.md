@@ -6,7 +6,7 @@
 import { CharactersGetResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
 let value: CharactersGetResponse = {
-    error: "You have exceeded your message quota. To send more messages, please upgrade your plan or wait until your subscription renews.",
+    error: "This character is private and you are not the creator",
 };
 ```
 
@@ -34,5 +34,11 @@ const value: components.DefaultUnauthorizedResponse = /* values here */
 
 ```typescript
 const value: components.RateLimitReachedError = /* values here */
+```
+
+### `components.PrivateCharacterError`
+
+```typescript
+const value: components.PrivateCharacterError = /* values here */
 ```
 
