@@ -10,6 +10,8 @@ import { UsersQuotaSuccessfulRequest } from "@aurora-interactive/chatbot-api-sdk
 let value: UsersQuotaSuccessfulRequest = {
     quotaUsed: 359508,
     quotaMax: 613064,
+    ttsUsed: 437032,
+    ttsMax: 902349,
     planName: "<value>",
     isChristy: false,
 };
@@ -22,5 +24,7 @@ let value: UsersQuotaSuccessfulRequest = {
 | `success`          | *boolean*          | :heavy_minus_sign: | N/A                |
 | `quotaUsed`        | *number*           | :heavy_check_mark: | N/A                |
 | `quotaMax`         | *number*           | :heavy_check_mark: | N/A                |
+| `ttsUsed`          | *number*           | :heavy_check_mark: | N/A                |
+| `ttsMax`           | *number*           | :heavy_check_mark: | N/A                |
 | `planName`         | *string*           | :heavy_check_mark: | N/A                |
 | `isChristy`        | *boolean*          | :heavy_check_mark: | N/A                |
