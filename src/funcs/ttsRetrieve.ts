@@ -25,7 +25,7 @@ import { Result } from "../types/fp.js";
 
 export enum RetrieveAcceptEnum {
     applicationJson = "application/json",
-    audioXWav = "audio/x-wav",
+    applicationOctetStream = "application/octet-stream",
 }
 
 /**
@@ -72,7 +72,8 @@ export async function ttsRetrieve(
     });
 
     const headers$ = new Headers({
-        Accept: options?.acceptHeaderOverride || "application/json;q=1, audio/x-wav;q=0",
+        Accept:
+            options?.acceptHeaderOverride || "application/json;q=1, application/octet-stream;q=0",
         "x-access-token": encodeSimple$("x-access-token", client$.options$.accessToken, {
             explode: false,
             charEncoding: "none",
@@ -129,7 +130,7 @@ export async function ttsRetrieve(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.stream(200, operations.TtsRetrieveResponse$inboundSchema, { ctype: "audio/x-wav" }),
+        m$.stream(200, operations.TtsRetrieveResponse$inboundSchema),
         m$.json(400, operations.TtsRetrieveResponse$inboundSchema),
         m$.json(401, operations.TtsRetrieveResponse$inboundSchema),
         m$.json(429, operations.TtsRetrieveResponse$inboundSchema),
