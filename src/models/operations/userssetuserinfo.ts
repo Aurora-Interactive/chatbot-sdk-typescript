@@ -12,7 +12,6 @@ export type UsersSetUserInfoGlobals = {
 export type UsersSetUserInfoRequestBody = {
     username: string;
     email: string;
-    preferredTtsCharacter: number;
     password: string;
 };
 
@@ -66,7 +65,6 @@ export const UsersSetUserInfoRequestBody$inboundSchema: z.ZodType<
 > = z.object({
     username: z.string(),
     email: z.string(),
-    preferredTtsCharacter: z.number().int(),
     password: z.string(),
 });
 
@@ -74,7 +72,6 @@ export const UsersSetUserInfoRequestBody$inboundSchema: z.ZodType<
 export type UsersSetUserInfoRequestBody$Outbound = {
     username: string;
     email: string;
-    preferredTtsCharacter: number;
     password: string;
 };
 
@@ -86,7 +83,6 @@ export const UsersSetUserInfoRequestBody$outboundSchema: z.ZodType<
 > = z.object({
     username: z.string(),
     email: z.string(),
-    preferredTtsCharacter: z.number().int(),
     password: z.string(),
 });
 
