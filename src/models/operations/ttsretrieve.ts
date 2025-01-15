@@ -10,7 +10,7 @@ export type TtsRetrieveGlobals = {
 };
 
 export type TtsRetrieveRequest = {
-    ttsGenerationId: number;
+    ttsMessageFor: number;
 };
 
 export type TtsRetrieveResponse =
@@ -61,12 +61,12 @@ export const TtsRetrieveRequest$inboundSchema: z.ZodType<
     z.ZodTypeDef,
     unknown
 > = z.object({
-    ttsGenerationId: z.number().int(),
+    ttsMessageFor: z.number().int(),
 });
 
 /** @internal */
 export type TtsRetrieveRequest$Outbound = {
-    ttsGenerationId: number;
+    ttsMessageFor: number;
 };
 
 /** @internal */
@@ -75,7 +75,7 @@ export const TtsRetrieveRequest$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     TtsRetrieveRequest
 > = z.object({
-    ttsGenerationId: z.number().int(),
+    ttsMessageFor: z.number().int(),
 });
 
 /**

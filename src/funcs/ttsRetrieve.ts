@@ -36,7 +36,7 @@ export enum RetrieveAcceptEnum {
  */
 export async function ttsRetrieve(
     client$: AuroraChatbotSDKCore,
-    ttsGenerationId: number,
+    ttsMessageFor: number,
     options?: RequestOptions & { acceptHeaderOverride?: RetrieveAcceptEnum }
 ): Promise<
     Result<
@@ -51,7 +51,7 @@ export async function ttsRetrieve(
     >
 > {
     const input$: operations.TtsRetrieveRequest = {
-        ttsGenerationId: ttsGenerationId,
+        ttsMessageFor: ttsMessageFor,
     };
 
     const parsed$ = schemas$.safeParse(
@@ -68,7 +68,7 @@ export async function ttsRetrieve(
     const path$ = pathToFunc("/api/v11/tts")();
 
     const query$ = encodeFormQuery$({
-        ttsGenerationId: payload$.ttsGenerationId,
+        ttsMessageFor: payload$.ttsMessageFor,
     });
 
     const headers$ = new Headers({

@@ -6,16 +6,16 @@
 import { TtsExecuteResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
 let value: TtsExecuteResponse = {
-    error: "One or more API parameters are malformed. Please check your request and try again",
+    error: "You have exceeded your Message/TTS quota. To send more messages, please upgrade your plan or wait until your subscription renews.",
 };
 ```
 
 ## Supported Types
 
-### `operations.TtsExecuteSuccessfulRequest`
+### `components.SuccessfulRequest`
 
 ```typescript
-const value: operations.TtsExecuteSuccessfulRequest = /* values here */
+const value: components.SuccessfulRequest = /* values here */
 ```
 
 ### `components.DefaultBadRequest`

@@ -31,9 +31,9 @@ export class Tts extends ClientSDK {
      * Retrieve the WAV audio data generated after a successful call to `POST /tts`
      */
     async retrieve(
-        ttsGenerationId: number,
+        ttsMessageFor: number,
         options?: RequestOptions & { acceptHeaderOverride?: RetrieveAcceptEnum }
     ): Promise<operations.TtsRetrieveResponse> {
-        return unwrapAsync(ttsRetrieve(this, ttsGenerationId, options));
+        return unwrapAsync(ttsRetrieve(this, ttsMessageFor, options));
     }
 }

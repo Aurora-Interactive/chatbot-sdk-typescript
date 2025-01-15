@@ -13,16 +13,8 @@ export type TtsExecuteRequestBody = {
     messageId: number;
 };
 
-/**
- * text-to-speech generation completed successfully.
- */
-export type TtsExecuteSuccessfulRequest = {
-    success?: boolean | undefined;
-    generationId: number;
-};
-
 export type TtsExecuteResponse =
-    | TtsExecuteSuccessfulRequest
+    | components.SuccessfulRequest
     | components.DefaultBadRequest
     | components.DefaultUnauthorizedResponse
     | components.RateLimitReachedError;
@@ -97,51 +89,12 @@ export namespace TtsExecuteRequestBody$ {
 }
 
 /** @internal */
-export const TtsExecuteSuccessfulRequest$inboundSchema: z.ZodType<
-    TtsExecuteSuccessfulRequest,
-    z.ZodTypeDef,
-    unknown
-> = z.object({
-    success: z.boolean().default(true),
-    generationId: z.number().int(),
-});
-
-/** @internal */
-export type TtsExecuteSuccessfulRequest$Outbound = {
-    success: boolean;
-    generationId: number;
-};
-
-/** @internal */
-export const TtsExecuteSuccessfulRequest$outboundSchema: z.ZodType<
-    TtsExecuteSuccessfulRequest$Outbound,
-    z.ZodTypeDef,
-    TtsExecuteSuccessfulRequest
-> = z.object({
-    success: z.boolean().default(true),
-    generationId: z.number().int(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TtsExecuteSuccessfulRequest$ {
-    /** @deprecated use `TtsExecuteSuccessfulRequest$inboundSchema` instead. */
-    export const inboundSchema = TtsExecuteSuccessfulRequest$inboundSchema;
-    /** @deprecated use `TtsExecuteSuccessfulRequest$outboundSchema` instead. */
-    export const outboundSchema = TtsExecuteSuccessfulRequest$outboundSchema;
-    /** @deprecated use `TtsExecuteSuccessfulRequest$Outbound` instead. */
-    export type Outbound = TtsExecuteSuccessfulRequest$Outbound;
-}
-
-/** @internal */
 export const TtsExecuteResponse$inboundSchema: z.ZodType<
     TtsExecuteResponse,
     z.ZodTypeDef,
     unknown
 > = z.union([
-    z.lazy(() => TtsExecuteSuccessfulRequest$inboundSchema),
+    components.SuccessfulRequest$inboundSchema,
     components.DefaultBadRequest$inboundSchema,
     components.DefaultUnauthorizedResponse$inboundSchema,
     components.RateLimitReachedError$inboundSchema,
@@ -149,7 +102,7 @@ export const TtsExecuteResponse$inboundSchema: z.ZodType<
 
 /** @internal */
 export type TtsExecuteResponse$Outbound =
-    | TtsExecuteSuccessfulRequest$Outbound
+    | components.SuccessfulRequest$Outbound
     | components.DefaultBadRequest$Outbound
     | components.DefaultUnauthorizedResponse$Outbound
     | components.RateLimitReachedError$Outbound;
@@ -160,7 +113,7 @@ export const TtsExecuteResponse$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     TtsExecuteResponse
 > = z.union([
-    z.lazy(() => TtsExecuteSuccessfulRequest$outboundSchema),
+    components.SuccessfulRequest$outboundSchema,
     components.DefaultBadRequest$outboundSchema,
     components.DefaultUnauthorizedResponse$outboundSchema,
     components.RateLimitReachedError$outboundSchema,
