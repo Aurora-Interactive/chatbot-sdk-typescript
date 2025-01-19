@@ -8,8 +8,8 @@ import { MessagesSaveTimestampedMessageResponse } from "@aurora-interactive/chat
 let value: MessagesSaveTimestampedMessageResponse = {
     role: "system",
     content: "<value>",
-    timestamp: 441711,
-    chatId: 282807,
+    timestamp: 480894,
+    chatId: 118727,
 };
 ```
 

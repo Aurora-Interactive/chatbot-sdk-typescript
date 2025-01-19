@@ -6,7 +6,7 @@
 import { Two } from "@aurora-interactive/chatbot-api-sdk/models/components";
 
 let value: Two = {
-    statusCode: 523248,
+    statusCode: 575947,
     error: "<value>",
     message: "<value>",
 };

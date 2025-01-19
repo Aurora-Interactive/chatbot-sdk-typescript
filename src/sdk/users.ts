@@ -44,10 +44,11 @@ export class Users extends ClientSDK {
     async setInfo(
         username: string,
         email: string,
+        autoExecuteTts: boolean,
         password: string,
         options?: RequestOptions
     ): Promise<operations.UsersSetUserInfoResponse> {
-        return unwrapAsync(usersSetInfo(this, username, email, password, options));
+        return unwrapAsync(usersSetInfo(this, username, email, autoExecuteTts, password, options));
     }
 
     /**

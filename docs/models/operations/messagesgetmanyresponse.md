@@ -6,7 +6,7 @@
 import { MessagesGetManyResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
 let value: MessagesGetManyResponse = {
-    error: "You have exceeded your Message/TTS quota. To send more messages, please upgrade your plan or wait until your subscription renews.",
+    error: "Invalid username, password, or access token",
 };
 ```
 

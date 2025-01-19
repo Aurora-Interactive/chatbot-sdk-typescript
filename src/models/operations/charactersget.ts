@@ -21,6 +21,7 @@ export type CharactersGetResponseBody = {
     description: string;
     isOfficial: boolean;
     isPrivate: boolean;
+    ttsCharacter: number;
 };
 
 export type CharactersGetResponse =
@@ -112,6 +113,7 @@ export const CharactersGetResponseBody$inboundSchema: z.ZodType<
     description: z.string(),
     isOfficial: z.boolean(),
     isPrivate: z.boolean(),
+    ttsCharacter: z.number().int(),
 });
 
 /** @internal */
@@ -120,6 +122,7 @@ export type CharactersGetResponseBody$Outbound = {
     description: string;
     isOfficial: boolean;
     isPrivate: boolean;
+    ttsCharacter: number;
 };
 
 /** @internal */
@@ -132,6 +135,7 @@ export const CharactersGetResponseBody$outboundSchema: z.ZodType<
     description: z.string(),
     isOfficial: z.boolean(),
     isPrivate: z.boolean(),
+    ttsCharacter: z.number().int(),
 });
 
 /**

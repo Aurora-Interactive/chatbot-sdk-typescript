@@ -6,7 +6,7 @@
 import { MessagesSaveResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
 let value: MessagesSaveResponse = {
-    id: 359444,
+    error: "One or more API parameters are malformed. Please check your request and try again",
 };
 ```
 

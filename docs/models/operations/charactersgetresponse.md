@@ -6,7 +6,11 @@
 import { CharactersGetResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
 let value: CharactersGetResponse = {
-    error: "This character is private and you are not the creator",
+    name: "<value>",
+    description: "Compatible mobile software",
+    isOfficial: false,
+    isPrivate: false,
+    ttsCharacter: 673660,
 };
 ```
 

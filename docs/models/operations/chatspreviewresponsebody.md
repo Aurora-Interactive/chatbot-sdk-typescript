@@ -9,7 +9,7 @@ import { ChatsPreviewResponseBody } from "@aurora-interactive/chatbot-api-sdk/mo
 
 let value: ChatsPreviewResponseBody = {
     content: "<value>",
-    timestamp: 509624,
+    timestamp: 739264,
 };
 ```
 

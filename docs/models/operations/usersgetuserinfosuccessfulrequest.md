@@ -10,6 +10,7 @@ import { UsersGetUserInfoSuccessfulRequest } from "@aurora-interactive/chatbot-a
 let value: UsersGetUserInfoSuccessfulRequest = {
     username: "Ettie.Bogisich",
     email: "Rita.Will87@yahoo.com",
+    autoExecuteTts: false,
 };
 ```
 
@@ -20,3 +21,4 @@ let value: UsersGetUserInfoSuccessfulRequest = {
 | `success`          | *boolean*          | :heavy_minus_sign: | N/A                |
 | `username`         | *string*           | :heavy_check_mark: | N/A                |
 | `email`            | *string*           | :heavy_check_mark: | N/A                |
+| `autoExecuteTts`   | *boolean*          | :heavy_check_mark: | N/A                |

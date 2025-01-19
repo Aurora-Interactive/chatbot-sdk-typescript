@@ -6,8 +6,8 @@
 import { Chats } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
 let value: Chats = {
-    characterId: 96098,
-    chatId: 971945,
+    characterId: 509624,
+    chatId: 976762,
 };
 ```
 

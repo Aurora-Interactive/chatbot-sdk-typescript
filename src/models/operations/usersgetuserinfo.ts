@@ -18,6 +18,7 @@ export type UsersGetUserInfoSuccessfulRequest = {
     success?: boolean | undefined;
     username: string;
     email: string;
+    autoExecuteTts: boolean;
 };
 
 export type UsersGetUserInfoResponse =
@@ -100,6 +101,7 @@ export const UsersGetUserInfoSuccessfulRequest$inboundSchema: z.ZodType<
     success: z.boolean().default(true),
     username: z.string(),
     email: z.string(),
+    autoExecuteTts: z.boolean(),
 });
 
 /** @internal */
@@ -107,6 +109,7 @@ export type UsersGetUserInfoSuccessfulRequest$Outbound = {
     success: boolean;
     username: string;
     email: string;
+    autoExecuteTts: boolean;
 };
 
 /** @internal */
@@ -118,6 +121,7 @@ export const UsersGetUserInfoSuccessfulRequest$outboundSchema: z.ZodType<
     success: z.boolean().default(true),
     username: z.string(),
     email: z.string(),
+    autoExecuteTts: z.boolean(),
 });
 
 /**

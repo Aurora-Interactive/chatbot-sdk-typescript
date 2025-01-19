@@ -30,6 +30,7 @@ export async function usersSetInfo(
     client$: AuroraChatbotSDKCore,
     username: string,
     email: string,
+    autoExecuteTts: boolean,
     password: string,
     options?: RequestOptions
 ): Promise<
@@ -47,6 +48,7 @@ export async function usersSetInfo(
     const input$: operations.UsersSetUserInfoRequestBody | undefined = {
         username: username,
         email: email,
+        autoExecuteTts: autoExecuteTts,
         password: password,
     };
 

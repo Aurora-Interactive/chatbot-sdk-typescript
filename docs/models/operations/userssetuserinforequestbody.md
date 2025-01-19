@@ -8,6 +8,7 @@ import { UsersSetUserInfoRequestBody } from "@aurora-interactive/chatbot-api-sdk
 let value: UsersSetUserInfoRequestBody = {
     username: "Pinkie_Schmidt",
     email: "Marielle_Carroll58@hotmail.com",
+    autoExecuteTts: false,
     password: "TziRHM2jgL5W6Ez",
 };
 ```
@@ -18,4 +19,5 @@ let value: UsersSetUserInfoRequestBody = {
 | ------------------ | ------------------ | ------------------ | ------------------ |
 | `username`         | *string*           | :heavy_check_mark: | N/A                |
 | `email`            | *string*           | :heavy_check_mark: | N/A                |
+| `autoExecuteTts`   | *boolean*          | :heavy_check_mark: | N/A                |
 | `password`         | *string*           | :heavy_check_mark: | N/A                |

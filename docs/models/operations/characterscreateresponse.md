@@ -6,7 +6,7 @@
 import { CharactersCreateResponse } from "@aurora-interactive/chatbot-api-sdk/models/operations";
 
 let value: CharactersCreateResponse = {
-    error: "Invalid username, password, or access token",
+    error: "One or more API parameters are malformed. Please check your request and try again",
 };
 ```
 

@@ -7,7 +7,7 @@ import { CharactersCreateRequestBody } from "@aurora-interactive/chatbot-api-sdk
 
 let value: CharactersCreateRequestBody = {
     name: "<value>",
-    description: "Advanced asynchronous middleware",
+    description: "Compatible zero administration utilisation",
     aiPrompt: "<value>",
     initialResponse: "<value>",
     banner: "AAAAbx",
